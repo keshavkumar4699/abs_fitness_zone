@@ -1,0 +1,3 @@
+tags:
+  golden:
+    description: Pixel comparisons (render on Linux; regenerate with --update-goldens).

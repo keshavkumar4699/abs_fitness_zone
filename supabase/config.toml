@@ -1,0 +1,25 @@
+# Supabase CLI project config (local development: `supabase start`).
+project_id = "abs-fitness"
+
+[api]
+schemas = ["public"]
+max_rows = 1000
+
+[auth]
+site_url = "https://my.example.com"
+jwt_expiry = 3600
+# Staff sessions last 30 days via refresh tokens.
+enable_refresh_token_rotation = true
+
+[auth.email]
+enable_signup = false
+enable_confirmations = false
+
+[functions.member-login]
+verify_jwt = false
+
+[functions.set-member-pin]
+verify_jwt = true
+
+[functions.invite-staff]
+verify_jwt = true

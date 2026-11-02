@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.47.9"
+
+jobs:
+  flutter:
+    name: Flutter analyze + tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart run build_runner build --delete-conflicting-outputs
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze --fatal-infos
+      - run: flutter test
+      - name: Upload golden diffs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-failures
+          path: test/**/failures/
+          if-no-files-found: ignore
+
+  edge-functions:
+    name: Edge Functions check + tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: supabase/functions
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - run: deno check */index.ts
+      - run: deno test --allow-env
+
+  database:
+    name: Migrations + RLS tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/test_db.sh
+
+  android:
+    name: Android APK (main only)
+    runs-on: ubuntu-latest
+    needs: flutter
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - name: Write dev environment (secret ENV_DEV_JSON, optional)
+        env:
+          ENV_DEV_JSON: ${{ secrets.ENV_DEV_JSON }}
+        run: |
+          mkdir -p env
+          if [ -n "$ENV_DEV_JSON" ]; then printf '%s' "$ENV_DEV_JSON" > env/dev.json; else echo '{"APP_ENV":"dev"}' > env/dev.json; fi
+      - run: flutter pub get
+      - run: dart run build_runner build --delete-conflicting-outputs
+      - run: flutter build apk --release --dart-define-from-file=env/dev.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: abs-fitness-dev-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

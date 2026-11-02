@@ -33,3 +33,33 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+*.iml
+.metadata.bak
+coverage/
+# Generated code (run `dart run build_runner build` / `flutter gen-l10n`)
+*.g.dart
+*.freezed.dart
+lib/app/l10n/gen/
+# Golden test failure diffs
+**/failures/
+
+# Environment files with keys (only example.json is committed)
+env/*.json
+!env/example.json
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+.env
+.env.*
+
+# OS
+.DS_Store
