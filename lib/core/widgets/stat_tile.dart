@@ -52,7 +52,7 @@ class StatTile extends StatelessWidget {
                 child: Text(
                   label,
                   style: t.label.copyWith(color: c.textSecondary),
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

@@ -8,8 +8,8 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | Milestone | Scope | Status |
 | --- | --- | --- |
 | **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md), [fixes + redesign](docs/milestones/M0.1.md)) |
-| M1 Members | F1 complete, import, check-in, status engine, dashboard counts | Next |
-| M2 Payments | F2, receipts, UPI QR, day close, dues engine | — |
+| **M1 Members** | F1: members, plans, memberships, status engine, check-in, import/export, dashboard counts | ✅ Done ([report](docs/milestones/M1.md)) |
+| M2 Payments | F2, receipts, UPI QR, day close, dues engine | Next |
 | M3 Exercise library + Workouts | F4, F5, member app shell, workout player | — |
 | M4 Diet | F6 | — |
 | M5 WhatsApp | F8 | — |
@@ -105,16 +105,22 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    select public.bootstrap_owner('owner@gmail.com', 'Owner Name');
    ```
 
-6. The owner signs in, then uses **More → Staff → Invite staff** to add front
+6. The M1 migration also sets up these Supabase pieces when they're
+   available:
+   - The nightly status refresh at 00:05 IST (`pg_cron`). If `pg_cron` isn't
+     enabled, enable it under **Database → Extensions** and run
+     `supabase db push` again.
+   - The live check-in feed (Realtime on `attendance`).
+   - A private `member-photos` storage bucket.
+7. The owner signs in, then uses **More → Staff → Invite staff** to add front
    desk and trainers. Each person gets a one-time temporary password and must
    set their own password on first sign-in.
-7. To let a member sign in, front desk uses **More → Member PIN** to set a
-   4-digit PIN. This also creates the member's app login. Members are added in
-   M1; until then, insert one in the SQL editor:
-
-   ```sql
-   insert into public.members (name, phone) values ('Test Member', '+919876543210');
-   ```
+8. To let a member sign in, front desk uses **More → Member PIN** to set a
+   4-digit PIN. This also creates the member's app login. You can also open
+   it from a member's page (⋮ → Set app PIN).
+9. First-time setup on Home walks the owner through the gym profile,
+   membership plans and inviting staff. To bring in an existing member list,
+   use More → Import members with a CSV.
 
 ## Tests
 

@@ -374,7 +374,6 @@ class _MembershipStep extends ConsumerWidget {
                 ),
                 const SizedBox(width: AbsSpace.x3),
                 Expanded(
-                  flex: 2,
                   child: AbsTextField(label: l.discountReason, controller: data.discountReason),
                 ),
               ],

@@ -506,6 +506,9 @@ List<Member> sampleMembers() {
 
 FakeMembersRepository seededMembers() {
   final repo = FakeMembersRepository();
+  // Like the status engine: point members at their current membership.
+  repo.members[0] = repo.members[0].copyWith(currentMembershipId: 'ms-1');
+  repo.members[1] = repo.members[1].copyWith(currentMembershipId: 'ms-2');
   repo.membershipsByMember['m-1'] = [
     Membership(
       id: 'ms-1',

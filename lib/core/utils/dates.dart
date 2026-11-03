@@ -5,6 +5,9 @@ import 'package:intl/intl.dart';
 abstract final class IstDates {
   static const offset = Duration(hours: 5, minutes: 30);
 
+  /// Source of "now" for calendar logic; tests pin it so dates are stable.
+  static DateTime Function() clock = DateTime.now;
+
   /// Wall-clock IST for an instant. The returned value is a UTC-flagged
   /// DateTime whose fields read as IST, so it never shifts with the device
   /// time zone.
@@ -17,7 +20,7 @@ abstract final class IstDates {
   }
 
   /// Today's IST date.
-  static DateTime today({DateTime? now}) => istDate(now ?? DateTime.now());
+  static DateTime today({DateTime? now}) => istDate(now ?? clock());
 
   /// Whole days from IST today until [date] (negative when in the past).
   static int daysUntil(DateTime date, {DateTime? now}) {

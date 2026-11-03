@@ -12,6 +12,9 @@ Future<T?> showAbsBottomSheet<T>({
   return showModalBottomSheet<T>(
     context: context,
     isScrollControlled: true,
+    // Above the shell's floating tab bar, which would otherwise cover the
+    // sheet's bottom action.
+    useRootNavigator: true,
     useSafeArea: true,
     sheetAnimationStyle: AnimationStyle(
       duration: AbsMotion.standard.duration,
@@ -49,8 +52,10 @@ class _SnappingSheet extends StatelessWidget {
         snap: true,
         snapSizes: const [AbsSheetSnap.half, AbsSheetSnap.full],
         snapAnimationDuration: AbsMotion.standard.duration,
-        builder: (context, controller) => DecoratedBox(
-          decoration: BoxDecoration(color: c.surfaceRaised, borderRadius: AbsRadius.sheetTop),
+        builder: (context, controller) => Material(
+          color: c.surfaceRaised,
+          borderRadius: AbsRadius.sheetTop,
+          clipBehavior: Clip.antiAlias,
           child: Column(
             children: [
               const SizedBox(height: AbsSpace.x3),

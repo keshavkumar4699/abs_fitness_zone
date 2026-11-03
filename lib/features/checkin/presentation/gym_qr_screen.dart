@@ -49,7 +49,7 @@ class GymQrScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: AbsSpace.x5),
-                  Text(IstDates.formatDate(DateTime.now()), style: context.text.title),
+                  Text(IstDates.formatDate(IstDates.clock()), style: context.text.title),
                   const SizedBox(height: AbsSpace.x2),
                   Text(l.gymQrBody, style: context.text.body, textAlign: TextAlign.center),
                 ],

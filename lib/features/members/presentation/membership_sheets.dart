@@ -182,7 +182,6 @@ class _PlanSheetState extends ConsumerState<_PlanSheet> {
             ),
             const SizedBox(width: AbsSpace.x3),
             Expanded(
-              flex: 2,
               child: AbsTextField(label: l.discountReason, controller: _reason),
             ),
           ],

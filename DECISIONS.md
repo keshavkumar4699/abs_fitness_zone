@@ -154,3 +154,75 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     Windows it fails when the project and the Pub cache are on different
     drives ("Could not close incremental caches").
 
+
+## M1 Members
+
+29. **Payments wait for M2.** Each membership stores a price snapshot (plan
+    price, joining fee, add-ons, discount and reason), so M2 can create the
+    invoice from it. Until then, the "Collect" button and swipe-right on a
+    member explain that payments arrive in the next update.
+
+30. **Membership status "upcoming".** A member whose only plan starts in the
+    future shows "Starts soon" instead of "Inactive".
+
+31. **Joining fee** is charged on a member's first membership only.
+    Renewals and transfers never charge it.
+
+32. **Renewal start date.**
+    - A current member renews from the day after their current end, so early
+      renewal keeps the remaining days.
+    - A lapsed member starts today by default; the owner can switch this to
+      "day after old end" in Gym profile.
+
+33. **Expired, frozen or cancelled members can still be checked in.** The
+    visit is recorded and the desk sees a warning screen. Whether the person
+    may train is the desk's decision, and the owner still sees that they came.
+
+34. **Member self check-in uses a daily code** shown as a QR on a desk
+    tablet (More → Check-in QR). A printed poster can't "rotate daily", so the
+    code is `HMAC(secret, IST date)` and is never sent to members' phones.
+
+35. **The member card QR** encodes `ABSM:<member id>`. Desk scanning checks
+    the person in; the card contains no personal data.
+
+36. **Health data (DPDP).** Front desk can enter health details while adding
+    a member (with ticked consent) but cannot read them afterwards. The owner,
+    the member and their assigned trainer can read them. The owner and the
+    assigned trainer can edit them.
+
+37. **Who can do what.**
+    - Front desk can start, renew and freeze memberships, check members in,
+      import, export and assign trainers.
+    - The owner alone can cancel memberships, transfer days, archive members,
+      delete members forever and edit plans.
+    - Trainers can check in their own members and record measurements.
+
+38. **Bulk actions in M1** are "assign trainer" and "export CSV". Bulk
+    WhatsApp joins the free-mode send queue in M5. Single reminders already
+    work: swipe left on a member, or use the WhatsApp button, to open a
+    pre-filled wa.me link.
+
+39. **Delete forever** removes the member's records (cascade) and their app
+    profile, so they can no longer sign in. Removing the orphaned login itself
+    needs an Edge Function, planned for the DPDP export/delete tools.
+
+40. **Import is CSV-only.** Excel and Google Sheets both save as CSV. The
+    database accepts up to 1,000 rows per call and the app sends 500 at a
+    time. Duplicate phones are skipped, never merged.
+
+41. **Rule messages** raised by the database ("only 3 freeze days left on
+    this plan") are shown as written, in English. They will move to
+    localisation keys when Hindi is added.
+
+42. **One clock for dates.** All IST calendar logic reads `IstDates.clock`,
+    which tests pin to 3 Nov 2026, so days-left and screenshots are stable.
+
+43. **Bottom sheets open above the tab bar** (root navigator). Otherwise the
+    floating tab bar covered their bottom buttons.
+
+44. **Not built in M1, planned for a later milestone:**
+    - Document uploads (1.17) and progress photos (1.3).
+    - Merging duplicate members (1.18).
+    - Optional check-out.
+    - The drift offline cache: lists show error + retry when offline.
+    - Biometric unlock and app lock.
