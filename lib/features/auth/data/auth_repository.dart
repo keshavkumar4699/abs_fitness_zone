@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/errors.dart';
@@ -29,11 +32,32 @@ abstract interface class AuthRepository {
   Future<void> refresh();
 }
 
+/// Where the member email magic link sends people back to on Android/iOS
+/// (registered as an intent filter / URL scheme and in Supabase redirect URLs).
+const kAuthRedirectUri = 'com.absfitnesszone.app://login-callback';
+
 class SupabaseAuthRepository implements AuthRepository {
-  SupabaseAuthRepository(this._client);
+  SupabaseAuthRepository(this._client, [this._cache]);
 
   final SupabaseClient _client;
+  final SharedPreferences? _cache;
   final _refresh = StreamController<void>.broadcast();
+
+  static const _cacheKey = 'cached_profile';
+
+  void _writeCache(AppUser user) => _cache?.setString(_cacheKey, jsonEncode(user.toJson()));
+
+  /// The last profile seen for [userId], so the app still opens offline.
+  AppUser? _readCache(String userId) {
+    final raw = _cache?.getString(_cacheKey);
+    if (raw == null) return null;
+    try {
+      final user = AppUser.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      return user.userId == userId ? user : null;
+    } catch (_) {
+      return null;
+    }
+  }
 
   @override
   Stream<AppUser?> watchUser() async* {
@@ -53,6 +77,17 @@ class SupabaseAuthRepository implements AuthRepository {
       yield await _loadProfile(session);
     } on NoProfileFailure {
       yield null;
+    } on StaffDeactivatedFailure {
+      yield null;
+    } on NetworkFailure catch (e) {
+      // Offline with a saved session: open with the cached profile instead of
+      // locking the user out (writes still need a connection).
+      final cached = session == null ? null : _readCache(session.user.id);
+      if (cached != null) {
+        yield cached;
+      } else {
+        yield* Stream<AppUser?>.error(e);
+      }
     } catch (e) {
       yield* Stream<AppUser?>.error(e);
     }
@@ -63,17 +98,28 @@ class SupabaseAuthRepository implements AuthRepository {
     try {
       final row = await _client
           .from('profiles')
-          .select('id, role, name, phone, staff_id, member_id, must_set_password')
+          .select('id, role, name, phone, staff_id, member_id, must_set_password, staff:staff_id(is_active)')
           .eq('id', session.user.id)
           .isFilter('archived_at', null)
           .maybeSingle();
       if (row == null) {
         // Authenticated but not linked to the gym: sign out rather than leave
         // a half-session behind.
+        await _cache?.remove(_cacheKey);
         await _client.auth.signOut();
         throw const NoProfileFailure();
       }
-      return AppUser.fromJson(row);
+      final user = AppUser.fromJson(row);
+      // Deactivated staff keep their login row but must not get in. (RLS hides
+      // the staff row from inactive staff, so a missing embed means inactive.)
+      final staff = row['staff'];
+      if (user.role.isStaff && (staff is! Map || staff['is_active'] != true)) {
+        await _cache?.remove(_cacheKey);
+        await _client.auth.signOut();
+        throw const StaffDeactivatedFailure();
+      }
+      _writeCache(user);
+      return user;
     } on AppFailure {
       rethrow;
     } on PostgrestException catch (e) {
@@ -91,8 +137,7 @@ class SupabaseAuthRepository implements AuthRepository {
     } on AppFailure {
       rethrow;
     } on AuthException catch (e) {
-      if (e.statusCode == '400' || e.code == 'invalid_credentials') throw const InvalidCredentialsFailure();
-      throw ServerFailure(e.message);
+      throw authFailure(e);
     } catch (e) {
       throw _mapNetwork(e);
     }
@@ -121,7 +166,12 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> sendMemberMagicLink({required String email}) async {
     try {
-      await _client.auth.signInWithOtp(email: email.trim().toLowerCase(), shouldCreateUser: false);
+      await _client.auth.signInWithOtp(
+        email: email.trim().toLowerCase(),
+        shouldCreateUser: false,
+        // On the web the Supabase site URL is used; on phones come back to the app.
+        emailRedirectTo: kIsWeb ? null : kAuthRedirectUri,
+      );
     } on AuthException {
       // Never reveal whether the email exists; the UI always says "check inbox".
       return;
@@ -137,7 +187,7 @@ class SupabaseAuthRepository implements AuthRepository {
       await _client.rpc<void>('mark_password_set');
       _refresh.add(null);
     } on AuthException catch (e) {
-      throw ServerFailure(e.message);
+      throw authFailure(e);
     } on PostgrestException catch (e) {
       throw ServerFailure(e.message);
     } catch (e) {
@@ -146,10 +196,35 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() => _client.auth.signOut();
+  Future<void> signOut() async {
+    await _cache?.remove(_cacheKey);
+    try {
+      await _client.auth.signOut();
+    } catch (_) {
+      // Offline: drop the local session anyway so the device is signed out.
+      await _client.auth.signOut(scope: SignOutScope.local);
+    }
+  }
 
   @override
   Future<void> refresh() async => _refresh.add(null);
+}
+
+/// Maps Supabase Auth errors to failures the UI can explain.
+AppFailure authFailure(AuthException e) {
+  switch (e.code) {
+    case 'invalid_credentials':
+      return const InvalidCredentialsFailure();
+    case 'same_password':
+      return const SamePasswordFailure();
+    case 'weak_password':
+      return const WeakPasswordFailure();
+    case 'over_request_rate_limit' || 'over_email_send_rate_limit':
+      return const RateLimitedFailure();
+  }
+  if (e.statusCode == '400') return const InvalidCredentialsFailure();
+  if (e.statusCode == '429') return const RateLimitedFailure();
+  return ServerFailure(e.message);
 }
 
 /// Maps the member-login function's error response to a failure.
@@ -165,6 +240,7 @@ AppFailure memberLoginFailure(int status, Object? details) {
     return left is int ? InvalidPinFailure(left) : const InvalidCredentialsFailure();
   }
   if (status == 400) return const InvalidCredentialsFailure();
+  if (status == 429) return const RateLimitedFailure();
   return ServerFailure('member-login $status');
 }
 

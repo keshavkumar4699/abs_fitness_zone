@@ -96,6 +96,14 @@ class FakeStaffRepository implements StaffRepository {
     staff.add(StaffMember(id: 'new', name: name, email: email, role: role, isActive: true));
     return 'Temp9Pass2xy';
   }
+
+  @override
+  Future<void> setActive({required String staffId, required bool active}) async {
+    if (error != null) throw error!;
+    final i = staff.indexWhere((s) => s.id == staffId);
+    final s = staff[i];
+    staff[i] = StaffMember(id: s.id, name: s.name, email: s.email, phone: s.phone, role: s.role, isActive: active);
+  }
 }
 
 const sampleStaff = [

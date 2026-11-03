@@ -16,7 +16,7 @@ void main() {
   testWidgets('signed out: welcome offers member and staff login', (tester) async {
     await pumpApp(tester);
     await settle(tester);
-    expect(find.text('Train. Track. Transform.'), findsOneWidget);
+    expect(find.text('Transform.'), findsOneWidget);
     expect(find.text("I'm a member"), findsOneWidget);
     expect(find.text('Staff login'), findsOneWidget);
   });
@@ -34,7 +34,7 @@ void main() {
     await settle(tester);
 
     expect(auth.calls, contains('staff:owner@absfitness.in'));
-    expect(find.text('Hi, Keshav'), findsOneWidget);
+    expect(find.text('Hey Keshav!'), findsOneWidget);
     for (final tab in ['Home', 'Members', 'Payments', 'Plans', 'More']) {
       expect(find.text(tab), findsWidgets, reason: tab);
     }
@@ -108,7 +108,7 @@ void main() {
     await tester.tap(find.text('Save password'));
     await settle(tester);
     expect(auth.calls, contains('password'));
-    expect(find.text('Hi, Neha'), findsOneWidget);
+    expect(find.text('Hey Neha!'), findsOneWidget);
   });
 
   testWidgets('owner sees Staff in More and can open the roster', (tester) async {
@@ -178,6 +178,6 @@ void main() {
     await tester.ensureVisible(find.text('Sign out'));
     await tester.tap(find.text('Sign out'));
     await settle(tester);
-    expect(find.text('Train. Track. Transform.'), findsOneWidget);
+    expect(find.text('Transform.'), findsOneWidget);
   });
 }

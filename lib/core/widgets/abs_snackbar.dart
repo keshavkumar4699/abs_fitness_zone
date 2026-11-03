@@ -6,7 +6,7 @@ import '../../app/theme/theme.dart';
 
 enum SnackTone { neutral, success, error }
 
-/// Floating, rounded snackbar; shows Undo when [onUndo] is given.
+/// Floating sticker snackbar in the tone's pop colour; Undo when reversible.
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showAbsSnackbar(
   BuildContext context,
   String message, {
@@ -14,27 +14,33 @@ ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showAbsSnackbar(
   VoidCallback? onUndo,
 }) {
   final c = context.colors;
-  final (IconData icon, Color color) = switch (tone) {
-    SnackTone.neutral => (PhosphorIcons.info(), c.info),
-    SnackTone.success => (PhosphorIcons.checkCircle(), c.success),
-    SnackTone.error => (PhosphorIcons.warningCircle(), c.danger),
+  final (IconData icon, PopHue hue) = switch (tone) {
+    SnackTone.neutral => (PhosphorIcons.info(PhosphorIconsStyle.bold), PopHue.sky),
+    SnackTone.success => (PhosphorIcons.checkCircle(PhosphorIconsStyle.bold), PopHue.mint),
+    SnackTone.error => (PhosphorIcons.warningCircle(PhosphorIconsStyle.bold), PopHue.coral),
   };
+  final p = c.pop(hue);
   final messenger = ScaffoldMessenger.of(context)..hideCurrentSnackBar();
   return messenger.showSnackBar(
     SnackBar(
+      backgroundColor: p.fill,
       content: Row(
         children: [
-          Icon(icon, color: color, size: AbsSize.iconSmall + 2),
+          Icon(icon, color: p.onFill, size: AbsSize.icon),
           const SizedBox(width: AbsSpace.x3),
-          Expanded(child: Text(message)),
+          Expanded(
+            child: Text(message, style: context.text.body.copyWith(color: p.onFill)),
+          ),
         ],
       ),
       margin: EdgeInsets.fromLTRB(context.screenPadding, 0, context.screenPadding, AbsSpace.x4),
       shape: RoundedRectangleBorder(
         borderRadius: AbsRadius.buttonAll,
-        side: BorderSide(color: c.border),
+        side: BorderSide(color: c.isDark ? p.deep : c.ink, width: AbsDepth.outline),
       ),
-      action: onUndo == null ? null : SnackBarAction(label: context.l10n.commonUndo, onPressed: onUndo),
+      action: onUndo == null
+          ? null
+          : SnackBarAction(label: context.l10n.commonUndo, textColor: p.onFill, onPressed: onUndo),
     ),
   );
 }

@@ -5,10 +5,11 @@ import 'package:phosphor_icons/phosphor_icons.dart';
 import '../../../app/l10n/l10n.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/widgets/abs_button.dart';
+import '../../../core/widgets/states.dart';
 import '../application/onboarding_controller.dart';
 
-/// First-run member onboarding: three swipeable cards with a parallax
-/// illustration. (The push-permission prompt joins when push lands in M3.)
+/// First-run member onboarding: three swipeable cards, each in its own pop
+/// colour, with a parallax sticker illustration.
 class MemberOnboardingScreen extends ConsumerStatefulWidget {
   const MemberOnboardingScreen({super.key});
 
@@ -39,21 +40,32 @@ class _MemberOnboardingScreenState extends ConsumerState<MemberOnboardingScreen>
     final l = context.l10n;
     final c = context.colors;
     final cards = [
-      (PhosphorIcons.identificationCard(), l.onboardingTrackTitle, l.onboardingTrackBody),
-      (PhosphorIcons.barbell(), l.onboardingWorkoutTitle, l.onboardingWorkoutBody),
-      (PhosphorIcons.bowlFood(), l.onboardingDietTitle, l.onboardingDietBody),
+      (
+        PhosphorIcons.identificationCard(PhosphorIconsStyle.bold),
+        l.onboardingTrackTitle,
+        l.onboardingTrackBody,
+        PopHue.sky,
+      ),
+      (
+        PhosphorIcons.barbell(PhosphorIconsStyle.bold),
+        l.onboardingWorkoutTitle,
+        l.onboardingWorkoutBody,
+        PopHue.bubblegum,
+      ),
+      (PhosphorIcons.bowlFood(PhosphorIconsStyle.bold), l.onboardingDietTitle, l.onboardingDietBody, PopHue.mint),
     ];
-    final last = _page.round() == cards.length - 1;
+    final index = _page.round().clamp(0, cards.length - 1);
+    final last = index == cards.length - 1;
+    // Background tint blends between neighbouring cards as you swipe.
+    final from = c.pop(cards[_page.floor().clamp(0, cards.length - 1)].$4).fill;
+    final to = c.pop(cards[_page.ceil().clamp(0, cards.length - 1)].$4).fill;
+    final tint = Color.lerp(from, to, _page - _page.floor())!;
 
     return Scaffold(
+      backgroundColor: Color.alphaBlend(tint.withValues(alpha: c.isDark ? 0.14 : 0.22), c.bg),
       appBar: AppBar(
-        actions: [
-          if (!last)
-            TextButton(
-              onPressed: _done,
-              child: Text(l.commonSkip, style: TextStyle(color: c.textSecondary)),
-            ),
-        ],
+        backgroundColor: Colors.transparent,
+        actions: [if (!last) TextButton(onPressed: _done, child: Text(l.commonSkip))],
       ),
       body: SafeArea(
         top: false,
@@ -64,9 +76,14 @@ class _MemberOnboardingScreenState extends ConsumerState<MemberOnboardingScreen>
                 controller: _pages,
                 itemCount: cards.length,
                 itemBuilder: (context, i) {
-                  final (icon, title, body) = cards[i];
-                  final offset = (_page - i).clamp(-1.0, 1.0);
-                  return _OnboardingCard(icon: icon, title: title, body: body, parallax: offset);
+                  final (icon, title, body, hue) = cards[i];
+                  return _OnboardingCard(
+                    icon: icon,
+                    title: title,
+                    body: body,
+                    hue: hue,
+                    parallax: (_page - i).clamp(-1.0, 1.0),
+                  );
                 },
               ),
             ),
@@ -75,14 +92,18 @@ class _MemberOnboardingScreenState extends ConsumerState<MemberOnboardingScreen>
               children: [
                 for (var i = 0; i < cards.length; i++)
                   AnimatedContainer(
-                    duration: AbsMotion.quick.duration,
-                    curve: AbsMotion.quick.curve,
+                    duration: AbsMotion.bouncy.duration,
+                    curve: AbsMotion.bouncy.curve,
                     margin: const EdgeInsets.symmetric(horizontal: AbsSpace.x1),
-                    width: _page.round() == i ? AbsSpace.x6 : AbsSpace.x2,
-                    height: AbsSpace.x2,
+                    width: index == i ? AbsSpace.x8 : AbsSpace.x3,
+                    height: AbsSpace.x3,
                     decoration: BoxDecoration(
-                      color: _page.round() == i ? c.accent : c.border,
+                      color: index == i ? c.pop(cards[i].$4).fill : c.border,
                       borderRadius: AbsRadius.pill,
+                      border: Border.all(
+                        color: index == i ? (c.isDark ? c.pop(cards[i].$4).deep : c.ink) : Colors.transparent,
+                        width: 1.5,
+                      ),
                     ),
                   ),
               ],
@@ -91,6 +112,7 @@ class _MemberOnboardingScreenState extends ConsumerState<MemberOnboardingScreen>
               padding: EdgeInsets.all(context.screenPadding),
               child: AbsButton(
                 label: last ? l.onboardingStart : l.commonNext,
+                hue: cards[index].$4,
                 onPressed: last
                     ? _done
                     : () => _pages.nextPage(duration: AbsMotion.standard.duration, curve: AbsMotion.standard.curve),
@@ -104,11 +126,18 @@ class _MemberOnboardingScreenState extends ConsumerState<MemberOnboardingScreen>
 }
 
 class _OnboardingCard extends StatelessWidget {
-  const _OnboardingCard({required this.icon, required this.title, required this.body, required this.parallax});
+  const _OnboardingCard({
+    required this.icon,
+    required this.title,
+    required this.body,
+    required this.hue,
+    required this.parallax,
+  });
 
   final IconData icon;
   final String title;
   final String body;
+  final PopHue hue;
 
   /// -1..1, how far this card is from the centre of the viewport.
   final double parallax;
@@ -121,45 +150,22 @@ class _OnboardingCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.screenPadding),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Center(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  // Background ring moves slower than the foreground icon.
-                  Transform.translate(
-                    offset: Offset(parallax * width * 0.15, 0),
-                    child: Container(
-                      width: 220,
-                      height: 220,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: c.border, width: 2),
-                      ),
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: Offset(parallax * width * 0.3, 0),
-                    child: Container(
-                      width: 140,
-                      height: 140,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: c.accent.withValues(alpha: AbsOpacity.subtleFill),
-                      ),
-                      child: Icon(icon, size: 72, color: c.accentText),
-                    ),
-                  ),
-                ],
+              child: Transform.translate(
+                offset: Offset(parallax * width * 0.35, 0),
+                child: Transform.rotate(
+                  angle: parallax * 0.3,
+                  child: StickerIllustration(icon: icon, hue: hue, size: 240),
+                ),
               ),
             ),
           ),
           Text(title, style: t.displayL),
           const SizedBox(height: AbsSpace.x3),
-          Text(body, style: t.body.copyWith(color: c.textSecondary)),
+          Text(body, style: t.body.copyWith(color: c.textSecondary, fontSize: 17)),
           const SizedBox(height: AbsSpace.x8),
         ],
       ),

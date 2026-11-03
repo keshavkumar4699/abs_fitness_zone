@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
+import '../../../core/utils/phone_input.dart';
 import '../../../core/validators.dart';
 import '../../../core/widgets/abs_bottom_sheet.dart';
 import '../../../core/widgets/abs_button.dart';
@@ -36,7 +38,8 @@ class _MemberLoginScreenState extends ConsumerState<MemberLoginScreen> {
   }
 
   Future<void> _submit() async {
-    if (!_form.currentState!.validate()) return;
+    if (_busy || !_form.currentState!.validate()) return;
+    FocusScope.of(context).unfocus();
     setState(() => _busy = true);
     try {
       await ref.read(authRepositoryProvider).signInMember(phone: _phone.text, pin: _pin.text);
@@ -71,6 +74,8 @@ class _MemberLoginScreenState extends ConsumerState<MemberLoginScreen> {
     return AuthScaffold(
       title: l.memberLoginTitle,
       subtitle: l.memberLoginSubtitle,
+      icon: PhosphorIcons.userCircle(PhosphorIconsStyle.bold),
+      hue: PopHue.sky,
       children: [
         Form(
           key: _form,
@@ -85,7 +90,7 @@ class _MemberLoginScreenState extends ConsumerState<MemberLoginScreen> {
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
                 autofillHints: const [AutofillHints.telephoneNumberNational],
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(10)],
+                inputFormatters: const [IndianMobileInputFormatter()],
                 validator: v.phone,
               ),
               const SizedBox(height: AbsSpace.x4),
@@ -101,7 +106,7 @@ class _MemberLoginScreenState extends ConsumerState<MemberLoginScreen> {
                 onFieldSubmitted: (_) => _submit(),
               ),
               const SizedBox(height: AbsSpace.x6),
-              AbsButton(label: l.actionSignIn, isLoading: _busy, onPressed: _submit),
+              AbsButton(label: l.actionSignIn, hue: PopHue.sky, isLoading: _busy, onPressed: _submit),
               const SizedBox(height: AbsSpace.x4),
               Wrap(
                 alignment: WrapAlignment.spaceBetween,
@@ -140,7 +145,7 @@ class _EmailLinkSheetState extends ConsumerState<_EmailLinkSheet> {
   }
 
   Future<void> _send() async {
-    if (!_form.currentState!.validate()) return;
+    if (_busy || !_form.currentState!.validate()) return;
     setState(() => _busy = true);
     try {
       await ref.read(authRepositoryProvider).sendMemberMagicLink(email: _email.text);
@@ -177,7 +182,13 @@ class _EmailLinkSheetState extends ConsumerState<_EmailLinkSheet> {
             onFieldSubmitted: (_) => _send(),
           ),
           const SizedBox(height: AbsSpace.x5),
-          AbsButton(label: l.memberEmailLinkSend, isLoading: _busy, isSuccess: _sent, onPressed: _send),
+          AbsButton(
+            label: l.memberEmailLinkSend,
+            hue: PopHue.sky,
+            isLoading: _busy,
+            isSuccess: _sent,
+            onPressed: _send,
+          ),
         ],
       ),
     );

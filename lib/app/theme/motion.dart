@@ -10,30 +10,37 @@ class MotionToken {
   final Curve curve;
 }
 
-/// Motion tokens (spec §5). Every animation in the app uses one of these.
+/// Motion tokens. Every animation in the app uses one of these.
 abstract final class AbsMotion {
   static const instant = MotionToken(Duration(milliseconds: 120), Curves.easeOut);
   static const quick = MotionToken(Duration(milliseconds: 200), Curves.easeOutCubic);
   static const standard = MotionToken(Duration(milliseconds: 300), Curves.easeInOutCubicEmphasized);
   static const expressive = MotionToken(Duration(milliseconds: 450), springCurve);
 
+  /// Playful pop-in with a visible overshoot (nav icons, stickers, badges).
+  static const bouncy = MotionToken(Duration(milliseconds: 600), bouncyCurve);
+
   /// List/grid entrance stagger: 40 ms per item, at most 8 items.
   static const staggerStep = Duration(milliseconds: 40);
   static const staggerMaxItems = 8;
-  static const staggerCurve = Curves.easeOutCubic;
+  static const staggerCurve = Curves.easeOutBack;
 
   /// Skeleton → content cross-fade.
   static const crossFade = Duration(milliseconds: 200);
 
-  /// Entrance slide distance for list items (12 px).
-  static const entranceOffset = 12.0;
+  /// Entrance slide distance for list items.
+  static const entranceOffset = 16.0;
 
-  /// Press scale for buttons and tappable cards.
-  static const pressScale = 0.97;
+  /// Press scale for tappable cards.
+  static const pressScale = 0.96;
 
   /// Spring used by the expressive token (stiffness 300, damping 26).
   static const spring = SpringDescription(mass: 1, stiffness: 300, damping: 26);
   static const springCurve = SpringCurve(spring);
+
+  /// Springier spring for playful moments.
+  static const bouncySpring = SpringDescription(mass: 1, stiffness: 380, damping: 14);
+  static const bouncyCurve = SpringCurve(bouncySpring);
 
   /// Delay for item [index] in a staggered entrance (capped at 8 items).
   static Duration staggerDelay(int index) => staggerStep * (index < staggerMaxItems ? index : staggerMaxItems);
@@ -43,7 +50,7 @@ abstract final class AbsMotion {
   static bool reduced(BuildContext context) => MediaQuery.maybeDisableAnimationsOf(context) ?? false;
 }
 
-/// A [Curve] that follows a critically/under-damped spring from 0 to 1.
+/// A [Curve] that follows a spring from 0 to 1 (may overshoot).
 class SpringCurve extends Curve {
   const SpringCurve(this.spring);
 
@@ -51,8 +58,6 @@ class SpringCurve extends Curve {
 
   @override
   double transformInternal(double t) {
-    // Simulate over a normalised one-second window, then rescale so that the
-    // curve still ends exactly at 1.0 when t == 1.
     final sim = SpringSimulation(spring, 0, 1, 0);
     final end = sim.x(1);
     return sim.x(t) / end;

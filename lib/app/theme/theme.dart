@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,10 +22,12 @@ ThemeData buildAbsTheme(Brightness brightness) {
     brightness: brightness,
     primary: c.accent,
     onPrimary: c.onAccent,
-    secondary: c.info,
-    onSecondary: c.onAccent,
+    secondary: c.pop(PopHue.grape).fill,
+    onSecondary: c.pop(PopHue.grape).onFill,
+    tertiary: c.pop(PopHue.bubblegum).fill,
+    onTertiary: c.pop(PopHue.bubblegum).onFill,
     error: c.danger,
-    onError: c.onAccent,
+    onError: c.surface,
     surface: c.surface,
     onSurface: c.textPrimary,
     onSurfaceVariant: c.textSecondary,
@@ -42,8 +45,8 @@ ThemeData buildAbsTheme(Brightness brightness) {
   const sharedAxis = SharedAxisPageTransitionsBuilder(transitionType: SharedAxisTransitionType.horizontal);
 
   final inputBorder = OutlineInputBorder(
-    borderRadius: AbsRadius.chipAll,
-    borderSide: BorderSide(color: c.border),
+    borderRadius: AbsRadius.buttonAll,
+    borderSide: BorderSide(color: c.border, width: AbsDepth.outline),
   );
 
   return ThemeData(
@@ -55,7 +58,8 @@ ThemeData buildAbsTheme(Brightness brightness) {
     fontFamily: AbsFonts.text,
     textTheme: t.toTextTheme(),
     extensions: [c, t],
-    splashFactory: InkSparkle.splashFactory,
+    // InkSparkle needs a fragment shader; keep the safe ripple on web.
+    splashFactory: kIsWeb ? InkRipple.splashFactory : InkSparkle.splashFactory,
     dividerTheme: DividerThemeData(color: c.border, thickness: AbsSize.hairline, space: AbsSize.hairline),
     iconTheme: IconThemeData(color: c.textPrimary, size: AbsSize.icon),
     appBarTheme: AppBarTheme(
@@ -72,21 +76,28 @@ ThemeData buildAbsTheme(Brightness brightness) {
       fillColor: c.surface,
       contentPadding: const EdgeInsets.symmetric(horizontal: AbsSpace.x4, vertical: AbsSpace.x4),
       labelStyle: t.body.copyWith(color: c.textSecondary),
-      floatingLabelStyle: t.label.copyWith(color: c.accentText),
+      floatingLabelStyle: t.label.copyWith(color: c.pop(PopHue.grape).text),
+      hintStyle: t.body.copyWith(color: c.textSecondary),
       helperStyle: t.caption.copyWith(color: c.textSecondary),
       errorStyle: t.caption.copyWith(color: c.danger),
       prefixStyle: t.numericOf(t.body).copyWith(color: c.textSecondary),
       border: inputBorder,
       enabledBorder: inputBorder,
-      focusedBorder: inputBorder.copyWith(borderSide: BorderSide(color: c.accentText, width: 1.5)),
-      errorBorder: inputBorder.copyWith(borderSide: BorderSide(color: c.danger)),
-      focusedErrorBorder: inputBorder.copyWith(borderSide: BorderSide(color: c.danger, width: 1.5)),
+      focusedBorder: inputBorder.copyWith(
+        borderSide: BorderSide(color: c.pop(PopHue.grape).text, width: AbsDepth.outline + 0.5),
+      ),
+      errorBorder: inputBorder.copyWith(
+        borderSide: BorderSide(color: c.danger, width: AbsDepth.outline),
+      ),
+      focusedErrorBorder: inputBorder.copyWith(
+        borderSide: BorderSide(color: c.danger, width: AbsDepth.outline + 0.5),
+      ),
     ),
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
       backgroundColor: c.surfaceRaised,
       contentTextStyle: t.body.copyWith(color: c.textPrimary),
-      actionTextColor: c.accentText,
+      actionTextColor: c.pop(PopHue.grape).text,
       shape: const RoundedRectangleBorder(borderRadius: AbsRadius.buttonAll),
       elevation: 0,
     ),
@@ -99,11 +110,34 @@ ThemeData buildAbsTheme(Brightness brightness) {
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: c.surfaceRaised,
-      shape: const RoundedRectangleBorder(borderRadius: AbsRadius.cardAll),
+      shape: RoundedRectangleBorder(
+        borderRadius: AbsRadius.cardAll,
+        side: BorderSide(color: c.isDark ? c.border : c.ink, width: AbsDepth.outline),
+      ),
       titleTextStyle: t.title,
       contentTextStyle: t.body.copyWith(color: c.textSecondary),
     ),
-    // Depth comes from surface steps, not shadows (spec §4).
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(foregroundColor: c.pop(PopHue.grape).text, textStyle: t.label),
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: c.accent, circularTrackColor: c.border),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: c.pop(PopHue.grape).text,
+      selectionHandleColor: c.pop(PopHue.grape).fill,
+      selectionColor: c.pop(PopHue.grape).soft,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.resolveWith((s) => s.contains(WidgetState.selected) ? c.ink : c.textSecondary),
+      trackColor: WidgetStateProperty.resolveWith((s) => s.contains(WidgetState.selected) ? c.accent : c.border),
+    ),
+    tabBarTheme: TabBarThemeData(
+      labelColor: c.textPrimary,
+      unselectedLabelColor: c.textSecondary,
+      labelStyle: t.label,
+      unselectedLabelStyle: t.label,
+      indicatorColor: c.pop(PopHue.bubblegum).fill,
+      dividerColor: c.border,
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: c.accent,
       foregroundColor: c.onAccent,
@@ -113,25 +147,6 @@ ThemeData buildAbsTheme(Brightness brightness) {
       highlightElevation: 0,
       extendedTextStyle: t.heading.copyWith(color: c.onAccent),
       shape: const RoundedRectangleBorder(borderRadius: AbsRadius.cardAll),
-    ),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: c.accent, circularTrackColor: c.border),
-    textSelectionTheme: TextSelectionThemeData(cursorColor: c.accentText, selectionHandleColor: c.accent),
-    navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: Colors.transparent,
-      indicatorColor: c.accent.withValues(alpha: AbsOpacity.subtleFill),
-      height: AbsSize.bottomNavHeight,
-      labelTextStyle: WidgetStateProperty.resolveWith(
-        (s) => t.caption.copyWith(
-          color: s.contains(WidgetState.selected) ? c.textPrimary : c.textSecondary,
-          fontWeight: s.contains(WidgetState.selected) ? FontWeight.w600 : FontWeight.w400,
-        ),
-      ),
-    ),
-    navigationRailTheme: NavigationRailThemeData(
-      backgroundColor: c.bg,
-      indicatorColor: c.accent.withValues(alpha: AbsOpacity.subtleFill),
-      selectedLabelTextStyle: t.caption.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
-      unselectedLabelTextStyle: t.caption.copyWith(color: c.textSecondary),
     ),
     listTileTheme: ListTileThemeData(
       iconColor: c.textSecondary,
@@ -161,4 +176,33 @@ extension AbsThemeContext on BuildContext {
   /// Screen side padding: 20 on phone, 32 on tablet and wider.
   double get screenPadding =>
       MediaQuery.sizeOf(this).width >= AbsBreakpoint.tablet ? AbsSpace.screenTablet : AbsSpace.screenPhone;
+}
+
+/// Sticker surface: bold outline + hard offset lip, no blur.
+BoxDecoration stickerDecoration(
+  AbsColors c, {
+  Color? color,
+  Color? outline,
+  Color? lip,
+  double lipDepth = AbsDepth.cardLip,
+  BorderRadius borderRadius = AbsRadius.cardAll,
+}) {
+  return BoxDecoration(
+    color: color ?? c.surface,
+    borderRadius: borderRadius,
+    border: Border.all(color: outline ?? (c.isDark ? c.border : c.ink), width: AbsDepth.outline),
+    boxShadow: lipDepth <= 0
+        ? null
+        : [BoxShadow(color: lip ?? (c.isDark ? c.shadow : c.ink), offset: Offset(0, lipDepth))],
+  );
+}
+
+/// Picks a stable pop hue for a name (avatars, initials bubbles).
+PopHue hueForName(String name) {
+  const hues = [PopHue.sky, PopHue.tangerine, PopHue.bubblegum, PopHue.grape, PopHue.mint, PopHue.lime];
+  var h = 0;
+  for (final unit in name.codeUnits) {
+    h = (h * 31 + unit) & 0x7fffffff;
+  }
+  return hues[h % hues.length];
 }

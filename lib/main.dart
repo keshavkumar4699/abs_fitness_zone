@@ -15,26 +15,34 @@ import 'app/providers.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _registerFontLicenses();
-  const env = Env.fromDefines();
 
+  var env = const Env.fromDefines();
   final prefs = await SharedPreferences.getInstance();
   if (env.isConfigured) {
-    await Supabase.initialize(url: env.supabaseUrl, publishableKey: env.supabaseAnonKey);
+    try {
+      await Supabase.initialize(url: env.supabaseUrl, publishableKey: env.supabaseAnonKey);
+    } catch (e) {
+      // A bad URL or key must not crash the app on launch: open without a
+      // backend and explain on the welcome screen.
+      debugPrint('Supabase init failed: $e');
+      env = env.withError('$e');
+    }
   }
+  final appEnv = env;
 
   void run() => runApp(
     ProviderScope(
       retry: noAutoRetry,
-      overrides: [sharedPreferencesProvider.overrideWithValue(prefs), envProvider.overrideWithValue(env)],
+      overrides: [sharedPreferencesProvider.overrideWithValue(prefs), envProvider.overrideWithValue(appEnv)],
       child: const AbsApp(),
     ),
   );
 
-  if (env.hasSentry) {
+  if (appEnv.hasSentry) {
     await SentryFlutter.init((o) {
       o
-        ..dsn = env.sentryDsn
-        ..environment = env.name
+        ..dsn = appEnv.sentryDsn
+        ..environment = appEnv.name
         // Never attach personal data (names, phones) to crash reports.
         ..sendDefaultPii = false
         ..tracesSampleRate = 0.1;
@@ -47,7 +55,7 @@ Future<void> main() async {
 /// Bundled fonts are SIL OFL 1.1; show their licences on the licence page.
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
-    for (final (family, file) in [('Inter', 'OFL-Inter.txt'), ('Sora', 'OFL-Sora.txt')]) {
+    for (final (family, file) in [('Baloo 2', 'OFL-baloo-2.txt'), ('Nunito', 'OFL-nunito.txt')]) {
       yield LicenseEntryWithLineBreaks([family], await rootBundle.loadString('assets/fonts/$file'));
     }
   });

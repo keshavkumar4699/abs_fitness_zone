@@ -8,15 +8,16 @@ import '../../app/l10n/l10n.dart';
 import '../../app/theme/theme.dart';
 
 class QuickAction {
-  const QuickAction({required this.icon, required this.label, required this.onTap});
+  const QuickAction({required this.icon, required this.label, required this.onTap, this.hue = PopHue.sky});
 
   final IconData icon;
   final String label;
   final VoidCallback onTap;
+  final PopHue hue;
 }
 
-/// FAB that expands into stacked actions (New member, Collect, Check-in,
-/// Enquiry) with a staggered reveal.
+/// FAB that pops open into colourful stacked actions (New member, Collect,
+/// Check-in, Enquiry) with a bouncy stagger.
 class QuickActionFab extends StatefulWidget {
   const QuickActionFab({super.key, required this.actions});
 
@@ -27,16 +28,12 @@ class QuickActionFab extends StatefulWidget {
 }
 
 class _QuickActionFabState extends State<QuickActionFab> with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(vsync: this, duration: AbsMotion.standard.duration);
+  late final AnimationController _c = AnimationController(vsync: this, duration: AbsMotion.bouncy.duration);
   bool get _open => _c.status == AnimationStatus.forward || _c.status == AnimationStatus.completed;
 
   void _toggle() {
     HapticFeedback.lightImpact();
-    if (_open) {
-      _c.reverse();
-    } else {
-      _c.forward();
-    }
+    _open ? _c.reverse() : _c.forward();
     setState(() {});
   }
 
@@ -58,65 +55,76 @@ class _QuickActionFabState extends State<QuickActionFab> with SingleTickerProvid
         for (var i = 0; i < n; i++)
           _Staggered(
             controller: _c,
-            // The action nearest the FAB appears first.
             index: n - 1 - i,
-            count: n,
             child: Padding(
               padding: const EdgeInsets.only(bottom: AbsSpace.x3),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      _toggle();
-                      widget.actions[i].onTap();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x3, vertical: AbsSpace.x1 + 2),
-                      decoration: BoxDecoration(
-                        color: c.surfaceRaised,
-                        borderRadius: AbsRadius.chipAll,
-                        border: Border.all(color: c.border),
+              child: Semantics(
+                button: true,
+                label: widget.actions[i].label,
+                onTap: () {
+                  _toggle();
+                  widget.actions[i].onTap();
+                },
+                excludeSemantics: true,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    _toggle();
+                    widget.actions[i].onTap();
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x3, vertical: AbsSpace.x1 + 2),
+                        decoration: stickerDecoration(c, lipDepth: 2, borderRadius: AbsRadius.chipAll),
+                        child: Text(widget.actions[i].label, style: t.label),
                       ),
-                      child: Text(widget.actions[i].label, style: t.label),
-                    ),
-                  ),
-                  const SizedBox(width: AbsSpace.x3),
-                  SizedBox.square(
-                    dimension: AbsSize.touchTarget,
-                    child: Material(
-                      color: c.surfaceRaised,
-                      shape: CircleBorder(side: BorderSide(color: c.border)),
-                      child: InkWell(
-                        customBorder: const CircleBorder(),
-                        onTap: () {
-                          _toggle();
-                          widget.actions[i].onTap();
-                        },
-                        child: Icon(
-                          widget.actions[i].icon,
-                          color: c.textPrimary,
-                          semanticLabel: widget.actions[i].label,
+                      const SizedBox(width: AbsSpace.x3),
+                      Container(
+                        width: AbsSize.touchTarget,
+                        height: AbsSize.touchTarget,
+                        decoration: stickerDecoration(
+                          c,
+                          color: c.pop(widget.actions[i].hue).fill,
+                          lipDepth: 3,
+                          borderRadius: AbsRadius.pill,
                         ),
+                        child: Icon(widget.actions[i].icon, color: c.pop(widget.actions[i].hue).onFill),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
-        FloatingActionButton(
-          heroTag: null,
-          onPressed: _toggle,
-          backgroundColor: c.accent,
-          foregroundColor: c.onAccent,
-          tooltip: context.l10n.fabOpen,
-          shape: const RoundedRectangleBorder(borderRadius: AbsRadius.cardAll),
-          child: AnimatedBuilder(
-            animation: _c,
-            builder: (context, child) =>
-                Transform.rotate(angle: AbsMotion.standard.curve.transform(_c.value) * math.pi / 4, child: child),
-            child: Icon(PhosphorIcons.plus(PhosphorIconsStyle.bold)),
+        Tooltip(
+          message: context.l10n.fabOpen,
+          child: Semantics(
+            button: true,
+            label: context.l10n.fabOpen,
+            onTap: _toggle,
+            excludeSemantics: true,
+            child: GestureDetector(
+              onTap: _toggle,
+              child: Container(
+                key: const ValueKey('quick-action-fab'),
+                width: AbsSpace.x14 + 4,
+                height: AbsSpace.x14 + 4,
+                decoration: stickerDecoration(
+                  c,
+                  color: c.accent,
+                  lip: c.isDark ? c.primary.deep : c.ink,
+                  borderRadius: AbsRadius.cardAll,
+                ),
+                child: AnimatedBuilder(
+                  animation: _c,
+                  builder: (context, child) =>
+                      Transform.rotate(angle: AbsMotion.bouncy.curve.transform(_c.value) * math.pi / 4, child: child),
+                  child: Icon(PhosphorIcons.plus(PhosphorIconsStyle.bold), color: c.onAccent, size: 28),
+                ),
+              ),
+            ),
           ),
         ),
       ],
@@ -125,11 +133,10 @@ class _QuickActionFabState extends State<QuickActionFab> with SingleTickerProvid
 }
 
 class _Staggered extends StatelessWidget {
-  const _Staggered({required this.controller, required this.index, required this.count, required this.child});
+  const _Staggered({required this.controller, required this.index, required this.child});
 
   final AnimationController controller;
   final int index;
-  final int count;
   final Widget child;
 
   @override
@@ -138,15 +145,15 @@ class _Staggered extends StatelessWidget {
     final start = (AbsMotion.staggerDelay(index).inMilliseconds / total).clamp(0.0, 0.6);
     final anim = CurvedAnimation(
       parent: controller,
-      curve: Interval(start, 1, curve: AbsMotion.staggerCurve),
+      curve: Interval(start, 1, curve: AbsMotion.bouncy.curve),
     );
     return AnimatedBuilder(
       animation: anim,
       builder: (context, child) {
-        if (anim.value == 0) return const SizedBox.shrink();
+        if (controller.value == 0) return const SizedBox.shrink();
         return Opacity(
-          opacity: anim.value,
-          child: Transform.translate(offset: Offset(0, AbsMotion.entranceOffset * (1 - anim.value)), child: child),
+          opacity: anim.value.clamp(0.0, 1.0),
+          child: Transform.scale(scale: 0.6 + 0.4 * anim.value, alignment: Alignment.centerRight, child: child),
         );
       },
       child: child,
@@ -154,7 +161,7 @@ class _Staggered extends StatelessWidget {
   }
 }
 
-/// The four staff quick actions from the spec, wired to callbacks.
+/// The four staff quick actions, each in its own hue.
 List<QuickAction> staffQuickActions(
   BuildContext context, {
   required VoidCallback onNewMember,
@@ -164,9 +171,29 @@ List<QuickAction> staffQuickActions(
 }) {
   final l = context.l10n;
   return [
-    QuickAction(icon: PhosphorIcons.userPlus(), label: l.fabNewMember, onTap: onNewMember),
-    QuickAction(icon: PhosphorIcons.currencyInr(), label: l.fabCollect, onTap: onCollect),
-    QuickAction(icon: PhosphorIcons.qrCode(), label: l.fabCheckIn, onTap: onCheckIn),
-    QuickAction(icon: PhosphorIcons.chatCircleText(), label: l.fabEnquiry, onTap: onEnquiry),
+    QuickAction(
+      icon: PhosphorIcons.userPlus(PhosphorIconsStyle.bold),
+      label: l.fabNewMember,
+      onTap: onNewMember,
+      hue: PopHue.sky,
+    ),
+    QuickAction(
+      icon: PhosphorIcons.currencyInr(PhosphorIconsStyle.bold),
+      label: l.fabCollect,
+      onTap: onCollect,
+      hue: PopHue.tangerine,
+    ),
+    QuickAction(
+      icon: PhosphorIcons.qrCode(PhosphorIconsStyle.bold),
+      label: l.fabCheckIn,
+      onTap: onCheckIn,
+      hue: PopHue.mint,
+    ),
+    QuickAction(
+      icon: PhosphorIcons.chatCircleText(PhosphorIconsStyle.bold),
+      label: l.fabEnquiry,
+      onTap: onEnquiry,
+      hue: PopHue.bubblegum,
+    ),
   ];
 }

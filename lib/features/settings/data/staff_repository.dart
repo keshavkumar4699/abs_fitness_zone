@@ -41,6 +41,9 @@ abstract interface class StaffRepository {
   /// Creates the staff record and login (owner only, enforced server-side).
   /// Returns the one-time temporary password.
   Future<String> invite({required String name, required String email, String? phone, required UserRole role});
+
+  /// Turns a staff member's access off or back on (owner only, via RLS).
+  Future<void> setActive({required String staffId, required bool active});
 }
 
 class SupabaseStaffRepository implements StaffRepository {
@@ -71,8 +74,21 @@ class SupabaseStaffRepository implements StaffRepository {
       );
       return (res.data as Map<String, dynamic>)['temp_password'] as String;
     } on FunctionException catch (e) {
-      final details = e.details;
-      throw ServerFailure(details is Map ? '${details['error']}' : 'invite-staff ${e.status}');
+      throw switch (e.status) {
+        409 => const StaffEmailTakenFailure(),
+        403 => const NotAllowedFailure(),
+        _ => ServerFailure('invite-staff ${e.status}'),
+      };
+    }
+  }
+
+  @override
+  Future<void> setActive({required String staffId, required bool active}) async {
+    try {
+      final rows = await _client.from('staff').update({'is_active': active}).eq('id', staffId).select('id');
+      if (rows.isEmpty) throw const NotAllowedFailure();
+    } on PostgrestException catch (e) {
+      throw ServerFailure(e.message);
     }
   }
 }

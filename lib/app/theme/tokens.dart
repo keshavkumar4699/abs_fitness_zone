@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-/// Spacing scale on a 4-pt grid (spec §4).
+/// Spacing scale on a 4-pt grid.
 abstract final class AbsSpace {
   static const double x1 = 4;
   static const double x2 = 8;
@@ -17,12 +17,12 @@ abstract final class AbsSpace {
   static const double maxContentWidth = 1200;
 }
 
-/// Corner radii (spec §4).
+/// Corner radii: generous and friendly.
 abstract final class AbsRadius {
-  static const double chip = 8;
-  static const double button = 14;
-  static const double card = 20;
-  static const double sheet = 28;
+  static const double chip = 12;
+  static const double button = 18;
+  static const double card = 24;
+  static const double sheet = 32;
   static const double full = 999;
 
   static const BorderRadius chipAll = BorderRadius.all(Radius.circular(chip));
@@ -32,28 +32,36 @@ abstract final class AbsRadius {
   static const BorderRadius pill = BorderRadius.all(Radius.circular(full));
 }
 
+/// Sticker depth: a bold outline and a hard offset "lip" instead of blurry
+/// shadows. Pressing an element squishes it down onto its lip.
+abstract final class AbsDepth {
+  static const double outline = 2;
+  static const double lip = 4;
+  static const double cardLip = 4;
+}
+
 /// Fixed component sizes.
 abstract final class AbsSize {
-  static const double buttonHeight = 52;
-  static const double fieldHeight = 52;
+  static const double buttonHeight = 54;
+  static const double fieldHeight = 54;
   static const double touchTarget = 48;
   static const double icon = 24;
   static const double iconSmall = 18;
-  static const double iconStroke = 1.75;
+  static const double iconStroke = 2.25;
   static const double hairline = 1;
-  static const double avatar = 44;
+  static const double avatar = 46;
   static const double avatarRing = 2.5;
-  static const double ringStroke = 8;
-  static const double dragHandleWidth = 36;
-  static const double dragHandleHeight = 4;
-  static const double pillHeight = 24;
+  static const double ringStroke = 10;
+  static const double dragHandleWidth = 44;
+  static const double dragHandleHeight = 5;
+  static const double pillHeight = 26;
   static const double sparklineHeight = 32;
   static const double chartHeight = 180;
-  static const double skeletonLine = 12;
-  static const double emptyIllustration = 96;
+  static const double emptyIllustration = 132;
+  static const double iconBubble = 44;
   static const double sideNavWidth = 248;
-  static const double sideNavCollapsedWidth = 80;
-  static const double bottomNavHeight = 64;
+  static const double sideNavCollapsedWidth = 84;
+  static const double bottomNavHeight = 68;
 }
 
 /// Layout breakpoints for the adaptive shell.
@@ -62,24 +70,18 @@ abstract final class AbsBreakpoint {
   static const double desktop = 1024;
 }
 
-/// Glass (blur) used only by the bottom navigation and sticky headers.
+/// Glass (blur) used behind sticky headers.
 abstract final class AbsGlass {
   static const double sigma = 20;
-  static const double opacity = 0.72;
+  static const double opacity = 0.8;
 }
 
-/// Opacity steps used for pressed/hover/disabled states.
+/// Opacity steps.
 abstract final class AbsOpacity {
-  static const double pressedOverlay = 0.04;
-  static const double disabled = 0.4;
-  static const double subtleFill = 0.14;
+  static const double pressedOverlay = 0.06;
+  static const double disabled = 0.45;
+  static const double subtleFill = 0.18;
   static const double dim = 0.6;
-}
-
-/// Shadow geometry for light mode (0 4 16).
-abstract final class AbsElevation {
-  static const Offset shadowOffset = Offset(0, 4);
-  static const double shadowBlur = 16;
 }
 
 /// Text scaling the UI must support without overflow.

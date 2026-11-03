@@ -41,7 +41,7 @@ class _GalleryScreenState extends ConsumerState<GalleryScreen> {
             Row(
               children: [
                 Text(l.galleryTextScale, style: context.text.label),
-                Switch(value: _bigText, activeThumbColor: c.accent, onChanged: (v) => setState(() => _bigText = v)),
+                Switch(value: _bigText, onChanged: (v) => setState(() => _bigText = v)),
               ],
             ),
           ],
@@ -196,6 +196,15 @@ class _GalleryContentState extends State<GalleryContent> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: AbsSpace.x3),
+                  Wrap(
+                    spacing: AbsSpace.x2,
+                    runSpacing: AbsSpace.x2,
+                    children: [
+                      for (final h in [PopHue.sky, PopHue.tangerine, PopHue.bubblegum, PopHue.grape, PopHue.mint])
+                        AbsButton(label: h.name, hue: h, expand: false, onPressed: () {}),
+                    ],
+                  ),
                   const SizedBox(height: AbsSpace.x2),
                   Row(
                     children: [
@@ -215,6 +224,8 @@ class _GalleryContentState extends State<GalleryContent> {
                     children: [
                       Expanded(
                         child: StatTile(
+                          hue: PopHue.sky,
+                          icon: PhosphorIcons.users(PhosphorIconsStyle.bold),
                           label: l.statActiveMembers,
                           value: 287,
                           deltaPercent: 4.2,
@@ -222,11 +233,20 @@ class _GalleryContentState extends State<GalleryContent> {
                         ),
                       ),
                       const SizedBox(width: AbsSpace.x3),
-                      Expanded(child: StatTile(label: l.statCheckIns, value: 96, deltaPercent: -3.1)),
+                      Expanded(
+                        child: StatTile(
+                          hue: PopHue.tangerine,
+                          icon: PhosphorIcons.qrCode(PhosphorIconsStyle.bold),
+                          label: l.statCheckIns,
+                          value: 96,
+                          deltaPercent: -3.1,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: AbsSpace.x3),
                   AbsCard(
+                    hue: PopHue.mint,
                     title: l.galleryCards,
                     action: Icon(PhosphorIcons.caretRight(), color: c.textSecondary),
                     onTap: () {},
@@ -266,12 +286,12 @@ class _GalleryContentState extends State<GalleryContent> {
                   ),
                   ProgressRing(
                     progress: 0.85,
-                    color: c.success,
-                    child: Icon(PhosphorIcons.barbell(), color: c.success),
+                    hue: PopHue.mint,
+                    child: Icon(PhosphorIcons.barbell(PhosphorIconsStyle.bold), color: c.pop(PopHue.mint).text),
                   ),
                   ProgressRing(
                     progress: 0.4,
-                    color: c.chart[2],
+                    hue: PopHue.grape,
                     size: 72,
                     strokeWidth: AbsSize.ringStroke - 2,
                     child: Text('40%', style: t.numericOf(t.label)),
@@ -304,6 +324,7 @@ class _GalleryContentState extends State<GalleryContent> {
             section(
               l.galleryTabs,
               SegmentedTabs(
+                hue: PopHue.bubblegum,
                 labels: [l.statusPaid, l.statusOverdue, l.statusPartial],
                 selected: _tab,
                 onChanged: (i) => setState(() => _tab = i),
@@ -411,10 +432,10 @@ class GalleryStatesContent extends StatelessWidget {
           ),
         ),
         label(l.galleryStateLoading),
-        framed(220, const SkeletonList(itemCount: 3)),
+        framed(260, const SkeletonList(itemCount: 3)),
         label(l.galleryStateEmpty),
         framed(
-          320,
+          380,
           EmptyState(
             title: l.staffEmptyTitle,
             message: l.galleryEmptyBody,
@@ -424,7 +445,7 @@ class GalleryStatesContent extends StatelessWidget {
           ),
         ),
         label(l.galleryStateError),
-        framed(220, ErrorState(message: l.gallerySampleError, onRetry: () {})),
+        framed(320, ErrorState(message: l.gallerySampleError, onRetry: () {})),
       ],
     );
   }

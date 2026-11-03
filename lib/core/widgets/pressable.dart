@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../app/theme/theme.dart';
 
-/// Scales its child to 0.97 while pressed and fires a light haptic on tap.
+/// Squishes its child while pressed and fires a light haptic on tap.
 class Pressable extends StatefulWidget {
   const Pressable({
     super.key,
@@ -12,6 +12,7 @@ class Pressable extends StatefulWidget {
     this.onLongPress,
     this.haptic = true,
     this.semanticLabel,
+    this.isButton = true,
   });
 
   final Widget child;
@@ -19,6 +20,7 @@ class Pressable extends StatefulWidget {
   final VoidCallback? onLongPress;
   final bool haptic;
   final String? semanticLabel;
+  final bool isButton;
 
   @override
   State<Pressable> createState() => _PressableState();
@@ -33,24 +35,26 @@ class _PressableState extends State<Pressable> {
     if (_down != down) setState(() => _down = down);
   }
 
+  void _tap() {
+    if (widget.haptic) HapticFeedback.lightImpact();
+    widget.onTap!();
+  }
+
   @override
   Widget build(BuildContext context) {
     final reduced = AbsMotion.reduced(context);
     return Semantics(
-      button: _enabled,
+      button: widget.isButton && _enabled,
       enabled: _enabled,
       label: widget.semanticLabel,
+      onTap: widget.onTap == null ? null : _tap,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
+        excludeFromSemantics: true,
         onTapDown: _enabled ? (_) => _set(true) : null,
         onTapUp: _enabled ? (_) => _set(false) : null,
         onTapCancel: _enabled ? () => _set(false) : null,
-        onTap: widget.onTap == null
-            ? null
-            : () {
-                if (widget.haptic) HapticFeedback.lightImpact();
-                widget.onTap!();
-              },
+        onTap: widget.onTap == null ? null : _tap,
         onLongPress: widget.onLongPress,
         child: AnimatedScale(
           scale: _down && !reduced ? AbsMotion.pressScale : 1,

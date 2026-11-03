@@ -7,7 +7,7 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 
 | Milestone | Scope | Status |
 | --- | --- | --- |
-| **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md)) |
+| **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md), [fixes + redesign](docs/milestones/M0.1.md)) |
 | M1 Members | F1 complete, import, check-in, status engine, dashboard counts | Next |
 | M2 Payments | F2, receipts, UPI QR, day close, dues engine | — |
 | M3 Exercise library + Workouts | F4, F5, member app shell, workout player | — |
@@ -51,6 +51,10 @@ Android builds.
 flutter pub get
 ```
 
+Generated code (Riverpod, freezed, localisation) is committed, so nothing else
+is needed before running. After changing a `@riverpod` / `@freezed` class,
+regenerate it:
+
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
@@ -89,19 +93,22 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    supabase functions deploy
    ```
 
-3. Under **Authentication → Providers → Email**, turn off public sign-ups. Staff
+3. Under **Authentication → URL Configuration → Redirect URLs**, add
+   `com.absfitnesszone.app://login-callback` so the member email link opens
+   the app.
+4. Under **Authentication → Providers → Email**, turn off public sign-ups. Staff
    accounts are created by the owner, and member logins by the front desk.
-4. Create the owner's login under **Authentication → Users → Add user** (email
+5. Create the owner's login under **Authentication → Users → Add user** (email
    and password), then make it the owner in the SQL editor:
 
    ```sql
    select public.bootstrap_owner('owner@gmail.com', 'Owner Name');
    ```
 
-5. The owner signs in, then uses **More → Staff → Invite staff** to add front
+6. The owner signs in, then uses **More → Staff → Invite staff** to add front
    desk and trainers. Each person gets a one-time temporary password and must
    set their own password on first sign-in.
-6. To let a member sign in, front desk uses **More → Member PIN** to set a
+7. To let a member sign in, front desk uses **More → Member PIN** to set a
    4-digit PIN. This also creates the member's app login. Members are added in
    M1; until then, insert one in the SQL editor:
 

@@ -9,6 +9,13 @@ export function adminClient(): SupabaseClient {
   });
 }
 
+/** Plain anon client with no caller identity (used to mint sessions). */
+export function anonClient(): SupabaseClient {
+  return createClient(url(), Deno.env.get("SUPABASE_ANON_KEY")!, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
 /** Client acting as the caller (their JWT), so RLS and auth.uid() apply. */
 export function callerClient(req: Request): SupabaseClient {
   return createClient(url(), Deno.env.get("SUPABASE_ANON_KEY")!, {

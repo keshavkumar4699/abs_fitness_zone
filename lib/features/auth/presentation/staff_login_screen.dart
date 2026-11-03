@@ -34,7 +34,9 @@ class _StaffLoginScreenState extends ConsumerState<StaffLoginScreen> {
   }
 
   Future<void> _submit() async {
-    if (!_form.currentState!.validate()) return;
+    // Ignore repeat taps / keyboard "done" while a request is in flight.
+    if (_busy || !_form.currentState!.validate()) return;
+    FocusScope.of(context).unfocus();
     setState(() => _busy = true);
     try {
       await ref.read(authRepositoryProvider).signInStaff(email: _email.text, password: _password.text);
@@ -53,6 +55,8 @@ class _StaffLoginScreenState extends ConsumerState<StaffLoginScreen> {
     return AuthScaffold(
       title: l.staffLoginTitle,
       subtitle: l.staffLoginSubtitle,
+      icon: PhosphorIcons.identificationBadge(PhosphorIconsStyle.bold),
+      hue: PopHue.grape,
       children: [
         Form(
           key: _form,
@@ -78,12 +82,17 @@ class _StaffLoginScreenState extends ConsumerState<StaffLoginScreen> {
                   validator: v.required,
                   onFieldSubmitted: (_) => _submit(),
                   suffix: IconButton(
+                    tooltip: l.fieldPassword,
                     onPressed: () => setState(() => _obscure = !_obscure),
-                    icon: Icon(_obscure ? PhosphorIcons.eye() : PhosphorIcons.eyeSlash()),
+                    icon: Icon(
+                      _obscure
+                          ? PhosphorIcons.eye(PhosphorIconsStyle.bold)
+                          : PhosphorIcons.eyeSlash(PhosphorIconsStyle.bold),
+                    ),
                   ),
                 ),
                 const SizedBox(height: AbsSpace.x6),
-                AbsButton(label: l.actionSignIn, isLoading: _busy, onPressed: _submit),
+                AbsButton(label: l.actionSignIn, hue: PopHue.grape, isLoading: _busy, onPressed: _submit),
               ],
             ),
           ),

@@ -10,6 +10,7 @@ import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/widgets/abs_button.dart';
 import '../../../core/widgets/brand_mark.dart';
+import '../../../core/widgets/pop_decor.dart';
 
 class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({super.key});
@@ -19,7 +20,7 @@ class WelcomeScreen extends ConsumerWidget {
     final c = context.colors;
     final t = context.text;
     final l = context.l10n;
-    final configured = ref.watch(envProvider).isConfigured;
+    final env = ref.watch(envProvider);
     final reduced = AbsMotion.reduced(context);
 
     Widget enter(Widget w, int i) => reduced
@@ -27,72 +28,169 @@ class WelcomeScreen extends ConsumerWidget {
         : w
               .animate(delay: AbsMotion.staggerDelay(i * 2))
               .fadeIn(duration: AbsMotion.standard.duration)
-              .moveY(
-                begin: AbsMotion.entranceOffset,
-                end: 0,
-                duration: AbsMotion.standard.duration,
-                curve: AbsMotion.staggerCurve,
-              );
+              .scaleXY(begin: 0.85, end: 1, duration: AbsMotion.bouncy.duration, curve: AbsMotion.bouncy.curve);
+
+    // Each headline word sits on its own colour highlight.
+    Widget word(String text, PopHue hue, double tilt) {
+      final p = c.pop(hue);
+      return Transform.rotate(
+        angle: tilt,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x3),
+          decoration: BoxDecoration(
+            color: p.fill,
+            borderRadius: AbsRadius.chipAll,
+            border: Border.all(color: c.isDark ? p.deep : c.ink, width: AbsDepth.outline),
+          ),
+          child: Text(text, style: t.displayXL.copyWith(color: p.onFill, height: 1.15)),
+        ),
+      );
+    }
+
+    Widget chip(IconData icon, String label, PopHue hue, double tilt, int i) {
+      final p = c.pop(hue);
+      Widget w = Transform.rotate(
+        angle: tilt,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x3, vertical: AbsSpace.x2),
+          decoration: stickerDecoration(
+            c,
+            color: p.fill,
+            outline: c.isDark ? p.deep : c.ink,
+            lipDepth: 3,
+            borderRadius: AbsRadius.pill,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: AbsSize.iconSmall, color: p.onFill),
+              const SizedBox(width: AbsSpace.x1 + 2),
+              Text(label, style: t.label.copyWith(color: p.onFill)),
+            ],
+          ),
+        ),
+      );
+      if (!reduced) {
+        w = w
+            .animate(onPlay: (a) => a.repeat(reverse: true), delay: (i * 300).ms)
+            .moveY(begin: -3, end: 3, duration: 1400.ms, curve: Curves.easeInOutSine);
+      }
+      return w;
+    }
 
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(context.screenPadding),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 420),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      // Hidden entry to the component gallery.
-                      onLongPress: () => context.push(Routes.gallery),
-                      child: const BrandMark(),
-                    ),
-                  ),
-                  const SizedBox(height: AbsSpace.x10),
-                  enter(Text(l.welcomeTitle, style: t.displayXL.copyWith(fontSize: t.displayL.fontSize! * 1.2)), 0),
-                  const SizedBox(height: AbsSpace.x3),
-                  enter(Text(l.welcomeSubtitle, style: t.body.copyWith(color: c.textSecondary)), 1),
-                  const SizedBox(height: AbsSpace.x10),
-                  if (!configured) ...[
-                    Container(
-                      padding: const EdgeInsets.all(AbsSpace.x4),
-                      decoration: BoxDecoration(
-                        color: c.warning.withValues(alpha: AbsOpacity.subtleFill),
-                        borderRadius: AbsRadius.buttonAll,
+      body: PopBackground(
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(context.screenPadding),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 440),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: GestureDetector(
+                        // Hidden entry to the component gallery.
+                        onLongPress: () => context.push(Routes.gallery),
+                        child: const BrandMark(size: 72),
                       ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(PhosphorIcons.warning(), color: c.warning),
-                          const SizedBox(width: AbsSpace.x3),
-                          Expanded(child: Text(l.welcomeNotConfigured, style: t.label)),
-                        ],
+                    ),
+                    const SizedBox(height: AbsSpace.x8),
+                    Semantics(
+                      header: true,
+                      label: '${l.welcomeTitle1} ${l.welcomeTitle2} ${l.welcomeTitle3}',
+                      child: ExcludeSemantics(
+                        child: Wrap(
+                          spacing: AbsSpace.x2,
+                          runSpacing: AbsSpace.x3,
+                          children: [
+                            enter(word(l.welcomeTitle1, PopHue.lime, -0.04), 0),
+                            enter(word(l.welcomeTitle2, PopHue.sky, 0.03), 1),
+                            enter(word(l.welcomeTitle3, PopHue.bubblegum, -0.02), 2),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: AbsSpace.x5),
+                    enter(Text(l.welcomeSubtitle, style: t.body.copyWith(color: c.textSecondary, fontSize: 17)), 3),
+                    const SizedBox(height: AbsSpace.x5),
+                    ExcludeSemantics(
+                      child: Wrap(
+                        spacing: AbsSpace.x2,
+                        runSpacing: AbsSpace.x2,
+                        children: [
+                          chip(
+                            PhosphorIcons.barbell(PhosphorIconsStyle.bold),
+                            l.welcomeChipWorkouts,
+                            PopHue.tangerine,
+                            -0.05,
+                            0,
+                          ),
+                          chip(
+                            PhosphorIcons.bowlFood(PhosphorIconsStyle.bold),
+                            l.welcomeChipDiet,
+                            PopHue.mint,
+                            0.04,
+                            1,
+                          ),
+                          chip(
+                            PhosphorIcons.chartLineUp(PhosphorIconsStyle.bold),
+                            l.welcomeChipProgress,
+                            PopHue.grape,
+                            -0.03,
+                            2,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: AbsSpace.x8),
+                    if (!env.isConfigured) ...[
+                      Container(
+                        padding: const EdgeInsets.all(AbsSpace.x4),
+                        decoration: stickerDecoration(
+                          c,
+                          color: c.pop(PopHue.tangerine).soft,
+                          lipDepth: 0,
+                          borderRadius: AbsRadius.buttonAll,
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(PhosphorIcons.warning(PhosphorIconsStyle.bold), color: c.warning),
+                            const SizedBox(width: AbsSpace.x3),
+                            Expanded(
+                              child: Text(
+                                env.configError != null ? l.authBackendError : l.welcomeNotConfigured,
+                                style: t.label,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: AbsSpace.x5),
+                    ],
+                    enter(
+                      AbsButton(
+                        label: l.welcomeMember,
+                        icon: PhosphorIcons.userCircle(PhosphorIconsStyle.bold),
+                        onPressed: () => context.push(Routes.memberLogin),
+                      ),
+                      4,
+                    ),
+                    const SizedBox(height: AbsSpace.x2),
+                    enter(
+                      AbsButton(
+                        label: l.welcomeStaff,
+                        hue: PopHue.grape,
+                        icon: PhosphorIcons.identificationBadge(PhosphorIconsStyle.bold),
+                        onPressed: () => context.push(Routes.staffLogin),
+                      ),
+                      5,
+                    ),
                   ],
-                  enter(
-                    AbsButton(
-                      label: l.welcomeMember,
-                      icon: PhosphorIcons.userCircle(),
-                      onPressed: () => context.push(Routes.memberLogin),
-                    ),
-                    2,
-                  ),
-                  const SizedBox(height: AbsSpace.x3),
-                  enter(
-                    AbsButton.secondary(
-                      label: l.welcomeStaff,
-                      icon: PhosphorIcons.identificationBadge(),
-                      onPressed: () => context.push(Routes.staffLogin),
-                    ),
-                    3,
-                  ),
-                ],
+                ),
               ),
             ),
           ),

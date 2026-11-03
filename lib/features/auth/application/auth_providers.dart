@@ -9,7 +9,9 @@ part 'auth_providers.g.dart';
 @Riverpod(keepAlive: true)
 AuthRepository authRepository(Ref ref) {
   final client = ref.watch(supabaseClientProvider);
-  return client == null ? const UnconfiguredAuthRepository() : SupabaseAuthRepository(client);
+  return client == null
+      ? const UnconfiguredAuthRepository()
+      : SupabaseAuthRepository(client, ref.watch(sharedPreferencesProvider));
 }
 
 /// The signed-in user; null when signed out.

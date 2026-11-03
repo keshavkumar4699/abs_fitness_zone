@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/theme.dart';
 
-/// Animated arc for membership days used, workout completion and macros.
-/// Draws in once on first view (not on every rebuild); later value changes
-/// animate from the previous value.
+/// Chunky animated ring for membership days, workout completion and macros.
+/// Draws in once on first view; later changes animate from the old value.
 class ProgressRing extends StatefulWidget {
   const ProgressRing({
     super.key,
     required this.progress,
-    this.size = 96,
+    this.size = 104,
     this.strokeWidth = AbsSize.ringStroke,
-    this.color,
+    this.hue = PopHue.lime,
     this.child,
     this.semanticsLabel,
   });
@@ -22,7 +21,7 @@ class ProgressRing extends StatefulWidget {
   final double progress;
   final double size;
   final double strokeWidth;
-  final Color? color;
+  final PopHue hue;
   final Widget? child;
   final String? semanticsLabel;
 
@@ -42,6 +41,7 @@ class _ProgressRingState extends State<ProgressRing> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
+    final p = c.pop(widget.hue);
     final target = widget.progress.clamp(0.0, 1.0);
     final reduced = AbsMotion.reduced(context);
     return Semantics(
@@ -52,13 +52,14 @@ class _ProgressRingState extends State<ProgressRing> {
           dimension: widget.size,
           child: TweenAnimationBuilder<double>(
             tween: Tween(begin: reduced ? target : _from, end: target),
-            duration: AbsMotion.expressive.duration,
+            duration: AbsMotion.bouncy.duration,
             curve: AbsMotion.expressive.curve,
             builder: (context, value, child) => CustomPaint(
               painter: _RingPainter(
                 progress: value,
-                track: c.border,
-                color: widget.color ?? c.accent,
+                track: p.fill.withValues(alpha: c.isDark ? 0.18 : 0.25),
+                color: p.fill,
+                edge: c.isDark ? p.deep : c.ink,
                 stroke: widget.strokeWidth,
               ),
               child: child,
@@ -72,32 +73,61 @@ class _ProgressRingState extends State<ProgressRing> {
 }
 
 class _RingPainter extends CustomPainter {
-  _RingPainter({required this.progress, required this.track, required this.color, required this.stroke});
+  _RingPainter({
+    required this.progress,
+    required this.track,
+    required this.color,
+    required this.edge,
+    required this.stroke,
+  });
 
   final double progress;
   final Color track;
   final Color color;
+  final Color edge;
   final double stroke;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final arcRect = rect.deflate(stroke / 2);
-    final base = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = stroke
-      ..color = track;
-    canvas.drawArc(arcRect, 0, math.pi * 2, false, base);
+    final arcRect = (Offset.zero & size).deflate(stroke / 2 + 2);
+    canvas.drawArc(
+      arcRect,
+      0,
+      math.pi * 2,
+      false,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = stroke
+        ..color = track,
+    );
     if (progress <= 0) return;
-    final fg = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = stroke
-      ..strokeCap = StrokeCap.round
-      ..color = color;
-    canvas.drawArc(arcRect, -math.pi / 2, math.pi * 2 * progress.clamp(0.0, 1.0), false, fg);
+    final sweep = math.pi * 2 * progress.clamp(0.0, 1.0);
+    // Ink edge under the arc gives it the same sticker outline as cards.
+    canvas.drawArc(
+      arcRect,
+      -math.pi / 2,
+      sweep,
+      false,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = stroke + 3
+        ..strokeCap = StrokeCap.round
+        ..color = edge,
+    );
+    canvas.drawArc(
+      arcRect,
+      -math.pi / 2,
+      sweep,
+      false,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = stroke - 1
+        ..strokeCap = StrokeCap.round
+        ..color = color,
+    );
   }
 
   @override
   bool shouldRepaint(_RingPainter old) =>
-      old.progress != progress || old.color != color || old.track != track || old.stroke != stroke;
+      old.progress != progress || old.color != color || old.track != track || old.stroke != stroke || old.edge != edge;
 }

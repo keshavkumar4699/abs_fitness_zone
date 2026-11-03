@@ -25,7 +25,13 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: dart run build_runner build --delete-conflicting-outputs
-      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter gen-l10n
+      - name: Generated code is committed and up to date
+        run: git diff --exit-code -- lib
+      - name: Format (hand-written code only)
+        run: |
+          find lib test -name '*.dart' ! -name '*.g.dart' ! -name '*.freezed.dart' ! -path 'lib/app/l10n/gen/*' -print0 \
+            | xargs -0 dart format --output=none --set-exit-if-changed
       - run: flutter analyze --fatal-infos
       - run: flutter test
       - name: Upload golden diffs on failure

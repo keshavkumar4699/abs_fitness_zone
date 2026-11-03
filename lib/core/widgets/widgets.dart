@@ -17,3 +17,5 @@ export 'skeleton_list.dart';
 export 'stat_tile.dart';
 export 'states.dart';
 export 'status_pill.dart';
+export 'brand_mark.dart';
+export 'pop_decor.dart';

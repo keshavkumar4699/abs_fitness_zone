@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/l10n/l10n.dart';
+import '../../../app/theme/theme.dart';
 import '../../../core/widgets/abs_card.dart';
 import '../../../core/widgets/segmented_tabs.dart';
 import '../application/theme_mode_controller.dart';
@@ -17,7 +18,9 @@ class AppearanceCard extends ConsumerWidget {
     final mode = ref.watch(themeModeControllerProvider);
     return AbsCard(
       title: l.moreAppearance,
+      hue: PopHue.bubblegum,
       child: SegmentedTabs(
+        hue: PopHue.bubblegum,
         labels: [l.themeSystem, l.themeLight, l.themeDark],
         selected: modes.indexOf(mode),
         onChanged: (i) => ref.read(themeModeControllerProvider.notifier).set(modes[i]),

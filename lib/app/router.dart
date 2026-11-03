@@ -16,9 +16,12 @@ import '../features/settings/presentation/member_pin_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
 import '../features/settings/presentation/team_screen.dart';
 import '../features/shell/coming_soon_screen.dart';
+import '../features/member_home/presentation/member_home_screen.dart';
 import '../features/shell/member_shell.dart';
+import '../features/shell/not_found_screen.dart';
 import '../features/shell/staff_home_screen.dart';
 import '../features/shell/staff_shell.dart';
+import '../core/widgets/states.dart';
 import 'l10n/l10n.dart';
 import 'routes.dart';
 
@@ -43,6 +46,7 @@ GoRouter router(Ref ref) {
     navigatorKey: _rootKey,
     initialLocation: Routes.splash,
     refreshListenable: refresh,
+    errorBuilder: (_, _) => const NotFoundScreen(),
     redirect: (context, state) => authRedirect(
       auth: ref.read(currentUserProvider),
       onboardingDone: ref.read(onboardingControllerProvider),
@@ -62,9 +66,35 @@ GoRouter router(Ref ref) {
             FadeThroughBranches(index: shell.currentIndex, children: children),
         branches: [
           StatefulShellBranch(routes: [tab(Routes.staffHome, (_) => const StaffHomeScreen())]),
-          StatefulShellBranch(routes: [tab(Routes.staffMembers, (c) => ComingSoonScreen(title: c.l10n.navMembers))]),
-          StatefulShellBranch(routes: [tab(Routes.staffPayments, (c) => ComingSoonScreen(title: c.l10n.navPayments))]),
-          StatefulShellBranch(routes: [tab(Routes.staffPlans, (c) => ComingSoonScreen(title: c.l10n.navPlans))]),
+          StatefulShellBranch(
+            routes: [
+              tab(
+                Routes.staffMembers,
+                (c) => ComingSoonScreen(
+                  title: c.l10n.navMembers,
+                  hue: StaffHues.members,
+                  illustration: EmptyIllustration.people,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              tab(Routes.staffPayments, (c) => ComingSoonScreen(title: c.l10n.navPayments, hue: StaffHues.payments)),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              tab(
+                Routes.staffPlans,
+                (c) => ComingSoonScreen(
+                  title: c.l10n.navPlans,
+                  hue: StaffHues.plans,
+                  illustration: EmptyIllustration.dumbbell,
+                ),
+              ),
+            ],
+          ),
           StatefulShellBranch(
             routes: [
               tab(
@@ -84,10 +114,27 @@ GoRouter router(Ref ref) {
         navigatorContainerBuilder: (context, shell, children) =>
             FadeThroughBranches(index: shell.currentIndex, children: children),
         branches: [
-          StatefulShellBranch(routes: [tab(Routes.meHome, (c) => ComingSoonScreen(title: c.l10n.navHome))]),
-          StatefulShellBranch(routes: [tab(Routes.meWorkout, (c) => ComingSoonScreen(title: c.l10n.navWorkout))]),
-          StatefulShellBranch(routes: [tab(Routes.meDiet, (c) => ComingSoonScreen(title: c.l10n.navDiet))]),
-          StatefulShellBranch(routes: [tab(Routes.meProgress, (c) => ComingSoonScreen(title: c.l10n.navProgress))]),
+          StatefulShellBranch(routes: [tab(Routes.meHome, (_) => const MemberHomeScreen())]),
+          StatefulShellBranch(
+            routes: [
+              tab(
+                Routes.meWorkout,
+                (c) => ComingSoonScreen(
+                  title: c.l10n.navWorkout,
+                  hue: MemberHues.workout,
+                  illustration: EmptyIllustration.dumbbell,
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [tab(Routes.meDiet, (c) => ComingSoonScreen(title: c.l10n.navDiet, hue: MemberHues.diet))],
+          ),
+          StatefulShellBranch(
+            routes: [
+              tab(Routes.meProgress, (c) => ComingSoonScreen(title: c.l10n.navProgress, hue: MemberHues.progress)),
+            ],
+          ),
           StatefulShellBranch(routes: [tab(Routes.meProfile, (_) => const MemberProfileScreen())]),
         ],
       ),

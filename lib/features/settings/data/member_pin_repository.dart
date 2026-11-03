@@ -54,7 +54,11 @@ class SupabaseMemberPinRepository implements MemberPinRepository {
     try {
       await _client.functions.invoke('set-member-pin', body: {'member_id': memberId, 'pin': pin});
     } on FunctionException catch (e) {
-      throw ServerFailure('set-member-pin ${e.status}');
+      throw switch (e.status) {
+        403 => const NotAllowedFailure(),
+        404 => const NotFoundFailure(),
+        _ => ServerFailure('set-member-pin ${e.status}'),
+      };
     }
   }
 }

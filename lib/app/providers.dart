@@ -20,3 +20,6 @@ final supabaseClientProvider = Provider<SupabaseClient?>((ref) {
 /// wants failures shown as "message + Try again", so automatic retry is off
 /// and screens retry explicitly.
 Duration? noAutoRetry(int retryCount, Object error) => null;
+
+/// Current time, injectable so tests (and screenshots) are deterministic.
+final clockProvider = Provider<DateTime Function()>((ref) => DateTime.now);

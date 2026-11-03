@@ -20,11 +20,34 @@ class MemberProfileScreen extends ConsumerWidget {
     final t = context.text;
     final member = ref.watch(myMemberProvider);
 
+    Widget card(String name, String code, String phone) => AbsCard(
+      hue: PopHue.grape,
+      child: Row(
+        children: [
+          AbsAvatar(name: name, size: AbsSpace.x14),
+          const SizedBox(width: AbsSpace.x4),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(name, style: t.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+                const SizedBox(height: AbsSpace.x1),
+                Text('${l.profileMemberCode} · $code', style: t.numericOf(t.label).copyWith(color: c.textSecondary)),
+                Text(Phone.display(phone), style: t.numericOf(t.caption).copyWith(color: c.textSecondary)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(title: Text(l.profileTitle)),
       body: AbsRefresh(
         onRefresh: () => ref.refresh(myMemberProvider.future),
         child: ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.fromLTRB(
             context.screenPadding,
             AbsSpace.x2,
@@ -32,52 +55,20 @@ class MemberProfileScreen extends ConsumerWidget {
             MediaQuery.paddingOf(context).bottom + AbsSpace.x6,
           ),
           children: [
-            SizedBox(
-              height: 120,
-              child: AsyncView(
-                value: member,
-                onRetry: () => ref.invalidate(myMemberProvider),
-                loading: const SkeletonBlock(
-                  child: AbsCard(
-                    child: ListTile(title: Text('Member name'), subtitle: Text('ABS-0000')),
-                  ),
-                ),
-                isEmpty: (m) => m == null,
-                empty: const SizedBox.shrink(),
-                data: (m) => AbsCard(
-                  child: Row(
-                    children: [
-                      AbsAvatar(name: m!.name, size: AbsSpace.x14, ringColor: c.accent),
-                      const SizedBox(width: AbsSpace.x4),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(m.name, style: t.heading),
-                            const SizedBox(height: AbsSpace.x1),
-                            Text(
-                              '${l.profileMemberCode} · ${m.memberCode}',
-                              style: t.numericOf(t.label).copyWith(color: c.textSecondary),
-                            ),
-                            Text(
-                              Phone.display(m.phone),
-                              style: t.numericOf(t.caption).copyWith(color: c.textSecondary),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            AsyncView<MyMember?>(
+              value: member,
+              onRetry: () => ref.invalidate(myMemberProvider),
+              loading: SkeletonBlock(child: card('Member name', 'ABS-0000', '+910000000000')),
+              isEmpty: (m) => m == null,
+              empty: const SizedBox.shrink(),
+              data: (m) => card(m!.name, m.memberCode, m.phone),
             ),
             const SizedBox(height: AbsSpace.x4),
             const AppearanceCard(),
             const SizedBox(height: AbsSpace.x6),
             AbsButton.secondary(
               label: l.commonSignOut,
-              icon: PhosphorIcons.signOut(),
+              icon: PhosphorIcons.signOut(PhosphorIconsStyle.bold),
               onPressed: () => ref.read(authRepositoryProvider).signOut(),
             ),
           ],

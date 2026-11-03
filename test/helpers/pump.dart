@@ -80,6 +80,8 @@ Future<ProviderContainer> pumpApp(
     overrides: [
       sharedPreferencesProvider.overrideWithValue(p),
       authRepositoryProvider.overrideWithValue(repo),
+      // Fixed clock: 3 Nov 2026, 10:00 IST.
+      clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 4, 30)),
       ...overrides,
     ],
   );

@@ -18,7 +18,9 @@ class SkeletonList extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return Skeletonizer(
-      effect: ShimmerEffect(baseColor: c.surface, highlightColor: c.surfaceRaised),
+      // Neutral placeholders: no pop colours while loading.
+      containersColor: c.surfaceRaised,
+      effect: ShimmerEffect(baseColor: c.border, highlightColor: c.surfaceRaised),
       child: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         itemCount: itemCount,
@@ -45,7 +47,9 @@ class SkeletonBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.colors;
     return Skeletonizer(
-      effect: ShimmerEffect(baseColor: c.surface, highlightColor: c.surfaceRaised),
+      // Neutral placeholders: no pop colours while loading.
+      containersColor: c.surfaceRaised,
+      effect: ShimmerEffect(baseColor: c.border, highlightColor: c.surfaceRaised),
       child: child,
     );
   }

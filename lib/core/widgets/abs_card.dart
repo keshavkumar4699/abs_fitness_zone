@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/theme.dart';
 
-/// Surface card, radius 20, padding 16–20, optional header row with action.
-/// Pressed state darkens by 4%.
+/// Sticker card: surface with a bold outline and a hard lip. With [hue] it is
+/// tinted in that pop colour. Tappable cards squish onto their lip.
 class AbsCard extends StatefulWidget {
   const AbsCard({
     super.key,
@@ -12,7 +12,8 @@ class AbsCard extends StatefulWidget {
     this.action,
     this.onTap,
     this.padding = const EdgeInsets.all(AbsSpace.x5),
-    this.raised = false,
+    this.hue,
+    this.solid = false,
   });
 
   final Widget child;
@@ -20,7 +21,12 @@ class AbsCard extends StatefulWidget {
   final Widget? action;
   final VoidCallback? onTap;
   final EdgeInsetsGeometry padding;
-  final bool raised;
+
+  /// Optional pop tint.
+  final PopHue? hue;
+
+  /// Solid pop fill (with ink text) instead of a light tint.
+  final bool solid;
 
   @override
   State<AbsCard> createState() => _AbsCardState();
@@ -32,8 +38,13 @@ class _AbsCardState extends State<AbsCard> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final base = widget.raised ? c.surfaceRaised : c.surface;
-    final color = _pressed ? Color.alphaBlend(Colors.black.withValues(alpha: AbsOpacity.pressedOverlay), base) : base;
+    final pop = widget.hue == null ? null : c.pop(widget.hue!);
+    final Color color = switch ((pop, widget.solid)) {
+      (null, _) => c.surface,
+      (final p?, true) => p.fill,
+      (final p?, false) => Color.alphaBlend(p.fill.withValues(alpha: c.isDark ? 0.16 : 0.2), c.surface),
+    };
+    final pressed = _pressed && !AbsMotion.reduced(context);
 
     Widget body = widget.child;
     if (widget.title != null || widget.action != null) {
@@ -43,7 +54,13 @@ class _AbsCardState extends State<AbsCard> {
         children: [
           Row(
             children: [
-              if (widget.title != null) Expanded(child: Text(widget.title!, style: context.text.heading)),
+              if (widget.title != null)
+                Expanded(
+                  child: Text(
+                    widget.title!,
+                    style: context.text.heading.copyWith(color: widget.solid && pop != null ? pop.onFill : null),
+                  ),
+                ),
               ?widget.action,
             ],
           ),
@@ -53,19 +70,38 @@ class _AbsCardState extends State<AbsCard> {
       );
     }
 
-    final card = AnimatedContainer(
-      duration: AbsMotion.instant.duration,
-      curve: AbsMotion.instant.curve,
-      padding: widget.padding,
-      decoration: absSurfaceDecoration(context, color: color),
-      child: body,
+    final card = Padding(
+      padding: const EdgeInsets.only(bottom: AbsDepth.cardLip),
+      child: AnimatedContainer(
+        duration: AbsMotion.instant.duration,
+        curve: AbsMotion.instant.curve,
+        padding: widget.padding,
+        transform: Matrix4.translationValues(0, pressed ? AbsDepth.cardLip : 0, 0),
+        decoration: stickerDecoration(
+          c,
+          color: color,
+          outline: pop != null && c.isDark ? pop.deep : null,
+          lipDepth: pressed ? 0 : AbsDepth.cardLip,
+        ),
+        child: widget.solid && pop != null
+            ? DefaultTextStyle.merge(
+                style: TextStyle(color: pop.onFill),
+                child: IconTheme.merge(
+                  data: IconThemeData(color: pop.onFill),
+                  child: body,
+                ),
+              )
+            : body,
+      ),
     );
 
     if (widget.onTap == null) return card;
     return Semantics(
       button: true,
+      onTap: widget.onTap,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
+        excludeFromSemantics: true,
         onTapDown: (_) => setState(() => _pressed = true),
         onTapUp: (_) => setState(() => _pressed = false),
         onTapCancel: () => setState(() => _pressed = false),
@@ -74,32 +110,4 @@ class _AbsCardState extends State<AbsCard> {
       ),
     );
   }
-}
-
-/// Depth per spec: dark mode uses a 1 px top highlight (white 4%) and no
-/// heavy shadow; light mode uses one soft shadow (0 4 16, 6%).
-BoxDecoration absSurfaceDecoration(
-  BuildContext context, {
-  Color? color,
-  BorderRadius borderRadius = AbsRadius.cardAll,
-}) {
-  final c = context.colors;
-  final base = color ?? c.surface;
-  return BoxDecoration(
-    color: c.isDark ? null : base,
-    // A hard-edged gradient stop gives a crisp highlight along the top edge,
-    // which a non-uniform Border cannot do together with rounded corners.
-    gradient: c.isDark
-        ? LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color.alphaBlend(c.highlight, base), Color.alphaBlend(c.highlight, base), base],
-            stops: const [0, 0.012, 0.012],
-          )
-        : null,
-    borderRadius: borderRadius,
-    boxShadow: c.isDark
-        ? null
-        : [BoxShadow(color: c.shadow, offset: AbsElevation.shadowOffset, blurRadius: AbsElevation.shadowBlur)],
-  );
 }

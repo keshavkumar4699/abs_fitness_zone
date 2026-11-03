@@ -16,12 +16,8 @@ it here, and continue. Newest entries go at the bottom of each milestone.
    and API. Outlined (regular) icons are used everywhere; the filled variant is
    used only for the selected navigation item.
 
-3. **Fonts.** Sora and Inter are bundled as asset fonts declared in
-   `pubspec.yaml`, not loaded through the `google_fonts` package. This meets the
-   spec's "bundled at build, not fetched at runtime" requirement without another
-   dependency. Sora has no ₹ glyph, so a tiny `AbsRupee` fallback family (Inter's
-   ₹ only) is registered on every text style. The OFL licences ship in
-   `assets/fonts/` and appear on the app's licence page.
+3. **Fonts.** *(Superseded in M0.1; see entry 20.)* Fonts are bundled as asset
+   fonts declared in `pubspec.yaml`, never fetched at runtime.
 
 4. **Member PIN storage.** The spec lists `members.pin_hash`. The hash lives in
    a separate `member_credentials` table that has RLS enabled and no client
@@ -93,3 +89,59 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     - Lottie celebrations (M2/M3).
     - "Content behind scales to 0.96" under bottom sheets (a custom modal
       route; the sheet itself already snaps at 50% / 92%).
+
+## M0.1 Fixes and redesign
+
+18. **Design direction changed at the owner's request.** The spec's "quiet
+    power" look (dark-first, one electric accent, "never decorative colour")
+    was replaced with a playful, colourful **Pop** system, because the owner
+    found it bland:
+    - Six vivid hues (lime, sky, tangerine, bubblegum, grape, mint) plus coral
+      for danger. Every section of the app owns one hue.
+    - Ink-coloured text on every fill; all pairs meet WCAG AA.
+    - Sticker cards with a bold outline and a hard offset "lip" instead of
+      blurred shadows.
+    - Candy buttons that squish onto their lip when pressed.
+    - Bouncy springs, floating blobs and confetti for success moments.
+    - Light mode is warm cream; dark mode is deep grape-night.
+
+    The token architecture is unchanged: widgets still read only from
+    `lib/app/theme/`.
+
+19. **Status colours keep their meaning** inside the new palette: mint means
+    paid/active, tangerine means due soon/expiring, coral means
+    overdue/expired, sky means frozen. Every status still shows text, never
+    colour alone.
+
+20. **Fonts:** Baloo 2 (display and numbers: rounded and playful, with ₹,
+    tabular figures, and Devanagari support available for the later Hindi
+    work) and Nunito (rounded body text, with ₹). Both are SIL OFL. The
+    earlier ₹ fallback font is no longer needed.
+
+21. **Generated code is committed** (`*.g.dart`, `*.freezed.dart`,
+    `lib/app/l10n/gen/`). A fresh clone now runs with plain `flutter run`.
+    Forgetting `build_runner` caused dozens of confusing compile errors. CI
+    regenerates the files and fails if the committed copies are stale.
+
+22. **Offline start.** The last signed-in profile is cached on the device. If
+    the app opens offline with a saved session, it uses the cached profile
+    instead of blocking on an error screen. Writes still require a
+    connection.
+
+23. **Staff deactivation.** The owner can turn a staff member's access off
+    and back on (Staff → tap a person). A deactivated account is signed out
+    on its next start and cannot sign in. The owner account cannot be turned
+    off.
+
+24. **Email magic link on phones** returns to the app through
+    `com.absfitnesszone.app://login-callback`. This is registered on Android
+    and iOS and must be added to Supabase's allowed redirect URLs. Flutter's
+    own deep-link routing is turned off so the router never receives auth
+    callbacks.
+
+25. **Placeholder configuration is treated as "no backend"**, and a failed
+    `Supabase.initialize` no longer crashes the app on launch; the welcome
+    screen explains the problem instead.
+
+26. **Gradle heap** lowered from 8 GB to 4 GB so Android builds work on 8 GB
+    laptops.

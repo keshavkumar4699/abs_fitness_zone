@@ -6,7 +6,7 @@
 // The PIN is verified in Postgres (bcrypt + lockout, verify_member_pin), then
 // a session for the member's auth user is minted with a one-time magic-link
 // token that never leaves this function.
-import { adminClient } from "../_shared/clients.ts";
+import { adminClient, anonClient } from "../_shared/clients.ts";
 import { error, json, readJson, serve } from "../_shared/http.ts";
 import { isMobile, isPin } from "../_shared/validate.ts";
 
@@ -45,7 +45,8 @@ serve(async (req) => {
   });
   if (linkError) throw linkError;
 
-  const { data: verified, error: verifyError } = await admin.auth.verifyOtp({
+  // Separate client: verifyOtp stores the session on the client it runs on.
+  const { data: verified, error: verifyError } = await anonClient().auth.verifyOtp({
     type: "email",
     token_hash: link.properties.hashed_token,
   });

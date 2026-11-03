@@ -100,17 +100,17 @@ void main() {
     expect(find.byType(SkeletonList), findsOneWidget);
 
     await pumpThemed(tester, view(const AsyncData([])));
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 500));
     expect(find.text('nothing here'), findsOneWidget);
 
     await pumpThemed(tester, view(AsyncError(Exception('x'), StackTrace.empty)));
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 500));
     expect(find.text('Something went wrong. Please try again.'), findsOneWidget);
     await tester.tap(find.text('Try again'));
     expect(retried, isTrue);
 
     await pumpThemed(tester, view(const AsyncData([1, 2])));
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 500));
     expect(find.text('items: 2'), findsOneWidget);
   });
 
@@ -159,7 +159,7 @@ void main() {
       ),
     );
     expect(find.text('Collect'), findsNothing);
-    await tester.tap(find.byType(FloatingActionButton));
+    await tester.tap(find.byTooltip('Quick actions'));
     await tester.pumpAndSettle();
     for (final label in ['New member', 'Collect', 'Check-in', 'Enquiry']) {
       expect(find.text(label), findsOneWidget);

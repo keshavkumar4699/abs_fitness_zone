@@ -6,14 +6,16 @@ import '../../app/l10n/l10n.dart';
 import '../../app/theme/theme.dart';
 import 'status_pill.dart';
 
-/// Circular avatar with initials fallback and an optional status ring.
+/// Round avatar: photo, or initials on a pop colour picked from the name.
+/// An optional status ring shows membership state.
 class AbsAvatar extends StatelessWidget {
-  const AbsAvatar({super.key, required this.name, this.imageUrl, this.ringColor, this.size = AbsSize.avatar});
+  const AbsAvatar({super.key, required this.name, this.imageUrl, this.ringColor, this.size = AbsSize.avatar, this.hue});
 
   final String name;
   final String? imageUrl;
   final Color? ringColor;
   final double size;
+  final PopHue? hue;
 
   static String initials(String name) {
     final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
@@ -26,11 +28,24 @@ class AbsAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final inner = CircleAvatar(
-      radius: size / 2,
-      backgroundColor: c.surfaceRaised,
-      foregroundImage: imageUrl == null ? null : NetworkImage(imageUrl!),
-      child: Text(initials(name), style: context.text.label.copyWith(color: c.textPrimary)),
+    final p = c.pop(hue ?? hueForName(name));
+    final inner = Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: p.fill,
+        shape: BoxShape.circle,
+        border: Border.all(color: c.isDark ? p.deep : c.ink, width: AbsDepth.outline),
+        image: imageUrl == null ? null : DecorationImage(image: NetworkImage(imageUrl!), fit: BoxFit.cover),
+      ),
+      alignment: Alignment.center,
+      child: imageUrl != null
+          ? null
+          : Text(
+              initials(name),
+              textScaler: TextScaler.noScaling,
+              style: context.text.heading.copyWith(color: p.onFill, fontSize: size * 0.36, height: 1),
+            ),
     );
     if (ringColor == null) return inner;
     return Container(
@@ -44,9 +59,9 @@ class AbsAvatar extends StatelessWidget {
   }
 }
 
-/// Avatar with status ring, name, plan, days-left pill and a trailing quick
-/// action. Swipe right = collect payment, swipe left = send reminder. The
-/// tile never leaves the list; the swipe only triggers the callback.
+/// Avatar with status ring, name, plan, days-left sticker and a trailing quick
+/// action. Swipe right = collect payment, swipe left = send reminder. The tile
+/// stays in the list; the swipe only triggers the callback.
 class MemberTile extends StatelessWidget {
   const MemberTile({
     super.key,
@@ -79,6 +94,7 @@ class MemberTile extends StatelessWidget {
     final c = context.colors;
     final t = context.text;
     final ring = StatusPill.colorFor(c, status);
+    final avatar = AbsAvatar(name: name, imageUrl: photoUrl, ringColor: ring);
 
     final tile = Material(
       color: c.bg,
@@ -90,20 +106,13 @@ class MemberTile extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: context.screenPadding, vertical: AbsSpace.x3),
             child: Row(
               children: [
-                if (heroTag != null)
-                  Hero(
-                    tag: heroTag!,
-                    child: AbsAvatar(name: name, imageUrl: photoUrl, ringColor: ring),
-                  )
-                else
-                  AbsAvatar(name: name, imageUrl: photoUrl, ringColor: ring),
+                if (heroTag != null) Hero(tag: heroTag!, child: avatar) else avatar,
                 const SizedBox(width: AbsSpace.x3),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(name, style: t.heading, maxLines: 1, overflow: TextOverflow.ellipsis),
-                      const SizedBox(height: 2),
                       Text(
                         plan,
                         style: t.caption.copyWith(color: c.textSecondary),
@@ -115,7 +124,7 @@ class MemberTile extends StatelessWidget {
                 ),
                 const SizedBox(width: AbsSpace.x2),
                 if (daysLeft != null && daysLeft! >= 0)
-                  InfoPill(label: context.l10n.daysLeft(daysLeft!), color: ring)
+                  PopSticker(label: context.l10n.daysLeft(daysLeft!), hue: StatusPill.hueFor(status), numeric: true)
                 else
                   StatusPill(status: status, days: daysLeft ?? 0),
                 ?trailing,
@@ -166,23 +175,26 @@ class _SwipeActionsState extends State<_SwipeActions> {
   @override
   Widget build(BuildContext context) {
     final c = context.colors;
-    final scale = 0.7 + 0.5 * (_progress / _threshold).clamp(0.0, 1.0);
+    final scale = 0.7 + 0.6 * (_progress / _threshold).clamp(0.0, 1.0);
 
-    Widget background(Color color, IconData icon, String label, Alignment align) => Container(
-      color: color.withValues(alpha: _reached ? 0.28 : AbsOpacity.subtleFill),
-      alignment: align,
-      padding: EdgeInsets.symmetric(horizontal: context.screenPadding + AbsSpace.x1),
-      child: Transform.scale(
-        scale: scale,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: color),
-            Text(label, style: context.text.caption.copyWith(color: color)),
-          ],
+    Widget background(PopHue hue, IconData icon, String label, Alignment align) {
+      final p = c.pop(hue);
+      return Container(
+        color: _reached ? p.fill : p.soft,
+        alignment: align,
+        padding: EdgeInsets.symmetric(horizontal: context.screenPadding + AbsSpace.x1),
+        child: Transform.scale(
+          scale: scale,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: _reached ? p.onFill : p.text),
+              Text(label, style: context.text.caption.copyWith(color: _reached ? p.onFill : p.text)),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
 
     return Dismissible(
       key: ValueKey(_key),
@@ -208,8 +220,13 @@ class _SwipeActionsState extends State<_SwipeActions> {
         return false; // keep the tile in the list
       },
       onDismissed: (_) => setState(() => _key++),
-      background: background(c.success, PhosphorIcons.currencyInr(), widget.rightLabel, Alignment.centerLeft),
-      secondaryBackground: background(c.info, PhosphorIcons.whatsappLogo(), widget.leftLabel, Alignment.centerRight),
+      background: background(PopHue.mint, PhosphorIcons.currencyInr(), widget.rightLabel, Alignment.centerLeft),
+      secondaryBackground: background(
+        PopHue.sky,
+        PhosphorIcons.whatsappLogo(),
+        widget.leftLabel,
+        Alignment.centerRight,
+      ),
       child: widget.child,
     );
   }

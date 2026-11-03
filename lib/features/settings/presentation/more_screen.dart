@@ -18,6 +18,13 @@ String roleLabel(AppLocalizations l, UserRole role) => switch (role) {
   UserRole.member => l.roleMember,
 };
 
+PopHue roleHue(UserRole role) => switch (role) {
+  UserRole.owner => PopHue.lime,
+  UserRole.frontDesk => PopHue.sky,
+  UserRole.trainer => PopHue.bubblegum,
+  UserRole.member => PopHue.grape,
+};
+
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
 
@@ -29,14 +36,14 @@ class MoreScreen extends ConsumerWidget {
     final user = ref.watch(currentUserProvider).value;
     if (user == null) return const SizedBox.shrink();
 
-    Widget item(IconData icon, String title, String subtitle, String route) => Padding(
+    Widget item(IconData icon, String title, String subtitle, String route, PopHue hue) => Padding(
       padding: const EdgeInsets.only(bottom: AbsSpace.x3),
       child: AbsCard(
         onTap: () => context.push(route),
         padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x4, vertical: AbsSpace.x3),
         child: Row(
           children: [
-            Icon(icon, color: c.accentText),
+            IconBubble(icon: icon, hue: hue),
             const SizedBox(width: AbsSpace.x4),
             Expanded(
               child: Column(
@@ -47,7 +54,7 @@ class MoreScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            Icon(PhosphorIcons.caretRight(), color: c.textSecondary, size: AbsSize.iconSmall),
+            Icon(PhosphorIcons.caretRight(PhosphorIconsStyle.bold), color: c.textSecondary, size: AbsSize.iconSmall),
           ],
         ),
       ),
@@ -64,17 +71,18 @@ class MoreScreen extends ConsumerWidget {
         ),
         children: [
           AbsCard(
+            hue: roleHue(user.role),
             child: Row(
               children: [
-                AbsAvatar(name: user.name, size: AbsSpace.x14, ringColor: c.accent),
+                AbsAvatar(name: user.name, size: AbsSpace.x14),
                 const SizedBox(width: AbsSpace.x4),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(user.name, style: t.heading),
+                      Text(user.name, style: t.title, maxLines: 1, overflow: TextOverflow.ellipsis),
                       const SizedBox(height: AbsSpace.x1),
-                      InfoPill(label: roleLabel(l, user.role), color: c.accentText),
+                      PopSticker(label: roleLabel(l, user.role), hue: roleHue(user.role)),
                     ],
                   ),
                 ),
@@ -82,16 +90,35 @@ class MoreScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: AbsSpace.x4),
-          if (user.role.isOwner) item(PhosphorIcons.usersThree(), l.moreStaff, l.moreStaffSubtitle, Routes.staffTeam),
-          if (user.role.isDesk)
-            item(PhosphorIcons.password(), l.moreMemberPin, l.moreMemberPinSubtitle, Routes.memberPin),
           if (user.role.isOwner)
-            item(PhosphorIcons.squaresFour(), l.moreGallery, l.moreGallerySubtitle, Routes.gallery),
+            item(
+              PhosphorIcons.usersThree(PhosphorIconsStyle.bold),
+              l.moreStaff,
+              l.moreStaffSubtitle,
+              Routes.staffTeam,
+              PopHue.sky,
+            ),
+          if (user.role.isDesk)
+            item(
+              PhosphorIcons.password(PhosphorIconsStyle.bold),
+              l.moreMemberPin,
+              l.moreMemberPinSubtitle,
+              Routes.memberPin,
+              PopHue.tangerine,
+            ),
+          if (user.role.isOwner)
+            item(
+              PhosphorIcons.squaresFour(PhosphorIconsStyle.bold),
+              l.moreGallery,
+              l.moreGallerySubtitle,
+              Routes.gallery,
+              PopHue.mint,
+            ),
           const AppearanceCard(),
           const SizedBox(height: AbsSpace.x6),
           AbsButton.secondary(
             label: l.commonSignOut,
-            icon: PhosphorIcons.signOut(),
+            icon: PhosphorIcons.signOut(PhosphorIconsStyle.bold),
             onPressed: () => ref.read(authRepositoryProvider).signOut(),
           ),
         ],

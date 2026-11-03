@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
 import '../../../app/theme/theme.dart';
@@ -33,7 +34,8 @@ class _SetPasswordScreenState extends ConsumerState<SetPasswordScreen> {
   }
 
   Future<void> _submit() async {
-    if (!_form.currentState!.validate()) return;
+    if (_busy || !_form.currentState!.validate()) return;
+    FocusScope.of(context).unfocus();
     setState(() => _busy = true);
     try {
       await ref.read(authRepositoryProvider).setPassword(_password.text);
@@ -52,6 +54,8 @@ class _SetPasswordScreenState extends ConsumerState<SetPasswordScreen> {
       title: l.setPasswordTitle,
       subtitle: l.setPasswordSubtitle,
       showBack: false,
+      icon: PhosphorIcons.lockKey(PhosphorIconsStyle.bold),
+      hue: PopHue.tangerine,
       children: [
         Form(
           key: _form,
@@ -75,7 +79,7 @@ class _SetPasswordScreenState extends ConsumerState<SetPasswordScreen> {
                 onFieldSubmitted: (_) => _submit(),
               ),
               const SizedBox(height: AbsSpace.x6),
-              AbsButton(label: l.setPasswordAction, isLoading: _busy, onPressed: _submit),
+              AbsButton(label: l.setPasswordAction, hue: PopHue.tangerine, isLoading: _busy, onPressed: _submit),
               const SizedBox(height: AbsSpace.x3),
               AbsButton.ghost(label: l.commonSignOut, onPressed: () => ref.read(authRepositoryProvider).signOut()),
             ],

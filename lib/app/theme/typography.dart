@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-/// Font families bundled in assets/fonts (never fetched at runtime).
+/// Bundled font families (never fetched at runtime). Baloo 2 is a rounded,
+/// friendly display face with ₹ and tabular figures; Nunito is a rounded body
+/// face that also has ₹.
 abstract final class AbsFonts {
-  static const display = 'Sora';
-  static const text = 'Inter';
-
-  /// Per-glyph fallback that supplies ₹ for both families.
-  static const fallback = ['AbsRupee'];
+  static const display = 'Baloo2';
+  static const text = 'Nunito';
 }
 
-/// Type scale (spec §4). Read through `context.text`.
+/// Type scale. Read through `context.text`.
 @immutable
 class AbsTypography extends ThemeExtension<AbsTypography> {
   const AbsTypography({
@@ -25,33 +24,25 @@ class AbsTypography extends ThemeExtension<AbsTypography> {
 
   factory AbsTypography.forColor(Color color) {
     const tabular = [FontFeature.tabularFigures()];
-    TextStyle style(String family, double size, double lineHeight, FontWeight weight) {
-      return TextStyle(
-        fontFamily: family,
-        fontSize: size,
-        height: lineHeight / size,
-        fontWeight: weight,
-        color: color,
-        letterSpacing: 0,
-        fontFamilyFallback: AbsFonts.fallback,
-      );
-    }
+    TextStyle style(String family, double size, double lineHeight, FontWeight weight) => TextStyle(
+      fontFamily: family,
+      fontSize: size,
+      height: lineHeight / size,
+      fontWeight: weight,
+      color: color,
+      letterSpacing: 0,
+      leadingDistribution: TextLeadingDistribution.even,
+    );
 
     return AbsTypography(
-      displayXL: style(AbsFonts.display, 48, 52, FontWeight.w700).copyWith(fontFeatures: tabular, letterSpacing: -1),
-      displayL: style(AbsFonts.display, 34, 40, FontWeight.w700).copyWith(fontFeatures: tabular, letterSpacing: -0.5),
-      title: style(AbsFonts.display, 22, 28, FontWeight.w600),
-      heading: style(AbsFonts.text, 17, 24, FontWeight.w600),
-      body: style(AbsFonts.text, 15, 22, FontWeight.w400),
-      label: style(AbsFonts.text, 13, 18, FontWeight.w500),
-      caption: style(AbsFonts.text, 12, 16, FontWeight.w400),
-      // Numeric inherits size/line height from where it is merged in.
-      numeric: const TextStyle(
-        fontFamily: AbsFonts.display,
-        fontFamilyFallback: AbsFonts.fallback,
-        fontWeight: FontWeight.w600,
-        fontFeatures: tabular,
-      ),
+      displayXL: style(AbsFonts.display, 52, 56, FontWeight.w800).copyWith(fontFeatures: tabular),
+      displayL: style(AbsFonts.display, 36, 40, FontWeight.w800).copyWith(fontFeatures: tabular),
+      title: style(AbsFonts.display, 24, 30, FontWeight.w700),
+      heading: style(AbsFonts.text, 17, 24, FontWeight.w800),
+      body: style(AbsFonts.text, 15, 22, FontWeight.w600),
+      label: style(AbsFonts.text, 13, 18, FontWeight.w700),
+      caption: style(AbsFonts.text, 12, 16, FontWeight.w600),
+      numeric: const TextStyle(fontFamily: AbsFonts.display, fontWeight: FontWeight.w700, fontFeatures: tabular),
     );
   }
 
