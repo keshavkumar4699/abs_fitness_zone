@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppUser {
 
-@JsonKey(name: 'id') String get userId; UserRole get role; String get name; String? get phone;@JsonKey(name: 'staff_id') String? get staffId;@JsonKey(name: 'member_id') String? get memberId;@JsonKey(name: 'must_set_password') bool get mustSetPassword;
+@JsonKey(name: 'id') String get userId; UserRole get role; String get name; String? get phone;@JsonKey(name: 'staff_id') String? get staffId;@JsonKey(name: 'member_id') String? get memberId;
 /// Create a copy of AppUser
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $AppUserCopyWith<AppUser> get copyWith => _$AppUserCopyWithImpl<AppUser>(this as
 @override
 bool operator ==(Object other) {
   final _this = this as AppUser;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppUser&&(identical(other.userId, _this.userId) || other.userId == _this.userId)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.staffId, _this.staffId) || other.staffId == _this.staffId)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.mustSetPassword, _this.mustSetPassword) || other.mustSetPassword == _this.mustSetPassword));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppUser&&(identical(other.userId, _this.userId) || other.userId == _this.userId)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.staffId, _this.staffId) || other.staffId == _this.staffId)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as AppUser;
-  return Object.hash(runtimeType,_this.userId,_this.role,_this.name,_this.phone,_this.staffId,_this.memberId,_this.mustSetPassword);
+  return Object.hash(runtimeType,_this.userId,_this.role,_this.name,_this.phone,_this.staffId,_this.memberId);
 }
 
 @override
 String toString() {
   final _this = this as AppUser;
-  return 'AppUser(userId: ${_this.userId}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, staffId: ${_this.staffId}, memberId: ${_this.memberId}, mustSetPassword: ${_this.mustSetPassword})';
+  return 'AppUser(userId: ${_this.userId}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, staffId: ${_this.staffId}, memberId: ${_this.memberId})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $AppUserCopyWith<$Res>  {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) _then) = _$AppUserCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') String userId, UserRole role, String name, String? phone,@JsonKey(name: 'staff_id') String? staffId,@JsonKey(name: 'member_id') String? memberId,@JsonKey(name: 'must_set_password') bool mustSetPassword
+@JsonKey(name: 'id') String userId, UserRole role, String name, String? phone,@JsonKey(name: 'staff_id') String? staffId,@JsonKey(name: 'member_id') String? memberId
 });
 
 
@@ -71,7 +71,7 @@ class _$AppUserCopyWithImpl<$Res>
 
 /// Create a copy of AppUser
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? role = null,Object? name = null,Object? phone = freezed,Object? staffId = freezed,Object? memberId = freezed,Object? mustSetPassword = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? role = null,Object? name = null,Object? phone = freezed,Object? staffId = freezed,Object? memberId = freezed,}) {
   return _then(AppUser(
 userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -79,8 +79,7 @@ as UserRole,name: null == name ? _self.name : name // ignore: cast_nullable_to_n
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,staffId: freezed == staffId ? _self.staffId : staffId // ignore: cast_nullable_to_non_nullable
 as String?,memberId: freezed == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as String?,mustSetPassword: null == mustSetPassword ? _self.mustSetPassword : mustSetPassword // ignore: cast_nullable_to_non_nullable
-as bool,
+as String?,
   ));
 }
 
@@ -165,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId, @JsonKey(name: 'must_set_password')  bool mustSetPassword)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppUser() when $default != null:
-return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId,_that.mustSetPassword);case _:
+return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId);case _:
   return orElse();
 
 }
@@ -186,10 +185,10 @@ return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId, @JsonKey(name: 'must_set_password')  bool mustSetPassword)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId)  $default,) {final _that = this;
 switch (_that) {
 case _AppUser():
-return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId,_that.mustSetPassword);case _:
+return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +205,10 @@ return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId, @JsonKey(name: 'must_set_password')  bool mustSetPassword)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  String userId,  UserRole role,  String name,  String? phone, @JsonKey(name: 'staff_id')  String? staffId, @JsonKey(name: 'member_id')  String? memberId)?  $default,) {final _that = this;
 switch (_that) {
 case _AppUser() when $default != null:
-return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId,_that.mustSetPassword);case _:
+return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_that.memberId);case _:
   return null;
 
 }
@@ -221,7 +220,7 @@ return $default(_that.userId,_that.role,_that.name,_that.phone,_that.staffId,_th
 @JsonSerializable()
 
 class _AppUser implements AppUser {
-  const _AppUser({@JsonKey(name: 'id') required this.userId, required this.role, required this.name, this.phone, @JsonKey(name: 'staff_id') this.staffId, @JsonKey(name: 'member_id') this.memberId, @JsonKey(name: 'must_set_password') this.mustSetPassword = false});
+  const _AppUser({@JsonKey(name: 'id') required this.userId, required this.role, required this.name, this.phone, @JsonKey(name: 'staff_id') this.staffId, @JsonKey(name: 'member_id') this.memberId});
   factory _AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);
 
 @override@JsonKey(name: 'id') final  String userId;
@@ -230,7 +229,6 @@ class _AppUser implements AppUser {
 @override final  String? phone;
 @override@JsonKey(name: 'staff_id') final  String? staffId;
 @override@JsonKey(name: 'member_id') final  String? memberId;
-@override@JsonKey(name: 'must_set_password') final  bool mustSetPassword;
 
 /// Create a copy of AppUser
 /// with the given fields replaced by the non-null parameter values.
@@ -245,18 +243,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppUser&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.staffId, staffId) || other.staffId == staffId)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.mustSetPassword, mustSetPassword) || other.mustSetPassword == mustSetPassword));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppUser&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.staffId, staffId) || other.staffId == staffId)&&(identical(other.memberId, memberId) || other.memberId == memberId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,userId,role,name,phone,staffId,memberId,mustSetPassword);
+    return Object.hash(runtimeType,userId,role,name,phone,staffId,memberId);
 }
 
 @override
 String toString() {
-    return 'AppUser(userId: $userId, role: $role, name: $name, phone: $phone, staffId: $staffId, memberId: $memberId, mustSetPassword: $mustSetPassword)';
+    return 'AppUser(userId: $userId, role: $role, name: $name, phone: $phone, staffId: $staffId, memberId: $memberId)';
 }
 
 
@@ -267,7 +265,7 @@ abstract mixin class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) _then) = __$AppUserCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') String userId, UserRole role, String name, String? phone,@JsonKey(name: 'staff_id') String? staffId,@JsonKey(name: 'member_id') String? memberId,@JsonKey(name: 'must_set_password') bool mustSetPassword
+@JsonKey(name: 'id') String userId, UserRole role, String name, String? phone,@JsonKey(name: 'staff_id') String? staffId,@JsonKey(name: 'member_id') String? memberId
 });
 
 
@@ -284,7 +282,7 @@ class __$AppUserCopyWithImpl<$Res>
 
 /// Create a copy of AppUser
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? role = null,Object? name = null,Object? phone = freezed,Object? staffId = freezed,Object? memberId = freezed,Object? mustSetPassword = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? role = null,Object? name = null,Object? phone = freezed,Object? staffId = freezed,Object? memberId = freezed,}) {
   return _then(_AppUser(
 userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -292,8 +290,7 @@ as UserRole,name: null == name ? _self.name : name // ignore: cast_nullable_to_n
 as String,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,staffId: freezed == staffId ? _self.staffId : staffId // ignore: cast_nullable_to_non_nullable
 as String?,memberId: freezed == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
-as String?,mustSetPassword: null == mustSetPassword ? _self.mustSetPassword : mustSetPassword // ignore: cast_nullable_to_non_nullable
-as bool,
+as String?,
   ));
 }
 

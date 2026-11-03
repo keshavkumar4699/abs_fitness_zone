@@ -1,9 +1,6 @@
 import 'package:abs_fitness/app/env.dart';
-import 'package:abs_fitness/core/errors.dart';
 import 'package:abs_fitness/core/utils/phone_input.dart';
-import 'package:abs_fitness/features/auth/data/auth_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() {
   group('IndianMobileInputFormatter', () {
@@ -30,29 +27,6 @@ void main() {
       final ok = env('https://abcd.supabase.co', 'sb_publishable_123');
       expect(ok.isConfigured, isTrue);
       expect(ok.withError('boom').isConfigured, isFalse);
-    });
-  });
-
-  group('authFailure', () {
-    test('maps Supabase auth error codes to explainable failures', () {
-      expect(
-        authFailure(const AuthException('x', code: 'same_password', statusCode: '422')),
-        isA<SamePasswordFailure>(),
-      );
-      expect(
-        authFailure(const AuthException('x', code: 'weak_password', statusCode: '422')),
-        isA<WeakPasswordFailure>(),
-      );
-      expect(
-        authFailure(const AuthException('x', code: 'invalid_credentials', statusCode: '400')),
-        isA<InvalidCredentialsFailure>(),
-      );
-      expect(authFailure(const AuthException('x', statusCode: '429')), isA<RateLimitedFailure>());
-      expect(authFailure(const AuthException('x', statusCode: '500')), isA<ServerFailure>());
-    });
-
-    test('member-login 429 is a rate limit', () {
-      expect(memberLoginFailure(429, null), isA<RateLimitedFailure>());
     });
   });
 }

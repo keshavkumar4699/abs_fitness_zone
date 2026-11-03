@@ -19,24 +19,27 @@ it here, and continue. Newest entries go at the bottom of each milestone.
 3. **Fonts.** *(Superseded in M0.1; see entry 20.)* Fonts are bundled as asset
    fonts declared in `pubspec.yaml`, never fetched at runtime.
 
-4. **Member PIN storage.** The spec lists `members.pin_hash`. The hash lives in
+4. **Member PIN storage.** *(Superseded in M2.1: Google sign-in only; see
+   entry 61.)* The spec lists `members.pin_hash`. The hash lives in
    a separate `member_credentials` table that has RLS enabled and no client
    policies, so no API role can ever select it. Hashing is bcrypt (`pgcrypto`).
    Verification and lockout (5 wrong PINs → 15 minutes) run in
    `verify_member_pin()`, which only the service role can execute.
 
-5. **Member sessions.** The `member-login` Edge Function verifies the PIN, then
+5. **Member sessions.** *(Superseded in M2.1; see entry 61.)* The `member-login` Edge Function verifies the PIN, then
    mints a normal Supabase session for the member's auth user. It does this with
    a one-time magic-link token (`generateLink` + `verifyOtp`) that never leaves
    the function. A member's auth user uses their real email when one is on file,
    so the email magic-link fallback works. Otherwise it uses a non-deliverable
    placeholder (`member-<id>@members.abs-fitness.invalid`).
 
-6. **Member logins are created when the PIN is set.** `set-member-pin` stores
+6. **Member logins are created when the PIN is set.** *(Superseded in M2.1;
+   see entry 63.)* `set-member-pin` stores
    the hash (the role check runs inside Postgres, as the caller) and creates the
    auth user and `profiles` link on first use.
 
-7. **Staff invites use a temporary password.** The owner creates a staff
+7. **Staff invites use a temporary password.** *(Superseded in M2.1; see
+   entry 62.)* The owner creates a staff
    account and sees a one-time temporary password to hand over. The
    `must_set_password` flag forces a new password on first sign-in. This meets
    "forced password set on first login" without depending on deep links or
@@ -133,7 +136,7 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     on its next start and cannot sign in. The owner account cannot be turned
     off.
 
-24. **Email magic link on phones** returns to the app through
+24. **Email magic link on phones** *(now the Google sign-in return, M2.1)* returns to the app through
     `com.absfitnesszone.app://login-callback`. This is registered on Android
     and iOS and must be added to Supabase's allowed redirect URLs. Flutter's
     own deep-link routing is turned off so the router never receives auth
@@ -318,3 +321,49 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     (M5), full revenue reports and exports (M7; M2 adds the
     `collections_summary` hook used by the dashboard), the ad-hoc invoice
     screen, Razorpay checkout inside the member app, and offline collection.
+
+## M2.1 Google sign-in
+
+61. **Google is the only way to sign in**, for the owner, front desk,
+    trainers and members (owner's request, replacing the spec's staff
+    email + password and member phone + PIN). The welcome screen has one
+    button, Continue with Google. Phone + PIN, email/password, magic links,
+    temporary passwords and "set your password" are removed from the app,
+    the database (`member_credentials`, `verify_member_pin`,
+    `set_member_pin`, `must_set_password`) and the Edge Functions
+    (`member-login`, `set-member-pin`, `invite-staff`). Turning off the
+    Supabase Email provider closes the door on the server side too.
+
+62. **A Google account gets in by its verified email.** On the first
+    sign-in, `link_my_account()` looks up the Google email (verified, and
+    only from a Google login) and links the login to:
+    - an active staff record with that email first (a staff member who is
+      also a member signs in as staff), otherwise
+    - the one member record with that Gmail.
+
+    Nothing else can create a profile. An unknown Gmail, a switched-off
+    staff member, or a Gmail on two members is signed straight out with a
+    plain explanation on the welcome screen.
+
+63. **Adding people.** The owner adds staff by Gmail and role (More →
+    Staff → Add staff); there is nothing to hand over. The desk puts a
+    member's Gmail on their profile; a member page without one shows "Add a
+    Gmail so … can sign in". Each member needs their own Gmail, so family
+    members sharing one are told to ask the desk.
+
+64. **Owner setup works in either order.** `bootstrap_owner()` creates the
+    owner's staff record; the profile is linked at the owner's first Google
+    sign-in, or straight away if they signed in already.
+
+65. **Strangers.** Sign-ups must stay enabled for Google (new staff and
+    members have no login until their first sign-in), so anyone can reach
+    the Google screen. Without the optional hook, an unknown Gmail gets an
+    empty login with no role: RLS shows it nothing and the app signs it out.
+    With the **Before User Created** hook (`hook_before_user_created`) such
+    sign-ups are refused outright.
+
+66. **The Google account picker always shows** (`prompt=select_account`),
+    because desk phones are shared and the wrong Google account is the most
+    likely mistake. On Android Supabase opens Google in the browser and
+    returns through `com.absfitnesszone.app://login-callback`.
+

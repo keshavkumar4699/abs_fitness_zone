@@ -97,8 +97,6 @@ class _Detail extends ConsumerWidget {
         case 'edit':
           await context.push(Routes.memberEdit(member.id));
           ref.refreshMember(member.id);
-        case 'pin':
-          await context.push('${Routes.memberPin}?phone=${Uri.encodeQueryComponent(Phone.local(member.phone))}');
         case 'archive':
           await repo.setArchived(member.id, archived: !member.isArchived);
           ref.refreshMember(member.id);
@@ -154,7 +152,6 @@ class _Detail extends ConsumerWidget {
                 onSelected: (a) => _menu(context, ref, a),
                 itemBuilder: (_) => [
                   PopupMenuItem(value: 'edit', child: Text(l.actionEdit)),
-                  PopupMenuItem(value: 'pin', child: Text(l.actionSetPin)),
                   if (perms.owner)
                     PopupMenuItem(value: 'archive', child: Text(member.isArchived ? l.actionRestore : l.actionArchive)),
                   if (perms.owner)
@@ -498,6 +495,26 @@ class _OverviewTab extends ConsumerWidget {
 
     return _TabList(
       children: [
+        if (perms.desk && (member.email == null || member.email!.trim().isEmpty)) ...[
+          AbsCard(
+            key: const ValueKey('no-gmail'),
+            hue: PopHue.sky,
+            onTap: () async {
+              await context.push(Routes.memberEdit(member.id));
+              ref.refreshMember(member.id);
+            },
+            padding: const EdgeInsets.all(AbsSpace.x4),
+            child: Row(
+              children: [
+                IconBubble(icon: PhosphorIcons.googleLogo(PhosphorIconsStyle.bold), hue: PopHue.sky),
+                const SizedBox(width: AbsSpace.x3),
+                Expanded(child: Text(l.memberNoGmail(member.name.split(' ').first), style: t.body)),
+                Icon(PhosphorIcons.caretRight(PhosphorIconsStyle.bold), size: AbsSize.iconSmall),
+              ],
+            ),
+          ),
+          const SizedBox(height: AbsSpace.x4),
+        ],
         AbsCard(
           child: Column(
             children: [

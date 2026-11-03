@@ -218,35 +218,11 @@ abstract class AppLocalizations {
   /// **'Your membership, workouts and diet, all in one happy place.'**
   String get welcomeSubtitle;
 
-  /// No description provided for @welcomeMember.
-  ///
-  /// In en, this message translates to:
-  /// **'I\'m a member'**
-  String get welcomeMember;
-
-  /// No description provided for @welcomeStaff.
-  ///
-  /// In en, this message translates to:
-  /// **'Staff login'**
-  String get welcomeStaff;
-
   /// No description provided for @welcomeNotConfigured.
   ///
   /// In en, this message translates to:
   /// **'This build has no server configured. Sign-in is disabled; long-press the logo to open the component gallery.'**
   String get welcomeNotConfigured;
-
-  /// No description provided for @staffLoginTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Staff login'**
-  String get staffLoginTitle;
-
-  /// No description provided for @staffLoginSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Use the email your gym owner invited you with.'**
-  String get staffLoginSubtitle;
 
   /// No description provided for @fieldEmail.
   ///
@@ -254,23 +230,11 @@ abstract class AppLocalizations {
   /// **'Email'**
   String get fieldEmail;
 
-  /// No description provided for @fieldPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Password'**
-  String get fieldPassword;
-
   /// No description provided for @fieldPhone.
   ///
   /// In en, this message translates to:
   /// **'Phone number'**
   String get fieldPhone;
-
-  /// No description provided for @fieldPin.
-  ///
-  /// In en, this message translates to:
-  /// **'4-digit PIN'**
-  String get fieldPin;
 
   /// No description provided for @fieldName.
   ///
@@ -284,24 +248,6 @@ abstract class AppLocalizations {
   /// **'Role'**
   String get fieldRole;
 
-  /// No description provided for @fieldNewPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'New password'**
-  String get fieldNewPassword;
-
-  /// No description provided for @fieldConfirmPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm password'**
-  String get fieldConfirmPassword;
-
-  /// No description provided for @actionSignIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in'**
-  String get actionSignIn;
-
   /// No description provided for @validationEmail.
   ///
   /// In en, this message translates to:
@@ -314,102 +260,6 @@ abstract class AppLocalizations {
   /// **'Enter a 10-digit Indian mobile number'**
   String get validationPhone;
 
-  /// No description provided for @validationPin.
-  ///
-  /// In en, this message translates to:
-  /// **'PIN must be 4 digits'**
-  String get validationPin;
-
-  /// No description provided for @validationPasswordLength.
-  ///
-  /// In en, this message translates to:
-  /// **'Use at least 8 characters'**
-  String get validationPasswordLength;
-
-  /// No description provided for @validationPasswordMatch.
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords don\'t match'**
-  String get validationPasswordMatch;
-
-  /// No description provided for @memberLoginTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Member login'**
-  String get memberLoginTitle;
-
-  /// No description provided for @memberLoginSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in with your phone number and the PIN set at the front desk.'**
-  String get memberLoginSubtitle;
-
-  /// No description provided for @memberForgotPin.
-  ///
-  /// In en, this message translates to:
-  /// **'Forgot PIN?'**
-  String get memberForgotPin;
-
-  /// No description provided for @memberForgotPinTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Forgot your PIN?'**
-  String get memberForgotPinTitle;
-
-  /// No description provided for @memberForgotPinBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Please contact the front desk. They can set a new PIN for you in a few seconds.'**
-  String get memberForgotPinBody;
-
-  /// No description provided for @memberUseEmailLink.
-  ///
-  /// In en, this message translates to:
-  /// **'Use an email link instead'**
-  String get memberUseEmailLink;
-
-  /// No description provided for @memberEmailLinkTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Sign in with email'**
-  String get memberEmailLinkTitle;
-
-  /// No description provided for @memberEmailLinkBody.
-  ///
-  /// In en, this message translates to:
-  /// **'If your email is on file, we\'ll send you a sign-in link.'**
-  String get memberEmailLinkBody;
-
-  /// No description provided for @memberEmailLinkSend.
-  ///
-  /// In en, this message translates to:
-  /// **'Send link'**
-  String get memberEmailLinkSend;
-
-  /// No description provided for @memberEmailLinkSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Check your inbox for the sign-in link.'**
-  String get memberEmailLinkSent;
-
-  /// No description provided for @authInvalidCredentials.
-  ///
-  /// In en, this message translates to:
-  /// **'Those details don\'t match. Please check and try again.'**
-  String get authInvalidCredentials;
-
-  /// No description provided for @authInvalidPin.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{Wrong PIN. 1 attempt left before a 15-minute lock.} other{Wrong PIN. {count} attempts left before a 15-minute lock.}}'**
-  String authInvalidPin(int count);
-
-  /// No description provided for @authLocked.
-  ///
-  /// In en, this message translates to:
-  /// **'Too many wrong attempts. Try again after {time}.'**
-  String authLocked(String time);
-
   /// No description provided for @authNotConfigured.
   ///
   /// In en, this message translates to:
@@ -419,26 +269,8 @@ abstract class AppLocalizations {
   /// No description provided for @authNoProfile.
   ///
   /// In en, this message translates to:
-  /// **'Your account isn\'t linked to the gym yet. Please contact the front desk.'**
+  /// **'This Google account isn\'t registered at the gym. Ask the front desk to add your Gmail to your profile, then try again.'**
   String get authNoProfile;
-
-  /// No description provided for @setPasswordTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Set your password'**
-  String get setPasswordTitle;
-
-  /// No description provided for @setPasswordSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'For your security, choose a new password before you continue.'**
-  String get setPasswordSubtitle;
-
-  /// No description provided for @setPasswordAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Save password'**
-  String get setPasswordAction;
 
   /// No description provided for @onboardingTrackTitle.
   ///
@@ -623,20 +455,8 @@ abstract class AppLocalizations {
   /// No description provided for @moreStaffSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Invite and manage your team'**
+  /// **'Add and manage your team'**
   String get moreStaffSubtitle;
-
-  /// No description provided for @moreMemberPin.
-  ///
-  /// In en, this message translates to:
-  /// **'Member PIN'**
-  String get moreMemberPin;
-
-  /// No description provided for @moreMemberPinSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Set or reset a member\'s app PIN'**
-  String get moreMemberPinSubtitle;
 
   /// No description provided for @moreGallery.
   ///
@@ -671,25 +491,25 @@ abstract class AppLocalizations {
   /// No description provided for @staffEmptyBody.
   ///
   /// In en, this message translates to:
-  /// **'Invite your trainers and front desk so they can sign in.'**
+  /// **'Add your trainers and front desk by their Gmail so they can sign in.'**
   String get staffEmptyBody;
 
   /// No description provided for @staffInvite.
   ///
   /// In en, this message translates to:
-  /// **'Invite staff'**
+  /// **'Add staff'**
   String get staffInvite;
 
   /// No description provided for @staffInviteTitle.
   ///
   /// In en, this message translates to:
-  /// **'Invite a team member'**
+  /// **'Add a team member'**
   String get staffInviteTitle;
 
   /// No description provided for @staffInviteAction.
   ///
   /// In en, this message translates to:
-  /// **'Create account'**
+  /// **'Add to team'**
   String get staffInviteAction;
 
   /// No description provided for @staffInactive.
@@ -698,53 +518,11 @@ abstract class AppLocalizations {
   /// **'Inactive'**
   String get staffInactive;
 
-  /// No description provided for @staffTempPasswordTitle.
+  /// No description provided for @commonNotFound.
   ///
   /// In en, this message translates to:
-  /// **'Account created'**
-  String get staffTempPasswordTitle;
-
-  /// No description provided for @staffTempPasswordBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Share this temporary password with {name}. They\'ll set their own password on first sign-in. It won\'t be shown again.'**
-  String staffTempPasswordBody(String name);
-
-  /// No description provided for @memberPinTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Member PIN'**
-  String get memberPinTitle;
-
-  /// No description provided for @memberPinSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Look up a member by phone, then set a new 4-digit PIN for the app.'**
-  String get memberPinSubtitle;
-
-  /// No description provided for @memberPinFind.
-  ///
-  /// In en, this message translates to:
-  /// **'Find member'**
-  String get memberPinFind;
-
-  /// No description provided for @memberPinNotFound.
-  ///
-  /// In en, this message translates to:
-  /// **'No member with this phone number.'**
-  String get memberPinNotFound;
-
-  /// No description provided for @memberPinSet.
-  ///
-  /// In en, this message translates to:
-  /// **'Set PIN'**
-  String get memberPinSet;
-
-  /// No description provided for @memberPinDone.
-  ///
-  /// In en, this message translates to:
-  /// **'PIN updated for {name}.'**
-  String memberPinDone(String name);
+  /// **'We couldn\'t find that. It may have been removed.'**
+  String get commonNotFound;
 
   /// No description provided for @profileTitle.
   ///
@@ -1118,18 +896,6 @@ abstract class AppLocalizations {
   /// **'This staff account has been turned off. Please speak to the gym owner.'**
   String get authStaffDeactivated;
 
-  /// No description provided for @authSamePassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick a password you haven\'t used before.'**
-  String get authSamePassword;
-
-  /// No description provided for @authWeakPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'That password is too easy to guess. Try a longer one with numbers or symbols.'**
-  String get authWeakPassword;
-
   /// No description provided for @authRateLimited.
   ///
   /// In en, this message translates to:
@@ -1145,7 +911,7 @@ abstract class AppLocalizations {
   /// No description provided for @staffInviteEmailTaken.
   ///
   /// In en, this message translates to:
-  /// **'Someone already uses this email. Try a different one.'**
+  /// **'This Gmail is already on the team.'**
   String get staffInviteEmailTaken;
 
   /// No description provided for @welcomeTitle1.
@@ -2071,12 +1837,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit profile'**
   String get actionEdit;
-
-  /// No description provided for @actionSetPin.
-  ///
-  /// In en, this message translates to:
-  /// **'Set app PIN'**
-  String get actionSetPin;
 
   /// No description provided for @actionArchive.
   ///
@@ -4627,6 +4387,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Every receipt, with filters'**
   String get morePaymentHistorySubtitle;
+
+  /// No description provided for @welcomeGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get welcomeGoogle;
+
+  /// No description provided for @welcomeGoogleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff and members: use the Gmail the gym has on your record.'**
+  String get welcomeGoogleHint;
+
+  /// No description provided for @authSharedEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'This Gmail is on more than one member. Ask the front desk to give each member their own Gmail.'**
+  String get authSharedEmail;
+
+  /// No description provided for @authGoogleOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in with your Google account.'**
+  String get authGoogleOnly;
+
+  /// No description provided for @authCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in didn\'t open. Please try again.'**
+  String get authCancelled;
+
+  /// No description provided for @fieldGmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Gmail'**
+  String get fieldGmail;
+
+  /// No description provided for @staffGmailHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'They sign in with Google using this address.'**
+  String get staffGmailHelp;
+
+  /// No description provided for @memberGmailHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to sign in to the member app with Google.'**
+  String get memberGmailHelp;
+
+  /// No description provided for @memberNoGmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a Gmail so {name} can sign in to the member app.'**
+  String memberNoGmail(String name);
+
+  /// No description provided for @staffAddedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to the team'**
+  String get staffAddedTitle;
+
+  /// No description provided for @staffAddedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} can now sign in with Google using:'**
+  String staffAddedBody(String name);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

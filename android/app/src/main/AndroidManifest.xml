@@ -21,7 +21,7 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
-            <!-- Member email sign-in link returns here (handled by supabase_flutter). -->
+            <!-- Google sign-in returns here (handled by supabase_flutter). -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

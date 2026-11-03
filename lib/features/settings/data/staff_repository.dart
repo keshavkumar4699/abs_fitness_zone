@@ -38,9 +38,9 @@ class StaffMember {
 abstract interface class StaffRepository {
   Future<Paged<StaffMember>> list({required int offset, String query = ''});
 
-  /// Creates the staff record and login (owner only, enforced server-side).
-  /// Returns the one-time temporary password.
-  Future<String> invite({required String name, required String email, String? phone, required UserRole role});
+  /// Adds a staff record (owner only, enforced server-side). The person signs
+  /// in with Google using this email; there is no password.
+  Future<void> invite({required String name, required String email, String? phone, required UserRole role});
 
   /// Turns a staff member's access off or back on (owner only, via RLS).
   Future<void> setActive({required String staffId, required bool active});
@@ -69,18 +69,18 @@ class SupabaseStaffRepository implements StaffRepository {
   }
 
   @override
-  Future<String> invite({required String name, required String email, String? phone, required UserRole role}) async {
+  Future<void> invite({required String name, required String email, String? phone, required UserRole role}) async {
     try {
-      final res = await _client.functions.invoke(
-        'invite-staff',
-        body: {'name': name.trim(), 'email': email.trim().toLowerCase(), 'phone': phone, 'role': role.wire},
+      await _client.rpc<String>(
+        'add_staff',
+        params: {'p_name': name.trim(), 'p_email': email.trim().toLowerCase(), 'p_phone': phone, 'p_role': role.wire},
       );
-      return (res.data as Map<String, dynamic>)['temp_password'] as String;
-    } on FunctionException catch (e) {
-      throw switch (e.status) {
-        409 => const StaffEmailTakenFailure(),
-        403 => const NotAllowedFailure(),
-        _ => ServerFailure('invite-staff ${e.status}'),
+    } on PostgrestException catch (e) {
+      throw switch (e.code) {
+        '23505' => const StaffEmailTakenFailure(),
+        '42501' => const NotAllowedFailure(),
+        '22023' => RuleFailure(e.message),
+        _ => ServerFailure(e.message),
       };
     }
   }

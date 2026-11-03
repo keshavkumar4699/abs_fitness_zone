@@ -100,14 +100,6 @@ class MoreScreen extends ConsumerWidget {
             ),
           if (user.role.isDesk)
             item(
-              PhosphorIcons.password(PhosphorIconsStyle.bold),
-              l.moreMemberPin,
-              l.moreMemberPinSubtitle,
-              Routes.memberPin,
-              PopHue.tangerine,
-            ),
-          if (user.role.isDesk)
-            item(
               PhosphorIcons.lockKey(PhosphorIconsStyle.bold),
               l.moreDayClose,
               l.moreDayCloseSubtitle,

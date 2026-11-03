@@ -6,9 +6,6 @@ import '../features/auth/domain/app_user.dart';
 abstract final class Routes {
   static const splash = '/';
   static const welcome = '/welcome';
-  static const staffLogin = '/login/staff';
-  static const memberLogin = '/login/member';
-  static const setPassword = '/set-password';
   static const onboarding = '/onboarding';
   static const gallery = '/gallery';
 
@@ -22,7 +19,6 @@ abstract final class Routes {
   static const staffPlans = '/staff/plans';
   static const staffMore = '/staff/more';
   static const staffTeam = '/staff/more/team';
-  static const memberPin = '/staff/more/member-pin';
 
   static const memberNew = '/staff/members/new';
   static const memberImport = '/staff/members/import';
@@ -42,7 +38,7 @@ abstract final class Routes {
   static const mePayments = '/me/payments';
   static String mePay(String invoiceId) => '/me/payments/$invoiceId';
 
-  static bool isPublic(String location) => location == welcome || location.startsWith('/login') || location == gallery;
+  static bool isPublic(String location) => location == welcome || location == gallery;
 }
 
 /// Role guard and auth redirect, as a pure function so it is unit-tested.
@@ -60,25 +56,17 @@ String? authRedirect({required AsyncValue<AppUser?> auth, required bool onboardi
   // The hidden component gallery stays reachable for owners.
   if (location == Routes.gallery && user.role.isOwner) return null;
 
-  if (user.role.isStaff && user.mustSetPassword) {
-    return location == Routes.setPassword ? null : Routes.setPassword;
-  }
   if (user.role == UserRole.member && !onboardingDone) {
     return location == Routes.onboarding ? null : Routes.onboarding;
   }
 
   final home = user.role.isStaff ? Routes.staffHome : Routes.meHome;
-  final isEntry =
-      location == Routes.splash ||
-      Routes.isPublic(location) ||
-      location == Routes.setPassword ||
-      location == Routes.onboarding;
+  final isEntry = location == Routes.splash || Routes.isPublic(location) || location == Routes.onboarding;
   if (isEntry) return home;
 
   if (location.startsWith('/staff') && !user.role.isStaff) return home;
   if (location.startsWith('/me') && user.role.isStaff) return home;
   if (location.startsWith(Routes.staffTeam) && !user.role.isOwner) return Routes.staffMore;
-  if (location.startsWith(Routes.memberPin) && !user.role.isDesk) return Routes.staffMore;
   // Owner-only and desk-only staff pages.
   if ((location.startsWith(Routes.gymProfile) || location.startsWith(Routes.expenses)) && !user.role.isOwner) {
     return Routes.staffMore;

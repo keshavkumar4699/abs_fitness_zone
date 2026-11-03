@@ -9,7 +9,7 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | --- | --- | --- |
 | **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md), [fixes + redesign](docs/milestones/M0.1.md)) |
 | **M1 Members** | F1: members, plans, memberships, status engine, check-in, import/export, dashboard counts | ✅ Done ([report](docs/milestones/M1.md)) |
-| **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md)) |
+| **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md), [Google sign-in](docs/milestones/M2.1.md)) |
 | M3 Exercise library + Workouts | F4, F5, member app shell, workout player | Next |
 | M4 Diet | F6 | — |
 | M5 WhatsApp | F8 | — |
@@ -30,7 +30,7 @@ lib/
     utils/                  money.dart (paise), dates.dart (IST), phone.dart (+91)
   features/
     auth/                   data / domain / application / presentation
-    settings/               More, staff roster + invite, member PIN, appearance
+    settings/               More, staff roster (add by Gmail), gym profile, appearance
     members/                members, plans, memberships, check-in data, import
     payments/               invoices, collect sheet, receipts (PDF), day close, expenses
     checkin/                desk scanner/search, member self check-in, gym QR
@@ -96,31 +96,62 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    supabase functions deploy
    ```
 
-3. Under **Authentication → URL Configuration → Redirect URLs**, add
-   `com.absfitnesszone.app://login-callback` so the member email link opens
-   the app.
-4. Under **Authentication → Providers → Email**, turn off public sign-ups. Staff
-   accounts are created by the owner, and member logins by the front desk.
-5. Create the owner's login under **Authentication → Users → Add user** (email
-   and password), then make it the owner in the SQL editor:
+3. **Google sign-in (the only way in).**
+   1. In [Google Cloud Console](https://console.cloud.google.com/), set up
+      the OAuth consent screen (External, app name "ABS Fitness"), then go to
+      **APIs & Services → Credentials → Create credentials → OAuth client
+      ID → Web application**. Add this **Authorized redirect URI**:
+      `https://YOUR_PROJECT_REF.supabase.co/auth/v1/callback`.
+   2. In Supabase, under **Authentication → Sign In / Providers → Google**,
+      turn Google on and paste the client ID and client secret.
+   3. Under **Authentication → Sign In / Providers → Email**, turn the Email
+      provider **off**, so password and magic-link logins aren't possible.
+   4. Under **Authentication → URL Configuration**, set the **Site URL** to
+      the web app's address and add
+      `com.absfitnesszone.app://login-callback` to **Redirect URLs** (the
+      Android and iOS apps come back there after Google).
+   5. Optional but recommended: under **Authentication → Hooks**, add a
+      **Before User Created** hook of type Postgres pointing at
+      `public.hook_before_user_created`. It refuses sign-ups that aren't
+      Google, or whose Gmail isn't on a staff or member record, so strangers
+      never get an account.
+4. Make the owner, in the SQL editor, with the owner's Gmail:
 
    ```sql
    select public.bootstrap_owner('owner@gmail.com', 'Owner Name');
    ```
 
-6. The M1 migration also sets up these Supabase pieces when they're
+   Then the owner taps **Continue with Google** in the app. (The order
+   doesn't matter: signing in first and running this afterwards also works.)
+5. The M1 and M2 migrations also set up these Supabase pieces when they're
    available:
-   - The nightly status refresh at 00:05 IST (`pg_cron`). If `pg_cron` isn't
-     enabled, enable it under **Database → Extensions** and run
-     `supabase db push` again.
-   - The live check-in feed (Realtime on `attendance`).
+   - The nightly status refresh at 00:05 IST and dues refresh at 00:10 IST
+     (`pg_cron`). If `pg_cron` isn't enabled, enable it under **Database →
+     Extensions** and run `supabase db push` again.
+   - The live check-in feed (Realtime on `attendance` and `payments`).
    - A private `member-photos` storage bucket.
-7. The owner signs in, then uses **More → Staff → Invite staff** to add front
-   desk and trainers. Each person gets a one-time temporary password and must
-   set their own password on first sign-in.
-8. To let a member sign in, front desk uses **More → Member PIN** to set a
-   4-digit PIN. This also creates the member's app login. You can also open
-   it from a member's page (⋮ → Set app PIN).
+6. **Staff**: the owner uses **More → Staff → Add staff** with each person's
+   Gmail and role. They sign in with **Continue with Google** using that
+   Gmail; there are no passwords to share.
+7. **Members**: the front desk enters the member's **Gmail** on their
+   profile (when adding them, or with Edit). The member then signs in with
+   **Continue with Google**. Each member needs their own Gmail; one Gmail on
+   two members is refused at sign-in.
+8. Upgrading a project that ran an older version? Delete the retired
+   functions (phone + PIN and password invites):
+
+   ```bash
+   supabase functions delete member-login
+   ```
+
+   ```bash
+   supabase functions delete set-member-pin
+   ```
+
+   ```bash
+   supabase functions delete invite-staff
+   ```
+
 9. First-time setup on Home walks the owner through the gym profile,
    membership plans and inviting staff. To bring in an existing member list,
    use More → Import members with a CSV.

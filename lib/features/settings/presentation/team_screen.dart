@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_icons/phosphor_icons.dart';
 
@@ -54,10 +53,10 @@ class _TeamScreenState extends ConsumerState<TeamScreen> {
     );
     if (created == null || !mounted) return;
     ref.invalidate(teamListProvider);
-    final (name, password) = created;
+    final (name, email) = created;
     await showDialog<void>(
       context: context,
-      builder: (_) => _TempPasswordDialog(name: name, password: password),
+      builder: (_) => _AddedDialog(name: name, email: email),
     );
   }
 
@@ -317,7 +316,7 @@ class _InviteSheetState extends ConsumerState<_InviteSheet> {
     if (_busy || !_form.currentState!.validate()) return;
     setState(() => _busy = true);
     try {
-      final password = await ref
+      await ref
           .read(staffRepositoryProvider)
           .invite(
             name: _name.text,
@@ -325,7 +324,7 @@ class _InviteSheetState extends ConsumerState<_InviteSheet> {
             phone: _phone.text.isEmpty ? null : '+91${_phone.text}',
             role: _roles[_role],
           );
-      if (mounted) Navigator.pop(context, (_name.text.trim(), password));
+      if (mounted) Navigator.pop(context, (_name.text.trim(), _email.text.trim().toLowerCase()));
     } catch (e) {
       if (mounted) showAbsSnackbar(context, friendlyError(context.l10n, e), tone: SnackTone.error);
     } finally {
@@ -353,7 +352,8 @@ class _InviteSheetState extends ConsumerState<_InviteSheet> {
           ),
           const SizedBox(height: AbsSpace.x4),
           AbsTextField(
-            label: l.fieldEmail,
+            label: l.fieldGmail,
+            helperText: l.staffGmailHelp,
             controller: _email,
             keyboardType: TextInputType.emailAddress,
             validator: v.email,
@@ -387,11 +387,11 @@ class _InviteSheetState extends ConsumerState<_InviteSheet> {
   }
 }
 
-class _TempPasswordDialog extends StatelessWidget {
-  const _TempPasswordDialog({required this.name, required this.password});
+class _AddedDialog extends StatelessWidget {
+  const _AddedDialog({required this.name, required this.email});
 
   final String name;
-  final String password;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -401,12 +401,12 @@ class _TempPasswordDialog extends StatelessWidget {
     return Stack(
       children: [
         AlertDialog(
-          title: Text(l.staffTempPasswordTitle),
+          title: Text(l.staffAddedTitle),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(l.staffTempPasswordBody(name)),
+              Text(l.staffAddedBody(name)),
               const SizedBox(height: AbsSpace.x4),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: AbsSpace.x4, vertical: AbsSpace.x2),
@@ -416,20 +416,19 @@ class _TempPasswordDialog extends StatelessWidget {
                   lipDepth: 3,
                   borderRadius: AbsRadius.buttonAll,
                 ),
-                child: SelectableText(password, style: t.numericOf(t.title).copyWith(color: c.pop(PopHue.lime).onFill)),
+                child: Row(
+                  children: [
+                    Icon(PhosphorIcons.googleLogo(PhosphorIconsStyle.bold), color: c.pop(PopHue.lime).onFill),
+                    const SizedBox(width: AbsSpace.x2),
+                    Expanded(
+                      child: SelectableText(email, style: t.heading.copyWith(color: c.pop(PopHue.lime).onFill)),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () async {
-                await Clipboard.setData(ClipboardData(text: password));
-                if (context.mounted) showAbsSnackbar(context, l.commonCopied, tone: SnackTone.success);
-              },
-              child: Text(l.commonCopy),
-            ),
-            TextButton(onPressed: () => Navigator.pop(context), child: Text(l.commonDone)),
-          ],
+          actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l.commonDone))],
         ),
         const Positioned.fill(child: ConfettiBurst()),
       ],

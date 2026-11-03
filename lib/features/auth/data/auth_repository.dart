@@ -6,34 +6,36 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/errors.dart';
-import '../../../core/utils/phone.dart';
 import '../domain/app_user.dart';
 
-/// Authentication for staff (email + password) and members (phone + PIN
-/// verified by the `member-login` Edge Function, or an email magic link).
+/// Google sign-in for everyone (owner, front desk, trainers and members).
+///
+/// A Google account gets in when its verified email is on a staff record
+/// (added by the owner) or a member record (entered by the desk). The first
+/// sign-in links the login to that record through `link_my_account`.
 abstract interface class AuthRepository {
   /// Emits the signed-in user (null when signed out). Emits again when the
   /// session or profile changes.
   Stream<AppUser?> watchUser();
 
-  Future<void> signInStaff({required String email, required String password});
+  /// Opens Google sign-in. The session arrives later through [watchUser];
+  /// a refused account is reported through [watchSignInError].
+  Future<void> signInWithGoogle();
 
-  Future<void> signInMember({required String phone, required String pin});
+  /// Why the last Google sign-in didn't get in (null when there is nothing
+  /// to explain). Replays the current value on listen.
+  Stream<AppFailure?> watchSignInError();
 
-  Future<void> sendMemberMagicLink({required String email});
-
-  /// Sets a new password for the signed-in staff user and clears the
-  /// forced-password flag.
-  Future<void> setPassword(String newPassword);
+  void clearSignInError();
 
   Future<void> signOut();
 
-  /// Re-reads the profile (e.g. after the forced-password flag is cleared).
+  /// Re-reads the profile.
   Future<void> refresh();
 }
 
-/// Where the member email magic link sends people back to on Android/iOS
-/// (registered as an intent filter / URL scheme and in Supabase redirect URLs).
+/// Where Google sign-in sends people back to on Android/iOS (registered as an
+/// intent filter / URL scheme and in Supabase redirect URLs).
 const kAuthRedirectUri = 'com.absfitnesszone.app://login-callback';
 
 class SupabaseAuthRepository implements AuthRepository {
@@ -42,10 +44,17 @@ class SupabaseAuthRepository implements AuthRepository {
   final SupabaseClient _client;
   final SharedPreferences? _cache;
   final _refresh = StreamController<void>.broadcast();
+  final _errors = StreamController<AppFailure?>.broadcast();
+  AppFailure? _signInError;
 
   static const _cacheKey = 'cached_profile';
 
   void _writeCache(AppUser user) => _cache?.setString(_cacheKey, jsonEncode(user.toJson()));
+
+  void _setSignInError(AppFailure? e) {
+    _signInError = e;
+    _errors.add(e);
+  }
 
   /// The last profile seen for [userId], so the app still opens offline.
   AppUser? _readCache(String userId) {
@@ -71,13 +80,30 @@ class SupabaseAuthRepository implements AuthRepository {
     }
   }
 
+  @override
+  Stream<AppFailure?> watchSignInError() async* {
+    yield _signInError;
+    yield* _errors.stream;
+  }
+
+  @override
+  void clearSignInError() => _setSignInError(null);
+
   /// Emits the profile, or an error event that does not end the stream.
   Stream<AppUser?> _safeLoad(Session? session) async* {
     try {
       yield await _loadProfile(session);
-    } on NoProfileFailure {
+    } on NoProfileFailure catch (e) {
+      _setSignInError(e);
       yield null;
-    } on StaffDeactivatedFailure {
+    } on StaffDeactivatedFailure catch (e) {
+      _setSignInError(e);
+      yield null;
+    } on SharedEmailFailure catch (e) {
+      _setSignInError(e);
+      yield null;
+    } on GoogleOnlyFailure catch (e) {
+      _setSignInError(e);
       yield null;
     } on NetworkFailure catch (e) {
       // Offline with a saved session: open with the cached profile instead of
@@ -93,32 +119,42 @@ class SupabaseAuthRepository implements AuthRepository {
     }
   }
 
+  Future<Map<String, dynamic>?> _profileRow(String userId) => _client
+      .from('profiles')
+      .select('id, role, name, phone, staff_id, member_id, staff:staff_id(is_active)')
+      .eq('id', userId)
+      .isFilter('archived_at', null)
+      .maybeSingle();
+
   Future<AppUser?> _loadProfile(Session? session) async {
     if (session == null) return null;
     try {
-      final row = await _client
-          .from('profiles')
-          .select('id, role, name, phone, staff_id, member_id, must_set_password, staff:staff_id(is_active)')
-          .eq('id', session.user.id)
-          .isFilter('archived_at', null)
-          .maybeSingle();
+      var row = await _profileRow(session.user.id);
       if (row == null) {
-        // Authenticated but not linked to the gym: sign out rather than leave
-        // a half-session behind.
-        await _cache?.remove(_cacheKey);
-        await _client.auth.signOut();
-        throw const NoProfileFailure();
+        // First sign-in with this Google account: link it to the gym record
+        // with the same email, then read the new profile.
+        try {
+          await _client.rpc<String>('link_my_account');
+        } on PostgrestException catch (e) {
+          await _rejectSession();
+          throw linkFailure(e);
+        }
+        row = await _profileRow(session.user.id);
+        if (row == null) {
+          await _rejectSession();
+          throw const NoProfileFailure();
+        }
       }
       final user = AppUser.fromJson(row);
       // Deactivated staff keep their login row but must not get in. (RLS hides
       // the staff row from inactive staff, so a missing embed means inactive.)
       final staff = row['staff'];
       if (user.role.isStaff && (staff is! Map || staff['is_active'] != true)) {
-        await _cache?.remove(_cacheKey);
-        await _client.auth.signOut();
+        await _rejectSession();
         throw const StaffDeactivatedFailure();
       }
       _writeCache(user);
+      _signInError = null;
       return user;
     } on AppFailure {
       rethrow;
@@ -129,67 +165,33 @@ class SupabaseAuthRepository implements AuthRepository {
     }
   }
 
-  @override
-  Future<void> signInStaff({required String email, required String password}) async {
+  /// Authenticated with Google but not allowed in: sign out rather than
+  /// leave a half-session behind.
+  Future<void> _rejectSession() async {
+    await _cache?.remove(_cacheKey);
     try {
-      final res = await _client.auth.signInWithPassword(email: email.trim().toLowerCase(), password: password);
-      await _loadProfile(res.session);
-    } on AppFailure {
-      rethrow;
-    } on AuthException catch (e) {
-      throw authFailure(e);
-    } catch (e) {
-      throw _mapNetwork(e);
+      await _client.auth.signOut();
+    } catch (_) {
+      await _client.auth.signOut(scope: SignOutScope.local);
     }
   }
 
   @override
-  Future<void> signInMember({required String phone, required String pin}) async {
-    final normalized = Phone.normalize(phone);
-    if (normalized == null) throw const InvalidCredentialsFailure();
+  Future<void> signInWithGoogle() async {
+    _setSignInError(null);
     try {
-      final res = await _client.functions.invoke('member-login', body: {'phone': normalized, 'pin': pin});
-      final data = res.data as Map<String, dynamic>;
-      final auth = await _client.auth.setSession(data['refresh_token'] as String);
-      await _loadProfile(auth.session);
-    } on AppFailure {
-      rethrow;
-    } on FunctionException catch (e) {
-      throw memberLoginFailure(e.status, e.details);
-    } on AuthException catch (e) {
-      throw ServerFailure(e.message);
-    } catch (e) {
-      throw _mapNetwork(e);
-    }
-  }
-
-  @override
-  Future<void> sendMemberMagicLink({required String email}) async {
-    try {
-      await _client.auth.signInWithOtp(
-        email: email.trim().toLowerCase(),
-        shouldCreateUser: false,
+      final launched = await _client.auth.signInWithOAuth(
+        OAuthProvider.google,
         // On the web the Supabase site URL is used; on phones come back to the app.
-        emailRedirectTo: kIsWeb ? null : kAuthRedirectUri,
+        redirectTo: kIsWeb ? null : kAuthRedirectUri,
+        // Always show the account picker: desk phones are shared.
+        queryParams: const {'prompt': 'select_account'},
       );
-    } on AuthException {
-      // Never reveal whether the email exists; the UI always says "check inbox".
-      return;
-    } catch (e) {
-      throw _mapNetwork(e);
-    }
-  }
-
-  @override
-  Future<void> setPassword(String newPassword) async {
-    try {
-      await _client.auth.updateUser(UserAttributes(password: newPassword));
-      await _client.rpc<void>('mark_password_set');
-      _refresh.add(null);
+      if (!launched) throw const SignInCancelledFailure();
+    } on AppFailure {
+      rethrow;
     } on AuthException catch (e) {
       throw authFailure(e);
-    } on PostgrestException catch (e) {
-      throw ServerFailure(e.message);
     } catch (e) {
       throw _mapNetwork(e);
     }
@@ -210,38 +212,21 @@ class SupabaseAuthRepository implements AuthRepository {
   Future<void> refresh() async => _refresh.add(null);
 }
 
+/// Maps `link_my_account` refusals to failures the welcome screen explains.
+AppFailure linkFailure(PostgrestException e) => switch (e.code) {
+  'P0002' => const NoProfileFailure(),
+  'AB001' => const StaffDeactivatedFailure(),
+  'AB002' => const SharedEmailFailure(),
+  '42501' => const GoogleOnlyFailure(),
+  _ => ServerFailure(e.message),
+};
+
 /// Maps Supabase Auth errors to failures the UI can explain.
 AppFailure authFailure(AuthException e) {
-  switch (e.code) {
-    case 'invalid_credentials':
-      return const InvalidCredentialsFailure();
-    case 'same_password':
-      return const SamePasswordFailure();
-    case 'weak_password':
-      return const WeakPasswordFailure();
-    case 'over_request_rate_limit' || 'over_email_send_rate_limit':
-      return const RateLimitedFailure();
-  }
-  if (e.statusCode == '400') return const InvalidCredentialsFailure();
-  if (e.statusCode == '429') return const RateLimitedFailure();
+  if (e.code == 'over_request_rate_limit' || e.statusCode == '429') return const RateLimitedFailure();
+  // The optional sign-up hook refuses unknown Gmails with a 403.
+  if (e.statusCode == '403' || e.code == 'signup_disabled') return const NoProfileFailure();
   return ServerFailure(e.message);
-}
-
-/// Maps the member-login function's error response to a failure.
-/// 401 → wrong PIN (with attempts left), 423 → locked until a time.
-AppFailure memberLoginFailure(int status, Object? details) {
-  final body = details is Map ? details : const {};
-  if (status == 423) {
-    final until = DateTime.tryParse('${body['locked_until']}');
-    return LockedFailure(until ?? DateTime.now().add(const Duration(minutes: 15)));
-  }
-  if (status == 401) {
-    final left = body['attempts_left'];
-    return left is int ? InvalidPinFailure(left) : const InvalidCredentialsFailure();
-  }
-  if (status == 400) return const InvalidCredentialsFailure();
-  if (status == 429) return const RateLimitedFailure();
-  return ServerFailure('member-login $status');
 }
 
 Object _mapNetwork(Object e) {
@@ -263,17 +248,13 @@ class UnconfiguredAuthRepository implements AuthRepository {
   Stream<AppUser?> watchUser() => Stream.value(null);
 
   @override
-  Future<void> signInStaff({required String email, required String password}) async =>
-      throw const NotConfiguredFailure();
+  Future<void> signInWithGoogle() async => throw const NotConfiguredFailure();
 
   @override
-  Future<void> signInMember({required String phone, required String pin}) async => throw const NotConfiguredFailure();
+  Stream<AppFailure?> watchSignInError() => Stream.value(null);
 
   @override
-  Future<void> sendMemberMagicLink({required String email}) async => throw const NotConfiguredFailure();
-
-  @override
-  Future<void> setPassword(String newPassword) async => throw const NotConfiguredFailure();
+  void clearSignInError() {}
 
   @override
   Future<void> signOut() async {}

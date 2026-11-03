@@ -17,16 +17,28 @@ class FakeAuthRepository implements AuthRepository {
 
   AppUser? _user;
   final _controller = StreamController<AppUser?>.broadcast();
+  final _errors = StreamController<AppFailure?>.broadcast();
+  AppFailure? _signInError;
   final calls = <String>[];
 
-  /// Users that sign-in calls resolve to.
-  AppUser staffResult = ownerUser;
-  AppUser memberResult = memberUser;
+  /// The account the Google sign-in resolves to.
+  AppUser googleResult = ownerUser;
+
+  /// When set, Google sign-in completes but the gym refuses the account
+  /// (reported like the real repository: through [watchSignInError]).
+  AppFailure? refuseWith;
+
+  /// Thrown by [signInWithGoogle] itself (e.g. the browser didn't open).
   Object? nextError;
 
   void _emit(AppUser? u) {
     _user = u;
     _controller.add(u);
+  }
+
+  void _setError(AppFailure? e) {
+    _signInError = e;
+    _errors.add(e);
   }
 
   @override
@@ -35,35 +47,30 @@ class FakeAuthRepository implements AuthRepository {
     yield* _controller.stream;
   }
 
-  Future<void> _maybeThrow() async {
+  @override
+  Future<void> signInWithGoogle() async {
+    calls.add('google');
+    _setError(null);
     final e = nextError;
     nextError = null;
     if (e != null) throw e;
+    final refused = refuseWith;
+    if (refused != null) {
+      _setError(refused);
+      _emit(null);
+      return;
+    }
+    _emit(googleResult);
   }
 
   @override
-  Future<void> signInStaff({required String email, required String password}) async {
-    calls.add('staff:$email');
-    await _maybeThrow();
-    _emit(staffResult);
+  Stream<AppFailure?> watchSignInError() async* {
+    yield _signInError;
+    yield* _errors.stream;
   }
 
   @override
-  Future<void> signInMember({required String phone, required String pin}) async {
-    calls.add('member:$phone:$pin');
-    await _maybeThrow();
-    _emit(memberResult);
-  }
-
-  @override
-  Future<void> sendMemberMagicLink({required String email}) async => calls.add('link:$email');
-
-  @override
-  Future<void> setPassword(String newPassword) async {
-    calls.add('password');
-    await _maybeThrow();
-    if (_user != null) _emit(_user!.copyWith(mustSetPassword: false));
-  }
+  void clearSignInError() => _setError(null);
 
   @override
   Future<void> signOut() async {
@@ -91,10 +98,10 @@ class FakeStaffRepository implements StaffRepository {
   }
 
   @override
-  Future<String> invite({required String name, required String email, String? phone, required UserRole role}) async {
+  Future<void> invite({required String name, required String email, String? phone, required UserRole role}) async {
     if (error != null) throw error!;
-    staff.add(StaffMember(id: 'new', name: name, email: email, role: role, isActive: true));
-    return 'Temp9Pass2xy';
+    if (staff.any((s) => s.email == email.trim().toLowerCase())) throw const StaffEmailTakenFailure();
+    staff.add(StaffMember(id: 'new', name: name, email: email.trim().toLowerCase(), role: role, isActive: true));
   }
 
   @override
@@ -117,6 +124,3 @@ const sampleStaff = [
 ];
 
 const networkDown = NetworkFailure();
-
-/// Alias so tests read naturally.
-typedef InvalidPinFailureForTest = InvalidPinFailure;

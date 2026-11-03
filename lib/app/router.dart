@@ -3,10 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../features/auth/application/auth_providers.dart';
-import '../features/auth/presentation/member_login_screen.dart';
-import '../features/auth/presentation/set_password_screen.dart';
 import '../features/auth/presentation/splash_screen.dart';
-import '../features/auth/presentation/staff_login_screen.dart';
 import '../features/auth/presentation/welcome_screen.dart';
 import '../features/gallery/presentation/gallery_screen.dart';
 import '../features/member_home/application/onboarding_controller.dart';
@@ -29,7 +26,6 @@ import '../features/payments/presentation/invoice_detail_screen.dart';
 import '../features/payments/presentation/payment_history_screen.dart';
 import '../features/payments/presentation/payments_screen.dart';
 import '../features/settings/presentation/gym_profile_screen.dart';
-import '../features/settings/presentation/member_pin_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
 import '../features/settings/presentation/team_screen.dart';
 import '../features/shell/coming_soon_screen.dart';
@@ -72,9 +68,6 @@ GoRouter router(Ref ref) {
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
       GoRoute(path: Routes.welcome, builder: (_, _) => const WelcomeScreen()),
-      GoRoute(path: Routes.staffLogin, builder: (_, _) => const StaffLoginScreen()),
-      GoRoute(path: Routes.memberLogin, builder: (_, _) => const MemberLoginScreen()),
-      GoRoute(path: Routes.setPassword, builder: (_, _) => const SetPasswordScreen()),
       GoRoute(path: Routes.onboarding, builder: (_, _) => const MemberOnboardingScreen()),
       GoRoute(path: Routes.gallery, builder: (_, _) => const GalleryScreen()),
       GoRoute(path: Routes.checkIn, builder: (_, _) => const CheckInScreen()),
@@ -166,10 +159,6 @@ GoRouter router(Ref ref) {
                 (_) => const MoreScreen(),
                 routes: [
                   GoRoute(path: 'team', builder: (_, _) => const TeamScreen()),
-                  GoRoute(
-                    path: 'member-pin',
-                    builder: (_, state) => MemberPinScreen(initialPhone: state.uri.queryParameters['phone']),
-                  ),
                   GoRoute(path: 'membership-plans', builder: (_, _) => const MembershipPlansScreen()),
                   GoRoute(path: 'check-in-qr', builder: (_, _) => const GymQrScreen()),
                   GoRoute(path: 'gym-profile', builder: (_, _) => const GymProfileScreen()),

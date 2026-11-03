@@ -73,32 +73,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeSubtitle => 'Your membership, workouts and diet, all in one happy place.';
 
   @override
-  String get welcomeMember => 'I\'m a member';
-
-  @override
-  String get welcomeStaff => 'Staff login';
-
-  @override
   String get welcomeNotConfigured =>
       'This build has no server configured. Sign-in is disabled; long-press the logo to open the component gallery.';
-
-  @override
-  String get staffLoginTitle => 'Staff login';
-
-  @override
-  String get staffLoginSubtitle => 'Use the email your gym owner invited you with.';
 
   @override
   String get fieldEmail => 'Email';
 
   @override
-  String get fieldPassword => 'Password';
-
-  @override
   String get fieldPhone => 'Phone number';
-
-  @override
-  String get fieldPin => '4-digit PIN';
 
   @override
   String get fieldName => 'Full name';
@@ -107,92 +89,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fieldRole => 'Role';
 
   @override
-  String get fieldNewPassword => 'New password';
-
-  @override
-  String get fieldConfirmPassword => 'Confirm password';
-
-  @override
-  String get actionSignIn => 'Sign in';
-
-  @override
   String get validationEmail => 'Enter a valid email address';
 
   @override
   String get validationPhone => 'Enter a 10-digit Indian mobile number';
 
   @override
-  String get validationPin => 'PIN must be 4 digits';
-
-  @override
-  String get validationPasswordLength => 'Use at least 8 characters';
-
-  @override
-  String get validationPasswordMatch => 'Passwords don\'t match';
-
-  @override
-  String get memberLoginTitle => 'Member login';
-
-  @override
-  String get memberLoginSubtitle => 'Sign in with your phone number and the PIN set at the front desk.';
-
-  @override
-  String get memberForgotPin => 'Forgot PIN?';
-
-  @override
-  String get memberForgotPinTitle => 'Forgot your PIN?';
-
-  @override
-  String get memberForgotPinBody => 'Please contact the front desk. They can set a new PIN for you in a few seconds.';
-
-  @override
-  String get memberUseEmailLink => 'Use an email link instead';
-
-  @override
-  String get memberEmailLinkTitle => 'Sign in with email';
-
-  @override
-  String get memberEmailLinkBody => 'If your email is on file, we\'ll send you a sign-in link.';
-
-  @override
-  String get memberEmailLinkSend => 'Send link';
-
-  @override
-  String get memberEmailLinkSent => 'Check your inbox for the sign-in link.';
-
-  @override
-  String get authInvalidCredentials => 'Those details don\'t match. Please check and try again.';
-
-  @override
-  String authInvalidPin(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Wrong PIN. $count attempts left before a 15-minute lock.',
-      one: 'Wrong PIN. 1 attempt left before a 15-minute lock.',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String authLocked(String time) {
-    return 'Too many wrong attempts. Try again after $time.';
-  }
-
-  @override
   String get authNotConfigured => 'Sign-in is not available in this build.';
 
   @override
-  String get authNoProfile => 'Your account isn\'t linked to the gym yet. Please contact the front desk.';
-
-  @override
-  String get setPasswordTitle => 'Set your password';
-
-  @override
-  String get setPasswordSubtitle => 'For your security, choose a new password before you continue.';
-
-  @override
-  String get setPasswordAction => 'Save password';
+  String get authNoProfile =>
+      'This Google account isn\'t registered at the gym. Ask the front desk to add your Gmail to your profile, then try again.';
 
   @override
   String get onboardingTrackTitle => 'Your membership, at a glance';
@@ -287,13 +194,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moreStaff => 'Staff';
 
   @override
-  String get moreStaffSubtitle => 'Invite and manage your team';
-
-  @override
-  String get moreMemberPin => 'Member PIN';
-
-  @override
-  String get moreMemberPinSubtitle => 'Set or reset a member\'s app PIN';
+  String get moreStaffSubtitle => 'Add and manage your team';
 
   @override
   String get moreGallery => 'Component gallery';
@@ -311,47 +212,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get staffEmptyTitle => 'No staff yet';
 
   @override
-  String get staffEmptyBody => 'Invite your trainers and front desk so they can sign in.';
+  String get staffEmptyBody => 'Add your trainers and front desk by their Gmail so they can sign in.';
 
   @override
-  String get staffInvite => 'Invite staff';
+  String get staffInvite => 'Add staff';
 
   @override
-  String get staffInviteTitle => 'Invite a team member';
+  String get staffInviteTitle => 'Add a team member';
 
   @override
-  String get staffInviteAction => 'Create account';
+  String get staffInviteAction => 'Add to team';
 
   @override
   String get staffInactive => 'Inactive';
 
   @override
-  String get staffTempPasswordTitle => 'Account created';
-
-  @override
-  String staffTempPasswordBody(String name) {
-    return 'Share this temporary password with $name. They\'ll set their own password on first sign-in. It won\'t be shown again.';
-  }
-
-  @override
-  String get memberPinTitle => 'Member PIN';
-
-  @override
-  String get memberPinSubtitle => 'Look up a member by phone, then set a new 4-digit PIN for the app.';
-
-  @override
-  String get memberPinFind => 'Find member';
-
-  @override
-  String get memberPinNotFound => 'No member with this phone number.';
-
-  @override
-  String get memberPinSet => 'Set PIN';
-
-  @override
-  String memberPinDone(String name) {
-    return 'PIN updated for $name.';
-  }
+  String get commonNotFound => 'We couldn\'t find that. It may have been removed.';
 
   @override
   String get profileTitle => 'Profile';
@@ -552,19 +428,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authStaffDeactivated => 'This staff account has been turned off. Please speak to the gym owner.';
 
   @override
-  String get authSamePassword => 'Pick a password you haven\'t used before.';
-
-  @override
-  String get authWeakPassword => 'That password is too easy to guess. Try a longer one with numbers or symbols.';
-
-  @override
   String get authRateLimited => 'Too many attempts. Please wait a minute and try again.';
 
   @override
   String get authBackendError => 'Couldn\'t connect to the gym server. Check the app\'s Supabase URL and key.';
 
   @override
-  String get staffInviteEmailTaken => 'Someone already uses this email. Try a different one.';
+  String get staffInviteEmailTaken => 'This Gmail is already on the team.';
 
   @override
   String get welcomeTitle1 => 'Train.';
@@ -1031,9 +901,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get actionEdit => 'Edit profile';
-
-  @override
-  String get actionSetPin => 'Set app PIN';
 
   @override
   String get actionArchive => 'Archive';
@@ -2576,4 +2443,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get morePaymentHistorySubtitle => 'Every receipt, with filters';
+
+  @override
+  String get welcomeGoogle => 'Continue with Google';
+
+  @override
+  String get welcomeGoogleHint => 'Staff and members: use the Gmail the gym has on your record.';
+
+  @override
+  String get authSharedEmail =>
+      'This Gmail is on more than one member. Ask the front desk to give each member their own Gmail.';
+
+  @override
+  String get authGoogleOnly => 'Please sign in with your Google account.';
+
+  @override
+  String get authCancelled => 'Google sign-in didn\'t open. Please try again.';
+
+  @override
+  String get fieldGmail => 'Gmail';
+
+  @override
+  String get staffGmailHelp => 'They sign in with Google using this address.';
+
+  @override
+  String get memberGmailHelp => 'Used to sign in to the member app with Google.';
+
+  @override
+  String memberNoGmail(String name) {
+    return 'Add a Gmail so $name can sign in to the member app.';
+  }
+
+  @override
+  String get staffAddedTitle => 'Added to the team';
+
+  @override
+  String staffAddedBody(String name) {
+    return '$name can now sign in with Google using:';
+  }
 }

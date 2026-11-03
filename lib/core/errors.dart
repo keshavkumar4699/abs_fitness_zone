@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import '../app/l10n/l10n.dart';
-import 'utils/dates.dart';
 
 /// Failures the UI knows how to explain. Repositories translate backend
 /// errors into these so screens never show raw exception text.
@@ -17,20 +16,7 @@ class NotConfiguredFailure extends AppFailure {
   const NotConfiguredFailure();
 }
 
-class InvalidCredentialsFailure extends AppFailure {
-  const InvalidCredentialsFailure();
-}
-
-class InvalidPinFailure extends AppFailure {
-  const InvalidPinFailure(this.attemptsLeft);
-  final int attemptsLeft;
-}
-
-class LockedFailure extends AppFailure {
-  const LockedFailure(this.until);
-  final DateTime until;
-}
-
+/// This Google account's email isn't on any staff or member record.
 class NoProfileFailure extends AppFailure {
   const NoProfileFailure();
 }
@@ -39,12 +25,19 @@ class StaffDeactivatedFailure extends AppFailure {
   const StaffDeactivatedFailure();
 }
 
-class SamePasswordFailure extends AppFailure {
-  const SamePasswordFailure();
+/// The Gmail is on more than one member record, so it can't pick one.
+class SharedEmailFailure extends AppFailure {
+  const SharedEmailFailure();
 }
 
-class WeakPasswordFailure extends AppFailure {
-  const WeakPasswordFailure();
+/// The login isn't a verified Google account (only Google is accepted).
+class GoogleOnlyFailure extends AppFailure {
+  const GoogleOnlyFailure();
+}
+
+/// The person closed the Google window or the sign-in didn't finish.
+class SignInCancelledFailure extends AppFailure {
+  const SignInCancelledFailure();
 }
 
 class RateLimitedFailure extends AppFailure {
@@ -90,19 +83,17 @@ String friendlyError(AppLocalizations l, Object error) {
   return switch (error) {
     NetworkFailure() || TimeoutException() => l.commonNetworkError,
     NotConfiguredFailure() => l.authNotConfigured,
-    InvalidCredentialsFailure() => l.authInvalidCredentials,
-    InvalidPinFailure(:final attemptsLeft) => l.authInvalidPin(attemptsLeft),
-    LockedFailure(:final until) => l.authLocked(IstDates.formatTime(until)),
     NoProfileFailure() => l.authNoProfile,
     StaffDeactivatedFailure() => l.authStaffDeactivated,
-    SamePasswordFailure() => l.authSamePassword,
-    WeakPasswordFailure() => l.authWeakPassword,
+    SharedEmailFailure() => l.authSharedEmail,
+    GoogleOnlyFailure() => l.authGoogleOnly,
+    SignInCancelledFailure() => l.authCancelled,
     RateLimitedFailure() => l.authRateLimited,
     StaffEmailTakenFailure() => l.staffInviteEmailTaken,
     NotAllowedFailure() => l.commonNotAllowed,
     DuplicatePhoneFailure() => l.memberDuplicatePhone,
     RuleFailure(:final message) => _sentence(message),
-    NotFoundFailure() => l.memberPinNotFound,
+    NotFoundFailure() => l.commonNotFound,
     _ => l.commonGenericError,
   };
 }

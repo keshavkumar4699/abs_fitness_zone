@@ -42,7 +42,6 @@ abstract class AppUser with _$AppUser {
     String? phone,
     @JsonKey(name: 'staff_id') String? staffId,
     @JsonKey(name: 'member_id') String? memberId,
-    @JsonKey(name: 'must_set_password') @Default(false) bool mustSetPassword,
   }) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) => _$AppUserFromJson(json);

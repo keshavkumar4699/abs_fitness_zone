@@ -24,8 +24,14 @@ void main() {
 
   group('signed out', () {
     test('may open public pages', () {
-      for (final r in [Routes.welcome, Routes.staffLogin, Routes.memberLogin, Routes.gallery]) {
+      for (final r in [Routes.welcome, Routes.gallery]) {
         expect(go(signedOut, r), isNull, reason: r);
+      }
+    });
+
+    test('old login links go to welcome (Google is the only way in)', () {
+      for (final r in ['/login/staff', '/login/member', '/set-password']) {
+        expect(go(signedOut, r), Routes.welcome, reason: r);
       }
     });
 
@@ -39,17 +45,11 @@ void main() {
   group('staff', () {
     test('land on staff home', () {
       expect(go(const AsyncData(ownerUser), Routes.splash), Routes.staffHome);
-      expect(go(const AsyncData(deskUser), Routes.staffLogin), Routes.staffHome);
+      expect(go(const AsyncData(deskUser), Routes.welcome), Routes.staffHome);
     });
 
     test('cannot open member pages', () {
       expect(go(const AsyncData(trainerUser), Routes.meHome), Routes.staffHome);
-    });
-
-    test('must set a password first', () {
-      final fresh = AsyncData<AppUser?>(deskUser.copyWith(mustSetPassword: true));
-      expect(go(fresh, Routes.staffHome), Routes.setPassword);
-      expect(go(fresh, Routes.setPassword), isNull);
     });
 
     test('only the owner manages staff', () {
@@ -58,10 +58,16 @@ void main() {
       expect(go(const AsyncData(trainerUser), Routes.staffTeam), Routes.staffMore);
     });
 
-    test('only owner and front desk set member PINs', () {
-      expect(go(const AsyncData(ownerUser), Routes.memberPin), isNull);
-      expect(go(const AsyncData(deskUser), Routes.memberPin), isNull);
-      expect(go(const AsyncData(trainerUser), Routes.memberPin), Routes.staffMore);
+    test('only the owner opens expenses and the gym profile', () {
+      expect(go(const AsyncData(ownerUser), Routes.expenses), isNull);
+      expect(go(const AsyncData(deskUser), Routes.expenses), Routes.staffMore);
+      expect(go(const AsyncData(deskUser), Routes.gymProfile), Routes.staffMore);
+    });
+
+    test('trainers cannot open payment pages', () {
+      expect(go(const AsyncData(deskUser), Routes.dayClose), isNull);
+      expect(go(const AsyncData(trainerUser), Routes.dayClose), Routes.staffPayments);
+      expect(go(const AsyncData(trainerUser), Routes.invoiceDetail('x')), Routes.staffPayments);
     });
 
     test('gallery is reachable for the owner only once signed in', () {
@@ -78,7 +84,7 @@ void main() {
     });
 
     test('cannot open staff pages', () {
-      for (final r in [Routes.staffHome, Routes.staffTeam, Routes.memberPin]) {
+      for (final r in [Routes.staffHome, Routes.staffTeam, Routes.staffPayments]) {
         expect(go(const AsyncData(memberUser), r), Routes.meHome, reason: r);
       }
     });

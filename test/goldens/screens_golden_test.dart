@@ -3,6 +3,7 @@ library;
 
 import 'package:abs_fitness/app/app.dart';
 import 'package:abs_fitness/app/router.dart';
+import 'package:abs_fitness/core/errors.dart';
 import 'package:abs_fitness/features/auth/domain/app_user.dart';
 import 'package:abs_fitness/features/member_home/data/my_member_repository.dart';
 import 'package:abs_fitness/features/members/domain/models.dart';
@@ -30,11 +31,13 @@ void main() {
     bool onboarded = true,
     Size size = phoneSize,
     Member? me,
+    FakeAuthRepository? auth,
     Future<void> Function(WidgetTester tester)? interact,
   }) async {
     final container = await pumpApp(
       tester,
       user: user,
+      auth: auth,
       brightness: brightness,
       size: size,
       prefs: {'member_onboarding_done': onboarded},
@@ -57,11 +60,15 @@ void main() {
 
   for (final b in Brightness.values) {
     testWidgets('welcome ${b.name}', (t) => shot(t, 'welcome', b));
-    testWidgets('staff login ${b.name}', (t) => shot(t, 'staff_login', b, route: Routes.staffLogin));
-    testWidgets('member login ${b.name}', (t) => shot(t, 'member_login', b, route: Routes.memberLogin));
     testWidgets(
-      'set password ${b.name}',
-      (t) => shot(t, 'set_password', b, user: deskUser.copyWith(mustSetPassword: true)),
+      'welcome refused ${b.name}',
+      (t) => shot(
+        t,
+        'welcome_refused',
+        b,
+        interact: (tester) => tester.tap(find.text('Continue with Google')),
+        auth: FakeAuthRepository()..refuseWith = const NoProfileFailure(),
+      ),
     );
     testWidgets(
       'member onboarding ${b.name}',
@@ -70,7 +77,17 @@ void main() {
     testWidgets('staff home ${b.name}', (t) => shot(t, 'staff_home', b, user: ownerUser));
     testWidgets('staff more ${b.name}', (t) => shot(t, 'staff_more', b, user: ownerUser, route: Routes.staffMore));
     testWidgets('staff team ${b.name}', (t) => shot(t, 'staff_team', b, user: ownerUser, route: Routes.staffTeam));
-    testWidgets('member pin ${b.name}', (t) => shot(t, 'member_pin', b, user: deskUser, route: Routes.memberPin));
+    testWidgets(
+      'staff team add ${b.name}',
+      (t) => shot(
+        t,
+        'staff_team_add',
+        b,
+        user: ownerUser,
+        route: Routes.staffTeam,
+        interact: (tester) => tester.tap(find.text('Add staff').last),
+      ),
+    );
     testWidgets('member home ${b.name}', (t) => shot(t, 'member_home', b, user: memberUser));
     testWidgets(
       'member profile ${b.name}',

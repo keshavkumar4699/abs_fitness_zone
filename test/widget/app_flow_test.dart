@@ -1,4 +1,5 @@
 import 'package:abs_fitness/app/router.dart';
+import 'package:abs_fitness/core/errors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,69 +13,65 @@ Future<void> settle(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('signed out: welcome offers member and staff login', (tester) async {
+  testWidgets('signed out: welcome offers only Continue with Google', (tester) async {
     await pumpApp(tester);
     await settle(tester);
     expect(find.text('Transform.'), findsOneWidget);
-    expect(find.text("I'm a member"), findsOneWidget);
-    expect(find.text('Staff login'), findsOneWidget);
+    expect(find.text('Continue with Google'), findsOneWidget);
+    expect(find.text("I'm a member"), findsNothing);
+    expect(find.text('Staff login'), findsNothing);
+    expect(find.byType(TextFormField), findsNothing, reason: 'no email, password or PIN fields');
   });
 
-  testWidgets('staff signs in and lands on staff home with five tabs', (tester) async {
+  testWidgets('staff signs in with Google and lands on staff home with five tabs', (tester) async {
     final auth = FakeAuthRepository();
     await pumpApp(tester, auth: auth);
     await settle(tester);
-    await tester.tap(find.text('Staff login'));
+    await tester.tap(find.text('Continue with Google'));
     await settle(tester);
 
-    await tester.enterText(find.widgetWithText(TextFormField, 'Email'), 'owner@absfitness.in');
-    await tester.enterText(find.widgetWithText(TextFormField, 'Password'), 'secret-pass');
-    await tester.tap(find.text('Sign in'));
-    await settle(tester);
-
-    expect(auth.calls, contains('staff:owner@absfitness.in'));
+    expect(auth.calls, ['google']);
     expect(find.text('Hey Keshav!'), findsOneWidget);
     for (final tab in ['Home', 'Members', 'Payments', 'Plans', 'More']) {
       expect(find.text(tab), findsWidgets, reason: tab);
     }
   });
 
-  testWidgets('staff login validates before calling the server', (tester) async {
-    final auth = FakeAuthRepository();
+  testWidgets('an unregistered Google account is told to ask the desk', (tester) async {
+    final auth = FakeAuthRepository()..refuseWith = const NoProfileFailure();
     await pumpApp(tester, auth: auth);
     await settle(tester);
-    await tester.tap(find.text('Staff login'));
+    await tester.tap(find.text('Continue with Google'));
     await settle(tester);
-    await tester.enterText(find.widgetWithText(TextFormField, 'Email'), 'not-an-email');
-    await tester.tap(find.text('Sign in'));
+    expect(find.byKey(const ValueKey('sign-in-refused')), findsOneWidget);
+    expect(find.textContaining("isn't registered at the gym"), findsOneWidget);
+    expect(find.text('Continue with Google'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Close'));
     await settle(tester);
-    expect(find.text('Enter a valid email address'), findsOneWidget);
-    expect(auth.calls, isEmpty);
+    expect(find.byKey(const ValueKey('sign-in-refused')), findsNothing);
   });
 
-  testWidgets('wrong member PIN shows attempts left', (tester) async {
-    final auth = FakeAuthRepository()..nextError = const InvalidPinFailureForTest(2);
+  testWidgets('switched-off staff and shared Gmails get their own explanation', (tester) async {
+    final auth = FakeAuthRepository()..refuseWith = const StaffDeactivatedFailure();
     await pumpApp(tester, auth: auth);
     await settle(tester);
-    await tester.tap(find.text("I'm a member"));
+    await tester.tap(find.text('Continue with Google'));
     await settle(tester);
-    await tester.enterText(find.widgetWithText(TextFormField, 'Phone number'), '9876543210');
-    await tester.enterText(find.widgetWithText(TextFormField, '4-digit PIN'), '1234');
-    await tester.tap(find.text('Sign in'));
+    expect(find.textContaining('turned off'), findsOneWidget);
+
+    auth.refuseWith = const SharedEmailFailure();
+    await tester.tap(find.text('Continue with Google'));
     await settle(tester);
-    expect(auth.calls, ['member:9876543210:1234']);
-    expect(find.textContaining('2 attempts left'), findsOneWidget);
+    expect(find.textContaining('more than one member'), findsOneWidget);
+    expect(find.textContaining('turned off'), findsNothing);
   });
 
-  testWidgets('member signs in, sees onboarding once, then member tabs', (tester) async {
-    final auth = FakeAuthRepository();
+  testWidgets('member signs in with Google, sees onboarding once, then member tabs', (tester) async {
+    final auth = FakeAuthRepository()..googleResult = memberUser;
     await pumpApp(tester, auth: auth);
     await settle(tester);
-    await tester.tap(find.text("I'm a member"));
-    await settle(tester);
-    await tester.enterText(find.widgetWithText(TextFormField, 'Phone number'), '9876543210');
-    await tester.enterText(find.widgetWithText(TextFormField, '4-digit PIN'), '4321');
-    await tester.tap(find.text('Sign in'));
+    await tester.tap(find.text('Continue with Google'));
     await settle(tester);
 
     expect(find.text('Your membership, at a glance'), findsOneWidget);
@@ -90,24 +87,23 @@ void main() {
     }
   });
 
-  testWidgets('new staff must set a password before anything else', (tester) async {
-    final auth = FakeAuthRepository(deskUser.copyWith(mustSetPassword: true));
-    await pumpApp(tester, auth: auth);
+  testWidgets('owner adds staff by Gmail and is told how they sign in', (tester) async {
+    final staff = FakeStaffRepository([...sampleStaff]);
+    final container = await pumpApp(tester, user: ownerUser, staff: staff, size: const Size(390, 1400));
     await settle(tester);
-    expect(find.text('Set your password'), findsOneWidget);
-
-    await tester.enterText(find.widgetWithText(TextFormField, 'New password'), 'short');
-    await tester.enterText(find.widgetWithText(TextFormField, 'Confirm password'), 'short');
-    await tester.tap(find.text('Save password'));
+    container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);
-    expect(find.text('Use at least 8 characters'), findsOneWidget);
-
-    await tester.enterText(find.widgetWithText(TextFormField, 'New password'), 'long-enough-1');
-    await tester.enterText(find.widgetWithText(TextFormField, 'Confirm password'), 'long-enough-1');
-    await tester.tap(find.text('Save password'));
+    await tester.tap(find.text('Add staff').last);
     await settle(tester);
-    expect(auth.calls, contains('password'));
-    expect(find.text('Hey Neha!'), findsOneWidget);
+    await tester.enterText(find.widgetWithText(TextFormField, 'Full name'), 'Riya Sen');
+    await tester.enterText(find.widgetWithText(TextFormField, 'Gmail'), 'Riya.Sen@gmail.com');
+    await tester.tap(find.text('Add to team'));
+    await settle(tester);
+    expect(find.text('Added to the team'), findsOneWidget);
+    expect(find.text('riya.sen@gmail.com'), findsWidgets);
+    expect(staff.staff.last.email, 'riya.sen@gmail.com');
+    await tester.tap(find.text('Done'));
+    await settle(tester);
   });
 
   testWidgets('owner sees Staff in More and can open the roster', (tester) async {
@@ -115,8 +111,8 @@ void main() {
     await settle(tester);
     container.read(routerProvider).go(Routes.staffMore);
     await settle(tester);
-    expect(find.text('Invite and manage your team'), findsOneWidget);
-    expect(find.text('Set or reset a member\'s app PIN'), findsOneWidget);
+    expect(find.text('Add and manage your team'), findsOneWidget);
+    expect(find.text('Member PIN'), findsNothing);
 
     await tester.tap(find.text('Staff').last);
     await settle(tester);
@@ -135,13 +131,12 @@ void main() {
     await settle(tester);
     container.read(routerProvider).go(Routes.staffMore);
     await settle(tester);
-    expect(find.text('Invite and manage your team'), findsNothing);
-    expect(find.text('Set or reset a member\'s app PIN'), findsOneWidget);
+    expect(find.text('Add and manage your team'), findsNothing);
 
     // Deep-linking to the owner-only page bounces back to More.
     container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);
-    expect(find.text('Invite and manage your team'), findsNothing);
+    expect(find.text('Add and manage your team'), findsNothing);
     expect(container.read(routerProvider).state.matchedLocation, Routes.staffMore);
   });
 

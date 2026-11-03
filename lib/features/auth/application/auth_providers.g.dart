@@ -88,3 +88,47 @@ final class CurrentUserProvider
 }
 
 String _$currentUserHash() => r'96047df0b13bf2e98121677d225fb59b376ad7f3';
+
+/// Why the last Google sign-in was refused (not registered, switched off…).
+
+@ProviderFor(signInError)
+final signInErrorProvider = SignInErrorProvider._();
+
+/// Why the last Google sign-in was refused (not registered, switched off…).
+
+final class SignInErrorProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AppFailure?>,
+          AppFailure?,
+          Stream<AppFailure?>
+        >
+    with $FutureModifier<AppFailure?>, $StreamProvider<AppFailure?> {
+  /// Why the last Google sign-in was refused (not registered, switched off…).
+  SignInErrorProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'signInErrorProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$signInErrorHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<AppFailure?> $createElement(
+    $ProviderPointer pointer,
+  ) => $StreamProviderElement(pointer);
+
+  @override
+  Stream<AppFailure?> create(Ref ref) {
+    return signInError(ref);
+  }
+}
+
+String _$signInErrorHash() => r'40e1da1ee884c272fb78304eccdc73e5149a043a';

@@ -308,7 +308,8 @@ class MemberBasicsFields extends ConsumerWidget {
           ),
           gap,
           AbsTextField(
-            label: l.fieldEmail,
+            label: l.fieldGmail,
+            helperText: l.memberGmailHelp,
             controller: data.email,
             keyboardType: TextInputType.emailAddress,
             validator: (s) => (s == null || s.trim().isEmpty) ? null : v.email(s),

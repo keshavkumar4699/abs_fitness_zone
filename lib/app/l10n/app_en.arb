@@ -21,57 +21,15 @@
   "commonRequired": "Required",
   "welcomeTitle": "Train. Track. Transform.",
   "welcomeSubtitle": "Your membership, workouts and diet, all in one happy place.",
-  "welcomeMember": "I'm a member",
-  "welcomeStaff": "Staff login",
   "welcomeNotConfigured": "This build has no server configured. Sign-in is disabled; long-press the logo to open the component gallery.",
-  "staffLoginTitle": "Staff login",
-  "staffLoginSubtitle": "Use the email your gym owner invited you with.",
   "fieldEmail": "Email",
-  "fieldPassword": "Password",
   "fieldPhone": "Phone number",
-  "fieldPin": "4-digit PIN",
   "fieldName": "Full name",
   "fieldRole": "Role",
-  "fieldNewPassword": "New password",
-  "fieldConfirmPassword": "Confirm password",
-  "actionSignIn": "Sign in",
   "validationEmail": "Enter a valid email address",
   "validationPhone": "Enter a 10-digit Indian mobile number",
-  "validationPin": "PIN must be 4 digits",
-  "validationPasswordLength": "Use at least 8 characters",
-  "validationPasswordMatch": "Passwords don't match",
-  "memberLoginTitle": "Member login",
-  "memberLoginSubtitle": "Sign in with your phone number and the PIN set at the front desk.",
-  "memberForgotPin": "Forgot PIN?",
-  "memberForgotPinTitle": "Forgot your PIN?",
-  "memberForgotPinBody": "Please contact the front desk. They can set a new PIN for you in a few seconds.",
-  "memberUseEmailLink": "Use an email link instead",
-  "memberEmailLinkTitle": "Sign in with email",
-  "memberEmailLinkBody": "If your email is on file, we'll send you a sign-in link.",
-  "memberEmailLinkSend": "Send link",
-  "memberEmailLinkSent": "Check your inbox for the sign-in link.",
-  "authInvalidCredentials": "Those details don't match. Please check and try again.",
-  "authInvalidPin": "{count, plural, =1{Wrong PIN. 1 attempt left before a 15-minute lock.} other{Wrong PIN. {count} attempts left before a 15-minute lock.}}",
-  "@authInvalidPin": {
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "authLocked": "Too many wrong attempts. Try again after {time}.",
-  "@authLocked": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
   "authNotConfigured": "Sign-in is not available in this build.",
-  "authNoProfile": "Your account isn't linked to the gym yet. Please contact the front desk.",
-  "setPasswordTitle": "Set your password",
-  "setPasswordSubtitle": "For your security, choose a new password before you continue.",
-  "setPasswordAction": "Save password",
+  "authNoProfile": "This Google account isn't registered at the gym. Ask the front desk to add your Gmail to your profile, then try again.",
   "onboardingTrackTitle": "Your membership, at a glance",
   "onboardingTrackBody": "See days left, dues and your digital membership card anytime.",
   "onboardingWorkoutTitle": "Follow your workouts",
@@ -109,41 +67,18 @@
   "themeLight": "Light",
   "themeDark": "Dark",
   "moreStaff": "Staff",
-  "moreStaffSubtitle": "Invite and manage your team",
-  "moreMemberPin": "Member PIN",
-  "moreMemberPinSubtitle": "Set or reset a member's app PIN",
+  "moreStaffSubtitle": "Add and manage your team",
   "moreGallery": "Component gallery",
   "moreGallerySubtitle": "Every design-system component and state",
   "staffTitle": "Staff",
   "staffSearchHint": "Search by name or email",
   "staffEmptyTitle": "No staff yet",
-  "staffEmptyBody": "Invite your trainers and front desk so they can sign in.",
-  "staffInvite": "Invite staff",
-  "staffInviteTitle": "Invite a team member",
-  "staffInviteAction": "Create account",
+  "staffEmptyBody": "Add your trainers and front desk by their Gmail so they can sign in.",
+  "staffInvite": "Add staff",
+  "staffInviteTitle": "Add a team member",
+  "staffInviteAction": "Add to team",
   "staffInactive": "Inactive",
-  "staffTempPasswordTitle": "Account created",
-  "staffTempPasswordBody": "Share this temporary password with {name}. They'll set their own password on first sign-in. It won't be shown again.",
-  "@staffTempPasswordBody": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "memberPinTitle": "Member PIN",
-  "memberPinSubtitle": "Look up a member by phone, then set a new 4-digit PIN for the app.",
-  "memberPinFind": "Find member",
-  "memberPinNotFound": "No member with this phone number.",
-  "memberPinSet": "Set PIN",
-  "memberPinDone": "PIN updated for {name}.",
-  "@memberPinDone": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
+  "commonNotFound": "We couldn't find that. It may have been removed.",
   "profileTitle": "Profile",
   "profileMemberCode": "Member ID",
   "galleryTitle": "Component gallery",
@@ -220,11 +155,9 @@
   "searchMembersHint": "Search name, phone or ID",
   "commonNotAllowed": "You don't have permission to do that.",
   "authStaffDeactivated": "This staff account has been turned off. Please speak to the gym owner.",
-  "authSamePassword": "Pick a password you haven't used before.",
-  "authWeakPassword": "That password is too easy to guess. Try a longer one with numbers or symbols.",
   "authRateLimited": "Too many attempts. Please wait a minute and try again.",
   "authBackendError": "Couldn't connect to the gym server. Check the app's Supabase URL and key.",
-  "staffInviteEmailTaken": "Someone already uses this email. Try a different one.",
+  "staffInviteEmailTaken": "This Gmail is already on the team.",
   "welcomeTitle1": "Train.",
   "welcomeTitle2": "Track.",
   "welcomeTitle3": "Transform.",
@@ -393,7 +326,6 @@
   "actionWhatsApp": "WhatsApp",
   "actionCall": "Call",
   "actionEdit": "Edit profile",
-  "actionSetPin": "Set app PIN",
   "actionArchive": "Archive",
   "actionRestore": "Restore",
   "actionDelete": "Delete forever",
@@ -1496,5 +1428,30 @@
   "moreExpenses": "Expenses",
   "moreExpensesSubtitle": "Rent, salaries and bills",
   "morePaymentHistory": "Payment history",
-  "morePaymentHistorySubtitle": "Every receipt, with filters"
+  "morePaymentHistorySubtitle": "Every receipt, with filters",
+  "welcomeGoogle": "Continue with Google",
+  "welcomeGoogleHint": "Staff and members: use the Gmail the gym has on your record.",
+  "authSharedEmail": "This Gmail is on more than one member. Ask the front desk to give each member their own Gmail.",
+  "authGoogleOnly": "Please sign in with your Google account.",
+  "authCancelled": "Google sign-in didn't open. Please try again.",
+  "fieldGmail": "Gmail",
+  "staffGmailHelp": "They sign in with Google using this address.",
+  "memberGmailHelp": "Used to sign in to the member app with Google.",
+  "memberNoGmail": "Add a Gmail so {name} can sign in to the member app.",
+  "@memberNoGmail": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "staffAddedTitle": "Added to the team",
+  "staffAddedBody": "{name} can now sign in with Google using:",
+  "@staffAddedBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

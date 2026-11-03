@@ -8,19 +8,43 @@ import '../../../app/l10n/l10n.dart';
 import '../../../app/providers.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
+import '../../../core/errors.dart';
 import '../../../core/widgets/abs_button.dart';
+import '../../../core/widgets/abs_snackbar.dart';
 import '../../../core/widgets/brand_mark.dart';
 import '../../../core/widgets/pop_decor.dart';
+import '../application/auth_providers.dart';
 
-class WelcomeScreen extends ConsumerWidget {
+/// The only way in: Continue with Google. Staff and members alike sign in
+/// with the Gmail the gym has on their record.
+class WelcomeScreen extends ConsumerStatefulWidget {
   const WelcomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
+  bool _busy = false;
+
+  Future<void> _google() async {
+    setState(() => _busy = true);
+    try {
+      await ref.read(authRepositoryProvider).signInWithGoogle();
+    } catch (e) {
+      if (mounted) showAbsSnackbar(context, friendlyError(context.l10n, e), tone: SnackTone.error);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final c = context.colors;
     final t = context.text;
     final l = context.l10n;
     final env = ref.watch(envProvider);
+    final refused = ref.watch(signInErrorProvider).value;
     final reduced = AbsMotion.reduced(context);
 
     Widget enter(Widget w, int i) => reduced
@@ -171,21 +195,29 @@ class WelcomeScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: AbsSpace.x5),
                     ],
+                    if (refused != null) ...[
+                      _RefusedCard(
+                        message: friendlyError(l, refused),
+                        onClose: () => ref.read(authRepositoryProvider).clearSignInError(),
+                      ),
+                      const SizedBox(height: AbsSpace.x4),
+                    ],
                     enter(
                       AbsButton(
-                        label: l.welcomeMember,
-                        icon: PhosphorIcons.userCircle(PhosphorIconsStyle.bold),
-                        onPressed: () => context.push(Routes.memberLogin),
+                        key: const ValueKey('google-sign-in'),
+                        label: l.welcomeGoogle,
+                        icon: PhosphorIcons.googleLogo(PhosphorIconsStyle.bold),
+                        isLoading: _busy,
+                        onPressed: _google,
                       ),
                       4,
                     ),
-                    const SizedBox(height: AbsSpace.x2),
+                    const SizedBox(height: AbsSpace.x3),
                     enter(
-                      AbsButton(
-                        label: l.welcomeStaff,
-                        hue: PopHue.grape,
-                        icon: PhosphorIcons.identificationBadge(PhosphorIconsStyle.bold),
-                        onPressed: () => context.push(Routes.staffLogin),
+                      Text(
+                        l.welcomeGoogleHint,
+                        style: t.caption.copyWith(color: c.textSecondary),
+                        textAlign: TextAlign.center,
                       ),
                       5,
                     ),
@@ -195,6 +227,37 @@ class WelcomeScreen extends ConsumerWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// "This Google account isn't registered…" with a way to dismiss it.
+class _RefusedCard extends StatelessWidget {
+  const _RefusedCard({required this.message, required this.onClose});
+
+  final String message;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.colors;
+    final p = c.pop(PopHue.coral);
+    return Container(
+      key: const ValueKey('sign-in-refused'),
+      padding: const EdgeInsets.fromLTRB(AbsSpace.x4, AbsSpace.x3, AbsSpace.x1, AbsSpace.x3),
+      decoration: stickerDecoration(c, color: p.soft, lipDepth: 0, borderRadius: AbsRadius.buttonAll),
+      child: Row(
+        children: [
+          Icon(PhosphorIcons.userCircleMinus(PhosphorIconsStyle.bold), color: p.text),
+          const SizedBox(width: AbsSpace.x3),
+          Expanded(child: Text(message, style: context.text.label)),
+          IconButton(
+            tooltip: context.l10n.commonClose,
+            icon: Icon(PhosphorIcons.x(PhosphorIconsStyle.bold), size: AbsSize.iconSmall),
+            onPressed: onClose,
+          ),
+        ],
       ),
     );
   }
