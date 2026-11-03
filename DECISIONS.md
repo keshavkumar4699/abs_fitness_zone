@@ -145,3 +145,12 @@ it here, and continue. Newest entries go at the bottom of each milestone.
 
 26. **Gradle heap** lowered from 8 GB to 4 GB so Android builds work on 8 GB
     laptops.
+
+27. **Minimum Android version is 8.0 (API 26)**, because `sentry_flutter`
+    (crash reporting, required by the spec) needs it. Every other plugin works
+    from API 24. Android 7 phones are a very small share of devices in 2026.
+
+28. **Kotlin incremental compilation is off** (`kotlin.incremental=false`). On
+    Windows it fails when the project and the Pub cache are on different
+    drives ("Could not close incremental caches").
+

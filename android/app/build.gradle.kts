@@ -27,7 +27,8 @@ android {
 
     defaultConfig {
         applicationId = "com.absfitnesszone.app"
-        minSdk = flutter.minSdkVersion
+        // Android 8.0+: sentry_flutter (crash reporting) requires API 26.
+        minSdk = maxOf(flutter.minSdkVersion, 26)
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
