@@ -15,8 +15,7 @@ final myMemberProvider = MyMemberProvider._();
 
 /// The signed-in member's own record (RLS limits the read to their row).
 
-final class MyMemberProvider
-    extends $FunctionalProvider<AsyncValue<Member?>, Member?, FutureOr<Member?>>
+final class MyMemberProvider extends $FunctionalProvider<AsyncValue<Member?>, Member?, FutureOr<Member?>>
     with $FutureModifier<Member?>, $FutureProvider<Member?> {
   /// The signed-in member's own record (RLS limits the read to their row).
   MyMemberProvider._()
@@ -35,8 +34,7 @@ final class MyMemberProvider
 
   @$internal
   @override
-  $FutureProviderElement<Member?> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<Member?> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<Member?> create(Ref ref) {

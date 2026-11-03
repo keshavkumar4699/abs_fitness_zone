@@ -19,6 +19,7 @@ import '../../payments/domain/payment_models.dart';
 import '../../payments/presentation/collect_sheet.dart';
 import '../../payments/presentation/payment_ui.dart';
 import '../../settings/data/gym_settings_repository.dart';
+import '../../workouts/presentation/member_workouts_tab.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
 import '../domain/models.dart';
@@ -46,12 +47,15 @@ class _Perms {
 /// Member detail: header with status + days-left ring, eight tabs and a
 /// sticky bottom bar (Collect, Renew, WhatsApp, Call).
 class MemberDetailScreen extends ConsumerStatefulWidget {
-  const MemberDetailScreen({super.key, required this.memberId, this.openCollect = false});
+  const MemberDetailScreen({super.key, required this.memberId, this.openCollect = false, this.initialTab});
 
   final String memberId;
 
   /// Opens the collect sheet once the member loads (after adding a member).
   final bool openCollect;
+
+  /// Opens on this tab ('workouts', 'payments', …).
+  final String? initialTab;
 
   @override
   ConsumerState<MemberDetailScreen> createState() => _MemberDetailScreenState();
@@ -78,16 +82,17 @@ class _MemberDetailScreenState extends ConsumerState<MemberDetailScreen> {
         empty: const SizedBox.shrink(),
         onRetry: () => ref.invalidate(memberProvider(memberId)),
         loading: const SafeArea(child: SkeletonList(itemCount: 6)),
-        data: (m) => _Detail(member: m),
+        data: (m) => _Detail(member: m, initialTab: widget.initialTab),
       ),
     );
   }
 }
 
 class _Detail extends ConsumerWidget {
-  const _Detail({required this.member});
+  const _Detail({required this.member, this.initialTab});
 
   final Member member;
+  final String? initialTab;
 
   Future<void> _menu(BuildContext context, WidgetRef ref, String action) async {
     final l = context.l10n;
@@ -140,8 +145,15 @@ class _Detail extends ConsumerWidget {
       l.tabNotes,
     ];
 
+    final start = switch (initialTab) {
+      'workouts' => tabs.indexOf(l.tabWorkouts),
+      'payments' => tabs.indexOf(l.tabPayments),
+      'progress' => tabs.indexOf(l.tabProgress),
+      _ => 0,
+    };
     return DefaultTabController(
       length: tabs.length,
+      initialIndex: start < 0 ? 0 : start,
       child: Scaffold(
         appBar: AppBar(
           title: Text(member.memberCode, style: t.numericOf(t.heading)),
@@ -278,7 +290,7 @@ class _Detail extends ConsumerWidget {
                   _OverviewTab(member: member, perms: perms),
                   _MembershipTab(member: member, perms: perms),
                   if (perms.desk) _PaymentsTab(member: member),
-                  _SoonTab(message: l.workoutsSoon, hue: PopHue.bubblegum),
+                  MemberWorkoutsTab(member: member, canCoach: perms.owner || perms.ownTrainer),
                   _SoonTab(message: l.dietSoon, hue: PopHue.mint),
                   _ProgressTab(member: member, perms: perms),
                   _AttendanceTab(member: member, perms: perms),

@@ -18,12 +18,7 @@ final exerciseCatalogueProvider = ExerciseCatalogueProvider._();
 /// refreshed on pull-to-refresh.
 
 final class ExerciseCatalogueProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<ExerciseIndex>,
-          ExerciseIndex,
-          FutureOr<ExerciseIndex>
-        >
+    extends $FunctionalProvider<AsyncValue<ExerciseIndex>, ExerciseIndex, FutureOr<ExerciseIndex>>
     with $FutureModifier<ExerciseIndex>, $FutureProvider<ExerciseIndex> {
   /// The catalogue, indexed for instant search. Loaded once per session and
   /// refreshed on pull-to-refresh.
@@ -43,9 +38,7 @@ final class ExerciseCatalogueProvider
 
   @$internal
   @override
-  $FutureProviderElement<ExerciseIndex> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<ExerciseIndex> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<ExerciseIndex> create(Ref ref) {
@@ -59,12 +52,7 @@ String _$exerciseCatalogueHash() => r'1505dea1f43d1eb5dced4c56b4a7f89555ec8c9c';
 final trainingSettingsProvider = TrainingSettingsProvider._();
 
 final class TrainingSettingsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<TrainingSettings>,
-          TrainingSettings,
-          FutureOr<TrainingSettings>
-        >
+    extends $FunctionalProvider<AsyncValue<TrainingSettings>, TrainingSettings, FutureOr<TrainingSettings>>
     with $FutureModifier<TrainingSettings>, $FutureProvider<TrainingSettings> {
   TrainingSettingsProvider._()
     : super(
@@ -82,9 +70,7 @@ final class TrainingSettingsProvider
 
   @$internal
   @override
-  $FutureProviderElement<TrainingSettings> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<TrainingSettings> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<TrainingSettings> create(Ref ref) {
@@ -126,9 +112,8 @@ final class ExerciseImagesProvider
 
   @$internal
   @override
-  $ProviderElement<String? Function(String? path)> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<String? Function(String? path)> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   String? Function(String? path) create(Ref ref) {
@@ -137,12 +122,7 @@ final class ExerciseImagesProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(String? Function(String? path) value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<String? Function(String? path)>(
-        value,
-      ),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<String? Function(String? path)>(value));
   }
 }
 
@@ -156,8 +136,7 @@ final favouriteExercisesProvider = FavouriteExercisesProvider._();
 
 /// The signed-in user's starred exercises (4.6). Toggles show at once and
 /// roll back if the save fails.
-final class FavouriteExercisesProvider
-    extends $AsyncNotifierProvider<FavouriteExercises, Set<String>> {
+final class FavouriteExercisesProvider extends $AsyncNotifierProvider<FavouriteExercises, Set<String>> {
   /// The signed-in user's starred exercises (4.6). Toggles show at once and
   /// roll back if the save fails.
   FavouriteExercisesProvider._()
@@ -179,8 +158,7 @@ final class FavouriteExercisesProvider
   FavouriteExercises create() => FavouriteExercises();
 }
 
-String _$favouriteExercisesHash() =>
-    r'c161b13c3a86f6f7d67039cdf1eca6cdfc953794';
+String _$favouriteExercisesHash() => r'c161b13c3a86f6f7d67039cdf1eca6cdfc953794';
 
 /// The signed-in user's starred exercises (4.6). Toggles show at once and
 /// roll back if the save fails.

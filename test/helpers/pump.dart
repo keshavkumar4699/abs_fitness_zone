@@ -8,6 +8,7 @@ import 'package:abs_fitness/features/checkin/presentation/scanner_view.dart';
 import 'package:abs_fitness/features/members/data/members_repository.dart';
 import 'package:abs_fitness/features/members/data/plans_repository.dart';
 import 'package:abs_fitness/features/exercises/data/exercise_repository.dart';
+import 'package:abs_fitness/features/exercises/presentation/exercise_ui.dart' show networkImagesEnabledProvider;
 import 'package:abs_fitness/features/payments/data/payments_repository.dart';
 import 'package:abs_fitness/features/workouts/application/rest_alerts.dart';
 import 'package:abs_fitness/features/workouts/data/workouts_repository.dart';
@@ -57,6 +58,7 @@ Future<void> pumpThemed(
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefs),
         scannerEnabledProvider.overrideWithValue(false),
+        networkImagesEnabledProvider.overrideWithValue(false),
         ...overrides,
       ],
       child: MaterialApp(
@@ -113,6 +115,7 @@ Future<ProviderContainer> pumpApp(
       workoutsRepositoryProvider.overrideWithValue(workouts ?? FakeWorkoutsRepository()),
       restAlertsProvider.overrideWithValue(restAlerts ?? const NoopRestAlerts()),
       scannerEnabledProvider.overrideWithValue(false),
+      networkImagesEnabledProvider.overrideWithValue(false),
       // Fixed clock: 3 Nov 2026, 10:00 IST.
       clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 4, 30)),
       ...overrides,

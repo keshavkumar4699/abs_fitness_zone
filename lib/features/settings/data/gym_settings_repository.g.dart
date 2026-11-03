@@ -13,12 +13,7 @@ part of 'gym_settings_repository.dart';
 final gymSettingsRepositoryProvider = GymSettingsRepositoryProvider._();
 
 final class GymSettingsRepositoryProvider
-    extends
-        $FunctionalProvider<
-          GymSettingsRepository,
-          GymSettingsRepository,
-          GymSettingsRepository
-        >
+    extends $FunctionalProvider<GymSettingsRepository, GymSettingsRepository, GymSettingsRepository>
     with $Provider<GymSettingsRepository> {
   GymSettingsRepositoryProvider._()
     : super(
@@ -36,9 +31,7 @@ final class GymSettingsRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<GymSettingsRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<GymSettingsRepository> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   GymSettingsRepository create(Ref ref) {
@@ -47,26 +40,16 @@ final class GymSettingsRepositoryProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(GymSettingsRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<GymSettingsRepository>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<GymSettingsRepository>(value));
   }
 }
 
-String _$gymSettingsRepositoryHash() =>
-    r'73b991d84decfe08c1142d7631afd54110fabb98';
+String _$gymSettingsRepositoryHash() => r'73b991d84decfe08c1142d7631afd54110fabb98';
 
 @ProviderFor(gymSettings)
 final gymSettingsProvider = GymSettingsProvider._();
 
-final class GymSettingsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<GymSettings>,
-          GymSettings,
-          FutureOr<GymSettings>
-        >
+final class GymSettingsProvider extends $FunctionalProvider<AsyncValue<GymSettings>, GymSettings, FutureOr<GymSettings>>
     with $FutureModifier<GymSettings>, $FutureProvider<GymSettings> {
   GymSettingsProvider._()
     : super(
@@ -84,9 +67,7 @@ final class GymSettingsProvider
 
   @$internal
   @override
-  $FutureProviderElement<GymSettings> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<GymSettings> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<GymSettings> create(Ref ref) {
@@ -106,15 +87,8 @@ final publicGymProfileProvider = PublicGymProfileProvider._();
 /// read (through the `public_gym_profile` RPC). Falls back to the brand name.
 
 final class PublicGymProfileProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<Map<String, dynamic>>,
-          Map<String, dynamic>,
-          FutureOr<Map<String, dynamic>>
-        >
-    with
-        $FutureModifier<Map<String, dynamic>>,
-        $FutureProvider<Map<String, dynamic>> {
+    extends $FunctionalProvider<AsyncValue<Map<String, dynamic>>, Map<String, dynamic>, FutureOr<Map<String, dynamic>>>
+    with $FutureModifier<Map<String, dynamic>>, $FutureProvider<Map<String, dynamic>> {
   /// Gym name / phone / address / UPI ID / hours that every signed-in user may
   /// read (through the `public_gym_profile` RPC). Falls back to the brand name.
   PublicGymProfileProvider._()
@@ -133,9 +107,8 @@ final class PublicGymProfileProvider
 
   @$internal
   @override
-  $FutureProviderElement<Map<String, dynamic>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<Map<String, dynamic>> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
   FutureOr<Map<String, dynamic>> create(Ref ref) {

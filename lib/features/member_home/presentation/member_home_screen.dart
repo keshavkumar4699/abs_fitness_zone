@@ -17,6 +17,8 @@ import '../../members/application/members_providers.dart';
 import '../../members/domain/models.dart';
 import '../../members/presentation/member_ui.dart';
 import '../../shell/greeting_header.dart';
+import '../../workouts/application/workouts_providers.dart';
+import '../../workouts/presentation/my_workout_screen.dart' show TodayWorkoutCard;
 import '../data/my_member_repository.dart';
 
 /// Member home: membership card with QR, days left, self check-in, visits.
@@ -28,6 +30,11 @@ class MemberHomeScreen extends ConsumerWidget {
     final l = context.l10n;
     final user = ref.watch(currentUserProvider).value;
     final member = ref.watch(myMemberProvider);
+    // Upload workouts finished offline as soon as the app opens.
+    ref.listen(syncWorkoutsProvider, (_, next) {
+      final id = user?.memberId;
+      if ((next.value ?? 0) > 0 && id != null) ref.refreshWorkouts(id);
+    });
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -77,17 +84,10 @@ class MemberHomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: AbsSpace.x5),
-              AbsCard(
-                hue: PopHue.bubblegum,
-                child: Row(
-                  children: [
-                    IconBubble(icon: PhosphorIcons.barbell(PhosphorIconsStyle.bold), hue: PopHue.bubblegum),
-                    const SizedBox(width: AbsSpace.x3),
-                    Expanded(child: Text(l.memberHomeComingBody, style: context.text.body)),
-                  ],
-                ),
-              ),
+              if (user?.memberId != null) ...[
+                const SizedBox(height: AbsSpace.x5),
+                TodayWorkoutCard(memberId: user!.memberId!),
+              ],
             ],
           ),
         ),

@@ -558,8 +558,21 @@ class FakeWorkoutsRepository implements WorkoutsRepository {
         lastWorkoutAt: DateTime.utc(2026, 10, 31, 6),
         workouts7d: 3,
         adherence: 0.75,
+        plannedToday: true,
       ),
       const CoachRow(memberId: 'm-2', name: 'Priya Verma', memberCode: 'ABS-0002', status: 'expiring'),
+      CoachRow(
+        memberId: 'm-4',
+        name: 'Sneha Kumari',
+        memberCode: 'ABS-0004',
+        status: 'frozen',
+        programId: 'prog-9',
+        programName: 'Beginner fat loss',
+        programStatus: ProgramStatus.active,
+        lastWorkoutAt: DateTime.utc(2026, 10, 22, 6),
+        adherence: 0.25,
+        missed7d: 2,
+      ),
     ];
     final s = search.trim().toLowerCase();
     return Paged(rows.where((r) => s.isEmpty || r.name.toLowerCase().contains(s)).toList(), hasMore: false);

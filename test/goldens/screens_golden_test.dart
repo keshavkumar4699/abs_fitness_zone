@@ -246,6 +246,127 @@ void main() {
       'member pay ${b.name}',
       (t) => shot(t, 'member_pay', b, user: snehaUser, me: sneha, route: Routes.mePay('inv-4')),
     );
+    // M3 screens.
+    Future<void> frames(WidgetTester tester, [int n = 8]) async {
+      for (var i = 0; i < n; i++) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+    }
+
+    testWidgets(
+      'training members ${b.name}',
+      (t) => shot(t, 'training_members', b, user: ownerUser, route: Routes.staffPlans),
+    );
+    testWidgets(
+      'training programs ${b.name}',
+      (t) => shot(
+        t,
+        'training_programs',
+        b,
+        user: ownerUser,
+        route: Routes.staffPlans,
+        interact: (tester) => tester.tap(find.text('Programs').hitTestable()),
+      ),
+    );
+    testWidgets(
+      'exercise library ${b.name}',
+      (t) => shot(
+        t,
+        'exercise_library',
+        b,
+        user: trainerUser,
+        route: Routes.staffPlans,
+        interact: (tester) async {
+          await tester.tap(find.text('Exercises').hitTestable());
+          await frames(tester);
+          await tester.tap(find.bySemanticsLabel('Chest').first);
+        },
+      ),
+    );
+    testWidgets(
+      'exercise detail ${b.name}',
+      (t) => shot(t, 'exercise_detail', b, user: trainerUser, route: Routes.exerciseDetail('Barbell_Squat')),
+    );
+    testWidgets(
+      'custom exercise ${b.name}',
+      (t) => shot(t, 'custom_exercise', b, user: trainerUser, route: Routes.exerciseNew),
+    );
+    testWidgets(
+      'template detail ${b.name}',
+      (t) => shot(t, 'template_detail', b, user: ownerUser, route: Routes.programDetail('tpl-ppl')),
+    );
+    testWidgets(
+      'program builder ${b.name}',
+      (t) => shot(t, 'program_builder', b, user: ownerUser, route: Routes.programEdit('tpl-ppl')),
+    );
+    testWidgets(
+      'assign program ${b.name}',
+      (t) => shot(
+        t,
+        'assign_program',
+        b,
+        user: ownerUser,
+        route: Routes.programDetail('tpl-ppl'),
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('template-assign'))),
+      ),
+    );
+    testWidgets(
+      'member detail workouts ${b.name}',
+      (t) => shot(t, 'member_detail_workouts', b, user: ownerUser, route: '${Routes.memberDetail('m-1')}?tab=workouts'),
+    );
+    testWidgets('my workout ${b.name}', (t) => shot(t, 'my_workout', b, user: memberUser, route: Routes.meWorkout));
+    testWidgets(
+      'workout player ${b.name}',
+      (t) => shot(
+        t,
+        'workout_player',
+        b,
+        user: memberUser,
+        route: Routes.meWorkout,
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('start-workout')).hitTestable()),
+      ),
+    );
+    testWidgets(
+      'workout rest ${b.name}',
+      (t) => shot(
+        t,
+        'workout_rest',
+        b,
+        user: memberUser,
+        route: Routes.meWorkout,
+        interact: (tester) async {
+          await tester.tap(find.byKey(const ValueKey('start-workout')).hitTestable());
+          await frames(tester, 12);
+          await tester.tap(find.byKey(const ValueKey('tick-0-0')));
+        },
+      ),
+    );
+    testWidgets(
+      'workout summary ${b.name}',
+      (t) => shot(
+        t,
+        'workout_summary',
+        b,
+        user: memberUser,
+        route: Routes.meWorkout,
+        interact: (tester) async {
+          await tester.tap(find.byKey(const ValueKey('start-workout')).hitTestable());
+          await frames(tester, 12);
+          await tester.tap(find.byTooltip('+ kg').first);
+          await frames(tester, 2);
+          await tester.tap(find.byKey(const ValueKey('tick-0-0')));
+          await frames(tester, 2);
+          await tester.tap(find.byKey(const ValueKey('player-finish')));
+          await frames(tester, 4);
+          await tester.tap(find.byKey(const ValueKey('finish-anyway')));
+          await frames(tester, 30);
+        },
+      ),
+    );
+    testWidgets(
+      'my exercises ${b.name}',
+      (t) => shot(t, 'my_exercises', b, user: memberUser, route: Routes.meExercises),
+    );
     testWidgets(
       'staff shell desktop ${b.name}',
       (t) => shot(t, 'staff_shell_desktop', b, user: ownerUser, route: Routes.staffTeam, size: const Size(1440, 900)),

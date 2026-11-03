@@ -25,7 +25,15 @@ import '../features/payments/presentation/expenses_screen.dart';
 import '../features/payments/presentation/invoice_detail_screen.dart';
 import '../features/payments/presentation/payment_history_screen.dart';
 import '../features/payments/presentation/payments_screen.dart';
+import '../features/exercises/presentation/custom_exercise_screen.dart';
+import '../features/exercises/presentation/exercise_detail_screen.dart';
+import '../features/exercises/presentation/exercise_library_screen.dart';
 import '../features/settings/presentation/gym_profile_screen.dart';
+import '../features/workouts/presentation/my_workout_screen.dart';
+import '../features/workouts/presentation/program_builder_screen.dart';
+import '../features/workouts/presentation/template_detail_screen.dart';
+import '../features/workouts/presentation/training_screen.dart';
+import '../features/workouts/presentation/workout_player_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
 import '../features/settings/presentation/team_screen.dart';
 import '../features/shell/coming_soon_screen.dart';
@@ -34,7 +42,6 @@ import '../features/shell/member_shell.dart';
 import '../features/shell/not_found_screen.dart';
 import '../features/shell/staff_home_screen.dart';
 import '../features/shell/staff_shell.dart';
-import '../core/widgets/states.dart';
 import 'l10n/l10n.dart';
 import 'routes.dart';
 
@@ -73,6 +80,17 @@ GoRouter router(Ref ref) {
       GoRoute(path: Routes.checkIn, builder: (_, _) => const CheckInScreen()),
       GoRoute(path: Routes.meCheckIn, builder: (_, _) => const MemberCheckInScreen()),
       GoRoute(
+        path: Routes.meExercises,
+        builder: (_, _) => const ExerciseLibraryScreen(),
+        routes: [
+          GoRoute(
+            path: ':id',
+            builder: (_, state) =>
+                ExerciseDetailScreen(exerciseId: state.pathParameters['id']!, basePath: Routes.meExercises),
+          ),
+        ],
+      ),
+      GoRoute(
         path: Routes.mePayments,
         builder: (_, _) => const MyPaymentsScreen(),
         routes: [
@@ -106,6 +124,7 @@ GoRouter router(Ref ref) {
                     builder: (_, state) => MemberDetailScreen(
                       memberId: state.pathParameters['id']!,
                       openCollect: state.uri.queryParameters['collect'] == '1',
+                      initialTab: state.uri.queryParameters['tab'],
                     ),
                     routes: [
                       GoRoute(
@@ -144,11 +163,50 @@ GoRouter router(Ref ref) {
             routes: [
               tab(
                 Routes.staffPlans,
-                (c) => ComingSoonScreen(
-                  title: c.l10n.navPlans,
-                  hue: StaffHues.plans,
-                  illustration: EmptyIllustration.dumbbell,
-                ),
+                (_) => const TrainingScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'exercises/new',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, _) => const CustomExerciseScreen(),
+                  ),
+                  GoRoute(
+                    path: 'exercises/:id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => ExerciseDetailScreen(
+                      exerciseId: state.pathParameters['id']!,
+                      basePath: '${Routes.staffPlans}/exercises',
+                      memberId: state.uri.queryParameters['member'],
+                    ),
+                    routes: [
+                      GoRoute(
+                        path: 'edit',
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) => CustomExerciseScreen(exerciseId: state.pathParameters['id']!),
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: 'programs/new',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, _) => const ProgramBuilderScreen(),
+                  ),
+                  GoRoute(
+                    path: 'programs/:id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => TemplateDetailScreen(templateId: state.pathParameters['id']!),
+                    routes: [
+                      GoRoute(
+                        path: 'edit',
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) => ProgramBuilderScreen(
+                          templateId: state.pathParameters['id']!,
+                          memberId: state.uri.queryParameters['member'],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -179,11 +237,10 @@ GoRouter router(Ref ref) {
             routes: [
               tab(
                 Routes.meWorkout,
-                (c) => ComingSoonScreen(
-                  title: c.l10n.navWorkout,
-                  hue: MemberHues.workout,
-                  illustration: EmptyIllustration.dumbbell,
-                ),
+                (_) => const MyWorkoutScreen(),
+                routes: [
+                  GoRoute(path: 'play', parentNavigatorKey: _rootKey, builder: (_, _) => const WorkoutPlayerScreen()),
+                ],
               ),
             ],
           ),

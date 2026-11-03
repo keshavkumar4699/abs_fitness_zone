@@ -1453,5 +1453,651 @@
         "type": "String"
       }
     }
+  },
+  "trainTitle": "Training",
+  "trainTabMembers": "My members",
+  "trainTabPrograms": "Programs",
+  "trainTabExercises": "Exercises",
+  "trainAllTrainers": "All trainers",
+  "trainNoProgram": "No program",
+  "trainLastWorkout": "Last workout {date}",
+  "@trainLastWorkout": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "trainNeverWorkedOut": "No workouts yet",
+  "trainThisWeek": "{count, plural, =0{None this week} =1{1 this week} other{{count} this week}}",
+  "@trainThisWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "trainAdherence": "{percent}% on plan",
+  "@trainAdherence": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "trainEmptyMembersTitle": "No members yet",
+  "trainEmptyMembersBody": "Members assigned to you show up here with their program and progress.",
+  "trainSearchMembers": "Search members",
+  "exTitle": "Exercises",
+  "exSearchHint": "Search {count} exercises",
+  "@exSearchHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exFront": "Front",
+  "exBack": "Back",
+  "exBodyMapHint": "Tap a muscle to see its exercises",
+  "exAllMuscles": "All muscles",
+  "exFavourites": "Favourites",
+  "exFilters": "Filters",
+  "exOurEquipment": "Equipment we have",
+  "exOurEquipmentBody": "Only show exercises the gym can do",
+  "exEquipment": "Equipment",
+  "exLevel": "Level",
+  "exCategory": "Type",
+  "exAny": "Any",
+  "exClearFilters": "Clear filters",
+  "exShowResults": "{count, plural, =0{No exercises} =1{Show 1 exercise} other{Show {count} exercises}}",
+  "@exShowResults": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exEmptyTitle": "No exercises match",
+  "exEmptyBody": "Try another muscle, search or filter.",
+  "exEmptyFavouritesTitle": "No favourites yet",
+  "exEmptyFavouritesBody": "Tap the star on any exercise to keep it here.",
+  "exAdd": "Add exercise",
+  "exStar": "Add to favourites",
+  "exUnstar": "Remove from favourites",
+  "exCustom": "Gym exercise",
+  "exInstructions": "How to do it",
+  "exTips": "Tips",
+  "exMistakes": "Common mistakes",
+  "exMuscles": "Muscles worked",
+  "exPrimary": "Main",
+  "exSecondary": "Also works",
+  "exAlternatives": "Alternatives",
+  "exWatchVideo": "Watch on YouTube",
+  "exYourProgress": "Your progress",
+  "exBestWeight": "Best weight",
+  "exBestE1rm": "Est. 1-rep max",
+  "exSessions": "{count, plural, =1{1 session} other{{count} sessions}}",
+  "@exSessions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exNoHistory": "Log this exercise in a workout to see your progress.",
+  "exEdit": "Edit exercise",
+  "exArchive": "Remove from library",
+  "exArchived": "Exercise removed",
+  "exSaved": "Exercise saved",
+  "exEquipmentTitle": "Equipment we have",
+  "exEquipmentBody": "Untick what the gym doesn't have. Members and trainers can hide exercises that need it.",
+  "exEquipmentSaved": "Equipment saved",
+  "exNewTitle": "New exercise",
+  "exEditTitle": "Edit exercise",
+  "exFieldName": "Name",
+  "exFieldLocalName": "Hindi name (optional)",
+  "exFieldPrimary": "Main muscles",
+  "exFieldSecondary": "Other muscles",
+  "exFieldTracking": "Log as",
+  "exFieldInstructions": "Steps (one per line)",
+  "exFieldTips": "Tips (optional)",
+  "exFieldMistakes": "Common mistakes (optional)",
+  "exFieldVideo": "YouTube link (optional)",
+  "exFieldPhoto": "Photo",
+  "exPhotoAdd": "Add a photo",
+  "exPhotoChange": "Change photo",
+  "exNeedsMuscle": "Pick at least one main muscle.",
+  "exBadVideo": "Use a YouTube link (youtube.com or youtu.be).",
+  "trackRepsWeight": "Reps and weight",
+  "trackReps": "Reps only",
+  "trackTime": "Time",
+  "trackDistanceTime": "Distance and time",
+  "levelExpert": "Expert",
+  "catStrength": "Strength",
+  "catStretching": "Stretching",
+  "catCardio": "Cardio",
+  "catPlyometrics": "Plyometrics",
+  "catPowerlifting": "Powerlifting",
+  "catOlympic": "Olympic lifting",
+  "catStrongman": "Strongman",
+  "muscleChest": "Chest",
+  "muscleShoulders": "Shoulders",
+  "muscleBiceps": "Biceps",
+  "muscleForearms": "Forearms",
+  "muscleAbdominals": "Abs",
+  "muscleQuadriceps": "Quads",
+  "muscleAdductors": "Inner thighs",
+  "muscleAbductors": "Outer thighs",
+  "muscleCalves": "Calves",
+  "muscleNeck": "Neck",
+  "muscleTraps": "Traps",
+  "muscleLats": "Lats",
+  "muscleMiddleBack": "Middle back",
+  "muscleLowerBack": "Lower back",
+  "muscleTriceps": "Triceps",
+  "muscleGlutes": "Glutes",
+  "muscleHamstrings": "Hamstrings",
+  "equipBarbell": "Barbell",
+  "equipDumbbell": "Dumbbell",
+  "equipCable": "Cable",
+  "equipMachine": "Machine",
+  "equipKettlebells": "Kettlebell",
+  "equipBands": "Bands",
+  "equipMedicineBall": "Medicine ball",
+  "equipExerciseBall": "Exercise ball",
+  "equipFoamRoll": "Foam roller",
+  "equipEzBar": "EZ curl bar",
+  "equipBodyOnly": "Bodyweight",
+  "equipOther": "Other",
+  "progEmptyTitle": "No programs yet",
+  "progEmptyBody": "Start from a gym template or build your own.",
+  "progSearch": "Search programs",
+  "progStarter": "Starter",
+  "progWeeks": "{weeks, plural, =1{1 week} other{{weeks} weeks}}",
+  "@progWeeks": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "progDays": "{count, plural, =1{1 day a week} other{{count} days a week}}",
+  "@progDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progExercises": "{count, plural, =1{1 exercise} other{{count} exercises}}",
+  "@progExercises": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "progNew": "New program",
+  "progAssign": "Assign",
+  "progDuplicate": "Duplicate",
+  "progDuplicated": "Copy saved as \"{name}\"",
+  "@progDuplicated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "progEdit": "Edit",
+  "progShare": "Share plan",
+  "progSharePdf": "PDF",
+  "progShareText": "WhatsApp text",
+  "progArchive": "Remove program",
+  "progArchived": "Program removed",
+  "progProgressionNone": "Same each week",
+  "progProgressionWeight": "+{step} kg a week",
+  "@progProgressionWeight": {
+    "placeholders": {
+      "step": {
+        "type": "String"
+      }
+    }
+  },
+  "progProgressionReps": "+{step} rep a week",
+  "@progProgressionReps": {
+    "placeholders": {
+      "step": {
+        "type": "String"
+      }
+    }
+  },
+  "progCopyName": "{name} (copy)",
+  "@progCopyName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "goalFatLossShort": "Fat loss",
+  "goalMuscleGainShort": "Muscle gain",
+  "goalStrengthShort": "Strength",
+  "goalGeneralShort": "General fitness",
+  "goalRehabShort": "Rehab",
+  "blockWarmup": "Warm-up",
+  "blockMain": "Main",
+  "blockCooldown": "Cool-down",
+  "superset": "Superset {key}",
+  "@superset": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+  "itemSetsReps": "{sets} × {reps}",
+  "@itemSetsReps": {
+    "placeholders": {
+      "sets": {
+        "type": "int"
+      },
+      "reps": {
+        "type": "String"
+      }
+    }
+  },
+  "itemSetsTime": "{sets} × {time}",
+  "@itemSetsTime": {
+    "placeholders": {
+      "sets": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "itemAt": "@ {weight}",
+  "@itemAt": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
+  },
+  "itemRest": "rest {time}",
+  "@itemRest": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "itemRpe": "RPE {rpe}",
+  "@itemRpe": {
+    "placeholders": {
+      "rpe": {
+        "type": "String"
+      }
+    }
+  },
+  "itemTempo": "tempo {tempo}",
+  "@itemTempo": {
+    "placeholders": {
+      "tempo": {
+        "type": "String"
+      }
+    }
+  },
+  "buildNewTitle": "New program",
+  "buildEditTitle": "Edit program",
+  "buildName": "Program name",
+  "buildDescription": "Description (optional)",
+  "buildGoal": "Goal",
+  "buildLevel": "Level",
+  "buildWeeks": "Weeks",
+  "buildProgression": "Each week",
+  "buildStep": "Step",
+  "buildAddDay": "Add day",
+  "buildDayName": "Day name",
+  "buildDay": "Day {n}",
+  "@buildDay": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "buildRemoveDay": "Remove day",
+  "buildRenameDay": "Rename day",
+  "buildAddExercises": "Add exercises",
+  "buildEmptyDay": "Add exercises to this day.",
+  "buildSaved": "Program saved",
+  "buildNeedsName": "Give the program a name.",
+  "buildNeedsExercises": "Every day needs at least one exercise.",
+  "buildItemTitle": "Sets and targets",
+  "buildSets": "Sets",
+  "buildReps": "Reps",
+  "buildRepsMax": "Up to (optional)",
+  "buildSeconds": "Seconds",
+  "buildMetres": "Metres (optional)",
+  "buildWeight": "Target kg (optional)",
+  "buildRpe": "RPE 1–10 (optional)",
+  "buildRestSeconds": "Rest (seconds)",
+  "buildTempo": "Tempo, e.g. 3-1-1 (optional)",
+  "buildNotes": "Notes (optional)",
+  "buildBlock": "Part of the workout",
+  "buildGroup": "Superset with",
+  "buildNoGroup": "None",
+  "buildRemoveItem": "Remove exercise",
+  "buildDragHint": "Hold and drag to reorder",
+  "buildPickTitle": "Add exercises",
+  "buildPickAdd": "{count, plural, =0{Pick exercises} =1{Add 1 exercise} other{Add {count} exercises}}",
+  "@buildPickAdd": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "buildDiscardTitle": "Discard changes?",
+  "buildDiscardBody": "Your edits to this program will be lost.",
+  "buildDiscard": "Discard",
+  "buildKeepEditing": "Keep editing",
+  "assignTitle": "Assign \"{name}\"",
+  "@assignTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "assignMembers": "Members",
+  "assignSearch": "Search your members",
+  "assignStart": "Start date",
+  "assignWeekdays": "Training days ({count} a week)",
+  "@assignWeekdays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assignPickWeekdays": "{count, plural, =1{Pick 1 day} other{Pick {count} days}}",
+  "@assignPickWeekdays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assignMode": "If they already have a program",
+  "assignReplace": "Replace it",
+  "assignQueue": "Start after it",
+  "assignConfirm": "{count, plural, =0{Pick members} =1{Assign to 1 member} other{Assign to {count} members}}",
+  "@assignConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assignDone": "{count, plural, =1{Assigned to 1 member} other{Assigned to {count} members}}",
+  "@assignDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assignPickProgram": "Pick a program",
+  "weekdayMon": "Mon",
+  "weekdayTue": "Tue",
+  "weekdayWed": "Wed",
+  "weekdayThu": "Thu",
+  "weekdayFri": "Fri",
+  "weekdaySat": "Sat",
+  "weekdaySun": "Sun",
+  "wkProgram": "Program",
+  "wkWeekOf": "Week {week} of {total}",
+  "@wkWeekOf": {
+    "placeholders": {
+      "week": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "wkStartsOn": "Starts {date}",
+  "@wkStartsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wkQueued": "Up next",
+  "wkEnds": "Ends {date}",
+  "@wkEnds": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wkStreak": "Streak",
+  "wkStreakValue": "{count, plural, =1{1 session} other{{count} sessions}}",
+  "@wkStreakValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wkAdherence": "On plan",
+  "wkThisWeek": "This week",
+  "wkCalendar": "Plan vs done",
+  "wkPlanned": "Planned",
+  "wkDone": "Done",
+  "wkMissed": "Missed",
+  "wkHistory": "Workouts",
+  "wkNoWorkoutsTitle": "No workouts yet",
+  "wkNoWorkoutsBody": "Finished workouts show up here with PRs and coach comments.",
+  "wkNoProgramTitle": "No program yet",
+  "wkNoProgramBody": "Your trainer will set one up for you. Meanwhile, browse the exercise library.",
+  "wkNoProgramStaffBody": "Assign a program to get them started.",
+  "wkAssign": "Assign program",
+  "wkEditProgram": "Tune program",
+  "wkEndProgram": "End program",
+  "wkEndTitle": "End \"{name}\"?",
+  "@wkEndTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "wkEndBody": "The program stops today. Logged workouts stay.",
+  "wkEnded": "Program ended",
+  "wkToday": "Today",
+  "wkTodayWorkout": "Today: {name}",
+  "@wkTodayWorkout": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "wkRestDay": "Rest day",
+  "wkRestDayBody": "Next: {name} on {date}",
+  "@wkRestDayBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wkDoneToday": "Done for today. Great work!",
+  "wkStart": "Start workout",
+  "wkResume": "Resume workout",
+  "wkStartNext": "Start {name} instead",
+  "@wkStartNext": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "wkDuration": "{minutes} min",
+  "@wkDuration": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "wkVolume": "{kg} kg lifted",
+  "@wkVolume": {
+    "placeholders": {
+      "kg": {
+        "type": "String"
+      }
+    }
+  },
+  "wkPrs": "{count, plural, =1{1 PR} other{{count} PRs}}",
+  "@wkPrs": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "wkPartial": "Partial",
+  "wkComments": "Coach notes",
+  "wkCommentHint": "Say something encouraging",
+  "wkSend": "Send",
+  "wkReacted": "Sent",
+  "wkLibrary": "Exercise library",
+  "wkDays": "Days",
+  "wkLogTitle": "{name} · {date}",
+  "@wkLogTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wkEditable": "You can change this workout until {time}.",
+  "@wkEditable": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "playTitle": "Workout",
+  "playExitTitle": "Leave the workout?",
+  "playExitBody": "Your sets are saved on this phone. Resume any time from Workout.",
+  "playExitSave": "Save as partial",
+  "playExitKeep": "Keep it for later",
+  "playExitDiscard": "Discard workout",
+  "playSet": "Set",
+  "playTarget": "Target",
+  "playKg": "kg",
+  "playReps": "reps",
+  "playSec": "sec",
+  "playMetres": "m",
+  "playLast": "Last: {value}",
+  "@playLast": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "playAddSet": "Add set",
+  "playTick": "Done",
+  "playUntick": "Not done",
+  "playNext": "Next: {name}",
+  "@playNext": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playLastExercise": "Last exercise",
+  "playRest": "Rest",
+  "playRestSkip": "Skip",
+  "playRestAdd": "+15 s",
+  "playFinish": "Finish",
+  "playFinishEarlyTitle": "Finish early?",
+  "playFinishEarlyBody": "{done} of {total} sets done. It is saved as a partial workout.",
+  "@playFinishEarlyBody": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "playFinishAnyway": "Finish",
+  "playSummaryTitle": "Workout done!",
+  "playSummaryPartial": "Workout saved",
+  "playSummaryDuration": "Time",
+  "playSummaryVolume": "Lifted",
+  "playSummarySets": "Sets",
+  "playSummaryPrs": "New personal records",
+  "playPrWeight": "Heaviest",
+  "playPrReps": "Most reps",
+  "playPrE1rm": "Best 1-rep max",
+  "playSynced": "Saved",
+  "playQueued": "Saved on this phone. It uploads when you are back online.",
+  "playDone": "Done",
+  "playElapsed": "{time} elapsed",
+  "@playElapsed": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "playOfflineHint": "Works offline: your sets are saved on this phone.",
+  "meTodayWorkout": "Today's workout",
+  "meProgressWorkouts": "Workouts per week",
+  "meProgressPrs": "Personal records",
+  "meNoPrs": "Lift a little more than last time to set your first record.",
+  "playSetsDone": "{done} of {total} sets done",
+  "@playSetsDone": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "dashTrainingToday": "Training today",
+  "dashMissedWorkouts": "Missed workouts",
+  "dashNoSessionsToday": "No sessions planned today.",
+  "dashMissedCount": "{count, plural, =1{1 missed this week} other{{count} missed this week}}",
+  "@dashMissedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

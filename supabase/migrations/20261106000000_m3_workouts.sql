@@ -848,7 +848,8 @@ create or replace function public.coach_overview(
 ) returns table (
   member_id uuid, name text, member_code text, photo_url text, trainer_id uuid, status text,
   program_id uuid, program_name text, program_status text, program_start date, program_end date,
-  last_workout_at timestamptz, workouts_7d int, adherence numeric
+  last_workout_at timestamptz, workouts_7d int, adherence numeric,
+  planned_today boolean, done_today boolean, missed_7d int
 )
 language plpgsql
 stable
@@ -862,7 +863,17 @@ begin
          mp.id, mp.name, mp.status, mp.start_date, mp.end_date,
          (select max(l.finished_at) from public.workout_logs l where l.member_id = m.id),
          (select count(*)::int from public.workout_logs l where l.member_id = m.id and l.day > public.ist_today() - 7),
-         case when mp.id is null then null else public.program_adherence(mp.id) end
+         case when mp.id is null then null else public.program_adherence(mp.id) end,
+         coalesce(mp.status = 'active' and public.ist_today() between mp.start_date and mp.end_date
+                  and extract(isodow from public.ist_today())::int = any (mp.weekdays), false),
+         exists (select 1 from public.workout_logs l where l.member_id = m.id and l.day = public.ist_today()),
+         -- Planned sessions in the last 7 days (before today) with no workout.
+         case when mp.status = 'active' then
+           (select count(*)::int from generate_series(greatest(mp.start_date, public.ist_today() - 7), public.ist_today() - 1,
+                                                       interval '1 day') d
+            where extract(isodow from d)::int = any (mp.weekdays)
+              and not exists (select 1 from public.workout_logs l where l.member_id = m.id and l.day = d::date))
+         else 0 end
   from public.members m
   left join lateral (select * from public.member_programs x
                      where x.member_id = m.id and x.status in ('active', 'queued')

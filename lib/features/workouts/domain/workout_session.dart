@@ -34,7 +34,7 @@ abstract class SessionExercise with _$SessionExercise {
     required String exerciseId,
     required String name,
     @Default(TrackingType.repsWeight) TrackingType trackingType,
-    @Default(Block.main) Block block,
+    @Default(ItemBlock.main) ItemBlock block,
     String? groupKey,
     @Default(60) int restS,
     String? tempo,

@@ -13,12 +13,7 @@ part of 'workouts_repository.dart';
 final workoutsRepositoryProvider = WorkoutsRepositoryProvider._();
 
 final class WorkoutsRepositoryProvider
-    extends
-        $FunctionalProvider<
-          WorkoutsRepository,
-          WorkoutsRepository,
-          WorkoutsRepository
-        >
+    extends $FunctionalProvider<WorkoutsRepository, WorkoutsRepository, WorkoutsRepository>
     with $Provider<WorkoutsRepository> {
   WorkoutsRepositoryProvider._()
     : super(
@@ -36,9 +31,7 @@ final class WorkoutsRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<WorkoutsRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<WorkoutsRepository> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   WorkoutsRepository create(Ref ref) {
@@ -47,21 +40,16 @@ final class WorkoutsRepositoryProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(WorkoutsRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<WorkoutsRepository>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<WorkoutsRepository>(value));
   }
 }
 
-String _$workoutsRepositoryHash() =>
-    r'dee44ba9873159003d02187fb60a66b29da11b69';
+String _$workoutsRepositoryHash() => r'dee44ba9873159003d02187fb60a66b29da11b69';
 
 @ProviderFor(workoutOutbox)
 final workoutOutboxProvider = WorkoutOutboxProvider._();
 
-final class WorkoutOutboxProvider
-    extends $FunctionalProvider<WorkoutOutbox, WorkoutOutbox, WorkoutOutbox>
+final class WorkoutOutboxProvider extends $FunctionalProvider<WorkoutOutbox, WorkoutOutbox, WorkoutOutbox>
     with $Provider<WorkoutOutbox> {
   WorkoutOutboxProvider._()
     : super(
@@ -79,8 +67,7 @@ final class WorkoutOutboxProvider
 
   @$internal
   @override
-  $ProviderElement<WorkoutOutbox> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<WorkoutOutbox> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   WorkoutOutbox create(Ref ref) {
@@ -89,10 +76,7 @@ final class WorkoutOutboxProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(WorkoutOutbox value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<WorkoutOutbox>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<WorkoutOutbox>(value));
   }
 }
 
@@ -101,8 +85,7 @@ String _$workoutOutboxHash() => r'135f37db7917135dfb1cc0a383a76437853d7468';
 @ProviderFor(myWorkoutCache)
 final myWorkoutCacheProvider = MyWorkoutCacheProvider._();
 
-final class MyWorkoutCacheProvider
-    extends $FunctionalProvider<MyWorkoutCache, MyWorkoutCache, MyWorkoutCache>
+final class MyWorkoutCacheProvider extends $FunctionalProvider<MyWorkoutCache, MyWorkoutCache, MyWorkoutCache>
     with $Provider<MyWorkoutCache> {
   MyWorkoutCacheProvider._()
     : super(
@@ -120,8 +103,7 @@ final class MyWorkoutCacheProvider
 
   @$internal
   @override
-  $ProviderElement<MyWorkoutCache> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<MyWorkoutCache> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   MyWorkoutCache create(Ref ref) {
@@ -130,10 +112,7 @@ final class MyWorkoutCacheProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(MyWorkoutCache value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<MyWorkoutCache>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<MyWorkoutCache>(value));
   }
 }
 

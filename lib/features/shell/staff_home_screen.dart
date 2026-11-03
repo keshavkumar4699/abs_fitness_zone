@@ -21,11 +21,14 @@ import '../payments/application/payments_providers.dart';
 import '../payments/domain/payment_models.dart';
 import '../payments/presentation/payment_ui.dart';
 import '../settings/data/gym_settings_repository.dart';
+import '../workouts/application/workouts_providers.dart';
+import '../workouts/presentation/training_today_card.dart';
 import 'greeting_header.dart';
 
 /// Staff home dashboard: the owner's revenue hero, member counts, fee dues
 /// for the desk, needs-action and live check-ins. Trainers see the member
-/// view scoped to their own members by RLS, and no money.
+/// view scoped to their own members by RLS, today's sessions and missed
+/// workouts, and no money.
 class StaffHomeScreen extends ConsumerWidget {
   const StaffHomeScreen({super.key});
 
@@ -36,7 +39,8 @@ class StaffHomeScreen extends ConsumerWidget {
       ..invalidate(plansProvider)
       ..invalidate(duesSummaryProvider)
       ..invalidate(collectionsProvider)
-      ..invalidate(collectionsTrendProvider);
+      ..invalidate(collectionsTrendProvider)
+      ..invalidate(coachListProvider);
     await ref.read(dashboardProvider.future);
   }
 
@@ -160,6 +164,10 @@ class StaffHomeScreen extends ConsumerWidget {
                 data: (c) => _TileGrid(tiles: tiles, counts: c),
               ),
               if (user.role.isDesk) const _DuesTiles(),
+              if (user.role == UserRole.trainer || user.role.isOwner) ...[
+                const SizedBox(height: AbsSpace.x4),
+                const TrainingTodayCard(),
+              ],
               const SizedBox(height: AbsSpace.x5),
               Text(l.dashNeedsAction, style: t.title),
               const SizedBox(height: AbsSpace.x2),

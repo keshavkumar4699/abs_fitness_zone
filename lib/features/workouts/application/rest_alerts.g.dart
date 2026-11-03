@@ -12,8 +12,7 @@ part of 'rest_alerts.dart';
 @ProviderFor(restAlerts)
 final restAlertsProvider = RestAlertsProvider._();
 
-final class RestAlertsProvider
-    extends $FunctionalProvider<RestAlerts, RestAlerts, RestAlerts>
+final class RestAlertsProvider extends $FunctionalProvider<RestAlerts, RestAlerts, RestAlerts>
     with $Provider<RestAlerts> {
   RestAlertsProvider._()
     : super(
@@ -31,8 +30,7 @@ final class RestAlertsProvider
 
   @$internal
   @override
-  $ProviderElement<RestAlerts> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<RestAlerts> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   RestAlerts create(Ref ref) {
@@ -41,10 +39,7 @@ final class RestAlertsProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(RestAlerts value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<RestAlerts>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<RestAlerts>(value));
   }
 }
 

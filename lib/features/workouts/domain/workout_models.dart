@@ -27,7 +27,7 @@ enum Progression {
   reps,
 }
 
-enum Block {
+enum ItemBlock {
   @JsonValue('warmup')
   warmup,
   @JsonValue('main')
@@ -63,7 +63,7 @@ abstract class WorkoutItem with _$WorkoutItem {
     String? id,
     @JsonKey(name: 'exercise_id') required String exerciseId,
     @Default(1) int position,
-    @Default(Block.main) Block block,
+    @Default(ItemBlock.main) ItemBlock block,
     @JsonKey(name: 'group_key') String? groupKey,
     @Default(3) int sets,
     int? reps,
@@ -83,9 +83,9 @@ abstract class WorkoutItem with _$WorkoutItem {
   Map<String, dynamic> toPayload() => {
     'exercise_id': exerciseId,
     'block': switch (block) {
-      Block.warmup => 'warmup',
-      Block.main => 'main',
-      Block.cooldown => 'cooldown',
+      ItemBlock.warmup => 'warmup',
+      ItemBlock.main => 'main',
+      ItemBlock.cooldown => 'cooldown',
     },
     'group_key': groupKey,
     'sets': sets,
@@ -273,6 +273,9 @@ abstract class CoachRow with _$CoachRow {
     @JsonKey(name: 'last_workout_at') DateTime? lastWorkoutAt,
     @JsonKey(name: 'workouts_7d') @Default(0) int workouts7d,
     @JsonKey(fromJson: _num) double? adherence,
+    @JsonKey(name: 'planned_today') @Default(false) bool plannedToday,
+    @JsonKey(name: 'done_today') @Default(false) bool doneToday,
+    @JsonKey(name: 'missed_7d') @Default(0) int missed7d,
   }) = _CoachRow;
 
   factory CoachRow.fromJson(Map<String, dynamic> json) => _$CoachRowFromJson(json);

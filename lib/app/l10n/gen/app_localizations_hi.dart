@@ -2481,4 +2481,1053 @@ class AppLocalizationsHi extends AppLocalizations {
   String staffAddedBody(String name) {
     return '$name can now sign in with Google using:';
   }
+
+  @override
+  String get trainTitle => 'Training';
+
+  @override
+  String get trainTabMembers => 'My members';
+
+  @override
+  String get trainTabPrograms => 'Programs';
+
+  @override
+  String get trainTabExercises => 'Exercises';
+
+  @override
+  String get trainAllTrainers => 'All trainers';
+
+  @override
+  String get trainNoProgram => 'No program';
+
+  @override
+  String trainLastWorkout(String date) {
+    return 'Last workout $date';
+  }
+
+  @override
+  String get trainNeverWorkedOut => 'No workouts yet';
+
+  @override
+  String trainThisWeek(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count this week',
+      one: '1 this week',
+      zero: 'None this week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String trainAdherence(int percent) {
+    return '$percent% on plan';
+  }
+
+  @override
+  String get trainEmptyMembersTitle => 'No members yet';
+
+  @override
+  String get trainEmptyMembersBody => 'Members assigned to you show up here with their program and progress.';
+
+  @override
+  String get trainSearchMembers => 'Search members';
+
+  @override
+  String get exTitle => 'Exercises';
+
+  @override
+  String exSearchHint(int count) {
+    return 'Search $count exercises';
+  }
+
+  @override
+  String get exFront => 'Front';
+
+  @override
+  String get exBack => 'Back';
+
+  @override
+  String get exBodyMapHint => 'Tap a muscle to see its exercises';
+
+  @override
+  String get exAllMuscles => 'All muscles';
+
+  @override
+  String get exFavourites => 'Favourites';
+
+  @override
+  String get exFilters => 'Filters';
+
+  @override
+  String get exOurEquipment => 'Equipment we have';
+
+  @override
+  String get exOurEquipmentBody => 'Only show exercises the gym can do';
+
+  @override
+  String get exEquipment => 'Equipment';
+
+  @override
+  String get exLevel => 'Level';
+
+  @override
+  String get exCategory => 'Type';
+
+  @override
+  String get exAny => 'Any';
+
+  @override
+  String get exClearFilters => 'Clear filters';
+
+  @override
+  String exShowResults(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Show $count exercises',
+      one: 'Show 1 exercise',
+      zero: 'No exercises',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exEmptyTitle => 'No exercises match';
+
+  @override
+  String get exEmptyBody => 'Try another muscle, search or filter.';
+
+  @override
+  String get exEmptyFavouritesTitle => 'No favourites yet';
+
+  @override
+  String get exEmptyFavouritesBody => 'Tap the star on any exercise to keep it here.';
+
+  @override
+  String get exAdd => 'Add exercise';
+
+  @override
+  String get exStar => 'Add to favourites';
+
+  @override
+  String get exUnstar => 'Remove from favourites';
+
+  @override
+  String get exCustom => 'Gym exercise';
+
+  @override
+  String get exInstructions => 'How to do it';
+
+  @override
+  String get exTips => 'Tips';
+
+  @override
+  String get exMistakes => 'Common mistakes';
+
+  @override
+  String get exMuscles => 'Muscles worked';
+
+  @override
+  String get exPrimary => 'Main';
+
+  @override
+  String get exSecondary => 'Also works';
+
+  @override
+  String get exAlternatives => 'Alternatives';
+
+  @override
+  String get exWatchVideo => 'Watch on YouTube';
+
+  @override
+  String get exYourProgress => 'Your progress';
+
+  @override
+  String get exBestWeight => 'Best weight';
+
+  @override
+  String get exBestE1rm => 'Est. 1-rep max';
+
+  @override
+  String exSessions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count sessions', one: '1 session');
+    return '$_temp0';
+  }
+
+  @override
+  String get exNoHistory => 'Log this exercise in a workout to see your progress.';
+
+  @override
+  String get exEdit => 'Edit exercise';
+
+  @override
+  String get exArchive => 'Remove from library';
+
+  @override
+  String get exArchived => 'Exercise removed';
+
+  @override
+  String get exSaved => 'Exercise saved';
+
+  @override
+  String get exEquipmentTitle => 'Equipment we have';
+
+  @override
+  String get exEquipmentBody =>
+      'Untick what the gym doesn\'t have. Members and trainers can hide exercises that need it.';
+
+  @override
+  String get exEquipmentSaved => 'Equipment saved';
+
+  @override
+  String get exNewTitle => 'New exercise';
+
+  @override
+  String get exEditTitle => 'Edit exercise';
+
+  @override
+  String get exFieldName => 'Name';
+
+  @override
+  String get exFieldLocalName => 'Hindi name (optional)';
+
+  @override
+  String get exFieldPrimary => 'Main muscles';
+
+  @override
+  String get exFieldSecondary => 'Other muscles';
+
+  @override
+  String get exFieldTracking => 'Log as';
+
+  @override
+  String get exFieldInstructions => 'Steps (one per line)';
+
+  @override
+  String get exFieldTips => 'Tips (optional)';
+
+  @override
+  String get exFieldMistakes => 'Common mistakes (optional)';
+
+  @override
+  String get exFieldVideo => 'YouTube link (optional)';
+
+  @override
+  String get exFieldPhoto => 'Photo';
+
+  @override
+  String get exPhotoAdd => 'Add a photo';
+
+  @override
+  String get exPhotoChange => 'Change photo';
+
+  @override
+  String get exNeedsMuscle => 'Pick at least one main muscle.';
+
+  @override
+  String get exBadVideo => 'Use a YouTube link (youtube.com or youtu.be).';
+
+  @override
+  String get trackRepsWeight => 'Reps and weight';
+
+  @override
+  String get trackReps => 'Reps only';
+
+  @override
+  String get trackTime => 'Time';
+
+  @override
+  String get trackDistanceTime => 'Distance and time';
+
+  @override
+  String get levelExpert => 'Expert';
+
+  @override
+  String get catStrength => 'Strength';
+
+  @override
+  String get catStretching => 'Stretching';
+
+  @override
+  String get catCardio => 'Cardio';
+
+  @override
+  String get catPlyometrics => 'Plyometrics';
+
+  @override
+  String get catPowerlifting => 'Powerlifting';
+
+  @override
+  String get catOlympic => 'Olympic lifting';
+
+  @override
+  String get catStrongman => 'Strongman';
+
+  @override
+  String get muscleChest => 'Chest';
+
+  @override
+  String get muscleShoulders => 'Shoulders';
+
+  @override
+  String get muscleBiceps => 'Biceps';
+
+  @override
+  String get muscleForearms => 'Forearms';
+
+  @override
+  String get muscleAbdominals => 'Abs';
+
+  @override
+  String get muscleQuadriceps => 'Quads';
+
+  @override
+  String get muscleAdductors => 'Inner thighs';
+
+  @override
+  String get muscleAbductors => 'Outer thighs';
+
+  @override
+  String get muscleCalves => 'Calves';
+
+  @override
+  String get muscleNeck => 'Neck';
+
+  @override
+  String get muscleTraps => 'Traps';
+
+  @override
+  String get muscleLats => 'Lats';
+
+  @override
+  String get muscleMiddleBack => 'Middle back';
+
+  @override
+  String get muscleLowerBack => 'Lower back';
+
+  @override
+  String get muscleTriceps => 'Triceps';
+
+  @override
+  String get muscleGlutes => 'Glutes';
+
+  @override
+  String get muscleHamstrings => 'Hamstrings';
+
+  @override
+  String get equipBarbell => 'Barbell';
+
+  @override
+  String get equipDumbbell => 'Dumbbell';
+
+  @override
+  String get equipCable => 'Cable';
+
+  @override
+  String get equipMachine => 'Machine';
+
+  @override
+  String get equipKettlebells => 'Kettlebell';
+
+  @override
+  String get equipBands => 'Bands';
+
+  @override
+  String get equipMedicineBall => 'Medicine ball';
+
+  @override
+  String get equipExerciseBall => 'Exercise ball';
+
+  @override
+  String get equipFoamRoll => 'Foam roller';
+
+  @override
+  String get equipEzBar => 'EZ curl bar';
+
+  @override
+  String get equipBodyOnly => 'Bodyweight';
+
+  @override
+  String get equipOther => 'Other';
+
+  @override
+  String get progEmptyTitle => 'No programs yet';
+
+  @override
+  String get progEmptyBody => 'Start from a gym template or build your own.';
+
+  @override
+  String get progSearch => 'Search programs';
+
+  @override
+  String get progStarter => 'Starter';
+
+  @override
+  String progWeeks(int weeks) {
+    String _temp0 = intl.Intl.pluralLogic(weeks, locale: localeName, other: '$weeks weeks', one: '1 week');
+    return '$_temp0';
+  }
+
+  @override
+  String progDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count days a week', one: '1 day a week');
+    return '$_temp0';
+  }
+
+  @override
+  String progExercises(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count exercises', one: '1 exercise');
+    return '$_temp0';
+  }
+
+  @override
+  String get progNew => 'New program';
+
+  @override
+  String get progAssign => 'Assign';
+
+  @override
+  String get progDuplicate => 'Duplicate';
+
+  @override
+  String progDuplicated(String name) {
+    return 'Copy saved as \"$name\"';
+  }
+
+  @override
+  String get progEdit => 'Edit';
+
+  @override
+  String get progShare => 'Share plan';
+
+  @override
+  String get progSharePdf => 'PDF';
+
+  @override
+  String get progShareText => 'WhatsApp text';
+
+  @override
+  String get progArchive => 'Remove program';
+
+  @override
+  String get progArchived => 'Program removed';
+
+  @override
+  String get progProgressionNone => 'Same each week';
+
+  @override
+  String progProgressionWeight(String step) {
+    return '+$step kg a week';
+  }
+
+  @override
+  String progProgressionReps(String step) {
+    return '+$step rep a week';
+  }
+
+  @override
+  String progCopyName(String name) {
+    return '$name (copy)';
+  }
+
+  @override
+  String get goalFatLossShort => 'Fat loss';
+
+  @override
+  String get goalMuscleGainShort => 'Muscle gain';
+
+  @override
+  String get goalStrengthShort => 'Strength';
+
+  @override
+  String get goalGeneralShort => 'General fitness';
+
+  @override
+  String get goalRehabShort => 'Rehab';
+
+  @override
+  String get blockWarmup => 'Warm-up';
+
+  @override
+  String get blockMain => 'Main';
+
+  @override
+  String get blockCooldown => 'Cool-down';
+
+  @override
+  String superset(String key) {
+    return 'Superset $key';
+  }
+
+  @override
+  String itemSetsReps(int sets, String reps) {
+    return '$sets × $reps';
+  }
+
+  @override
+  String itemSetsTime(int sets, String time) {
+    return '$sets × $time';
+  }
+
+  @override
+  String itemAt(String weight) {
+    return '@ $weight';
+  }
+
+  @override
+  String itemRest(String time) {
+    return 'rest $time';
+  }
+
+  @override
+  String itemRpe(String rpe) {
+    return 'RPE $rpe';
+  }
+
+  @override
+  String itemTempo(String tempo) {
+    return 'tempo $tempo';
+  }
+
+  @override
+  String get buildNewTitle => 'New program';
+
+  @override
+  String get buildEditTitle => 'Edit program';
+
+  @override
+  String get buildName => 'Program name';
+
+  @override
+  String get buildDescription => 'Description (optional)';
+
+  @override
+  String get buildGoal => 'Goal';
+
+  @override
+  String get buildLevel => 'Level';
+
+  @override
+  String get buildWeeks => 'Weeks';
+
+  @override
+  String get buildProgression => 'Each week';
+
+  @override
+  String get buildStep => 'Step';
+
+  @override
+  String get buildAddDay => 'Add day';
+
+  @override
+  String get buildDayName => 'Day name';
+
+  @override
+  String buildDay(int n) {
+    return 'Day $n';
+  }
+
+  @override
+  String get buildRemoveDay => 'Remove day';
+
+  @override
+  String get buildRenameDay => 'Rename day';
+
+  @override
+  String get buildAddExercises => 'Add exercises';
+
+  @override
+  String get buildEmptyDay => 'Add exercises to this day.';
+
+  @override
+  String get buildSaved => 'Program saved';
+
+  @override
+  String get buildNeedsName => 'Give the program a name.';
+
+  @override
+  String get buildNeedsExercises => 'Every day needs at least one exercise.';
+
+  @override
+  String get buildItemTitle => 'Sets and targets';
+
+  @override
+  String get buildSets => 'Sets';
+
+  @override
+  String get buildReps => 'Reps';
+
+  @override
+  String get buildRepsMax => 'Up to (optional)';
+
+  @override
+  String get buildSeconds => 'Seconds';
+
+  @override
+  String get buildMetres => 'Metres (optional)';
+
+  @override
+  String get buildWeight => 'Target kg (optional)';
+
+  @override
+  String get buildRpe => 'RPE 1–10 (optional)';
+
+  @override
+  String get buildRestSeconds => 'Rest (seconds)';
+
+  @override
+  String get buildTempo => 'Tempo, e.g. 3-1-1 (optional)';
+
+  @override
+  String get buildNotes => 'Notes (optional)';
+
+  @override
+  String get buildBlock => 'Part of the workout';
+
+  @override
+  String get buildGroup => 'Superset with';
+
+  @override
+  String get buildNoGroup => 'None';
+
+  @override
+  String get buildRemoveItem => 'Remove exercise';
+
+  @override
+  String get buildDragHint => 'Hold and drag to reorder';
+
+  @override
+  String get buildPickTitle => 'Add exercises';
+
+  @override
+  String buildPickAdd(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count exercises',
+      one: 'Add 1 exercise',
+      zero: 'Pick exercises',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get buildDiscardTitle => 'Discard changes?';
+
+  @override
+  String get buildDiscardBody => 'Your edits to this program will be lost.';
+
+  @override
+  String get buildDiscard => 'Discard';
+
+  @override
+  String get buildKeepEditing => 'Keep editing';
+
+  @override
+  String assignTitle(String name) {
+    return 'Assign \"$name\"';
+  }
+
+  @override
+  String get assignMembers => 'Members';
+
+  @override
+  String get assignSearch => 'Search your members';
+
+  @override
+  String get assignStart => 'Start date';
+
+  @override
+  String assignWeekdays(int count) {
+    return 'Training days ($count a week)';
+  }
+
+  @override
+  String assignPickWeekdays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'Pick $count days', one: 'Pick 1 day');
+    return '$_temp0';
+  }
+
+  @override
+  String get assignMode => 'If they already have a program';
+
+  @override
+  String get assignReplace => 'Replace it';
+
+  @override
+  String get assignQueue => 'Start after it';
+
+  @override
+  String assignConfirm(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Assign to $count members',
+      one: 'Assign to 1 member',
+      zero: 'Pick members',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String assignDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Assigned to $count members',
+      one: 'Assigned to 1 member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get assignPickProgram => 'Pick a program';
+
+  @override
+  String get weekdayMon => 'Mon';
+
+  @override
+  String get weekdayTue => 'Tue';
+
+  @override
+  String get weekdayWed => 'Wed';
+
+  @override
+  String get weekdayThu => 'Thu';
+
+  @override
+  String get weekdayFri => 'Fri';
+
+  @override
+  String get weekdaySat => 'Sat';
+
+  @override
+  String get weekdaySun => 'Sun';
+
+  @override
+  String get wkProgram => 'Program';
+
+  @override
+  String wkWeekOf(int week, int total) {
+    return 'Week $week of $total';
+  }
+
+  @override
+  String wkStartsOn(String date) {
+    return 'Starts $date';
+  }
+
+  @override
+  String get wkQueued => 'Up next';
+
+  @override
+  String wkEnds(String date) {
+    return 'Ends $date';
+  }
+
+  @override
+  String get wkStreak => 'Streak';
+
+  @override
+  String wkStreakValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count sessions', one: '1 session');
+    return '$_temp0';
+  }
+
+  @override
+  String get wkAdherence => 'On plan';
+
+  @override
+  String get wkThisWeek => 'This week';
+
+  @override
+  String get wkCalendar => 'Plan vs done';
+
+  @override
+  String get wkPlanned => 'Planned';
+
+  @override
+  String get wkDone => 'Done';
+
+  @override
+  String get wkMissed => 'Missed';
+
+  @override
+  String get wkHistory => 'Workouts';
+
+  @override
+  String get wkNoWorkoutsTitle => 'No workouts yet';
+
+  @override
+  String get wkNoWorkoutsBody => 'Finished workouts show up here with PRs and coach comments.';
+
+  @override
+  String get wkNoProgramTitle => 'No program yet';
+
+  @override
+  String get wkNoProgramBody => 'Your trainer will set one up for you. Meanwhile, browse the exercise library.';
+
+  @override
+  String get wkNoProgramStaffBody => 'Assign a program to get them started.';
+
+  @override
+  String get wkAssign => 'Assign program';
+
+  @override
+  String get wkEditProgram => 'Tune program';
+
+  @override
+  String get wkEndProgram => 'End program';
+
+  @override
+  String wkEndTitle(String name) {
+    return 'End \"$name\"?';
+  }
+
+  @override
+  String get wkEndBody => 'The program stops today. Logged workouts stay.';
+
+  @override
+  String get wkEnded => 'Program ended';
+
+  @override
+  String get wkToday => 'Today';
+
+  @override
+  String wkTodayWorkout(String name) {
+    return 'Today: $name';
+  }
+
+  @override
+  String get wkRestDay => 'Rest day';
+
+  @override
+  String wkRestDayBody(String name, String date) {
+    return 'Next: $name on $date';
+  }
+
+  @override
+  String get wkDoneToday => 'Done for today. Great work!';
+
+  @override
+  String get wkStart => 'Start workout';
+
+  @override
+  String get wkResume => 'Resume workout';
+
+  @override
+  String wkStartNext(String name) {
+    return 'Start $name instead';
+  }
+
+  @override
+  String wkDuration(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String wkVolume(String kg) {
+    return '$kg kg lifted';
+  }
+
+  @override
+  String wkPrs(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count PRs', one: '1 PR');
+    return '$_temp0';
+  }
+
+  @override
+  String get wkPartial => 'Partial';
+
+  @override
+  String get wkComments => 'Coach notes';
+
+  @override
+  String get wkCommentHint => 'Say something encouraging';
+
+  @override
+  String get wkSend => 'Send';
+
+  @override
+  String get wkReacted => 'Sent';
+
+  @override
+  String get wkLibrary => 'Exercise library';
+
+  @override
+  String get wkDays => 'Days';
+
+  @override
+  String wkLogTitle(String name, String date) {
+    return '$name · $date';
+  }
+
+  @override
+  String wkEditable(String time) {
+    return 'You can change this workout until $time.';
+  }
+
+  @override
+  String get playTitle => 'Workout';
+
+  @override
+  String get playExitTitle => 'Leave the workout?';
+
+  @override
+  String get playExitBody => 'Your sets are saved on this phone. Resume any time from Workout.';
+
+  @override
+  String get playExitSave => 'Save as partial';
+
+  @override
+  String get playExitKeep => 'Keep it for later';
+
+  @override
+  String get playExitDiscard => 'Discard workout';
+
+  @override
+  String get playSet => 'Set';
+
+  @override
+  String get playTarget => 'Target';
+
+  @override
+  String get playKg => 'kg';
+
+  @override
+  String get playReps => 'reps';
+
+  @override
+  String get playSec => 'sec';
+
+  @override
+  String get playMetres => 'm';
+
+  @override
+  String playLast(String value) {
+    return 'Last: $value';
+  }
+
+  @override
+  String get playAddSet => 'Add set';
+
+  @override
+  String get playTick => 'Done';
+
+  @override
+  String get playUntick => 'Not done';
+
+  @override
+  String playNext(String name) {
+    return 'Next: $name';
+  }
+
+  @override
+  String get playLastExercise => 'Last exercise';
+
+  @override
+  String get playRest => 'Rest';
+
+  @override
+  String get playRestSkip => 'Skip';
+
+  @override
+  String get playRestAdd => '+15 s';
+
+  @override
+  String get playFinish => 'Finish';
+
+  @override
+  String get playFinishEarlyTitle => 'Finish early?';
+
+  @override
+  String playFinishEarlyBody(int done, int total) {
+    return '$done of $total sets done. It is saved as a partial workout.';
+  }
+
+  @override
+  String get playFinishAnyway => 'Finish';
+
+  @override
+  String get playSummaryTitle => 'Workout done!';
+
+  @override
+  String get playSummaryPartial => 'Workout saved';
+
+  @override
+  String get playSummaryDuration => 'Time';
+
+  @override
+  String get playSummaryVolume => 'Lifted';
+
+  @override
+  String get playSummarySets => 'Sets';
+
+  @override
+  String get playSummaryPrs => 'New personal records';
+
+  @override
+  String get playPrWeight => 'Heaviest';
+
+  @override
+  String get playPrReps => 'Most reps';
+
+  @override
+  String get playPrE1rm => 'Best 1-rep max';
+
+  @override
+  String get playSynced => 'Saved';
+
+  @override
+  String get playQueued => 'Saved on this phone. It uploads when you are back online.';
+
+  @override
+  String get playDone => 'Done';
+
+  @override
+  String playElapsed(String time) {
+    return '$time elapsed';
+  }
+
+  @override
+  String get playOfflineHint => 'Works offline: your sets are saved on this phone.';
+
+  @override
+  String get meTodayWorkout => 'Today\'s workout';
+
+  @override
+  String get meProgressWorkouts => 'Workouts per week';
+
+  @override
+  String get meProgressPrs => 'Personal records';
+
+  @override
+  String get meNoPrs => 'Lift a little more than last time to set your first record.';
+
+  @override
+  String playSetsDone(int done, int total) {
+    return '$done of $total sets done';
+  }
+
+  @override
+  String get dashTrainingToday => 'Training today';
+
+  @override
+  String get dashMissedWorkouts => 'Missed workouts';
+
+  @override
+  String get dashNoSessionsToday => 'No sessions planned today.';
+
+  @override
+  String dashMissedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count missed this week',
+      one: '1 missed this week',
+    );
+    return '$_temp0';
+  }
 }

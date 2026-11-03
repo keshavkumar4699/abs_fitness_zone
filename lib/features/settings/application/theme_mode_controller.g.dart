@@ -14,8 +14,7 @@ part of 'theme_mode_controller.dart';
 final themeModeControllerProvider = ThemeModeControllerProvider._();
 
 /// Follows the system by default, with a manual override saved on device.
-final class ThemeModeControllerProvider
-    extends $NotifierProvider<ThemeModeController, ThemeMode> {
+final class ThemeModeControllerProvider extends $NotifierProvider<ThemeModeController, ThemeMode> {
   /// Follows the system by default, with a manual override saved on device.
   ThemeModeControllerProvider._()
     : super(
@@ -37,15 +36,11 @@ final class ThemeModeControllerProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(ThemeMode value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ThemeMode>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<ThemeMode>(value));
   }
 }
 
-String _$themeModeControllerHash() =>
-    r'7f3e94e575180eaee84f5688a30119493c3cfdcd';
+String _$themeModeControllerHash() => r'7f3e94e575180eaee84f5688a30119493c3cfdcd';
 
 /// Follows the system by default, with a manual override saved on device.
 
@@ -56,13 +51,7 @@ abstract class _$ThemeModeController extends $Notifier<ThemeMode> {
   WhenComplete runBuild() {
     final ref = this.ref as $Ref<ThemeMode, ThemeMode>;
     final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<ThemeMode, ThemeMode>,
-              ThemeMode,
-              Object?,
-              Object?
-            >;
+        ref.element as $ClassProviderElement<AnyNotifier<ThemeMode, ThemeMode>, ThemeMode, Object?, Object?>;
     return element.handleCreate(ref, build);
   }
 }

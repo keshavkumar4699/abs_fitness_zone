@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WorkoutItem {
 
- String? get id;@JsonKey(name: 'exercise_id') String get exerciseId; int get position; Block get block;@JsonKey(name: 'group_key') String? get groupKey; int get sets; int? get reps;@JsonKey(name: 'reps_max') int? get repsMax;@JsonKey(name: 'duration_s') int? get durationS;@JsonKey(name: 'distance_m') int? get distanceM;@JsonKey(name: 'target_weight', fromJson: _num) double? get targetWeight;@JsonKey(fromJson: _num) double? get rpe;@JsonKey(name: 'rest_s') int get restS; String? get tempo; String? get notes;
+ String? get id;@JsonKey(name: 'exercise_id') String get exerciseId; int get position; ItemBlock get block;@JsonKey(name: 'group_key') String? get groupKey; int get sets; int? get reps;@JsonKey(name: 'reps_max') int? get repsMax;@JsonKey(name: 'duration_s') int? get durationS;@JsonKey(name: 'distance_m') int? get distanceM;@JsonKey(name: 'target_weight', fromJson: _num) double? get targetWeight;@JsonKey(fromJson: _num) double? get rpe;@JsonKey(name: 'rest_s') int get restS; String? get tempo; String? get notes;
 /// Create a copy of WorkoutItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,7 +54,7 @@ abstract mixin class $WorkoutItemCopyWith<$Res>  {
   factory $WorkoutItemCopyWith(WorkoutItem value, $Res Function(WorkoutItem) _then) = _$WorkoutItemCopyWithImpl;
 @useResult
 $Res call({
- String? id,@JsonKey(name: 'exercise_id') String exerciseId, int position, Block block,@JsonKey(name: 'group_key') String? groupKey, int sets, int? reps,@JsonKey(name: 'reps_max') int? repsMax,@JsonKey(name: 'duration_s') int? durationS,@JsonKey(name: 'distance_m') int? distanceM,@JsonKey(name: 'target_weight', fromJson: _num) double? targetWeight,@JsonKey(fromJson: _num) double? rpe,@JsonKey(name: 'rest_s') int restS, String? tempo, String? notes
+ String? id,@JsonKey(name: 'exercise_id') String exerciseId, int position, ItemBlock block,@JsonKey(name: 'group_key') String? groupKey, int sets, int? reps,@JsonKey(name: 'reps_max') int? repsMax,@JsonKey(name: 'duration_s') int? durationS,@JsonKey(name: 'distance_m') int? distanceM,@JsonKey(name: 'target_weight', fromJson: _num) double? targetWeight,@JsonKey(fromJson: _num) double? rpe,@JsonKey(name: 'rest_s') int restS, String? tempo, String? notes
 });
 
 
@@ -77,7 +77,7 @@ id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,exerciseId: null == exerciseId ? _self.exerciseId : exerciseId // ignore: cast_nullable_to_non_nullable
 as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,block: null == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
-as Block,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
+as ItemBlock,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
 as String?,sets: null == sets ? _self.sets : sets // ignore: cast_nullable_to_non_nullable
 as int,reps: freezed == reps ? _self.reps : reps // ignore: cast_nullable_to_non_nullable
 as int?,repsMax: freezed == repsMax ? _self.repsMax : repsMax // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  Block block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  ItemBlock block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkoutItem() when $default != null:
 return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.groupKey,_that.sets,_that.reps,_that.repsMax,_that.durationS,_that.distanceM,_that.targetWeight,_that.rpe,_that.restS,_that.tempo,_that.notes);case _:
@@ -194,7 +194,7 @@ return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.group
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  Block block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  ItemBlock block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)  $default,) {final _that = this;
 switch (_that) {
 case _WorkoutItem():
 return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.groupKey,_that.sets,_that.reps,_that.repsMax,_that.durationS,_that.distanceM,_that.targetWeight,_that.rpe,_that.restS,_that.tempo,_that.notes);case _:
@@ -214,7 +214,7 @@ return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.group
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  Block block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id, @JsonKey(name: 'exercise_id')  String exerciseId,  int position,  ItemBlock block, @JsonKey(name: 'group_key')  String? groupKey,  int sets,  int? reps, @JsonKey(name: 'reps_max')  int? repsMax, @JsonKey(name: 'duration_s')  int? durationS, @JsonKey(name: 'distance_m')  int? distanceM, @JsonKey(name: 'target_weight', fromJson: _num)  double? targetWeight, @JsonKey(fromJson: _num)  double? rpe, @JsonKey(name: 'rest_s')  int restS,  String? tempo,  String? notes)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkoutItem() when $default != null:
 return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.groupKey,_that.sets,_that.reps,_that.repsMax,_that.durationS,_that.distanceM,_that.targetWeight,_that.rpe,_that.restS,_that.tempo,_that.notes);case _:
@@ -229,13 +229,13 @@ return $default(_that.id,_that.exerciseId,_that.position,_that.block,_that.group
 @JsonSerializable()
 
 class _WorkoutItem extends WorkoutItem {
-  const _WorkoutItem({this.id, @JsonKey(name: 'exercise_id') required this.exerciseId, this.position = 1, this.block = Block.main, @JsonKey(name: 'group_key') this.groupKey, this.sets = 3, this.reps, @JsonKey(name: 'reps_max') this.repsMax, @JsonKey(name: 'duration_s') this.durationS, @JsonKey(name: 'distance_m') this.distanceM, @JsonKey(name: 'target_weight', fromJson: _num) this.targetWeight, @JsonKey(fromJson: _num) this.rpe, @JsonKey(name: 'rest_s') this.restS = 60, this.tempo, this.notes}): super._();
+  const _WorkoutItem({this.id, @JsonKey(name: 'exercise_id') required this.exerciseId, this.position = 1, this.block = ItemBlock.main, @JsonKey(name: 'group_key') this.groupKey, this.sets = 3, this.reps, @JsonKey(name: 'reps_max') this.repsMax, @JsonKey(name: 'duration_s') this.durationS, @JsonKey(name: 'distance_m') this.distanceM, @JsonKey(name: 'target_weight', fromJson: _num) this.targetWeight, @JsonKey(fromJson: _num) this.rpe, @JsonKey(name: 'rest_s') this.restS = 60, this.tempo, this.notes}): super._();
   factory _WorkoutItem.fromJson(Map<String, dynamic> json) => _$WorkoutItemFromJson(json);
 
 @override final  String? id;
 @override@JsonKey(name: 'exercise_id') final  String exerciseId;
 @override@JsonKey() final  int position;
-@override@JsonKey() final  Block block;
+@override@JsonKey() final  ItemBlock block;
 @override@JsonKey(name: 'group_key') final  String? groupKey;
 @override@JsonKey() final  int sets;
 @override final  int? reps;
@@ -283,7 +283,7 @@ abstract mixin class _$WorkoutItemCopyWith<$Res> implements $WorkoutItemCopyWith
   factory _$WorkoutItemCopyWith(_WorkoutItem value, $Res Function(_WorkoutItem) _then) = __$WorkoutItemCopyWithImpl;
 @override @useResult
 $Res call({
- String? id,@JsonKey(name: 'exercise_id') String exerciseId, int position, Block block,@JsonKey(name: 'group_key') String? groupKey, int sets, int? reps,@JsonKey(name: 'reps_max') int? repsMax,@JsonKey(name: 'duration_s') int? durationS,@JsonKey(name: 'distance_m') int? distanceM,@JsonKey(name: 'target_weight', fromJson: _num) double? targetWeight,@JsonKey(fromJson: _num) double? rpe,@JsonKey(name: 'rest_s') int restS, String? tempo, String? notes
+ String? id,@JsonKey(name: 'exercise_id') String exerciseId, int position, ItemBlock block,@JsonKey(name: 'group_key') String? groupKey, int sets, int? reps,@JsonKey(name: 'reps_max') int? repsMax,@JsonKey(name: 'duration_s') int? durationS,@JsonKey(name: 'distance_m') int? distanceM,@JsonKey(name: 'target_weight', fromJson: _num) double? targetWeight,@JsonKey(fromJson: _num) double? rpe,@JsonKey(name: 'rest_s') int restS, String? tempo, String? notes
 });
 
 
@@ -306,7 +306,7 @@ id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String?,exerciseId: null == exerciseId ? _self.exerciseId : exerciseId // ignore: cast_nullable_to_non_nullable
 as String,position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
 as int,block: null == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
-as Block,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
+as ItemBlock,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
 as String?,sets: null == sets ? _self.sets : sets // ignore: cast_nullable_to_non_nullable
 as int,reps: freezed == reps ? _self.reps : reps // ignore: cast_nullable_to_non_nullable
 as int?,repsMax: freezed == repsMax ? _self.repsMax : repsMax // ignore: cast_nullable_to_non_nullable
@@ -2170,7 +2170,7 @@ as List<WorkoutComment>,
 /// @nodoc
 mixin _$CoachRow {
 
-@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(name: 'trainer_id') String? get trainerId; String? get status;@JsonKey(name: 'program_id') String? get programId;@JsonKey(name: 'program_name') String? get programName;@JsonKey(name: 'program_status') ProgramStatus? get programStatus;@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? get programStart;@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? get programEnd;@JsonKey(name: 'last_workout_at') DateTime? get lastWorkoutAt;@JsonKey(name: 'workouts_7d') int get workouts7d;@JsonKey(fromJson: _num) double? get adherence;
+@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(name: 'trainer_id') String? get trainerId; String? get status;@JsonKey(name: 'program_id') String? get programId;@JsonKey(name: 'program_name') String? get programName;@JsonKey(name: 'program_status') ProgramStatus? get programStatus;@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? get programStart;@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? get programEnd;@JsonKey(name: 'last_workout_at') DateTime? get lastWorkoutAt;@JsonKey(name: 'workouts_7d') int get workouts7d;@JsonKey(fromJson: _num) double? get adherence;@JsonKey(name: 'planned_today') bool get plannedToday;@JsonKey(name: 'done_today') bool get doneToday;@JsonKey(name: 'missed_7d') int get missed7d;
 /// Create a copy of CoachRow
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2184,20 +2184,20 @@ $CoachRowCopyWith<CoachRow> get copyWith => _$CoachRowCopyWithImpl<CoachRow>(thi
 @override
 bool operator ==(Object other) {
   final _this = this as CoachRow;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoachRow&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.trainerId, _this.trainerId) || other.trainerId == _this.trainerId)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.programId, _this.programId) || other.programId == _this.programId)&&(identical(other.programName, _this.programName) || other.programName == _this.programName)&&(identical(other.programStatus, _this.programStatus) || other.programStatus == _this.programStatus)&&(identical(other.programStart, _this.programStart) || other.programStart == _this.programStart)&&(identical(other.programEnd, _this.programEnd) || other.programEnd == _this.programEnd)&&(identical(other.lastWorkoutAt, _this.lastWorkoutAt) || other.lastWorkoutAt == _this.lastWorkoutAt)&&(identical(other.workouts7d, _this.workouts7d) || other.workouts7d == _this.workouts7d)&&(identical(other.adherence, _this.adherence) || other.adherence == _this.adherence));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoachRow&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.trainerId, _this.trainerId) || other.trainerId == _this.trainerId)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.programId, _this.programId) || other.programId == _this.programId)&&(identical(other.programName, _this.programName) || other.programName == _this.programName)&&(identical(other.programStatus, _this.programStatus) || other.programStatus == _this.programStatus)&&(identical(other.programStart, _this.programStart) || other.programStart == _this.programStart)&&(identical(other.programEnd, _this.programEnd) || other.programEnd == _this.programEnd)&&(identical(other.lastWorkoutAt, _this.lastWorkoutAt) || other.lastWorkoutAt == _this.lastWorkoutAt)&&(identical(other.workouts7d, _this.workouts7d) || other.workouts7d == _this.workouts7d)&&(identical(other.adherence, _this.adherence) || other.adherence == _this.adherence)&&(identical(other.plannedToday, _this.plannedToday) || other.plannedToday == _this.plannedToday)&&(identical(other.doneToday, _this.doneToday) || other.doneToday == _this.doneToday)&&(identical(other.missed7d, _this.missed7d) || other.missed7d == _this.missed7d));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as CoachRow;
-  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.trainerId,_this.status,_this.programId,_this.programName,_this.programStatus,_this.programStart,_this.programEnd,_this.lastWorkoutAt,_this.workouts7d,_this.adherence);
+  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.trainerId,_this.status,_this.programId,_this.programName,_this.programStatus,_this.programStart,_this.programEnd,_this.lastWorkoutAt,_this.workouts7d,_this.adherence,_this.plannedToday,_this.doneToday,_this.missed7d);
 }
 
 @override
 String toString() {
   final _this = this as CoachRow;
-  return 'CoachRow(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, trainerId: ${_this.trainerId}, status: ${_this.status}, programId: ${_this.programId}, programName: ${_this.programName}, programStatus: ${_this.programStatus}, programStart: ${_this.programStart}, programEnd: ${_this.programEnd}, lastWorkoutAt: ${_this.lastWorkoutAt}, workouts7d: ${_this.workouts7d}, adherence: ${_this.adherence})';
+  return 'CoachRow(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, trainerId: ${_this.trainerId}, status: ${_this.status}, programId: ${_this.programId}, programName: ${_this.programName}, programStatus: ${_this.programStatus}, programStart: ${_this.programStart}, programEnd: ${_this.programEnd}, lastWorkoutAt: ${_this.lastWorkoutAt}, workouts7d: ${_this.workouts7d}, adherence: ${_this.adherence}, plannedToday: ${_this.plannedToday}, doneToday: ${_this.doneToday}, missed7d: ${_this.missed7d})';
 }
 
 
@@ -2208,7 +2208,7 @@ abstract mixin class $CoachRowCopyWith<$Res>  {
   factory $CoachRowCopyWith(CoachRow value, $Res Function(CoachRow) _then) = _$CoachRowCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(name: 'trainer_id') String? trainerId, String? status,@JsonKey(name: 'program_id') String? programId,@JsonKey(name: 'program_name') String? programName,@JsonKey(name: 'program_status') ProgramStatus? programStatus,@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? programStart,@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? programEnd,@JsonKey(name: 'last_workout_at') DateTime? lastWorkoutAt,@JsonKey(name: 'workouts_7d') int workouts7d,@JsonKey(fromJson: _num) double? adherence
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(name: 'trainer_id') String? trainerId, String? status,@JsonKey(name: 'program_id') String? programId,@JsonKey(name: 'program_name') String? programName,@JsonKey(name: 'program_status') ProgramStatus? programStatus,@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? programStart,@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? programEnd,@JsonKey(name: 'last_workout_at') DateTime? lastWorkoutAt,@JsonKey(name: 'workouts_7d') int workouts7d,@JsonKey(fromJson: _num) double? adherence,@JsonKey(name: 'planned_today') bool plannedToday,@JsonKey(name: 'done_today') bool doneToday,@JsonKey(name: 'missed_7d') int missed7d
 });
 
 
@@ -2225,7 +2225,7 @@ class _$CoachRowCopyWithImpl<$Res>
 
 /// Create a copy of CoachRow
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? trainerId = freezed,Object? status = freezed,Object? programId = freezed,Object? programName = freezed,Object? programStatus = freezed,Object? programStart = freezed,Object? programEnd = freezed,Object? lastWorkoutAt = freezed,Object? workouts7d = null,Object? adherence = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? trainerId = freezed,Object? status = freezed,Object? programId = freezed,Object? programName = freezed,Object? programStatus = freezed,Object? programStart = freezed,Object? programEnd = freezed,Object? lastWorkoutAt = freezed,Object? workouts7d = null,Object? adherence = freezed,Object? plannedToday = null,Object? doneToday = null,Object? missed7d = null,}) {
   return _then(CoachRow(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -2241,7 +2241,10 @@ as DateTime?,programEnd: freezed == programEnd ? _self.programEnd : programEnd /
 as DateTime?,lastWorkoutAt: freezed == lastWorkoutAt ? _self.lastWorkoutAt : lastWorkoutAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,workouts7d: null == workouts7d ? _self.workouts7d : workouts7d // ignore: cast_nullable_to_non_nullable
 as int,adherence: freezed == adherence ? _self.adherence : adherence // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,plannedToday: null == plannedToday ? _self.plannedToday : plannedToday // ignore: cast_nullable_to_non_nullable
+as bool,doneToday: null == doneToday ? _self.doneToday : doneToday // ignore: cast_nullable_to_non_nullable
+as bool,missed7d: null == missed7d ? _self.missed7d : missed7d // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -2326,10 +2329,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence, @JsonKey(name: 'planned_today')  bool plannedToday, @JsonKey(name: 'done_today')  bool doneToday, @JsonKey(name: 'missed_7d')  int missed7d)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CoachRow() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence,_that.plannedToday,_that.doneToday,_that.missed7d);case _:
   return orElse();
 
 }
@@ -2347,10 +2350,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence, @JsonKey(name: 'planned_today')  bool plannedToday, @JsonKey(name: 'done_today')  bool doneToday, @JsonKey(name: 'missed_7d')  int missed7d)  $default,) {final _that = this;
 switch (_that) {
 case _CoachRow():
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence,_that.plannedToday,_that.doneToday,_that.missed7d);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2367,10 +2370,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(name: 'trainer_id')  String? trainerId,  String? status, @JsonKey(name: 'program_id')  String? programId, @JsonKey(name: 'program_name')  String? programName, @JsonKey(name: 'program_status')  ProgramStatus? programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut)  DateTime? programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut)  DateTime? programEnd, @JsonKey(name: 'last_workout_at')  DateTime? lastWorkoutAt, @JsonKey(name: 'workouts_7d')  int workouts7d, @JsonKey(fromJson: _num)  double? adherence, @JsonKey(name: 'planned_today')  bool plannedToday, @JsonKey(name: 'done_today')  bool doneToday, @JsonKey(name: 'missed_7d')  int missed7d)?  $default,) {final _that = this;
 switch (_that) {
 case _CoachRow() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.trainerId,_that.status,_that.programId,_that.programName,_that.programStatus,_that.programStart,_that.programEnd,_that.lastWorkoutAt,_that.workouts7d,_that.adherence,_that.plannedToday,_that.doneToday,_that.missed7d);case _:
   return null;
 
 }
@@ -2382,7 +2385,7 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 @JsonSerializable()
 
 class _CoachRow implements CoachRow {
-  const _CoachRow({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(name: 'trainer_id') this.trainerId, this.status, @JsonKey(name: 'program_id') this.programId, @JsonKey(name: 'program_name') this.programName, @JsonKey(name: 'program_status') this.programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) this.programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) this.programEnd, @JsonKey(name: 'last_workout_at') this.lastWorkoutAt, @JsonKey(name: 'workouts_7d') this.workouts7d = 0, @JsonKey(fromJson: _num) this.adherence});
+  const _CoachRow({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(name: 'trainer_id') this.trainerId, this.status, @JsonKey(name: 'program_id') this.programId, @JsonKey(name: 'program_name') this.programName, @JsonKey(name: 'program_status') this.programStatus, @JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) this.programStart, @JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) this.programEnd, @JsonKey(name: 'last_workout_at') this.lastWorkoutAt, @JsonKey(name: 'workouts_7d') this.workouts7d = 0, @JsonKey(fromJson: _num) this.adherence, @JsonKey(name: 'planned_today') this.plannedToday = false, @JsonKey(name: 'done_today') this.doneToday = false, @JsonKey(name: 'missed_7d') this.missed7d = 0});
   factory _CoachRow.fromJson(Map<String, dynamic> json) => _$CoachRowFromJson(json);
 
 @override@JsonKey(name: 'member_id') final  String memberId;
@@ -2399,6 +2402,9 @@ class _CoachRow implements CoachRow {
 @override@JsonKey(name: 'last_workout_at') final  DateTime? lastWorkoutAt;
 @override@JsonKey(name: 'workouts_7d') final  int workouts7d;
 @override@JsonKey(fromJson: _num) final  double? adherence;
+@override@JsonKey(name: 'planned_today') final  bool plannedToday;
+@override@JsonKey(name: 'done_today') final  bool doneToday;
+@override@JsonKey(name: 'missed_7d') final  int missed7d;
 
 /// Create a copy of CoachRow
 /// with the given fields replaced by the non-null parameter values.
@@ -2413,18 +2419,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoachRow&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.trainerId, trainerId) || other.trainerId == trainerId)&&(identical(other.status, status) || other.status == status)&&(identical(other.programId, programId) || other.programId == programId)&&(identical(other.programName, programName) || other.programName == programName)&&(identical(other.programStatus, programStatus) || other.programStatus == programStatus)&&(identical(other.programStart, programStart) || other.programStart == programStart)&&(identical(other.programEnd, programEnd) || other.programEnd == programEnd)&&(identical(other.lastWorkoutAt, lastWorkoutAt) || other.lastWorkoutAt == lastWorkoutAt)&&(identical(other.workouts7d, workouts7d) || other.workouts7d == workouts7d)&&(identical(other.adherence, adherence) || other.adherence == adherence));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoachRow&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.trainerId, trainerId) || other.trainerId == trainerId)&&(identical(other.status, status) || other.status == status)&&(identical(other.programId, programId) || other.programId == programId)&&(identical(other.programName, programName) || other.programName == programName)&&(identical(other.programStatus, programStatus) || other.programStatus == programStatus)&&(identical(other.programStart, programStart) || other.programStart == programStart)&&(identical(other.programEnd, programEnd) || other.programEnd == programEnd)&&(identical(other.lastWorkoutAt, lastWorkoutAt) || other.lastWorkoutAt == lastWorkoutAt)&&(identical(other.workouts7d, workouts7d) || other.workouts7d == workouts7d)&&(identical(other.adherence, adherence) || other.adherence == adherence)&&(identical(other.plannedToday, plannedToday) || other.plannedToday == plannedToday)&&(identical(other.doneToday, doneToday) || other.doneToday == doneToday)&&(identical(other.missed7d, missed7d) || other.missed7d == missed7d));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,trainerId,status,programId,programName,programStatus,programStart,programEnd,lastWorkoutAt,workouts7d,adherence);
+    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,trainerId,status,programId,programName,programStatus,programStart,programEnd,lastWorkoutAt,workouts7d,adherence,plannedToday,doneToday,missed7d);
 }
 
 @override
 String toString() {
-    return 'CoachRow(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, trainerId: $trainerId, status: $status, programId: $programId, programName: $programName, programStatus: $programStatus, programStart: $programStart, programEnd: $programEnd, lastWorkoutAt: $lastWorkoutAt, workouts7d: $workouts7d, adherence: $adherence)';
+    return 'CoachRow(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, trainerId: $trainerId, status: $status, programId: $programId, programName: $programName, programStatus: $programStatus, programStart: $programStart, programEnd: $programEnd, lastWorkoutAt: $lastWorkoutAt, workouts7d: $workouts7d, adherence: $adherence, plannedToday: $plannedToday, doneToday: $doneToday, missed7d: $missed7d)';
 }
 
 
@@ -2435,7 +2441,7 @@ abstract mixin class _$CoachRowCopyWith<$Res> implements $CoachRowCopyWith<$Res>
   factory _$CoachRowCopyWith(_CoachRow value, $Res Function(_CoachRow) _then) = __$CoachRowCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(name: 'trainer_id') String? trainerId, String? status,@JsonKey(name: 'program_id') String? programId,@JsonKey(name: 'program_name') String? programName,@JsonKey(name: 'program_status') ProgramStatus? programStatus,@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? programStart,@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? programEnd,@JsonKey(name: 'last_workout_at') DateTime? lastWorkoutAt,@JsonKey(name: 'workouts_7d') int workouts7d,@JsonKey(fromJson: _num) double? adherence
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(name: 'trainer_id') String? trainerId, String? status,@JsonKey(name: 'program_id') String? programId,@JsonKey(name: 'program_name') String? programName,@JsonKey(name: 'program_status') ProgramStatus? programStatus,@JsonKey(name: 'program_start', fromJson: _date, toJson: _dateOut) DateTime? programStart,@JsonKey(name: 'program_end', fromJson: _date, toJson: _dateOut) DateTime? programEnd,@JsonKey(name: 'last_workout_at') DateTime? lastWorkoutAt,@JsonKey(name: 'workouts_7d') int workouts7d,@JsonKey(fromJson: _num) double? adherence,@JsonKey(name: 'planned_today') bool plannedToday,@JsonKey(name: 'done_today') bool doneToday,@JsonKey(name: 'missed_7d') int missed7d
 });
 
 
@@ -2452,7 +2458,7 @@ class __$CoachRowCopyWithImpl<$Res>
 
 /// Create a copy of CoachRow
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? trainerId = freezed,Object? status = freezed,Object? programId = freezed,Object? programName = freezed,Object? programStatus = freezed,Object? programStart = freezed,Object? programEnd = freezed,Object? lastWorkoutAt = freezed,Object? workouts7d = null,Object? adherence = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? trainerId = freezed,Object? status = freezed,Object? programId = freezed,Object? programName = freezed,Object? programStatus = freezed,Object? programStart = freezed,Object? programEnd = freezed,Object? lastWorkoutAt = freezed,Object? workouts7d = null,Object? adherence = freezed,Object? plannedToday = null,Object? doneToday = null,Object? missed7d = null,}) {
   return _then(_CoachRow(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -2468,7 +2474,10 @@ as DateTime?,programEnd: freezed == programEnd ? _self.programEnd : programEnd /
 as DateTime?,lastWorkoutAt: freezed == lastWorkoutAt ? _self.lastWorkoutAt : lastWorkoutAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,workouts7d: null == workouts7d ? _self.workouts7d : workouts7d // ignore: cast_nullable_to_non_nullable
 as int,adherence: freezed == adherence ? _self.adherence : adherence // ignore: cast_nullable_to_non_nullable
-as double?,
+as double?,plannedToday: null == plannedToday ? _self.plannedToday : plannedToday // ignore: cast_nullable_to_non_nullable
+as bool,doneToday: null == doneToday ? _self.doneToday : doneToday // ignore: cast_nullable_to_non_nullable
+as bool,missed7d: null == missed7d ? _self.missed7d : missed7d // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

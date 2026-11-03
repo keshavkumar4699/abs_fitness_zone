@@ -12,18 +12,15 @@ part of 'workouts_providers.dart';
 @ProviderFor(TemplateList)
 final templateListProvider = TemplateListFamily._();
 
-final class TemplateListProvider
-    extends $AsyncNotifierProvider<TemplateList, Paged<WorkoutTemplate>> {
-  TemplateListProvider._({
-    required TemplateListFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'templateListProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+final class TemplateListProvider extends $AsyncNotifierProvider<TemplateList, Paged<WorkoutTemplate>> {
+  TemplateListProvider._({required TemplateListFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'templateListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$templateListHash();
@@ -70,8 +67,7 @@ final class TemplateListFamily extends $Family
         isAutoDispose: true,
       );
 
-  TemplateListProvider call(String search) =>
-      TemplateListProvider._(argument: search, from: this);
+  TemplateListProvider call(String search) => TemplateListProvider._(argument: search, from: this);
 
   @override
   String toString() => r'templateListProvider';
@@ -85,16 +81,11 @@ abstract class _$TemplateList extends $AsyncNotifier<Paged<WorkoutTemplate>> {
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref =
-        this.ref
-            as $Ref<AsyncValue<Paged<WorkoutTemplate>>, Paged<WorkoutTemplate>>;
+    final ref = this.ref as $Ref<AsyncValue<Paged<WorkoutTemplate>>, Paged<WorkoutTemplate>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<Paged<WorkoutTemplate>>,
-                Paged<WorkoutTemplate>
-              >,
+              AnyNotifier<AsyncValue<Paged<WorkoutTemplate>>, Paged<WorkoutTemplate>>,
               AsyncValue<Paged<WorkoutTemplate>>,
               Object?,
               Object?
@@ -107,23 +98,16 @@ abstract class _$TemplateList extends $AsyncNotifier<Paged<WorkoutTemplate>> {
 final templateDetailProvider = TemplateDetailFamily._();
 
 final class TemplateDetailProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<WorkoutTemplate>,
-          WorkoutTemplate,
-          FutureOr<WorkoutTemplate>
-        >
+    extends $FunctionalProvider<AsyncValue<WorkoutTemplate>, WorkoutTemplate, FutureOr<WorkoutTemplate>>
     with $FutureModifier<WorkoutTemplate>, $FutureProvider<WorkoutTemplate> {
-  TemplateDetailProvider._({
-    required TemplateDetailFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'templateDetailProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  TemplateDetailProvider._({required TemplateDetailFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'templateDetailProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$templateDetailHash();
@@ -137,9 +121,7 @@ final class TemplateDetailProvider
 
   @$internal
   @override
-  $FutureProviderElement<WorkoutTemplate> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<WorkoutTemplate> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<WorkoutTemplate> create(Ref ref) {
@@ -160,8 +142,7 @@ final class TemplateDetailProvider
 
 String _$templateDetailHash() => r'3acc045c6a7afffe7bc82bd5b8ddc55755a30af7';
 
-final class TemplateDetailFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<WorkoutTemplate>, String> {
+final class TemplateDetailFamily extends $Family with $FunctionalFamilyOverride<FutureOr<WorkoutTemplate>, String> {
   TemplateDetailFamily._()
     : super(
         retry: null,
@@ -171,8 +152,7 @@ final class TemplateDetailFamily extends $Family
         isAutoDispose: true,
       );
 
-  TemplateDetailProvider call(String id) =>
-      TemplateDetailProvider._(argument: id, from: this);
+  TemplateDetailProvider call(String id) => TemplateDetailProvider._(argument: id, from: this);
 
   @override
   String toString() => r'templateDetailProvider';
@@ -182,25 +162,16 @@ final class TemplateDetailFamily extends $Family
 final memberProgramsProvider = MemberProgramsFamily._();
 
 final class MemberProgramsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<MemberProgram>>,
-          List<MemberProgram>,
-          FutureOr<List<MemberProgram>>
-        >
-    with
-        $FutureModifier<List<MemberProgram>>,
-        $FutureProvider<List<MemberProgram>> {
-  MemberProgramsProvider._({
-    required MemberProgramsFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'memberProgramsProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+    extends $FunctionalProvider<AsyncValue<List<MemberProgram>>, List<MemberProgram>, FutureOr<List<MemberProgram>>>
+    with $FutureModifier<List<MemberProgram>>, $FutureProvider<List<MemberProgram>> {
+  MemberProgramsProvider._({required MemberProgramsFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'memberProgramsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$memberProgramsHash();
@@ -214,9 +185,8 @@ final class MemberProgramsProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<MemberProgram>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<List<MemberProgram>> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
   FutureOr<List<MemberProgram>> create(Ref ref) {
@@ -237,8 +207,7 @@ final class MemberProgramsProvider
 
 String _$memberProgramsHash() => r'2153a3858c576b0cc79166e0836a881a8ac196cc';
 
-final class MemberProgramsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<List<MemberProgram>>, String> {
+final class MemberProgramsFamily extends $Family with $FunctionalFamilyOverride<FutureOr<List<MemberProgram>>, String> {
   MemberProgramsFamily._()
     : super(
         retry: null,
@@ -248,8 +217,7 @@ final class MemberProgramsFamily extends $Family
         isAutoDispose: true,
       );
 
-  MemberProgramsProvider call(String memberId) =>
-      MemberProgramsProvider._(argument: memberId, from: this);
+  MemberProgramsProvider call(String memberId) => MemberProgramsProvider._(argument: memberId, from: this);
 
   @override
   String toString() => r'memberProgramsProvider';
@@ -263,24 +231,17 @@ final currentProgramProvider = CurrentProgramFamily._();
 /// The running program, else the next queued one.
 
 final class CurrentProgramProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<MemberProgram?>,
-          MemberProgram?,
-          FutureOr<MemberProgram?>
-        >
+    extends $FunctionalProvider<AsyncValue<MemberProgram?>, MemberProgram?, FutureOr<MemberProgram?>>
     with $FutureModifier<MemberProgram?>, $FutureProvider<MemberProgram?> {
   /// The running program, else the next queued one.
-  CurrentProgramProvider._({
-    required CurrentProgramFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'currentProgramProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  CurrentProgramProvider._({required CurrentProgramFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'currentProgramProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$currentProgramHash();
@@ -294,9 +255,7 @@ final class CurrentProgramProvider
 
   @$internal
   @override
-  $FutureProviderElement<MemberProgram?> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<MemberProgram?> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<MemberProgram?> create(Ref ref) {
@@ -319,8 +278,7 @@ String _$currentProgramHash() => r'6c3bd883e542c6e8a1689530ed021bd66fd4d248';
 
 /// The running program, else the next queued one.
 
-final class CurrentProgramFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<MemberProgram?>, String> {
+final class CurrentProgramFamily extends $Family with $FunctionalFamilyOverride<FutureOr<MemberProgram?>, String> {
   CurrentProgramFamily._()
     : super(
         retry: null,
@@ -332,8 +290,7 @@ final class CurrentProgramFamily extends $Family
 
   /// The running program, else the next queued one.
 
-  CurrentProgramProvider call(String memberId) =>
-      CurrentProgramProvider._(argument: memberId, from: this);
+  CurrentProgramProvider call(String memberId) => CurrentProgramProvider._(argument: memberId, from: this);
 
   @override
   String toString() => r'currentProgramProvider';
@@ -349,25 +306,18 @@ final recentWorkoutsProvider = RecentWorkoutsFamily._();
 /// time" prefill and local PR checks).
 
 final class RecentWorkoutsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<WorkoutLog>>,
-          List<WorkoutLog>,
-          FutureOr<List<WorkoutLog>>
-        >
+    extends $FunctionalProvider<AsyncValue<List<WorkoutLog>>, List<WorkoutLog>, FutureOr<List<WorkoutLog>>>
     with $FutureModifier<List<WorkoutLog>>, $FutureProvider<List<WorkoutLog>> {
   /// The last 12 weeks of workouts with their sets (stats, calendar, "last
   /// time" prefill and local PR checks).
-  RecentWorkoutsProvider._({
-    required RecentWorkoutsFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'recentWorkoutsProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  RecentWorkoutsProvider._({required RecentWorkoutsFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'recentWorkoutsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$recentWorkoutsHash();
@@ -381,9 +331,7 @@ final class RecentWorkoutsProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<WorkoutLog>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<List<WorkoutLog>> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<List<WorkoutLog>> create(Ref ref) {
@@ -407,8 +355,7 @@ String _$recentWorkoutsHash() => r'9473b0b22df5ed85fbe2ddfc6e0ffff1ff604def';
 /// The last 12 weeks of workouts with their sets (stats, calendar, "last
 /// time" prefill and local PR checks).
 
-final class RecentWorkoutsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<List<WorkoutLog>>, String> {
+final class RecentWorkoutsFamily extends $Family with $FunctionalFamilyOverride<FutureOr<List<WorkoutLog>>, String> {
   RecentWorkoutsFamily._()
     : super(
         retry: null,
@@ -421,8 +368,7 @@ final class RecentWorkoutsFamily extends $Family
   /// The last 12 weeks of workouts with their sets (stats, calendar, "last
   /// time" prefill and local PR checks).
 
-  RecentWorkoutsProvider call(String memberId) =>
-      RecentWorkoutsProvider._(argument: memberId, from: this);
+  RecentWorkoutsProvider call(String memberId) => RecentWorkoutsProvider._(argument: memberId, from: this);
 
   @override
   String toString() => r'recentWorkoutsProvider';
@@ -431,18 +377,15 @@ final class RecentWorkoutsFamily extends $Family
 @ProviderFor(WorkoutHistory)
 final workoutHistoryProvider = WorkoutHistoryFamily._();
 
-final class WorkoutHistoryProvider
-    extends $AsyncNotifierProvider<WorkoutHistory, Paged<WorkoutLog>> {
-  WorkoutHistoryProvider._({
-    required WorkoutHistoryFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'workoutHistoryProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+final class WorkoutHistoryProvider extends $AsyncNotifierProvider<WorkoutHistory, Paged<WorkoutLog>> {
+  WorkoutHistoryProvider._({required WorkoutHistoryFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'workoutHistoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$workoutHistoryHash();
@@ -489,8 +432,7 @@ final class WorkoutHistoryFamily extends $Family
         isAutoDispose: true,
       );
 
-  WorkoutHistoryProvider call(String memberId) =>
-      WorkoutHistoryProvider._(argument: memberId, from: this);
+  WorkoutHistoryProvider call(String memberId) => WorkoutHistoryProvider._(argument: memberId, from: this);
 
   @override
   String toString() => r'workoutHistoryProvider';
@@ -504,8 +446,7 @@ abstract class _$WorkoutHistory extends $AsyncNotifier<Paged<WorkoutLog>> {
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref =
-        this.ref as $Ref<AsyncValue<Paged<WorkoutLog>>, Paged<WorkoutLog>>;
+    final ref = this.ref as $Ref<AsyncValue<Paged<WorkoutLog>>, Paged<WorkoutLog>>;
     final element =
         ref.element
             as $ClassProviderElement<
@@ -522,23 +463,16 @@ abstract class _$WorkoutHistory extends $AsyncNotifier<Paged<WorkoutLog>> {
 final exerciseHistoryProvider = ExerciseHistoryFamily._();
 
 final class ExerciseHistoryProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<List<DatedSet>>,
-          List<DatedSet>,
-          FutureOr<List<DatedSet>>
-        >
+    extends $FunctionalProvider<AsyncValue<List<DatedSet>>, List<DatedSet>, FutureOr<List<DatedSet>>>
     with $FutureModifier<List<DatedSet>>, $FutureProvider<List<DatedSet>> {
-  ExerciseHistoryProvider._({
-    required ExerciseHistoryFamily super.from,
-    required (String, String) super.argument,
-  }) : super(
-         retry: null,
-         name: r'exerciseHistoryProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  ExerciseHistoryProvider._({required ExerciseHistoryFamily super.from, required (String, String) super.argument})
+    : super(
+        retry: null,
+        name: r'exerciseHistoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$exerciseHistoryHash();
@@ -552,9 +486,7 @@ final class ExerciseHistoryProvider
 
   @$internal
   @override
-  $FutureProviderElement<List<DatedSet>> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<List<DatedSet>> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<List<DatedSet>> create(Ref ref) {
@@ -597,23 +529,16 @@ final class ExerciseHistoryFamily extends $Family
 final workoutStatsProvider = WorkoutStatsFamily._();
 
 final class WorkoutStatsProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<WorkoutStats>,
-          WorkoutStats,
-          FutureOr<WorkoutStats>
-        >
+    extends $FunctionalProvider<AsyncValue<WorkoutStats>, WorkoutStats, FutureOr<WorkoutStats>>
     with $FutureModifier<WorkoutStats>, $FutureProvider<WorkoutStats> {
-  WorkoutStatsProvider._({
-    required WorkoutStatsFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'workoutStatsProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  WorkoutStatsProvider._({required WorkoutStatsFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'workoutStatsProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$workoutStatsHash();
@@ -627,9 +552,7 @@ final class WorkoutStatsProvider
 
   @$internal
   @override
-  $FutureProviderElement<WorkoutStats> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $FutureProviderElement<WorkoutStats> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<WorkoutStats> create(Ref ref) {
@@ -650,8 +573,7 @@ final class WorkoutStatsProvider
 
 String _$workoutStatsHash() => r'f44883c5ed10e973ea07f3ba242a39bc1fe7ca77';
 
-final class WorkoutStatsFamily extends $Family
-    with $FunctionalFamilyOverride<FutureOr<WorkoutStats>, String> {
+final class WorkoutStatsFamily extends $Family with $FunctionalFamilyOverride<FutureOr<WorkoutStats>, String> {
   WorkoutStatsFamily._()
     : super(
         retry: null,
@@ -661,8 +583,7 @@ final class WorkoutStatsFamily extends $Family
         isAutoDispose: true,
       );
 
-  WorkoutStatsProvider call(String memberId) =>
-      WorkoutStatsProvider._(argument: memberId, from: this);
+  WorkoutStatsProvider call(String memberId) => WorkoutStatsProvider._(argument: memberId, from: this);
 
   @override
   String toString() => r'workoutStatsProvider';
@@ -671,18 +592,15 @@ final class WorkoutStatsFamily extends $Family
 @ProviderFor(CoachList)
 final coachListProvider = CoachListFamily._();
 
-final class CoachListProvider
-    extends $AsyncNotifierProvider<CoachList, Paged<CoachRow>> {
-  CoachListProvider._({
-    required CoachListFamily super.from,
-    required (String?, String) super.argument,
-  }) : super(
-         retry: null,
-         name: r'coachListProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+final class CoachListProvider extends $AsyncNotifierProvider<CoachList, Paged<CoachRow>> {
+  CoachListProvider._({required CoachListFamily super.from, required (String?, String) super.argument})
+    : super(
+        retry: null,
+        name: r'coachListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$coachListHash();
@@ -767,8 +685,7 @@ final syncWorkoutsProvider = SyncWorkoutsProvider._();
 /// Uploads finished workouts waiting in the outbox; the member home watches
 /// this, so it runs on every launch and pull-to-refresh.
 
-final class SyncWorkoutsProvider
-    extends $FunctionalProvider<AsyncValue<int>, int, FutureOr<int>>
+final class SyncWorkoutsProvider extends $FunctionalProvider<AsyncValue<int>, int, FutureOr<int>>
     with $FutureModifier<int>, $FutureProvider<int> {
   /// Uploads finished workouts waiting in the outbox; the member home watches
   /// this, so it runs on every launch and pull-to-refresh.
@@ -788,8 +705,7 @@ final class SyncWorkoutsProvider
 
   @$internal
   @override
-  $FutureProviderElement<int> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
+  $FutureProviderElement<int> $createElement($ProviderPointer pointer) => $FutureProviderElement(pointer);
 
   @override
   FutureOr<int> create(Ref ref) {
@@ -802,8 +718,7 @@ String _$syncWorkoutsHash() => r'c0826955d6042d0d3a8dba3992852543133bae8e';
 @ProviderFor(ActiveWorkout)
 final activeWorkoutProvider = ActiveWorkoutProvider._();
 
-final class ActiveWorkoutProvider
-    extends $NotifierProvider<ActiveWorkout, WorkoutSession?> {
+final class ActiveWorkoutProvider extends $NotifierProvider<ActiveWorkout, WorkoutSession?> {
   ActiveWorkoutProvider._()
     : super(
         from: null,
@@ -824,10 +739,7 @@ final class ActiveWorkoutProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(WorkoutSession? value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<WorkoutSession?>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<WorkoutSession?>(value));
   }
 }
 
@@ -841,12 +753,7 @@ abstract class _$ActiveWorkout extends $Notifier<WorkoutSession?> {
     final ref = this.ref as $Ref<WorkoutSession?, WorkoutSession?>;
     final element =
         ref.element
-            as $ClassProviderElement<
-              AnyNotifier<WorkoutSession?, WorkoutSession?>,
-              WorkoutSession?,
-              Object?,
-              Object?
-            >;
+            as $ClassProviderElement<AnyNotifier<WorkoutSession?, WorkoutSession?>, WorkoutSession?, Object?, Object?>;
     return element.handleCreate(ref, build);
   }
 }

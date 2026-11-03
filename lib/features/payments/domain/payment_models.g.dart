@@ -21,21 +21,20 @@ _InvoiceItem _$InvoiceItemFromJson(Map<String, dynamic> json) => _InvoiceItem(
   gstPaise: (json['gst_paise'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$InvoiceItemToJson(_InvoiceItem instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'position': instance.position,
-      'kind': instance.kind,
-      'description': instance.description,
-      'qty': instance.qty,
-      'unit_paise': instance.unitPaise,
-      'gross_paise': instance.grossPaise,
-      'discount_paise': instance.discountPaise,
-      'net_paise': instance.netPaise,
-      'gst_rate': instance.gstRate,
-      'taxable_paise': instance.taxablePaise,
-      'gst_paise': instance.gstPaise,
-    };
+Map<String, dynamic> _$InvoiceItemToJson(_InvoiceItem instance) => <String, dynamic>{
+  'id': instance.id,
+  'position': instance.position,
+  'kind': instance.kind,
+  'description': instance.description,
+  'qty': instance.qty,
+  'unit_paise': instance.unitPaise,
+  'gross_paise': instance.grossPaise,
+  'discount_paise': instance.discountPaise,
+  'net_paise': instance.netPaise,
+  'gst_rate': instance.gstRate,
+  'taxable_paise': instance.taxablePaise,
+  'gst_paise': instance.gstPaise,
+};
 
 _Instalment _$InstalmentFromJson(Map<String, dynamic> json) => _Instalment(
   id: json['id'] as String,
@@ -45,14 +44,13 @@ _Instalment _$InstalmentFromJson(Map<String, dynamic> json) => _Instalment(
   status: json['status'] as String? ?? 'due',
 );
 
-Map<String, dynamic> _$InstalmentToJson(_Instalment instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'seq': instance.seq,
-      'due_date': _dateOut(instance.dueDate),
-      'amount_paise': instance.amountPaise,
-      'status': instance.status,
-    };
+Map<String, dynamic> _$InstalmentToJson(_Instalment instance) => <String, dynamic>{
+  'id': instance.id,
+  'seq': instance.seq,
+  'due_date': _dateOut(instance.dueDate),
+  'amount_paise': instance.amountPaise,
+  'status': instance.status,
+};
 
 _Payment _$PaymentFromJson(Map<String, dynamic> json) => _Payment(
   id: json['id'] as String,
@@ -68,9 +66,7 @@ _Payment _$PaymentFromJson(Map<String, dynamic> json) => _Payment(
   paidAt: DateTime.parse(json['paid_at'] as String),
   paidOn: _date(json['paid_on']),
   collectedBy: json['collected_by'] as String?,
-  status:
-      $enumDecodeNullable(_$PaymentStatusEnumMap, json['status']) ??
-      PaymentStatus.confirmed,
+  status: $enumDecodeNullable(_$PaymentStatusEnumMap, json['status']) ?? PaymentStatus.confirmed,
   note: json['note'] as String?,
   voidedReason: json['voided_reason'] as String?,
 );
@@ -130,26 +126,18 @@ _Invoice _$InvoiceFromJson(Map<String, dynamic> json) => _Invoice(
   totalPaise: (json['total_paise'] as num?)?.toInt() ?? 0,
   paidPaise: (json['paid_paise'] as num?)?.toInt() ?? 0,
   balancePaise: (json['balance_paise'] as num?)?.toInt() ?? 0,
-  status:
-      $enumDecodeNullable(_$InvoiceStatusEnumMap, json['status']) ??
-      InvoiceStatus.unpaid,
+  status: $enumDecodeNullable(_$InvoiceStatusEnumMap, json['status']) ?? InvoiceStatus.unpaid,
   overdueDays: (json['overdue_days'] as num?)?.toInt() ?? 0,
   gatewayLinkUrl: json['gateway_link_url'] as String?,
   voidedReason: json['voided_reason'] as String?,
   items:
-      (json['invoice_items'] as List<dynamic>?)
-          ?.map((e) => InvoiceItem.fromJson(e as Map<String, dynamic>))
-          .toList() ??
+      (json['invoice_items'] as List<dynamic>?)?.map((e) => InvoiceItem.fromJson(e as Map<String, dynamic>)).toList() ??
       const [],
   instalments:
-      (json['instalments'] as List<dynamic>?)
-          ?.map((e) => Instalment.fromJson(e as Map<String, dynamic>))
-          .toList() ??
+      (json['instalments'] as List<dynamic>?)?.map((e) => Instalment.fromJson(e as Map<String, dynamic>)).toList() ??
       const [],
   payments:
-      (json['payments'] as List<dynamic>?)
-          ?.map((e) => Payment.fromJson(e as Map<String, dynamic>))
-          .toList() ??
+      (json['payments'] as List<dynamic>?)?.map((e) => Payment.fromJson(e as Map<String, dynamic>)).toList() ??
       const [],
 );
 
@@ -189,25 +177,23 @@ const _$InvoiceStatusEnumMap = {
   InvoiceStatus.voided: 'void',
 };
 
-_PaymentResult _$PaymentResultFromJson(Map<String, dynamic> json) =>
-    _PaymentResult(
-      paymentId: json['payment_id'] as String,
-      receiptNo: json['receipt_no'] as String?,
-      amountPaise: (json['amount_paise'] as num).toInt(),
-      appliedPaise: (json['applied_paise'] as num?)?.toInt() ?? 0,
-      creditPaise: (json['credit_paise'] as num?)?.toInt() ?? 0,
-      balancePaise: (json['balance_paise'] as num?)?.toInt() ?? 0,
-    );
+_PaymentResult _$PaymentResultFromJson(Map<String, dynamic> json) => _PaymentResult(
+  paymentId: json['payment_id'] as String,
+  receiptNo: json['receipt_no'] as String?,
+  amountPaise: (json['amount_paise'] as num).toInt(),
+  appliedPaise: (json['applied_paise'] as num?)?.toInt() ?? 0,
+  creditPaise: (json['credit_paise'] as num?)?.toInt() ?? 0,
+  balancePaise: (json['balance_paise'] as num?)?.toInt() ?? 0,
+);
 
-Map<String, dynamic> _$PaymentResultToJson(_PaymentResult instance) =>
-    <String, dynamic>{
-      'payment_id': instance.paymentId,
-      'receipt_no': instance.receiptNo,
-      'amount_paise': instance.amountPaise,
-      'applied_paise': instance.appliedPaise,
-      'credit_paise': instance.creditPaise,
-      'balance_paise': instance.balancePaise,
-    };
+Map<String, dynamic> _$PaymentResultToJson(_PaymentResult instance) => <String, dynamic>{
+  'payment_id': instance.paymentId,
+  'receipt_no': instance.receiptNo,
+  'amount_paise': instance.amountPaise,
+  'applied_paise': instance.appliedPaise,
+  'credit_paise': instance.creditPaise,
+  'balance_paise': instance.balancePaise,
+};
 
 _DaySummary _$DaySummaryFromJson(Map<String, dynamic> json) => _DaySummary(
   day: _date(json['day']),
@@ -220,29 +206,26 @@ _DaySummary _$DaySummaryFromJson(Map<String, dynamic> json) => _DaySummary(
   total: (json['total'] as num?)?.toInt() ?? 0,
   count: (json['count'] as num?)?.toInt() ?? 0,
   closed: json['closed'] as bool? ?? false,
-  closedAt: json['closed_at'] == null
-      ? null
-      : DateTime.parse(json['closed_at'] as String),
+  closedAt: json['closed_at'] == null ? null : DateTime.parse(json['closed_at'] as String),
   countedCash: (json['counted_cash'] as num?)?.toInt(),
   difference: (json['difference'] as num?)?.toInt(),
 );
 
-Map<String, dynamic> _$DaySummaryToJson(_DaySummary instance) =>
-    <String, dynamic>{
-      'day': _dateOut(instance.day),
-      'cash': instance.cash,
-      'upi': instance.upi,
-      'card': instance.card,
-      'bank': instance.bank,
-      'online': instance.online,
-      'credit': instance.credit,
-      'total': instance.total,
-      'count': instance.count,
-      'closed': instance.closed,
-      'closed_at': instance.closedAt?.toIso8601String(),
-      'counted_cash': instance.countedCash,
-      'difference': instance.difference,
-    };
+Map<String, dynamic> _$DaySummaryToJson(_DaySummary instance) => <String, dynamic>{
+  'day': _dateOut(instance.day),
+  'cash': instance.cash,
+  'upi': instance.upi,
+  'card': instance.card,
+  'bank': instance.bank,
+  'online': instance.online,
+  'credit': instance.credit,
+  'total': instance.total,
+  'count': instance.count,
+  'closed': instance.closed,
+  'closed_at': instance.closedAt?.toIso8601String(),
+  'counted_cash': instance.countedCash,
+  'difference': instance.difference,
+};
 
 _DayClose _$DayCloseFromJson(Map<String, dynamic> json) => _DayClose(
   id: json['id'] as String,
@@ -255,9 +238,7 @@ _DayClose _$DayCloseFromJson(Map<String, dynamic> json) => _DayClose(
   paymentsCount: (json['payments_count'] as num?)?.toInt() ?? 0,
   note: json['note'] as String?,
   closedAt: DateTime.parse(json['closed_at'] as String),
-  reopenedAt: json['reopened_at'] == null
-      ? null
-      : DateTime.parse(json['reopened_at'] as String),
+  reopenedAt: json['reopened_at'] == null ? null : DateTime.parse(json['reopened_at'] as String),
   staffName: json['staff_name'] as String?,
 );
 
@@ -284,54 +265,47 @@ _DuesSummary _$DuesSummaryFromJson(Map<String, dynamic> json) => _DuesSummary(
   pendingClaims: (json['pending_claims'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$DuesSummaryToJson(_DuesSummary instance) =>
-    <String, dynamic>{
-      'overdue_count': instance.overdueCount,
-      'overdue_paise': instance.overduePaise,
-      'due_count': instance.dueCount,
-      'due_paise': instance.duePaise,
-      'pending_claims': instance.pendingClaims,
-    };
+Map<String, dynamic> _$DuesSummaryToJson(_DuesSummary instance) => <String, dynamic>{
+  'overdue_count': instance.overdueCount,
+  'overdue_paise': instance.overduePaise,
+  'due_count': instance.dueCount,
+  'due_paise': instance.duePaise,
+  'pending_claims': instance.pendingClaims,
+};
 
-_DayAmount _$DayAmountFromJson(Map<String, dynamic> json) => _DayAmount(
-  day: _date(json['day']),
-  paise: (json['paise'] as num?)?.toInt() ?? 0,
+_DayAmount _$DayAmountFromJson(Map<String, dynamic> json) =>
+    _DayAmount(day: _date(json['day']), paise: (json['paise'] as num?)?.toInt() ?? 0);
+
+Map<String, dynamic> _$DayAmountToJson(_DayAmount instance) => <String, dynamic>{
+  'day': _dateOut(instance.day),
+  'paise': instance.paise,
+};
+
+_CollectionsSummary _$CollectionsSummaryFromJson(Map<String, dynamic> json) => _CollectionsSummary(
+  collected: (json['collected'] as num?)?.toInt() ?? 0,
+  byMode:
+      (json['by_mode'] as Map<String, dynamic>?)?.map((k, e) => MapEntry(k, (e as num).toInt())) ??
+      const <String, int>{},
+  byDay:
+      (json['by_day'] as List<dynamic>?)?.map((e) => DayAmount.fromJson(e as Map<String, dynamic>)).toList() ??
+      const [],
+  invoiced: (json['invoiced'] as num?)?.toInt() ?? 0,
+  outstanding: (json['outstanding'] as num?)?.toInt() ?? 0,
+  refunds: (json['refunds'] as num?)?.toInt() ?? 0,
+  expenses: (json['expenses'] as num?)?.toInt() ?? 0,
+  paymentsCount: (json['payments_count'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$DayAmountToJson(_DayAmount instance) =>
-    <String, dynamic>{'day': _dateOut(instance.day), 'paise': instance.paise};
-
-_CollectionsSummary _$CollectionsSummaryFromJson(Map<String, dynamic> json) =>
-    _CollectionsSummary(
-      collected: (json['collected'] as num?)?.toInt() ?? 0,
-      byMode:
-          (json['by_mode'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, (e as num).toInt()),
-          ) ??
-          const <String, int>{},
-      byDay:
-          (json['by_day'] as List<dynamic>?)
-              ?.map((e) => DayAmount.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      invoiced: (json['invoiced'] as num?)?.toInt() ?? 0,
-      outstanding: (json['outstanding'] as num?)?.toInt() ?? 0,
-      refunds: (json['refunds'] as num?)?.toInt() ?? 0,
-      expenses: (json['expenses'] as num?)?.toInt() ?? 0,
-      paymentsCount: (json['payments_count'] as num?)?.toInt() ?? 0,
-    );
-
-Map<String, dynamic> _$CollectionsSummaryToJson(_CollectionsSummary instance) =>
-    <String, dynamic>{
-      'collected': instance.collected,
-      'by_mode': instance.byMode,
-      'by_day': instance.byDay.map((e) => e.toJson()).toList(),
-      'invoiced': instance.invoiced,
-      'outstanding': instance.outstanding,
-      'refunds': instance.refunds,
-      'expenses': instance.expenses,
-      'payments_count': instance.paymentsCount,
-    };
+Map<String, dynamic> _$CollectionsSummaryToJson(_CollectionsSummary instance) => <String, dynamic>{
+  'collected': instance.collected,
+  'by_mode': instance.byMode,
+  'by_day': instance.byDay.map((e) => e.toJson()).toList(),
+  'invoiced': instance.invoiced,
+  'outstanding': instance.outstanding,
+  'refunds': instance.refunds,
+  'expenses': instance.expenses,
+  'payments_count': instance.paymentsCount,
+};
 
 _DueReminder _$DueReminderFromJson(Map<String, dynamic> json) => _DueReminder(
   invoiceId: json['invoice_id'] as String,
@@ -344,17 +318,16 @@ _DueReminder _$DueReminderFromJson(Map<String, dynamic> json) => _DueReminder(
   daysToDue: (json['days_to_due'] as num).toInt(),
 );
 
-Map<String, dynamic> _$DueReminderToJson(_DueReminder instance) =>
-    <String, dynamic>{
-      'invoice_id': instance.invoiceId,
-      'invoice_no': instance.invoiceNo,
-      'member_id': instance.memberId,
-      'member_name': instance.memberName,
-      'member_phone': instance.memberPhone,
-      'balance_paise': instance.balancePaise,
-      'next_due_date': _dateOut(instance.nextDueDate),
-      'days_to_due': instance.daysToDue,
-    };
+Map<String, dynamic> _$DueReminderToJson(_DueReminder instance) => <String, dynamic>{
+  'invoice_id': instance.invoiceId,
+  'invoice_no': instance.invoiceNo,
+  'member_id': instance.memberId,
+  'member_name': instance.memberName,
+  'member_phone': instance.memberPhone,
+  'balance_paise': instance.balancePaise,
+  'next_due_date': _dateOut(instance.nextDueDate),
+  'days_to_due': instance.daysToDue,
+};
 
 _Expense _$ExpenseFromJson(Map<String, dynamic> json) => _Expense(
   id: json['id'] as String?,

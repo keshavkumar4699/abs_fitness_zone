@@ -285,12 +285,17 @@ update public.member_programs set start_date = public.ist_today() - 6, end_date 
  where id = (select id from riya_prog);
 update public.workout_logs set day = public.ist_today() - 2, started_at = now() - interval '1 hour', finished_at = now()
  where client_id = '50000000-0000-0000-0000-000000000001';
+-- Pin the second workout to today (it was logged "2 hours ago", which can be
+-- yesterday just after midnight IST).
+update public.workout_logs set day = public.ist_today() where client_id = '50000000-0000-0000-0000-000000000002';
 set role authenticated;
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
 select pg_temp.check(public.program_adherence((select id from riya_prog)) = 0.29, 'adherence: 2 of 7 planned days done');
 select pg_temp.check((select count(*) from public.coach_overview()) = 1, 'trainer: overview lists only their members');
 select pg_temp.check((select adherence = 0.29 and workouts_7d = 2 and program_name = 'Push / Pull / Legs'
                       from public.coach_overview()), 'overview: program, workouts this week and adherence');
+select pg_temp.check((select planned_today and done_today and missed_7d = 5 from public.coach_overview()),
+                     'overview: planned today, done today, 5 missed in the last week');
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
 select pg_temp.check((select count(*) from public.coach_overview()) = 2, 'owner: overview lists everyone');
 select pg_temp.check((select name from public.coach_overview('10000000-0000-0000-0000-00000000000d')) = 'Kabir Das',

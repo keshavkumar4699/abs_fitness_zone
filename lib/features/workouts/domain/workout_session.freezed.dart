@@ -313,7 +313,7 @@ as DateTime?,
 /// @nodoc
 mixin _$SessionExercise {
 
- String get exerciseId; String get name; TrackingType get trackingType; Block get block; String? get groupKey; int get restS; String? get tempo; String? get notes; List<SessionSet> get sets;
+ String get exerciseId; String get name; TrackingType get trackingType; ItemBlock get block; String? get groupKey; int get restS; String? get tempo; String? get notes; List<SessionSet> get sets;
 /// Create a copy of SessionExercise
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -351,7 +351,7 @@ abstract mixin class $SessionExerciseCopyWith<$Res>  {
   factory $SessionExerciseCopyWith(SessionExercise value, $Res Function(SessionExercise) _then) = _$SessionExerciseCopyWithImpl;
 @useResult
 $Res call({
- String exerciseId, String name, TrackingType trackingType, Block block, String? groupKey, int restS, String? tempo, String? notes, List<SessionSet> sets
+ String exerciseId, String name, TrackingType trackingType, ItemBlock block, String? groupKey, int restS, String? tempo, String? notes, List<SessionSet> sets
 });
 
 
@@ -374,7 +374,7 @@ exerciseId: null == exerciseId ? _self.exerciseId : exerciseId // ignore: cast_n
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,trackingType: null == trackingType ? _self.trackingType : trackingType // ignore: cast_nullable_to_non_nullable
 as TrackingType,block: null == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
-as Block,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
+as ItemBlock,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
 as String?,restS: null == restS ? _self.restS : restS // ignore: cast_nullable_to_non_nullable
 as int,tempo: freezed == tempo ? _self.tempo : tempo // ignore: cast_nullable_to_non_nullable
 as String?,notes: freezed == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
@@ -464,7 +464,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String exerciseId,  String name,  TrackingType trackingType,  Block block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String exerciseId,  String name,  TrackingType trackingType,  ItemBlock block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SessionExercise() when $default != null:
 return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that.groupKey,_that.restS,_that.tempo,_that.notes,_that.sets);case _:
@@ -485,7 +485,7 @@ return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String exerciseId,  String name,  TrackingType trackingType,  Block block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String exerciseId,  String name,  TrackingType trackingType,  ItemBlock block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)  $default,) {final _that = this;
 switch (_that) {
 case _SessionExercise():
 return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that.groupKey,_that.restS,_that.tempo,_that.notes,_that.sets);case _:
@@ -505,7 +505,7 @@ return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String exerciseId,  String name,  TrackingType trackingType,  Block block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String exerciseId,  String name,  TrackingType trackingType,  ItemBlock block,  String? groupKey,  int restS,  String? tempo,  String? notes,  List<SessionSet> sets)?  $default,) {final _that = this;
 switch (_that) {
 case _SessionExercise() when $default != null:
 return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that.groupKey,_that.restS,_that.tempo,_that.notes,_that.sets);case _:
@@ -520,13 +520,13 @@ return $default(_that.exerciseId,_that.name,_that.trackingType,_that.block,_that
 @JsonSerializable()
 
 class _SessionExercise extends SessionExercise {
-  const _SessionExercise({required this.exerciseId, required this.name, this.trackingType = TrackingType.repsWeight, this.block = Block.main, this.groupKey, this.restS = 60, this.tempo, this.notes,  List<SessionSet> sets = const <SessionSet>[]}): _sets = sets,super._();
+  const _SessionExercise({required this.exerciseId, required this.name, this.trackingType = TrackingType.repsWeight, this.block = ItemBlock.main, this.groupKey, this.restS = 60, this.tempo, this.notes,  List<SessionSet> sets = const <SessionSet>[]}): _sets = sets,super._();
   factory _SessionExercise.fromJson(Map<String, dynamic> json) => _$SessionExerciseFromJson(json);
 
 @override final  String exerciseId;
 @override final  String name;
 @override@JsonKey() final  TrackingType trackingType;
-@override@JsonKey() final  Block block;
+@override@JsonKey() final  ItemBlock block;
 @override final  String? groupKey;
 @override@JsonKey() final  int restS;
 @override final  String? tempo;
@@ -574,7 +574,7 @@ abstract mixin class _$SessionExerciseCopyWith<$Res> implements $SessionExercise
   factory _$SessionExerciseCopyWith(_SessionExercise value, $Res Function(_SessionExercise) _then) = __$SessionExerciseCopyWithImpl;
 @override @useResult
 $Res call({
- String exerciseId, String name, TrackingType trackingType, Block block, String? groupKey, int restS, String? tempo, String? notes, List<SessionSet> sets
+ String exerciseId, String name, TrackingType trackingType, ItemBlock block, String? groupKey, int restS, String? tempo, String? notes, List<SessionSet> sets
 });
 
 
@@ -597,7 +597,7 @@ exerciseId: null == exerciseId ? _self.exerciseId : exerciseId // ignore: cast_n
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,trackingType: null == trackingType ? _self.trackingType : trackingType // ignore: cast_nullable_to_non_nullable
 as TrackingType,block: null == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
-as Block,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
+as ItemBlock,groupKey: freezed == groupKey ? _self.groupKey : groupKey // ignore: cast_nullable_to_non_nullable
 as String?,restS: null == restS ? _self.restS : restS // ignore: cast_nullable_to_non_nullable
 as int,tempo: freezed == tempo ? _self.tempo : tempo // ignore: cast_nullable_to_non_nullable
 as String?,notes: freezed == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable

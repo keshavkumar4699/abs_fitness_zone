@@ -12,8 +12,7 @@ part of 'auth_providers.dart';
 @ProviderFor(authRepository)
 final authRepositoryProvider = AuthRepositoryProvider._();
 
-final class AuthRepositoryProvider
-    extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
+final class AuthRepositoryProvider extends $FunctionalProvider<AuthRepository, AuthRepository, AuthRepository>
     with $Provider<AuthRepository> {
   AuthRepositoryProvider._()
     : super(
@@ -31,8 +30,7 @@ final class AuthRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<AuthRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $ProviderElement<AuthRepository> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   AuthRepository create(Ref ref) {
@@ -41,10 +39,7 @@ final class AuthRepositoryProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(AuthRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<AuthRepository>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<AuthRepository>(value));
   }
 }
 
@@ -57,9 +52,7 @@ final currentUserProvider = CurrentUserProvider._();
 
 /// The signed-in user; null when signed out.
 
-final class CurrentUserProvider
-    extends
-        $FunctionalProvider<AsyncValue<AppUser?>, AppUser?, Stream<AppUser?>>
+final class CurrentUserProvider extends $FunctionalProvider<AsyncValue<AppUser?>, AppUser?, Stream<AppUser?>>
     with $FutureModifier<AppUser?>, $StreamProvider<AppUser?> {
   /// The signed-in user; null when signed out.
   CurrentUserProvider._()
@@ -78,8 +71,7 @@ final class CurrentUserProvider
 
   @$internal
   @override
-  $StreamProviderElement<AppUser?> $createElement($ProviderPointer pointer) =>
-      $StreamProviderElement(pointer);
+  $StreamProviderElement<AppUser?> $createElement($ProviderPointer pointer) => $StreamProviderElement(pointer);
 
   @override
   Stream<AppUser?> create(Ref ref) {
@@ -96,13 +88,7 @@ final signInErrorProvider = SignInErrorProvider._();
 
 /// Why the last Google sign-in was refused (not registered, switched off…).
 
-final class SignInErrorProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<AppFailure?>,
-          AppFailure?,
-          Stream<AppFailure?>
-        >
+final class SignInErrorProvider extends $FunctionalProvider<AsyncValue<AppFailure?>, AppFailure?, Stream<AppFailure?>>
     with $FutureModifier<AppFailure?>, $StreamProvider<AppFailure?> {
   /// Why the last Google sign-in was refused (not registered, switched off…).
   SignInErrorProvider._()
@@ -121,9 +107,7 @@ final class SignInErrorProvider
 
   @$internal
   @override
-  $StreamProviderElement<AppFailure?> $createElement(
-    $ProviderPointer pointer,
-  ) => $StreamProviderElement(pointer);
+  $StreamProviderElement<AppFailure?> $createElement($ProviderPointer pointer) => $StreamProviderElement(pointer);
 
   @override
   Stream<AppFailure?> create(Ref ref) {

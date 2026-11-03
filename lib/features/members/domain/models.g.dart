@@ -28,9 +28,7 @@ _Member _$MemberFromJson(Map<String, dynamic> json) => _Member(
   trainerId: json['trainer_id'] as String?,
   batch: json['batch'] as String?,
   source: json['source'] as String?,
-  status: json['status'] == null
-      ? MemberStatus.inactive
-      : _status(json['status']),
+  status: json['status'] == null ? MemberStatus.inactive : _status(json['status']),
   joinedOn: _date(json['joined_on']),
   notes: json['notes'] as String?,
   planName: json['plan_name'] as String?,
@@ -38,9 +36,7 @@ _Member _$MemberFromJson(Map<String, dynamic> json) => _Member(
   membershipEnd: _date(json['membership_end']),
   currentMembershipId: json['current_membership_id'] as String?,
   whatsappOptOut: json['whatsapp_opt_out'] as bool? ?? false,
-  archivedAt: json['archived_at'] == null
-      ? null
-      : DateTime.parse(json['archived_at'] as String),
+  archivedAt: json['archived_at'] == null ? null : DateTime.parse(json['archived_at'] as String),
   duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
 );
 
@@ -126,21 +122,19 @@ Map<String, dynamic> _$AddonToJson(_Addon instance) => <String, dynamic>{
   'is_archived': instance.isArchived,
 };
 
-_MembershipFreeze _$MembershipFreezeFromJson(Map<String, dynamic> json) =>
-    _MembershipFreeze(
-      id: json['id'] as String,
-      fromDate: _date(json['from_date']),
-      toDate: _date(json['to_date']),
-      reason: json['reason'] as String?,
-    );
+_MembershipFreeze _$MembershipFreezeFromJson(Map<String, dynamic> json) => _MembershipFreeze(
+  id: json['id'] as String,
+  fromDate: _date(json['from_date']),
+  toDate: _date(json['to_date']),
+  reason: json['reason'] as String?,
+);
 
-Map<String, dynamic> _$MembershipFreezeToJson(_MembershipFreeze instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'from_date': _dateOut(instance.fromDate),
-      'to_date': _dateOut(instance.toDate),
-      'reason': instance.reason,
-    };
+Map<String, dynamic> _$MembershipFreezeToJson(_MembershipFreeze instance) => <String, dynamic>{
+  'id': instance.id,
+  'from_date': _dateOut(instance.fromDate),
+  'to_date': _dateOut(instance.toDate),
+  'reason': instance.reason,
+};
 
 _Membership _$MembershipFromJson(Map<String, dynamic> json) => _Membership(
   id: json['id'] as String,
@@ -149,9 +143,7 @@ _Membership _$MembershipFromJson(Map<String, dynamic> json) => _Membership(
   planName: json['plan_name'] as String,
   startDate: _date(json['start_date']),
   endDate: _date(json['end_date']),
-  status: json['status'] == null
-      ? MemberStatus.active
-      : _status(json['status']),
+  status: json['status'] == null ? MemberStatus.active : _status(json['status']),
   pricePaise: (json['price_paise'] as num?)?.toInt() ?? 0,
   joiningFeePaise: (json['joining_fee_paise'] as num?)?.toInt() ?? 0,
   addonsPaise: (json['addons_paise'] as num?)?.toInt() ?? 0,
@@ -167,49 +159,46 @@ _Membership _$MembershipFromJson(Map<String, dynamic> json) => _Membership(
       const [],
 );
 
-Map<String, dynamic> _$MembershipToJson(_Membership instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'member_id': instance.memberId,
-      'plan_id': instance.planId,
-      'plan_name': instance.planName,
-      'start_date': _dateOut(instance.startDate),
-      'end_date': _dateOut(instance.endDate),
-      'status': _statusOut(instance.status),
-      'price_paise': instance.pricePaise,
-      'joining_fee_paise': instance.joiningFeePaise,
-      'addons_paise': instance.addonsPaise,
-      'discount_paise': instance.discountPaise,
-      'discount_reason': instance.discountReason,
-      'freeze_days_used': instance.freezeDaysUsed,
-      'source': instance.source,
-      'cancelled_reason': instance.cancelledReason,
-      'membership_freezes': instance.freezes.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$MembershipToJson(_Membership instance) => <String, dynamic>{
+  'id': instance.id,
+  'member_id': instance.memberId,
+  'plan_id': instance.planId,
+  'plan_name': instance.planName,
+  'start_date': _dateOut(instance.startDate),
+  'end_date': _dateOut(instance.endDate),
+  'status': _statusOut(instance.status),
+  'price_paise': instance.pricePaise,
+  'joining_fee_paise': instance.joiningFeePaise,
+  'addons_paise': instance.addonsPaise,
+  'discount_paise': instance.discountPaise,
+  'discount_reason': instance.discountReason,
+  'freeze_days_used': instance.freezeDaysUsed,
+  'source': instance.source,
+  'cancelled_reason': instance.cancelledReason,
+  'membership_freezes': instance.freezes.map((e) => e.toJson()).toList(),
+};
 
-_MemberHealth _$MemberHealthFromJson(Map<String, dynamic> json) =>
-    _MemberHealth(
-      memberId: json['member_id'] as String,
-      heightCm: json['height_cm'] as num?,
-      weightKg: json['weight_kg'] as num?,
-      conditions: json['conditions'] as String?,
-      injuries: json['injuries'] as String?,
-      medications: json['medications'] as String?,
-      parq: json['parq'] as Map<String, dynamic>? ?? const <String, dynamic>{},
-      doctorClearance: json['doctor_clearance'] as bool? ?? false,
-    );
+_MemberHealth _$MemberHealthFromJson(Map<String, dynamic> json) => _MemberHealth(
+  memberId: json['member_id'] as String,
+  heightCm: json['height_cm'] as num?,
+  weightKg: json['weight_kg'] as num?,
+  conditions: json['conditions'] as String?,
+  injuries: json['injuries'] as String?,
+  medications: json['medications'] as String?,
+  parq: json['parq'] as Map<String, dynamic>? ?? const <String, dynamic>{},
+  doctorClearance: json['doctor_clearance'] as bool? ?? false,
+);
 
-Map<String, dynamic> _$MemberHealthToJson(_MemberHealth instance) =>
-    <String, dynamic>{
-      'member_id': instance.memberId,
-      'height_cm': instance.heightCm,
-      'weight_kg': instance.weightKg,
-      'conditions': instance.conditions,
-      'injuries': instance.injuries,
-      'medications': instance.medications,
-      'parq': instance.parq,
-      'doctor_clearance': instance.doctorClearance,
-    };
+Map<String, dynamic> _$MemberHealthToJson(_MemberHealth instance) => <String, dynamic>{
+  'member_id': instance.memberId,
+  'height_cm': instance.heightCm,
+  'weight_kg': instance.weightKg,
+  'conditions': instance.conditions,
+  'injuries': instance.injuries,
+  'medications': instance.medications,
+  'parq': instance.parq,
+  'doctor_clearance': instance.doctorClearance,
+};
 
 _Measurement _$MeasurementFromJson(Map<String, dynamic> json) => _Measurement(
   id: json['id'] as String?,
@@ -225,20 +214,19 @@ _Measurement _$MeasurementFromJson(Map<String, dynamic> json) => _Measurement(
   notes: json['notes'] as String?,
 );
 
-Map<String, dynamic> _$MeasurementToJson(_Measurement instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'member_id': instance.memberId,
-      'measured_on': _dateOut(instance.measuredOn),
-      'weight_kg': instance.weightKg,
-      'body_fat': instance.bodyFat,
-      'chest': instance.chest,
-      'waist': instance.waist,
-      'hips': instance.hips,
-      'arms': instance.arms,
-      'thighs': instance.thighs,
-      'notes': instance.notes,
-    };
+Map<String, dynamic> _$MeasurementToJson(_Measurement instance) => <String, dynamic>{
+  'id': instance.id,
+  'member_id': instance.memberId,
+  'measured_on': _dateOut(instance.measuredOn),
+  'weight_kg': instance.weightKg,
+  'body_fat': instance.bodyFat,
+  'chest': instance.chest,
+  'waist': instance.waist,
+  'hips': instance.hips,
+  'arms': instance.arms,
+  'thighs': instance.thighs,
+  'notes': instance.notes,
+};
 
 _Attendance _$AttendanceFromJson(Map<String, dynamic> json) => _Attendance(
   id: json['id'] as String,
@@ -249,14 +237,13 @@ _Attendance _$AttendanceFromJson(Map<String, dynamic> json) => _Attendance(
   memberName: json['memberName'] as String?,
 );
 
-Map<String, dynamic> _$AttendanceToJson(_Attendance instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'member_id': instance.memberId,
-      'day': _dateOut(instance.day),
-      'checked_in_at': instance.checkedInAt.toIso8601String(),
-      'method': instance.method,
-    };
+Map<String, dynamic> _$AttendanceToJson(_Attendance instance) => <String, dynamic>{
+  'id': instance.id,
+  'member_id': instance.memberId,
+  'day': _dateOut(instance.day),
+  'checked_in_at': instance.checkedInAt.toIso8601String(),
+  'method': instance.method,
+};
 
 _MemberEvent _$MemberEventFromJson(Map<String, dynamic> json) => _MemberEvent(
   id: (json['id'] as num).toInt(),
@@ -266,62 +253,57 @@ _MemberEvent _$MemberEventFromJson(Map<String, dynamic> json) => _MemberEvent(
   at: DateTime.parse(json['at'] as String),
 );
 
-Map<String, dynamic> _$MemberEventToJson(_MemberEvent instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'kind': instance.kind,
-      'title': instance.title,
-      'data': instance.data,
-      'at': instance.at.toIso8601String(),
-    };
+Map<String, dynamic> _$MemberEventToJson(_MemberEvent instance) => <String, dynamic>{
+  'id': instance.id,
+  'kind': instance.kind,
+  'title': instance.title,
+  'data': instance.data,
+  'at': instance.at.toIso8601String(),
+};
 
-_CheckInResult _$CheckInResultFromJson(Map<String, dynamic> json) =>
-    _CheckInResult(
-      memberId: json['member_id'] as String,
-      name: json['name'] as String,
-      memberCode: json['member_code'] as String,
-      photoPath: json['photo_url'] as String?,
-      status: _status(json['status']),
-      planName: json['plan_name'] as String?,
-      daysLeft: (json['days_left'] as num?)?.toInt(),
-      already: json['already'] as bool? ?? false,
-      duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
-    );
+_CheckInResult _$CheckInResultFromJson(Map<String, dynamic> json) => _CheckInResult(
+  memberId: json['member_id'] as String,
+  name: json['name'] as String,
+  memberCode: json['member_code'] as String,
+  photoPath: json['photo_url'] as String?,
+  status: _status(json['status']),
+  planName: json['plan_name'] as String?,
+  daysLeft: (json['days_left'] as num?)?.toInt(),
+  already: json['already'] as bool? ?? false,
+  duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
+);
 
-Map<String, dynamic> _$CheckInResultToJson(_CheckInResult instance) =>
-    <String, dynamic>{
-      'member_id': instance.memberId,
-      'name': instance.name,
-      'member_code': instance.memberCode,
-      'photo_url': instance.photoPath,
-      'status': _statusOut(instance.status),
-      'plan_name': instance.planName,
-      'days_left': instance.daysLeft,
-      'already': instance.already,
-      'dues_paise': instance.duesPaise,
-    };
+Map<String, dynamic> _$CheckInResultToJson(_CheckInResult instance) => <String, dynamic>{
+  'member_id': instance.memberId,
+  'name': instance.name,
+  'member_code': instance.memberCode,
+  'photo_url': instance.photoPath,
+  'status': _statusOut(instance.status),
+  'plan_name': instance.planName,
+  'days_left': instance.daysLeft,
+  'already': instance.already,
+  'dues_paise': instance.duesPaise,
+};
 
-_DashboardCounts _$DashboardCountsFromJson(Map<String, dynamic> json) =>
-    _DashboardCounts(
-      active: (json['active'] as num?)?.toInt() ?? 0,
-      expiring: (json['expiring'] as num?)?.toInt() ?? 0,
-      expired: (json['expired'] as num?)?.toInt() ?? 0,
-      frozen: (json['frozen'] as num?)?.toInt() ?? 0,
-      total: (json['total'] as num?)?.toInt() ?? 0,
-      newThisMonth: (json['new_this_month'] as num?)?.toInt() ?? 0,
-      checkinsToday: (json['checkins_today'] as num?)?.toInt() ?? 0,
-    );
+_DashboardCounts _$DashboardCountsFromJson(Map<String, dynamic> json) => _DashboardCounts(
+  active: (json['active'] as num?)?.toInt() ?? 0,
+  expiring: (json['expiring'] as num?)?.toInt() ?? 0,
+  expired: (json['expired'] as num?)?.toInt() ?? 0,
+  frozen: (json['frozen'] as num?)?.toInt() ?? 0,
+  total: (json['total'] as num?)?.toInt() ?? 0,
+  newThisMonth: (json['new_this_month'] as num?)?.toInt() ?? 0,
+  checkinsToday: (json['checkins_today'] as num?)?.toInt() ?? 0,
+);
 
-Map<String, dynamic> _$DashboardCountsToJson(_DashboardCounts instance) =>
-    <String, dynamic>{
-      'active': instance.active,
-      'expiring': instance.expiring,
-      'expired': instance.expired,
-      'frozen': instance.frozen,
-      'total': instance.total,
-      'new_this_month': instance.newThisMonth,
-      'checkins_today': instance.checkinsToday,
-    };
+Map<String, dynamic> _$DashboardCountsToJson(_DashboardCounts instance) => <String, dynamic>{
+  'active': instance.active,
+  'expiring': instance.expiring,
+  'expired': instance.expired,
+  'frozen': instance.frozen,
+  'total': instance.total,
+  'new_this_month': instance.newThisMonth,
+  'checkins_today': instance.checkinsToday,
+};
 
 _NeedsAction _$NeedsActionFromJson(Map<String, dynamic> json) => _NeedsAction(
   memberId: json['member_id'] as String,
@@ -332,21 +314,18 @@ _NeedsAction _$NeedsActionFromJson(Map<String, dynamic> json) => _NeedsAction(
   detail: json['detail'] as String?,
 );
 
-Map<String, dynamic> _$NeedsActionToJson(_NeedsAction instance) =>
-    <String, dynamic>{
-      'member_id': instance.memberId,
-      'name': instance.name,
-      'phone': instance.phone,
-      'photo_url': instance.photoPath,
-      'reason': _reasonOut(instance.reason),
-      'detail': instance.detail,
-    };
+Map<String, dynamic> _$NeedsActionToJson(_NeedsAction instance) => <String, dynamic>{
+  'member_id': instance.memberId,
+  'name': instance.name,
+  'phone': instance.phone,
+  'photo_url': instance.photoPath,
+  'reason': _reasonOut(instance.reason),
+  'detail': instance.detail,
+};
 
 _MemberQuery _$MemberQueryFromJson(Map<String, dynamic> json) => _MemberQuery(
   search: json['search'] as String? ?? '',
-  statuses:
-      (json['statuses'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-      const <String>[],
+  statuses: (json['statuses'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const <String>[],
   planName: json['planName'] as String?,
   trainerId: json['trainerId'] as String?,
   batch: json['batch'] as String?,
@@ -354,28 +333,22 @@ _MemberQuery _$MemberQueryFromJson(Map<String, dynamic> json) => _MemberQuery(
   birthdayThisMonth: json['birthdayThisMonth'] as bool? ?? false,
   joinedFrom: _date(json['joinedFrom']),
   joinedTo: _date(json['joinedTo']),
-  sort:
-      $enumDecodeNullable(_$MemberSortEnumMap, json['sort']) ?? MemberSort.name,
+  sort: $enumDecodeNullable(_$MemberSortEnumMap, json['sort']) ?? MemberSort.name,
   includeArchived: json['includeArchived'] as bool? ?? false,
 );
 
-Map<String, dynamic> _$MemberQueryToJson(_MemberQuery instance) =>
-    <String, dynamic>{
-      'search': instance.search,
-      'statuses': instance.statuses,
-      'planName': instance.planName,
-      'trainerId': instance.trainerId,
-      'batch': instance.batch,
-      'gender': instance.gender,
-      'birthdayThisMonth': instance.birthdayThisMonth,
-      'joinedFrom': _dateOut(instance.joinedFrom),
-      'joinedTo': _dateOut(instance.joinedTo),
-      'sort': _$MemberSortEnumMap[instance.sort]!,
-      'includeArchived': instance.includeArchived,
-    };
-
-const _$MemberSortEnumMap = {
-  MemberSort.name: 'name',
-  MemberSort.endDate: 'endDate',
-  MemberSort.joined: 'joined',
+Map<String, dynamic> _$MemberQueryToJson(_MemberQuery instance) => <String, dynamic>{
+  'search': instance.search,
+  'statuses': instance.statuses,
+  'planName': instance.planName,
+  'trainerId': instance.trainerId,
+  'batch': instance.batch,
+  'gender': instance.gender,
+  'birthdayThisMonth': instance.birthdayThisMonth,
+  'joinedFrom': _dateOut(instance.joinedFrom),
+  'joinedTo': _dateOut(instance.joinedTo),
+  'sort': _$MemberSortEnumMap[instance.sort]!,
+  'includeArchived': instance.includeArchived,
 };
+
+const _$MemberSortEnumMap = {MemberSort.name: 'name', MemberSort.endDate: 'endDate', MemberSort.joined: 'joined'};

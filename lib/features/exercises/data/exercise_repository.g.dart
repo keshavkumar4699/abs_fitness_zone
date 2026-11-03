@@ -13,12 +13,7 @@ part of 'exercise_repository.dart';
 final exerciseRepositoryProvider = ExerciseRepositoryProvider._();
 
 final class ExerciseRepositoryProvider
-    extends
-        $FunctionalProvider<
-          ExerciseRepository,
-          ExerciseRepository,
-          ExerciseRepository
-        >
+    extends $FunctionalProvider<ExerciseRepository, ExerciseRepository, ExerciseRepository>
     with $Provider<ExerciseRepository> {
   ExerciseRepositoryProvider._()
     : super(
@@ -36,9 +31,7 @@ final class ExerciseRepositoryProvider
 
   @$internal
   @override
-  $ProviderElement<ExerciseRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<ExerciseRepository> $createElement($ProviderPointer pointer) => $ProviderElement(pointer);
 
   @override
   ExerciseRepository create(Ref ref) {
@@ -47,12 +40,8 @@ final class ExerciseRepositoryProvider
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(ExerciseRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ExerciseRepository>(value),
-    );
+    return $ProviderOverride(origin: this, providerOverride: $SyncValueProvider<ExerciseRepository>(value));
   }
 }
 
-String _$exerciseRepositoryHash() =>
-    r'c205e0a7b8fc0f18e21e4bb74858e23dc7e0c89c';
+String _$exerciseRepositoryHash() => r'c205e0a7b8fc0f18e21e4bb74858e23dc7e0c89c';

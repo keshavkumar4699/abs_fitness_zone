@@ -14,19 +14,16 @@ part of 'team_list_controller.dart';
 final teamListProvider = TeamListFamily._();
 
 /// Paged, searchable staff roster.
-final class TeamListProvider
-    extends $AsyncNotifierProvider<TeamList, Paged<StaffMember>> {
+final class TeamListProvider extends $AsyncNotifierProvider<TeamList, Paged<StaffMember>> {
   /// Paged, searchable staff roster.
-  TeamListProvider._({
-    required TeamListFamily super.from,
-    required String super.argument,
-  }) : super(
-         retry: null,
-         name: r'teamListProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  TeamListProvider._({required TeamListFamily super.from, required String super.argument})
+    : super(
+        retry: null,
+        name: r'teamListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$teamListHash();
@@ -77,8 +74,7 @@ final class TeamListFamily extends $Family
 
   /// Paged, searchable staff roster.
 
-  TeamListProvider call(String query) =>
-      TeamListProvider._(argument: query, from: this);
+  TeamListProvider call(String query) => TeamListProvider._(argument: query, from: this);
 
   @override
   String toString() => r'teamListProvider';
@@ -94,8 +90,7 @@ abstract class _$TeamList extends $AsyncNotifier<Paged<StaffMember>> {
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref =
-        this.ref as $Ref<AsyncValue<Paged<StaffMember>>, Paged<StaffMember>>;
+    final ref = this.ref as $Ref<AsyncValue<Paged<StaffMember>>, Paged<StaffMember>>;
     final element =
         ref.element
             as $ClassProviderElement<

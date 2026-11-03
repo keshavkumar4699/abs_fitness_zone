@@ -6,8 +6,10 @@ import '../../../app/theme/theme.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../members/application/members_providers.dart';
 import '../../members/presentation/member_detail_screen.dart' show AttendanceGrid, MeasurementsView;
+import '../../workouts/presentation/workout_progress_card.dart';
 
-/// Member: own measurements (read-only, recorded by the trainer) and visits.
+/// Member: workouts and PRs, visits, and own measurements (read-only,
+/// recorded by the trainer).
 class MyProgressScreen extends ConsumerWidget {
   const MyProgressScreen({super.key});
 
@@ -21,6 +23,10 @@ class MyProgressScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l.myProgressTitle)),
       body: Column(
         children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(context.screenPadding, 0, context.screenPadding, AbsSpace.x3),
+            child: WorkoutProgressCard(memberId: id),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: context.screenPadding),
             child: AttendanceGrid(visits: visits),
