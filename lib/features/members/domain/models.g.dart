@@ -184,7 +184,7 @@ Map<String, dynamic> _$MembershipToJson(_Membership instance) =>
       'freeze_days_used': instance.freezeDaysUsed,
       'source': instance.source,
       'cancelled_reason': instance.cancelledReason,
-      'membership_freezes': instance.freezes,
+      'membership_freezes': instance.freezes.map((e) => e.toJson()).toList(),
     };
 
 _MemberHealth _$MemberHealthFromJson(Map<String, dynamic> json) =>

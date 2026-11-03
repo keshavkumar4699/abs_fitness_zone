@@ -1,0 +1,8 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          # Nested models serialise to plain maps (workout sessions and the
+          # offline program cache are saved on the phone).
+          explicit_to_json: true

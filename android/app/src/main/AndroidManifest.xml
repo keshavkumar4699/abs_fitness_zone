@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Rest timer: an exact alert when the rest ends, even with the screen off
+         (falls back to an inexact one if the user hasn't allowed exact alarms). -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <application
         android:label="ABS Fitness"
         android:name="${applicationName}"
@@ -33,6 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- Shows scheduled notifications (the rest-timer alert). -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <!-- Deep links are auth callbacks for Supabase, not app routes. -->
         <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
         <!-- Don't delete the meta-data below.

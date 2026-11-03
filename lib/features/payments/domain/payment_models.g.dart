@@ -177,9 +177,9 @@ Map<String, dynamic> _$InvoiceToJson(_Invoice instance) => <String, dynamic>{
   'overdue_days': instance.overdueDays,
   'gateway_link_url': instance.gatewayLinkUrl,
   'voided_reason': instance.voidedReason,
-  'invoice_items': instance.items,
-  'instalments': instance.instalments,
-  'payments': instance.payments,
+  'invoice_items': instance.items.map((e) => e.toJson()).toList(),
+  'instalments': instance.instalments.map((e) => e.toJson()).toList(),
+  'payments': instance.payments.map((e) => e.toJson()).toList(),
 };
 
 const _$InvoiceStatusEnumMap = {
@@ -325,7 +325,7 @@ Map<String, dynamic> _$CollectionsSummaryToJson(_CollectionsSummary instance) =>
     <String, dynamic>{
       'collected': instance.collected,
       'by_mode': instance.byMode,
-      'by_day': instance.byDay,
+      'by_day': instance.byDay.map((e) => e.toJson()).toList(),
       'invoiced': instance.invoiced,
       'outstanding': instance.outstanding,
       'refunds': instance.refunds,
