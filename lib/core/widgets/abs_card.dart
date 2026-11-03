@@ -83,15 +83,19 @@ class _AbsCardState extends State<AbsCard> {
           outline: pop != null && c.isDark ? pop.deep : null,
           lipDepth: pressed ? 0 : AbsDepth.cardLip,
         ),
-        child: widget.solid && pop != null
-            ? DefaultTextStyle.merge(
-                style: TextStyle(color: pop.onFill),
-                child: IconTheme.merge(
-                  data: IconThemeData(color: pop.onFill),
-                  child: body,
-                ),
-              )
-            : body,
+        // Transparent Material so ListTiles and InkWells inside paint on the card.
+        child: Material(
+          type: MaterialType.transparency,
+          child: widget.solid && pop != null
+              ? DefaultTextStyle.merge(
+                  style: TextStyle(color: pop.onFill),
+                  child: IconTheme.merge(
+                    data: IconThemeData(color: pop.onFill),
+                    child: body,
+                  ),
+                )
+              : body,
+        ),
       ),
     );
 

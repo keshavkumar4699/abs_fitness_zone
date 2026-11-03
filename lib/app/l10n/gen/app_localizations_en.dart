@@ -1768,4 +1768,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String visitedAt(String time) {
     return 'Checked in $time';
   }
+
+  @override
+  String get daysShort => 'days';
 }

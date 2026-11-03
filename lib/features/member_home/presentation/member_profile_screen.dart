@@ -8,6 +8,7 @@ import '../../../core/utils/phone.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../settings/presentation/appearance_card.dart';
+import '../../members/domain/models.dart';
 import '../data/my_member_repository.dart';
 
 class MemberProfileScreen extends ConsumerWidget {
@@ -55,7 +56,7 @@ class MemberProfileScreen extends ConsumerWidget {
             MediaQuery.paddingOf(context).bottom + AbsSpace.x6,
           ),
           children: [
-            AsyncView<MyMember?>(
+            AsyncView<Member?>(
               value: member,
               onRetry: () => ref.invalidate(myMemberProvider),
               loading: SkeletonBlock(child: card('Member name', 'ABS-0000', '+910000000000')),

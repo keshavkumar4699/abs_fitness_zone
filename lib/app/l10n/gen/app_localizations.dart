@@ -3271,6 +3271,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Checked in {time}'**
   String visitedAt(String time);
+
+  /// No description provided for @daysShort.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get daysShort;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

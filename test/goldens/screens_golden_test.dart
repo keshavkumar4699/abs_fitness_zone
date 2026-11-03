@@ -5,23 +5,18 @@ import 'package:abs_fitness/app/app.dart';
 import 'package:abs_fitness/app/router.dart';
 import 'package:abs_fitness/features/auth/domain/app_user.dart';
 import 'package:abs_fitness/features/member_home/data/my_member_repository.dart';
-import 'package:abs_fitness/features/settings/data/staff_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/fakes.dart';
+import '../helpers/member_fakes.dart';
 import '../helpers/pump.dart';
 
 /// Screenshots of every M0 screen in light and dark mode (spec rule 10).
 /// Regenerate: flutter test --update-goldens --tags golden
 void main() {
-  final overrides = <Override>[
-    staffRepositoryProvider.overrideWithValue(FakeStaffRepository([...sampleStaff])),
-    myMemberProvider.overrideWith(
-      (ref) async => const MyMember(id: 'm-1', name: 'Aarav Sharma', memberCode: 'ABS-0001', phone: '+919876543210'),
-    ),
-  ];
+  final overrides = <Override>[myMemberProvider.overrideWith((ref) async => sampleMembers().first)];
 
   Future<void> shot(
     WidgetTester tester,

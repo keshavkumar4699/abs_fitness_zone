@@ -106,13 +106,44 @@ class MoreScreen extends ConsumerWidget {
               Routes.memberPin,
               PopHue.tangerine,
             ),
+          item(
+            PhosphorIcons.tag(PhosphorIconsStyle.bold),
+            l.morePlans,
+            l.morePlansSubtitle,
+            Routes.membershipPlans,
+            PopHue.lime,
+          ),
+          if (user.role.isDesk)
+            item(
+              PhosphorIcons.qrCode(PhosphorIconsStyle.bold),
+              l.moreGymQr,
+              l.moreGymQrSubtitle,
+              Routes.gymQr,
+              PopHue.mint,
+            ),
+          if (user.role.isDesk)
+            item(
+              PhosphorIcons.fileArrowUp(PhosphorIconsStyle.bold),
+              l.moreImport,
+              l.moreImportSubtitle,
+              Routes.memberImport,
+              PopHue.tangerine,
+            ),
+          if (user.role.isOwner)
+            item(
+              PhosphorIcons.storefront(PhosphorIconsStyle.bold),
+              l.moreGymProfile,
+              l.moreGymProfileSubtitle,
+              Routes.gymProfile,
+              PopHue.grape,
+            ),
           if (user.role.isOwner)
             item(
               PhosphorIcons.squaresFour(PhosphorIconsStyle.bold),
               l.moreGallery,
               l.moreGallerySubtitle,
               Routes.gallery,
-              PopHue.mint,
+              PopHue.bubblegum,
             ),
           const AppearanceCard(),
           const SizedBox(height: AbsSpace.x6),

@@ -16,13 +16,8 @@ final myMemberProvider = MyMemberProvider._();
 /// The signed-in member's own record (RLS limits the read to their row).
 
 final class MyMemberProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<MyMember?>,
-          MyMember?,
-          FutureOr<MyMember?>
-        >
-    with $FutureModifier<MyMember?>, $FutureProvider<MyMember?> {
+    extends $FunctionalProvider<AsyncValue<Member?>, Member?, FutureOr<Member?>>
+    with $FutureModifier<Member?>, $FutureProvider<Member?> {
   /// The signed-in member's own record (RLS limits the read to their row).
   MyMemberProvider._()
     : super(
@@ -40,13 +35,13 @@ final class MyMemberProvider
 
   @$internal
   @override
-  $FutureProviderElement<MyMember?> $createElement($ProviderPointer pointer) =>
+  $FutureProviderElement<Member?> $createElement($ProviderPointer pointer) =>
       $FutureProviderElement(pointer);
 
   @override
-  FutureOr<MyMember?> create(Ref ref) {
+  FutureOr<Member?> create(Ref ref) {
     return myMember(ref);
   }
 }
 
-String _$myMemberHash() => r'ae281566a4f93bbdbb947dc3d9785ceef31411e1';
+String _$myMemberHash() => r'5389a9c5012481d121ea469be350efc3bd063c57';

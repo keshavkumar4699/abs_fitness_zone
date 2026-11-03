@@ -1,5 +1,4 @@
 import 'package:abs_fitness/app/router.dart';
-import 'package:abs_fitness/features/settings/data/staff_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -112,13 +111,7 @@ void main() {
   });
 
   testWidgets('owner sees Staff in More and can open the roster', (tester) async {
-    final container = await pumpApp(
-      tester,
-      user: ownerUser,
-      overrides: [
-        staffRepositoryProvider.overrideWithValue(FakeStaffRepository([...sampleStaff])),
-      ],
-    );
+    final container = await pumpApp(tester, user: ownerUser, staff: FakeStaffRepository([...sampleStaff]));
     await settle(tester);
     container.read(routerProvider).go(Routes.staffMore);
     await settle(tester);
@@ -154,11 +147,7 @@ void main() {
 
   testWidgets('roster shows error state with a working retry', (tester) async {
     final repo = FakeStaffRepository([...sampleStaff])..error = networkDown;
-    final container = await pumpApp(
-      tester,
-      user: ownerUser,
-      overrides: [staffRepositoryProvider.overrideWithValue(repo)],
-    );
+    final container = await pumpApp(tester, user: ownerUser, staff: repo);
     await settle(tester);
     container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);

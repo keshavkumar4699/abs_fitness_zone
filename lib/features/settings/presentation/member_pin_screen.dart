@@ -15,7 +15,10 @@ import '../data/member_pin_repository.dart';
 
 /// Front desk / owner: find a member by phone and set their 4-digit app PIN.
 class MemberPinScreen extends ConsumerStatefulWidget {
-  const MemberPinScreen({super.key});
+  const MemberPinScreen({super.key, this.initialPhone});
+
+  /// Prefilled from the member detail screen.
+  final String? initialPhone;
 
   @override
   ConsumerState<MemberPinScreen> createState() => _MemberPinScreenState();
@@ -32,6 +35,15 @@ class _MemberPinScreenState extends ConsumerState<MemberPinScreen> {
   bool _done = false;
   int _celebrate = 0;
   Timer? _resetDone;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialPhone != null) {
+      _phone.text = widget.initialPhone!;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _find());
+    }
+  }
 
   @override
   void dispose() {

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/fakes.dart';
+import '../helpers/member_fakes.dart';
 import '../helpers/pump.dart';
 
 Future<void> settle(WidgetTester tester, [int frames = 10]) async {
@@ -16,11 +17,7 @@ Future<void> settle(WidgetTester tester, [int frames = 10]) async {
 void main() {
   testWidgets('owner turns a trainer off and back on', (tester) async {
     final repo = FakeStaffRepository([...sampleStaff]);
-    final container = await pumpApp(
-      tester,
-      user: ownerUser,
-      overrides: [staffRepositoryProvider.overrideWithValue(repo)],
-    );
+    final container = await pumpApp(tester, user: ownerUser, staff: repo);
     await settle(tester);
     container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);
@@ -40,13 +37,7 @@ void main() {
   });
 
   testWidgets('the owner account cannot be switched off', (tester) async {
-    final container = await pumpApp(
-      tester,
-      user: ownerUser,
-      overrides: [
-        staffRepositoryProvider.overrideWithValue(FakeStaffRepository([...sampleStaff])),
-      ],
-    );
+    final container = await pumpApp(tester, user: ownerUser, staff: FakeStaffRepository([...sampleStaff]));
     await settle(tester);
     container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);
@@ -67,11 +58,7 @@ void main() {
           isActive: true,
         ),
     ];
-    final container = await pumpApp(
-      tester,
-      user: ownerUser,
-      overrides: [staffRepositoryProvider.overrideWithValue(FakeStaffRepository(many))],
-    );
+    final container = await pumpApp(tester, user: ownerUser, staff: FakeStaffRepository(many));
     await settle(tester);
     container.read(routerProvider).go(Routes.staffTeam);
     await settle(tester);
@@ -105,21 +92,26 @@ void main() {
     expect(container.read(routerProvider).state.matchedLocation, Routes.staffHome);
   });
 
-  testWidgets('trainers see their own home, not the owner checklist', (tester) async {
+  testWidgets('trainers get the dashboard without desk-only actions', (tester) async {
     await pumpApp(tester, user: trainerUser);
     await settle(tester);
     expect(find.text('Hey Vikram!'), findsOneWidget);
-    expect(find.text('Invite your team'), findsNothing);
-    expect(find.text('Your assigned members, sessions and plans will show up here.'), findsOneWidget);
+    expect(find.text('Active members'), findsOneWidget);
+    expect(find.text('Create membership plans'), findsNothing);
+    await tester.tap(find.byTooltip('Quick actions'));
+    await settle(tester);
+    expect(find.text('Check-in'), findsWidgets);
+    expect(find.text('New member'), findsNothing);
   });
 
-  testWidgets('front desk checklist links to Member PIN', (tester) async {
-    final container = await pumpApp(tester, user: deskUser);
+  testWidgets('owner without plans sees setup steps on home', (tester) async {
+    final plans = FakePlansRepository()..planList.clear();
+    final container = await pumpApp(tester, user: ownerUser, plans: plans);
     await settle(tester);
-    expect(find.text('Invite your team'), findsNothing);
-    await tester.tap(find.text('Give members app access'));
+    expect(find.text('Create membership plans'), findsOneWidget);
+    await tester.tap(find.text('Create membership plans'));
     await settle(tester);
-    expect(container.read(routerProvider).state.matchedLocation, Routes.memberPin);
-    expect(find.text('Find member'), findsOneWidget);
+    expect(container.read(routerProvider).state.matchedLocation, Routes.membershipPlans);
+    expect(find.text('No plans yet'), findsOneWidget);
   });
 }

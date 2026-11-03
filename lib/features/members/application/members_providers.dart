@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../app/providers.dart';
@@ -86,15 +87,16 @@ Stream<List<Attendance>> todaysCheckIns(Ref ref) => ref.watch(membersRepositoryP
 Future<String?> photoUrl(Ref ref, String? path) => ref.watch(membersRepositoryProvider).photoUrl(path);
 
 /// Refresh everything that depends on one member after a change.
-void invalidateMember(Ref ref, String id) {
-  ref
-    ..invalidate(memberProvider(id))
-    ..invalidate(memberMembershipsProvider(id))
-    ..invalidate(memberEventsProvider(id))
-    ..invalidate(memberAttendanceProvider(id))
-    ..invalidate(memberListProvider)
-    ..invalidate(dashboardProvider)
-    ..invalidate(needsActionProvider);
+extension MemberRefresh on WidgetRef {
+  void refreshMember(String id) {
+    invalidate(memberProvider(id));
+    invalidate(memberMembershipsProvider(id));
+    invalidate(memberEventsProvider(id));
+    invalidate(memberAttendanceProvider(id));
+    invalidate(memberListProvider);
+    invalidate(dashboardProvider);
+    invalidate(needsActionProvider);
+  }
 }
 
 /// Filters saved on this device (1.13 "saved filters").

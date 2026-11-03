@@ -26,7 +26,11 @@ import 'widgets/member_photo.dart';
 /// Members list (1.13, 1.14): search, quick status chips, full filters, saved
 /// filters, sort, paging, pull-to-refresh, multi-select bulk actions.
 class MembersScreen extends ConsumerStatefulWidget {
-  const MembersScreen({super.key});
+  const MembersScreen({super.key, this.initialStatus, this.initialSort});
+
+  /// From the dashboard tiles: `?status=expiring`, `?sort=joined`.
+  final String? initialStatus;
+  final String? initialSort;
 
   @override
   ConsumerState<MembersScreen> createState() => _MembersScreenState();
@@ -40,6 +44,33 @@ class _MembersScreenState extends ConsumerState<MembersScreen> {
   bool _firstLoad = true;
 
   bool get _selecting => _selected.isNotEmpty;
+
+  MemberQuery _fromParams(MemberQuery base) {
+    final status = widget.initialStatus;
+    final sort = MemberSort.values.where((s) => s.name == widget.initialSort).firstOrNull;
+    return base.copyWith(
+      statuses: status == null
+          ? base.statuses
+          : status == 'active'
+          ? const ['active', 'expiring']
+          : [status],
+      sort: sort ?? base.sort,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _query = _fromParams(_query);
+  }
+
+  @override
+  void didUpdateWidget(MembersScreen old) {
+    super.didUpdateWidget(old);
+    if (old.initialStatus != widget.initialStatus || old.initialSort != widget.initialSort) {
+      setState(() => _query = _fromParams(const MemberQuery()));
+    }
+  }
 
   @override
   void dispose() {

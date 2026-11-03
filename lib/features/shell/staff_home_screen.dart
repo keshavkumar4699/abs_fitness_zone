@@ -6,15 +6,30 @@ import 'package:phosphor_icons/phosphor_icons.dart';
 import '../../app/l10n/l10n.dart';
 import '../../app/routes.dart';
 import '../../app/theme/theme.dart';
+import '../../core/services/contact_links.dart';
+import '../../core/utils/dates.dart';
 import '../../core/widgets/widgets.dart';
 import '../auth/application/auth_providers.dart';
 import '../auth/domain/app_user.dart';
+import '../members/application/members_providers.dart';
+import '../members/domain/models.dart';
+import '../members/presentation/member_ui.dart';
+import '../members/presentation/widgets/member_photo.dart';
+import '../settings/data/gym_settings_repository.dart';
 import 'greeting_header.dart';
 
-/// Staff home. Until the dashboard lands (counts in M1, revenue in M2) it
-/// shows a colourful "get started" checklist of the things that work today.
+/// Staff home dashboard (M1: counts only; revenue joins in M2). Trainers see
+/// the same view scoped to their own members by RLS.
 class StaffHomeScreen extends ConsumerWidget {
   const StaffHomeScreen({super.key});
+
+  Future<void> _refresh(WidgetRef ref) async {
+    ref
+      ..invalidate(dashboardProvider)
+      ..invalidate(needsActionProvider)
+      ..invalidate(plansProvider);
+    await ref.read(dashboardProvider.future);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,81 +37,169 @@ class StaffHomeScreen extends ConsumerWidget {
     if (user == null) return const SizedBox.shrink();
     final l = context.l10n;
     final t = context.text;
-    final first = user.name.split(' ').first;
+    final counts = ref.watch(dashboardProvider);
+    final plans = ref.watch(plansProvider);
+    final needsSetup = user.role.isOwner && plans.hasValue && plans.value!.isEmpty;
 
-    final steps = <(IconData, String, String, PopHue, String)>[
-      if (user.role.isOwner)
-        (
-          PhosphorIcons.usersThree(PhosphorIconsStyle.bold),
-          l.homeStepInvite,
-          l.homeStepInviteBody,
-          PopHue.sky,
-          Routes.staffTeam,
-        ),
-      if (user.role.isDesk)
-        (
-          PhosphorIcons.password(PhosphorIconsStyle.bold),
-          l.homeStepPin,
-          l.homeStepPinBody,
-          PopHue.tangerine,
-          Routes.memberPin,
-        ),
+    final tiles = <(String, int Function(DashboardCounts), PopHue, IconData, VoidCallback)>[
       (
-        PhosphorIcons.palette(PhosphorIconsStyle.bold),
-        l.homeStepLook,
-        l.homeStepLookBody,
+        l.dashActive,
+        (c) => c.active,
+        PopHue.sky,
+        PhosphorIcons.users(PhosphorIconsStyle.bold),
+        () => context.go('${Routes.staffMembers}?status=active'),
+      ),
+      (
+        l.dashExpiring,
+        (c) => c.expiring,
+        PopHue.tangerine,
+        PhosphorIcons.hourglassMedium(PhosphorIconsStyle.bold),
+        () => context.go('${Routes.staffMembers}?status=expiring'),
+      ),
+      (
+        l.dashCheckIns,
+        (c) => c.checkinsToday,
+        PopHue.mint,
+        PhosphorIcons.qrCode(PhosphorIconsStyle.bold),
+        () => context.push(Routes.checkIn),
+      ),
+      (
+        l.dashNew,
+        (c) => c.newThisMonth,
         PopHue.bubblegum,
-        Routes.staffMore,
+        PhosphorIcons.sparkle(PhosphorIconsStyle.bold),
+        () => context.go('${Routes.staffMembers}?sort=joined'),
       ),
     ];
 
     return Scaffold(
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
+        child: QuickActionFab(
+          actions: [
+            if (user.role.isDesk)
+              QuickAction(
+                icon: PhosphorIcons.userPlus(PhosphorIconsStyle.bold),
+                label: l.fabNewMember,
+                hue: PopHue.sky,
+                onTap: () => context.push(Routes.memberNew),
+              ),
+            QuickAction(
+              icon: PhosphorIcons.qrCode(PhosphorIconsStyle.bold),
+              label: l.fabCheckIn,
+              hue: PopHue.mint,
+              onTap: () => context.push(Routes.checkIn),
+            ),
+            if (user.role.isDesk)
+              QuickAction(
+                icon: PhosphorIcons.fileArrowUp(PhosphorIconsStyle.bold),
+                label: l.membersImport,
+                hue: PopHue.tangerine,
+                onTap: () => context.push(Routes.memberImport),
+              ),
+          ],
+        ),
+      ),
       body: SafeArea(
         bottom: false,
-        child: ListView(
-          padding: EdgeInsets.fromLTRB(
-            context.screenPadding,
-            AbsSpace.x4,
-            context.screenPadding,
-            MediaQuery.paddingOf(context).bottom + AbsSpace.x8,
-          ),
-          children: [
-            GreetingHeader(name: first),
-            const SizedBox(height: AbsSpace.x6),
-            if (user.role == UserRole.trainer) ...[
-              _ComingCard(body: l.homeTrainerBody),
-            ] else ...[
-              Text(l.homeGetStarted, style: t.title),
-              const SizedBox(height: AbsSpace.x3),
-              for (var i = 0; i < steps.length; i++)
-                Entrance(
-                  index: i,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: AbsSpace.x3),
-                    child: _StepCard(
-                      number: i + 1,
-                      icon: steps[i].$1,
-                      title: steps[i].$2,
-                      body: steps[i].$3,
-                      hue: steps[i].$4,
-                      onTap: () =>
-                          steps[i].$5 == Routes.staffMore ? context.go(steps[i].$5) : context.push(steps[i].$5),
-                    ),
-                  ),
+        child: AbsRefresh(
+          onRefresh: () => _refresh(ref),
+          child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: EdgeInsets.fromLTRB(
+              context.screenPadding,
+              AbsSpace.x4,
+              context.screenPadding,
+              MediaQuery.paddingOf(context).bottom + AbsSpace.x14 * 2,
+            ),
+            children: [
+              GreetingHeader(name: user.name.split(' ').first),
+              const SizedBox(height: AbsSpace.x5),
+              if (needsSetup) ...[
+                _SetupCard(
+                  icon: PhosphorIcons.storefront(PhosphorIconsStyle.bold),
+                  title: l.dashSetupGym,
+                  body: l.dashSetupGymBody,
+                  hue: PopHue.grape,
+                  onTap: () => context.push(Routes.gymProfile),
                 ),
-              const SizedBox(height: AbsSpace.x3),
-              _ComingCard(body: l.homeComingBody),
+                _SetupCard(
+                  icon: PhosphorIcons.tag(PhosphorIconsStyle.bold),
+                  title: l.dashSetupPlans,
+                  body: l.dashSetupPlansBody,
+                  hue: PopHue.lime,
+                  onTap: () => context.push(Routes.membershipPlans),
+                ),
+                _SetupCard(
+                  icon: PhosphorIcons.usersThree(PhosphorIconsStyle.bold),
+                  title: l.homeStepInvite,
+                  body: l.homeStepInviteBody,
+                  hue: PopHue.sky,
+                  onTap: () => context.push(Routes.staffTeam),
+                ),
+                const SizedBox(height: AbsSpace.x3),
+              ],
+              AsyncView<DashboardCounts>(
+                value: counts,
+                isEmpty: (_) => false,
+                empty: const SizedBox.shrink(),
+                onRetry: () => ref.invalidate(dashboardProvider),
+                loading: SkeletonBlock(
+                  child: _TileGrid(tiles: tiles, counts: const DashboardCounts()),
+                ),
+                data: (c) => _TileGrid(tiles: tiles, counts: c),
+              ),
+              const SizedBox(height: AbsSpace.x5),
+              Text(l.dashNeedsAction, style: t.title),
+              const SizedBox(height: AbsSpace.x2),
+              const _NeedsActionList(),
+              const SizedBox(height: AbsSpace.x5),
+              Text(l.dashLiveFeed, style: t.title),
+              const SizedBox(height: AbsSpace.x2),
+              const _LiveFeed(),
+              if (user.role == UserRole.trainer) ...[
+                const SizedBox(height: AbsSpace.x5),
+                Text(l.homeTrainerBody, style: t.caption.copyWith(color: context.colors.textSecondary)),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _StepCard extends StatelessWidget {
-  const _StepCard({
-    required this.number,
+class _TileGrid extends StatelessWidget {
+  const _TileGrid({required this.tiles, required this.counts});
+
+  final List<(String, int Function(DashboardCounts), PopHue, IconData, VoidCallback)> tiles;
+  final DashboardCounts counts;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, box) {
+      final columns = box.maxWidth > 700 ? 4 : 2;
+      final width = (box.maxWidth - AbsSpace.x3 * (columns - 1)) / columns;
+      return Wrap(
+        spacing: AbsSpace.x3,
+        runSpacing: AbsSpace.x1,
+        children: [
+          for (final (i, (label, value, hue, icon, onTap)) in tiles.indexed)
+            SizedBox(
+              width: width,
+              child: Entrance(
+                index: i,
+                child: StatTile(label: label, value: value(counts), hue: hue, icon: icon, onTap: onTap),
+              ),
+            ),
+        ],
+      );
+    },
+  );
+}
+
+class _SetupCard extends StatelessWidget {
+  const _SetupCard({
     required this.icon,
     required this.title,
     required this.body,
@@ -104,7 +207,6 @@ class _StepCard extends StatelessWidget {
     required this.onTap,
   });
 
-  final int number;
   final IconData icon;
   final String title;
   final String body;
@@ -112,63 +214,175 @@ class _StepCard extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    final t = context.text;
-    return AbsCard(
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.only(bottom: AbsSpace.x2),
+    child: AbsCard(
       hue: hue,
       onTap: onTap,
       padding: const EdgeInsets.all(AbsSpace.x4),
       child: Row(
         children: [
-          IconBubble(icon: icon, hue: hue, size: 48),
-          const SizedBox(width: AbsSpace.x4),
+          IconBubble(icon: icon, hue: hue),
+          const SizedBox(width: AbsSpace.x3),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: t.heading),
-                Text(body, style: t.caption.copyWith(color: c.textSecondary)),
+                Text(title, style: context.text.heading),
+                Text(body, style: context.text.caption.copyWith(color: context.colors.textSecondary)),
               ],
             ),
           ),
-          const SizedBox(width: AbsSpace.x2),
-          PopSticker(label: '$number', hue: hue, numeric: true),
+          Icon(PhosphorIcons.caretRight(PhosphorIconsStyle.bold), size: AbsSize.iconSmall),
         ],
+      ),
+    ),
+  );
+}
+
+class _NeedsActionList extends ConsumerWidget {
+  const _NeedsActionList();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final c = context.colors;
+    final items = ref.watch(needsActionProvider);
+    final gym = ref.watch(publicGymProfileProvider).value?['gym_name'] as String? ?? l.gymName;
+
+    (String, PopHue, IconData, String) look(NeedsAction a) {
+      final first = a.name.split(' ').first;
+      final date = a.detail == null || a.detail!.isEmpty ? '' : dateLabel(DateTime.tryParse(a.detail!));
+      return switch (a.reason) {
+        ActionReason.renewalDue => (
+          l.reasonRenewal(date),
+          PopHue.tangerine,
+          PhosphorIcons.hourglassMedium(PhosphorIconsStyle.bold),
+          l.whatsappReminderText(first, '', gym, date).replaceAll('  ', ' '),
+        ),
+        ActionReason.expired => (
+          l.reasonExpired(date),
+          PopHue.coral,
+          PhosphorIcons.calendarX(PhosphorIconsStyle.bold),
+          l.whatsappExpiredText(first, gym, date),
+        ),
+        ActionReason.birthday => (
+          l.reasonBirthday,
+          PopHue.bubblegum,
+          PhosphorIcons.cake(PhosphorIconsStyle.bold),
+          l.whatsappBirthdayText(first, gym),
+        ),
+        ActionReason.absent => (
+          date.isEmpty || date == '—' ? l.reasonAbsent : l.reasonAbsentSince(date),
+          PopHue.sky,
+          PhosphorIcons.footprints(PhosphorIconsStyle.bold),
+          l.whatsappAbsentText(first, gym),
+        ),
+      };
+    }
+
+    return AsyncView<List<NeedsAction>>(
+      value: items,
+      onRetry: () => ref.invalidate(needsActionProvider),
+      loading: const SizedBox(height: 160, child: SkeletonList(itemCount: 2)),
+      empty: AbsCard(
+        hue: PopHue.mint,
+        child: Row(
+          children: [
+            IconBubble(icon: PhosphorIcons.confetti(PhosphorIconsStyle.bold), hue: PopHue.mint),
+            const SizedBox(width: AbsSpace.x3),
+            Expanded(child: Text(l.dashAllClear, style: context.text.body)),
+          ],
+        ),
+      ),
+      data: (list) => AbsCard(
+        padding: const EdgeInsets.symmetric(vertical: AbsSpace.x2),
+        child: Column(
+          children: [
+            for (final a in list.take(12))
+              () {
+                final (reason, hue, icon, text) = look(a);
+                return ListTile(
+                  onTap: () => context.push(Routes.memberDetail(a.memberId)),
+                  leading: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      MemberPhoto(name: a.name, path: a.photoPath, size: 42),
+                      Positioned(
+                        right: -6,
+                        bottom: -6,
+                        child: IconBubble(icon: icon, hue: hue, size: 22),
+                      ),
+                    ],
+                  ),
+                  title: Text(a.name, style: context.text.heading, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  subtitle: Text(reason, style: context.text.caption.copyWith(color: c.pop(hue).text)),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        tooltip: l.actionWhatsApp,
+                        icon: Icon(PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold), color: c.pop(PopHue.mint).text),
+                        onPressed: () => ContactLinks.openWhatsApp(a.phone, text: text),
+                      ),
+                      IconButton(
+                        tooltip: l.actionCall,
+                        icon: Icon(PhosphorIcons.phone(PhosphorIconsStyle.bold), color: c.pop(PopHue.sky).text),
+                        onPressed: () => ContactLinks.openCall(a.phone),
+                      ),
+                    ],
+                  ),
+                );
+              }(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _ComingCard extends StatelessWidget {
-  const _ComingCard({required this.body});
-
-  final String body;
+class _LiveFeed extends ConsumerWidget {
+  const _LiveFeed();
 
   @override
-  Widget build(BuildContext context) {
-    final t = context.text;
-    return AbsCard(
-      hue: PopHue.grape,
-      solid: true,
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  context.l10n.homeComingTitle,
-                  style: t.title.copyWith(color: context.colors.pop(PopHue.grape).onFill),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final feed = ref.watch(todaysCheckInsProvider);
+    return AsyncView<List<Attendance>>(
+      value: feed,
+      onRetry: () => ref.invalidate(todaysCheckInsProvider),
+      loading: const SizedBox(height: 80, child: SkeletonList(itemCount: 1)),
+      empty: AbsCard(
+        child: Row(
+          children: [
+            IconBubble(icon: PhosphorIcons.doorOpen(PhosphorIconsStyle.bold), hue: PopHue.sky, solid: false),
+            const SizedBox(width: AbsSpace.x3),
+            Expanded(child: Text(l.dashNoCheckIns, style: context.text.body)),
+          ],
+        ),
+      ),
+      data: (list) => AbsCard(
+        hue: PopHue.mint,
+        padding: const EdgeInsets.symmetric(vertical: AbsSpace.x2),
+        child: Column(
+          children: [
+            for (final (i, a) in list.take(8).indexed)
+              Entrance(
+                index: i,
+                child: ListTile(
+                  dense: true,
+                  onTap: () => context.push(Routes.memberDetail(a.memberId)),
+                  leading: IconBubble(
+                    icon: PhosphorIcons.footprints(PhosphorIconsStyle.bold),
+                    hue: PopHue.mint,
+                    size: 32,
+                  ),
+                  title: Text(a.memberName ?? '', style: context.text.body),
+                  trailing: Text(IstDates.formatTime(a.checkedInAt), style: context.text.numericOf(context.text.label)),
                 ),
-                const SizedBox(height: AbsSpace.x1),
-                Text(body, style: t.body.copyWith(color: context.colors.pop(PopHue.grape).onFill)),
-              ],
-            ),
-          ),
-          const SizedBox(width: AbsSpace.x3),
-          StickerIllustration(icon: PhosphorIcons.rocketLaunch(PhosphorIconsStyle.bold), hue: PopHue.lime, size: 88),
-        ],
+              ),
+          ],
+        ),
       ),
     );
   }

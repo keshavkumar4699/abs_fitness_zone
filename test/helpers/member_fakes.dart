@@ -141,8 +141,9 @@ class FakeMembersRepository implements MembersRepository {
       ),
     );
     _log(id, 'joined', 'Joined the gym');
-    if (input.health != null)
+    if (input.health != null) {
       healthByMember[id] = MemberHealth(memberId: id, conditions: input.health!['conditions'] as String?);
+    }
     if (input.planId != null) {
       await startMembership(memberId: id, planId: input.planId!, start: input.startDate, addonIds: input.addonIds);
     }
