@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
 import '../../../app/providers.dart';
+import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
 import '../../../core/utils/dates.dart';
@@ -612,6 +614,26 @@ class _LogSheetState extends ConsumerState<_LogSheet> {
               ),
             ),
           ),
+        if (!widget.canComment && log.editableAt(ref.watch(clockProvider)())) ...[
+          const SizedBox(height: AbsSpace.x3),
+          Text(
+            l.wkEditable(IstDates.formatDateTime(log.finishedAt.add(const Duration(hours: 24)))),
+            style: t.caption.copyWith(color: c.textSecondary),
+          ),
+          const SizedBox(height: AbsSpace.x2),
+          AbsButton.secondary(
+            key: const ValueKey('edit-workout'),
+            label: l.wkEditWorkout,
+            icon: PhosphorIcons.pencilSimple(PhosphorIconsStyle.bold),
+            onPressed: () async {
+              final router = GoRouter.of(context);
+              final nav = Navigator.of(context);
+              await ref.read(activeWorkoutProvider.notifier).edit(log);
+              nav.pop();
+              await router.push(Routes.mePlayer);
+            },
+          ),
+        ],
         if (widget.canComment) ...[
           const SizedBox(height: AbsSpace.x2),
           Wrap(

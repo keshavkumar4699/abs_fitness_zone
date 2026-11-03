@@ -243,6 +243,14 @@ class ActiveWorkout extends _$ActiveWorkout {
     return s;
   }
 
+  /// Re-opens a saved workout to fix a set (allowed for 24 hours, 5.7).
+  Future<WorkoutSession> edit(WorkoutLog log) async {
+    final catalogue = await ref.read(exerciseCatalogueProvider.future);
+    final s = WorkoutSession.fromLog(log, catalogue);
+    _set(s);
+    return s;
+  }
+
   void goTo(int index) {
     final s = state;
     if (s == null || index < 0 || index >= s.exercises.length) return;
@@ -344,11 +352,11 @@ class ActiveWorkout extends _$ActiveWorkout {
     final history = ref.read(recentWorkoutsProvider(s.memberId)).value ?? const <WorkoutLog>[];
     var summary = WorkoutSummary(
       name: s.name,
-      duration: now.difference(s.startedAt),
+      duration: (s.editingFinishedAt ?? now).difference(s.startedAt),
       volume: s.volume,
       setsDone: s.doneSets,
-      prs: detectPrs(s.doneSetLogs, [for (final l in history) ...l.sets]),
-      complete: s.isComplete,
+      prs: detectPrs(s.doneSetLogs, [for (final l in history.where((l) => l.clientId != s.clientId)) ...l.sets]),
+      complete: s.editingFinishedAt != null || s.isComplete,
     );
     final outbox = ref.read(workoutOutboxProvider);
     await outbox.put(payload);

@@ -27,7 +27,12 @@ jobs:
       - run: dart run build_runner build --delete-conflicting-outputs
       - run: flutter gen-l10n
       - name: Generated code is committed and up to date
-        run: git diff --exit-code -- lib
+        # Generated files are compared after formatting them with the
+        # project's page width, so a generator's own line width can't fail it.
+        run: |
+          find lib \( -name '*.g.dart' -o -name '*.freezed.dart' -o -path 'lib/app/l10n/gen/*' \) -name '*.dart' -print0 \
+            | xargs -0 dart format > /dev/null
+          git diff --exit-code -- lib
       - name: Format (hand-written code only)
         run: |
           find lib test -name '*.dart' ! -name '*.g.dart' ! -name '*.freezed.dart' ! -path 'lib/app/l10n/gen/*' -print0 \

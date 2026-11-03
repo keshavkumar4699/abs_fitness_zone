@@ -65,6 +65,10 @@ abstract class WorkoutSession with _$WorkoutSession {
     @Default(0) int current,
     DateTime? restEndsAt,
     @Default(0) int restTotalS,
+
+    /// Set when re-opening a saved workout to change it (5.7): it keeps its
+    /// original times and replaces the saved copy.
+    DateTime? editingFinishedAt,
   }) = _WorkoutSession;
 
   factory WorkoutSession.fromJson(Map<String, dynamic> json) => _$WorkoutSessionFromJson(json);
@@ -157,6 +161,45 @@ abstract class WorkoutSession with _$WorkoutSession {
     return e.restS;
   }
 
+  /// Re-opens a saved workout for changes (within 24 hours).
+  factory WorkoutSession.fromLog(WorkoutLog log, ExerciseIndex catalogue) {
+    final order = <String>[];
+    for (final s in log.sets) {
+      if (!order.contains(s.exerciseId)) order.add(s.exerciseId);
+    }
+    return WorkoutSession(
+      clientId: log.clientId,
+      memberId: log.memberId,
+      programId: log.programId,
+      dayId: log.dayId,
+      name: log.name,
+      startedAt: log.startedAt,
+      editingFinishedAt: log.finishedAt,
+      exercises: [
+        for (final id in order)
+          SessionExercise(
+            exerciseId: id,
+            name: catalogue[id]?.name ?? '—',
+            trackingType: catalogue[id]?.trackingType ?? TrackingType.repsWeight,
+            restS: 0,
+            sets: [
+              for (final s
+                  in log.sets.where((s) => s.exerciseId == id).toList()..sort((a, b) => a.setNo.compareTo(b.setNo)))
+                SessionSet(
+                  setNo: s.setNo,
+                  weight: s.weight,
+                  reps: s.reps,
+                  durationS: s.durationS,
+                  distanceM: s.distanceM,
+                  done: true,
+                  doneAt: s.doneAt ?? log.finishedAt,
+                ),
+            ],
+          ),
+      ],
+    );
+  }
+
   /// What `save_workout_log` expects.
   Map<String, dynamic> toPayload({required DateTime finishedAt, required bool complete, String? notes}) => {
     'client_id': clientId,
@@ -164,7 +207,7 @@ abstract class WorkoutSession with _$WorkoutSession {
     'day_id': dayId,
     'name': name,
     'started_at': startedAt.toUtc().toIso8601String(),
-    'finished_at': finishedAt.toUtc().toIso8601String(),
+    'finished_at': (editingFinishedAt ?? finishedAt).toUtc().toIso8601String(),
     'status': complete ? 'completed' : 'partial',
     'notes': notes,
     'sets': [

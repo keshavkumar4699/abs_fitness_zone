@@ -80,6 +80,7 @@ _WorkoutSession _$WorkoutSessionFromJson(Map<String, dynamic> json) => _WorkoutS
   current: (json['current'] as num?)?.toInt() ?? 0,
   restEndsAt: json['restEndsAt'] == null ? null : DateTime.parse(json['restEndsAt'] as String),
   restTotalS: (json['restTotalS'] as num?)?.toInt() ?? 0,
+  editingFinishedAt: json['editingFinishedAt'] == null ? null : DateTime.parse(json['editingFinishedAt'] as String),
 );
 
 Map<String, dynamic> _$WorkoutSessionToJson(_WorkoutSession instance) => <String, dynamic>{
@@ -93,4 +94,5 @@ Map<String, dynamic> _$WorkoutSessionToJson(_WorkoutSession instance) => <String
   'current': instance.current,
   'restEndsAt': instance.restEndsAt?.toIso8601String(),
   'restTotalS': instance.restTotalS,
+  'editingFinishedAt': instance.editingFinishedAt?.toIso8601String(),
 };

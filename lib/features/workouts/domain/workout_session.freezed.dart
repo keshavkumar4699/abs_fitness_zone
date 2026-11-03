@@ -613,7 +613,9 @@ as List<SessionSet>,
 /// @nodoc
 mixin _$WorkoutSession {
 
- String get clientId; String get memberId; String? get programId; String? get dayId; String get name; DateTime get startedAt; List<SessionExercise> get exercises; int get current; DateTime? get restEndsAt; int get restTotalS;
+ String get clientId; String get memberId; String? get programId; String? get dayId; String get name; DateTime get startedAt; List<SessionExercise> get exercises; int get current; DateTime? get restEndsAt; int get restTotalS;/// Set when re-opening a saved workout to change it (5.7): it keeps its
+/// original times and replaces the saved copy.
+ DateTime? get editingFinishedAt;
 /// Create a copy of WorkoutSession
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -627,20 +629,20 @@ $WorkoutSessionCopyWith<WorkoutSession> get copyWith => _$WorkoutSessionCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as WorkoutSession;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkoutSession&&(identical(other.clientId, _this.clientId) || other.clientId == _this.clientId)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.programId, _this.programId) || other.programId == _this.programId)&&(identical(other.dayId, _this.dayId) || other.dayId == _this.dayId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.startedAt, _this.startedAt) || other.startedAt == _this.startedAt)&&const DeepCollectionEquality().equals(other.exercises, _this.exercises)&&(identical(other.current, _this.current) || other.current == _this.current)&&(identical(other.restEndsAt, _this.restEndsAt) || other.restEndsAt == _this.restEndsAt)&&(identical(other.restTotalS, _this.restTotalS) || other.restTotalS == _this.restTotalS));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WorkoutSession&&(identical(other.clientId, _this.clientId) || other.clientId == _this.clientId)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.programId, _this.programId) || other.programId == _this.programId)&&(identical(other.dayId, _this.dayId) || other.dayId == _this.dayId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.startedAt, _this.startedAt) || other.startedAt == _this.startedAt)&&const DeepCollectionEquality().equals(other.exercises, _this.exercises)&&(identical(other.current, _this.current) || other.current == _this.current)&&(identical(other.restEndsAt, _this.restEndsAt) || other.restEndsAt == _this.restEndsAt)&&(identical(other.restTotalS, _this.restTotalS) || other.restTotalS == _this.restTotalS)&&(identical(other.editingFinishedAt, _this.editingFinishedAt) || other.editingFinishedAt == _this.editingFinishedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as WorkoutSession;
-  return Object.hash(runtimeType,_this.clientId,_this.memberId,_this.programId,_this.dayId,_this.name,_this.startedAt,const DeepCollectionEquality().hash(_this.exercises),_this.current,_this.restEndsAt,_this.restTotalS);
+  return Object.hash(runtimeType,_this.clientId,_this.memberId,_this.programId,_this.dayId,_this.name,_this.startedAt,const DeepCollectionEquality().hash(_this.exercises),_this.current,_this.restEndsAt,_this.restTotalS,_this.editingFinishedAt);
 }
 
 @override
 String toString() {
   final _this = this as WorkoutSession;
-  return 'WorkoutSession(clientId: ${_this.clientId}, memberId: ${_this.memberId}, programId: ${_this.programId}, dayId: ${_this.dayId}, name: ${_this.name}, startedAt: ${_this.startedAt}, exercises: ${_this.exercises}, current: ${_this.current}, restEndsAt: ${_this.restEndsAt}, restTotalS: ${_this.restTotalS})';
+  return 'WorkoutSession(clientId: ${_this.clientId}, memberId: ${_this.memberId}, programId: ${_this.programId}, dayId: ${_this.dayId}, name: ${_this.name}, startedAt: ${_this.startedAt}, exercises: ${_this.exercises}, current: ${_this.current}, restEndsAt: ${_this.restEndsAt}, restTotalS: ${_this.restTotalS}, editingFinishedAt: ${_this.editingFinishedAt})';
 }
 
 
@@ -651,7 +653,7 @@ abstract mixin class $WorkoutSessionCopyWith<$Res>  {
   factory $WorkoutSessionCopyWith(WorkoutSession value, $Res Function(WorkoutSession) _then) = _$WorkoutSessionCopyWithImpl;
 @useResult
 $Res call({
- String clientId, String memberId, String? programId, String? dayId, String name, DateTime startedAt, List<SessionExercise> exercises, int current, DateTime? restEndsAt, int restTotalS
+ String clientId, String memberId, String? programId, String? dayId, String name, DateTime startedAt, List<SessionExercise> exercises, int current, DateTime? restEndsAt, int restTotalS, DateTime? editingFinishedAt
 });
 
 
@@ -668,7 +670,7 @@ class _$WorkoutSessionCopyWithImpl<$Res>
 
 /// Create a copy of WorkoutSession
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? clientId = null,Object? memberId = null,Object? programId = freezed,Object? dayId = freezed,Object? name = null,Object? startedAt = null,Object? exercises = null,Object? current = null,Object? restEndsAt = freezed,Object? restTotalS = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? clientId = null,Object? memberId = null,Object? programId = freezed,Object? dayId = freezed,Object? name = null,Object? startedAt = null,Object? exercises = null,Object? current = null,Object? restEndsAt = freezed,Object? restTotalS = null,Object? editingFinishedAt = freezed,}) {
   return _then(WorkoutSession(
 clientId: null == clientId ? _self.clientId : clientId // ignore: cast_nullable_to_non_nullable
 as String,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
@@ -680,7 +682,8 @@ as DateTime,exercises: null == exercises ? _self.exercises : exercises // ignore
 as List<SessionExercise>,current: null == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
 as int,restEndsAt: freezed == restEndsAt ? _self.restEndsAt : restEndsAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,restTotalS: null == restTotalS ? _self.restTotalS : restTotalS // ignore: cast_nullable_to_non_nullable
-as int,
+as int,editingFinishedAt: freezed == editingFinishedAt ? _self.editingFinishedAt : editingFinishedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
@@ -765,10 +768,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS,  DateTime? editingFinishedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WorkoutSession() when $default != null:
-return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS);case _:
+return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS,_that.editingFinishedAt);case _:
   return orElse();
 
 }
@@ -786,10 +789,10 @@ return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS,  DateTime? editingFinishedAt)  $default,) {final _that = this;
 switch (_that) {
 case _WorkoutSession():
-return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS);case _:
+return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS,_that.editingFinishedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -806,10 +809,10 @@ return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String clientId,  String memberId,  String? programId,  String? dayId,  String name,  DateTime startedAt,  List<SessionExercise> exercises,  int current,  DateTime? restEndsAt,  int restTotalS,  DateTime? editingFinishedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _WorkoutSession() when $default != null:
-return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS);case _:
+return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.name,_that.startedAt,_that.exercises,_that.current,_that.restEndsAt,_that.restTotalS,_that.editingFinishedAt);case _:
   return null;
 
 }
@@ -821,7 +824,7 @@ return $default(_that.clientId,_that.memberId,_that.programId,_that.dayId,_that.
 @JsonSerializable()
 
 class _WorkoutSession extends WorkoutSession {
-  const _WorkoutSession({required this.clientId, required this.memberId, this.programId, this.dayId, required this.name, required this.startedAt,  List<SessionExercise> exercises = const <SessionExercise>[], this.current = 0, this.restEndsAt, this.restTotalS = 0}): _exercises = exercises,super._();
+  const _WorkoutSession({required this.clientId, required this.memberId, this.programId, this.dayId, required this.name, required this.startedAt,  List<SessionExercise> exercises = const <SessionExercise>[], this.current = 0, this.restEndsAt, this.restTotalS = 0, this.editingFinishedAt}): _exercises = exercises,super._();
   factory _WorkoutSession.fromJson(Map<String, dynamic> json) => _$WorkoutSessionFromJson(json);
 
 @override final  String clientId;
@@ -840,6 +843,9 @@ class _WorkoutSession extends WorkoutSession {
 @override@JsonKey() final  int current;
 @override final  DateTime? restEndsAt;
 @override@JsonKey() final  int restTotalS;
+/// Set when re-opening a saved workout to change it (5.7): it keeps its
+/// original times and replaces the saved copy.
+@override final  DateTime? editingFinishedAt;
 
 /// Create a copy of WorkoutSession
 /// with the given fields replaced by the non-null parameter values.
@@ -854,18 +860,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkoutSession&&(identical(other.clientId, clientId) || other.clientId == clientId)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.programId, programId) || other.programId == programId)&&(identical(other.dayId, dayId) || other.dayId == dayId)&&(identical(other.name, name) || other.name == name)&&(identical(other.startedAt, startedAt) || other.startedAt == startedAt)&&const DeepCollectionEquality().equals(other.exercises, _exercises)&&(identical(other.current, current) || other.current == current)&&(identical(other.restEndsAt, restEndsAt) || other.restEndsAt == restEndsAt)&&(identical(other.restTotalS, restTotalS) || other.restTotalS == restTotalS));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _WorkoutSession&&(identical(other.clientId, clientId) || other.clientId == clientId)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.programId, programId) || other.programId == programId)&&(identical(other.dayId, dayId) || other.dayId == dayId)&&(identical(other.name, name) || other.name == name)&&(identical(other.startedAt, startedAt) || other.startedAt == startedAt)&&const DeepCollectionEquality().equals(other.exercises, _exercises)&&(identical(other.current, current) || other.current == current)&&(identical(other.restEndsAt, restEndsAt) || other.restEndsAt == restEndsAt)&&(identical(other.restTotalS, restTotalS) || other.restTotalS == restTotalS)&&(identical(other.editingFinishedAt, editingFinishedAt) || other.editingFinishedAt == editingFinishedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,clientId,memberId,programId,dayId,name,startedAt,const DeepCollectionEquality().hash(_exercises),current,restEndsAt,restTotalS);
+    return Object.hash(runtimeType,clientId,memberId,programId,dayId,name,startedAt,const DeepCollectionEquality().hash(_exercises),current,restEndsAt,restTotalS,editingFinishedAt);
 }
 
 @override
 String toString() {
-    return 'WorkoutSession(clientId: $clientId, memberId: $memberId, programId: $programId, dayId: $dayId, name: $name, startedAt: $startedAt, exercises: $exercises, current: $current, restEndsAt: $restEndsAt, restTotalS: $restTotalS)';
+    return 'WorkoutSession(clientId: $clientId, memberId: $memberId, programId: $programId, dayId: $dayId, name: $name, startedAt: $startedAt, exercises: $exercises, current: $current, restEndsAt: $restEndsAt, restTotalS: $restTotalS, editingFinishedAt: $editingFinishedAt)';
 }
 
 
@@ -876,7 +882,7 @@ abstract mixin class _$WorkoutSessionCopyWith<$Res> implements $WorkoutSessionCo
   factory _$WorkoutSessionCopyWith(_WorkoutSession value, $Res Function(_WorkoutSession) _then) = __$WorkoutSessionCopyWithImpl;
 @override @useResult
 $Res call({
- String clientId, String memberId, String? programId, String? dayId, String name, DateTime startedAt, List<SessionExercise> exercises, int current, DateTime? restEndsAt, int restTotalS
+ String clientId, String memberId, String? programId, String? dayId, String name, DateTime startedAt, List<SessionExercise> exercises, int current, DateTime? restEndsAt, int restTotalS, DateTime? editingFinishedAt
 });
 
 
@@ -893,7 +899,7 @@ class __$WorkoutSessionCopyWithImpl<$Res>
 
 /// Create a copy of WorkoutSession
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? clientId = null,Object? memberId = null,Object? programId = freezed,Object? dayId = freezed,Object? name = null,Object? startedAt = null,Object? exercises = null,Object? current = null,Object? restEndsAt = freezed,Object? restTotalS = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? clientId = null,Object? memberId = null,Object? programId = freezed,Object? dayId = freezed,Object? name = null,Object? startedAt = null,Object? exercises = null,Object? current = null,Object? restEndsAt = freezed,Object? restTotalS = null,Object? editingFinishedAt = freezed,}) {
   return _then(_WorkoutSession(
 clientId: null == clientId ? _self.clientId : clientId // ignore: cast_nullable_to_non_nullable
 as String,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
@@ -905,7 +911,8 @@ as DateTime,exercises: null == exercises ? _self._exercises : exercises // ignor
 as List<SessionExercise>,current: null == current ? _self.current : current // ignore: cast_nullable_to_non_nullable
 as int,restEndsAt: freezed == restEndsAt ? _self.restEndsAt : restEndsAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,restTotalS: null == restTotalS ? _self.restTotalS : restTotalS // ignore: cast_nullable_to_non_nullable
-as int,
+as int,editingFinishedAt: freezed == editingFinishedAt ? _self.editingFinishedAt : editingFinishedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 

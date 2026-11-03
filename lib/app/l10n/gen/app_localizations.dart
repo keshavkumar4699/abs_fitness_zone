@@ -1034,12 +1034,6 @@ abstract class AppLocalizations {
   /// **'Member card'**
   String get memberCardTitle;
 
-  /// No description provided for @memberHomeComingBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Your workouts, diet and progress land here soon.'**
-  String get memberHomeComingBody;
-
   /// No description provided for @staffManage.
   ///
   /// In en, this message translates to:
@@ -2095,12 +2089,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Days transferred'**
   String get transferDone;
-
-  /// No description provided for @workoutsSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Workout plans arrive with the Workouts update.'**
-  String get workoutsSoon;
 
   /// No description provided for @dietSoon.
   ///
@@ -4586,12 +4574,6 @@ abstract class AppLocalizations {
   /// **'Equipment we have'**
   String get exOurEquipment;
 
-  /// No description provided for @exOurEquipmentBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Only show exercises the gym can do'**
-  String get exOurEquipmentBody;
-
   /// No description provided for @exEquipment.
   ///
   /// In en, this message translates to:
@@ -4609,12 +4591,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type'**
   String get exCategory;
-
-  /// No description provided for @exAny.
-  ///
-  /// In en, this message translates to:
-  /// **'Any'**
-  String get exAny;
 
   /// No description provided for @exClearFilters.
   ///
@@ -5546,12 +5522,6 @@ abstract class AppLocalizations {
   /// **'Superset with'**
   String get buildGroup;
 
-  /// No description provided for @buildNoGroup.
-  ///
-  /// In en, this message translates to:
-  /// **'None'**
-  String get buildNoGroup;
-
   /// No description provided for @buildRemoveItem.
   ///
   /// In en, this message translates to:
@@ -5750,12 +5720,6 @@ abstract class AppLocalizations {
   /// **'Streak'**
   String get wkStreak;
 
-  /// No description provided for @wkStreakValue.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 session} other{{count} sessions}}'**
-  String wkStreakValue(int count);
-
   /// No description provided for @wkAdherence.
   ///
   /// In en, this message translates to:
@@ -5863,12 +5827,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Program ended'**
   String get wkEnded;
-
-  /// No description provided for @wkToday.
-  ///
-  /// In en, this message translates to:
-  /// **'Today'**
-  String get wkToday;
 
   /// No description provided for @wkTodayWorkout.
   ///
@@ -5984,12 +5942,6 @@ abstract class AppLocalizations {
   /// **'You can change this workout until {time}.'**
   String wkEditable(String time);
 
-  /// No description provided for @playTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Workout'**
-  String get playTitle;
-
   /// No description provided for @playExitTitle.
   ///
   /// In en, this message translates to:
@@ -6055,12 +6007,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'m'**
   String get playMetres;
-
-  /// No description provided for @playLast.
-  ///
-  /// In en, this message translates to:
-  /// **'Last: {value}'**
-  String playLast(String value);
 
   /// No description provided for @playAddSet.
   ///
@@ -6271,6 +6217,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 missed this week} other{{count} missed this week}}'**
   String dashMissedCount(int count);
+
+  /// No description provided for @wkEditWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit workout'**
+  String get wkEditWorkout;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

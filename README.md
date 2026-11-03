@@ -10,8 +10,8 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md), [fixes + redesign](docs/milestones/M0.1.md)) |
 | **M1 Members** | F1: members, plans, memberships, status engine, check-in, import/export, dashboard counts | ✅ Done ([report](docs/milestones/M1.md)) |
 | **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md), [Google sign-in](docs/milestones/M2.1.md)) |
-| M3 Exercise library + Workouts | F4, F5, member app shell, workout player | Next |
-| M4 Diet | F6 | — |
+| **M3 Exercise library + Workouts** | F4: 876-exercise library with body map, search, filters, favourites, custom exercises. F5: program builder, templates, assign, coach overview, workout player with rest timer and PRs, offline logging, progress | ✅ Done ([report](docs/milestones/M3.md)) |
+| M4 Diet | F6 | Next |
 | M5 WhatsApp | F8 | — |
 | M6 AI automation | F7 | — |
 | M7 Reports | F15 | — |
@@ -33,6 +33,8 @@ lib/
     settings/               More, staff roster (add by Gmail), gym profile, appearance
     members/                members, plans, memberships, check-in data, import
     payments/               invoices, collect sheet, receipts (PDF), day close, expenses
+    exercises/              catalogue (cached offline), body map, detail, custom exercises
+    workouts/               programs, builder, assign, coach views, player, progress
     checkin/                desk scanner/search, member self check-in, gym QR
     member_home/            member onboarding, home, progress, my payments + pay
     gallery/                hidden component gallery
@@ -40,6 +42,7 @@ lib/
 supabase/
   migrations/               SQL, one per milestone
   functions/                Edge Functions (Deno/TypeScript)
+  seed/                     exercises.json (free-exercise-db, public domain)
   tests/                    RLS tests (plain SQL) + local Supabase stub
 test/                       unit, widget, golden (screenshots) tests
 .github/workflows/          ci.yml, release.yml, backup.yml, keepalive.yml
@@ -123,13 +126,12 @@ flutter build apk --release --dart-define-from-file=env/prod.json
 
    Then the owner taps **Continue with Google** in the app. (The order
    doesn't matter: signing in first and running this afterwards also works.)
-5. The M1 and M2 migrations also set up these Supabase pieces when they're
-   available:
-   - The nightly status refresh at 00:05 IST and dues refresh at 00:10 IST
-     (`pg_cron`). If `pg_cron` isn't enabled, enable it under **Database →
-     Extensions** and run `supabase db push` again.
+5. The migrations also set up these Supabase pieces when they're available:
+   - Nightly jobs (`pg_cron`): status refresh at 00:05 IST, dues at 00:10 IST
+     and workout programs at 00:15 IST. If `pg_cron` isn't enabled, enable
+     it under **Database → Extensions** and run `supabase db push` again.
    - The live check-in feed (Realtime on `attendance` and `payments`).
-   - A private `member-photos` storage bucket.
+   - A private `member-photos` bucket and a public `exercises` bucket.
 6. **Staff**: the owner uses **More → Staff → Add staff** with each person's
    Gmail and role. They sign in with **Continue with Google** using that
    Gmail; there are no passwords to share.
@@ -152,15 +154,25 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    supabase functions delete invite-staff
    ```
 
-9. First-time setup on Home walks the owner through the gym profile,
+9. **Exercise images (M3).** The catalogue is seeded by the migrations; its
+   ~1,750 images go into the public `exercises` storage bucket once, from
+   your computer (the script needs the service-role key, which never goes in
+   the app):
+
+   ```bash
+   SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co SUPABASE_SERVICE_ROLE_KEY=... scripts/mirror_exercise_images.sh
+   ```
+
+   The owner can untick missing equipment in **Plans → Exercises → wrench**.
+10. First-time setup on Home walks the owner through the gym profile,
    membership plans and inviting staff. To bring in an existing member list,
    use More → Import members with a CSV.
-10. **Payments (M2).** In **More → Gym profile**, fill in the gym's **UPI ID**
+11. **Payments (M2).** In **More → Gym profile**, fill in the gym's **UPI ID**
     (used for member pay links and QR codes) and, if the gym is
     GST-registered, the **GSTIN** with **Charge GST** on. The M2 migration also
     schedules the nightly dues refresh at 00:10 IST (`pg_cron`) and adds
     Realtime on `payments`, when those are available.
-11. **Razorpay (optional).** UPI links and QR codes work without it. To add
+12. **Razorpay (optional).** UPI links and QR codes work without it. To add
     payment links, set the secrets, then turn on **Razorpay payment links** in
     Gym profile:
 

@@ -367,3 +367,131 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     likely mistake. On Android Supabase opens Google in the browser and
     returns through `com.absfitnesszone.app://login-callback`.
 
+
+## M3 Exercise library and workouts
+
+67. **The catalogue is free-exercise-db**, pinned at commit `f00c92c`
+    (public domain, 876 exercises; 3 of them have no images). The JSON is
+    kept in `supabase/seed/`, and `scripts/gen_exercise_seed.py` turns it into
+    a seed migration. No Hindi names are seeded; the owner can add them to
+    any exercise, and trainers to their own.
+
+68. **Tracking type (4.8) is derived from the dataset:**
+    - stretching and foam rolling: time;
+    - cardio: distance and time for treadmill, bike, rowing and elliptical
+      exercises, otherwise time;
+    - plyometrics: reps;
+    - static bodyweight holds: time;
+    - other bodyweight exercises: reps;
+    - everything else: reps and weight.
+
+69. **Exercise images** live in a public Supabase bucket, `exercises`.
+    - `scripts/mirror_exercise_images.sh` copies the seeded images there
+      once. It runs on the owner's computer because it needs the
+      service-role key.
+    - An optional `exercise_image_base` setting can point to another host
+      instead.
+    - Images are shown at the size on screen with a blurred placeholder, but
+      not re-encoded to 400 px WebP. They are about 40–70 KB each, and
+      re-encoding would mean an image pipeline outside the app.
+    - A trainer's photo is resized on the phone to 1000 px JPEG (the bucket
+      takes up to 5 MB).
+    - Uploading their own short videos is not built; videos are YouTube
+      links, opened in the YouTube app or browser. An embedded player would
+      need a web view.
+
+70. **The library works offline after the first sync.** The catalogue is
+    kept as a JSON file on the phone (browser storage on the web) and synced
+    by `updated_at`. Search runs in memory over a pre-folded index, in about
+    a millisecond for 876 exercises. A general drift cache is still to come
+    (DECISIONS 44).
+
+71. **The body map is an original, chunky sticker figure**, front and back,
+    covering the dataset's 17 muscle groups. Tapping a muscle filters the
+    list and makes that muscle glow. Every muscle also has a labelled tap
+    target for screen readers.
+
+72. **"Equipment we have"** starts with everything ticked. The owner
+    unticks what the gym lacks (Training → Exercises → wrench). The filter
+    chip then hides exercises that need it.
+
+73. **Programs.**
+    - Library templates belong to the gym. Any coach (owner or trainer) can
+      create one; the owner or its author can edit it.
+    - Assigning a program copies it into a private snapshot for that member.
+      Tuning a member's program never changes the library, and changing the
+      library never changes a running program.
+    - The weekly plan is one weekday per program day, picked when assigning.
+      The defaults are Mon/Wed/Fri for 3 days, Mon/Tue/Thu/Fri for 4, and so
+      on.
+    - Progression adds the step to each item's target every week (kg or
+      reps), from the program's start date.
+
+74. **Replace or queue (5.4).**
+    - Replace stops the running program today (or the day before a future
+      start) and drops anything queued.
+    - Queue starts the day after the running program ends.
+    - A future start waits as "queued". A nightly job at 00:15 IST starts
+      queued programs and completes finished ones.
+
+75. **Who sees what.**
+    - Everyone signed in reads the catalogue.
+    - Staff read the template library. A member's program is visible to the
+      member, the front desk and the member's trainer.
+    - Workout logs, sets and comments are body data under the DPDP Act, so
+      only the member, their trainer and the owner see them. The desk sees
+      the program but not the logs.
+    - Every write goes through a security-definer RPC.
+
+76. **Workout logs.**
+    - The phone makes a client id for each workout, so retries and edits
+      replace the same log rather than adding another.
+    - The player saves the session on the phone after every change.
+    - A finished workout goes into an outbox first, then uploads. If the
+      phone is offline it uploads on the next launch or pull-to-refresh.
+      This is the spec's one offline-write exception.
+    - A member can reopen and fix a workout for 24 hours. It keeps its
+      original start and finish times.
+    - The server refuses workouts longer than 6 hours or more than 30 days
+      old.
+
+77. **Personal records (5.9)** are the heaviest weight, the best estimated
+    1RM (Epley, 1–30 reps), and more reps than ever at that weight or
+    heavier (or more bodyweight reps). Only the best set of each kind is
+    flagged, and the first time an exercise is logged sets the baseline. The
+    database decides; the phone runs the same rules so the summary works
+    offline.
+
+78. **Adherence** is the share of planned sessions in the last 28 days (on
+    the program's weekdays) that have a workout logged. **Streak** counts
+    planned sessions done in a row; today does not break it until the day
+    is over. **Workouts per week** use Monday-start weeks.
+
+79. **The rest timer runs from an end time**, so it is correct after the
+    screen locks.
+    - A local notification fires at the end. It uses an exact alarm if the
+      phone allows one, otherwise an inexact one. There is none on the web.
+    - In the app, the end of rest gives a strong haptic.
+    - Within a superset, there is no rest until its last exercise.
+
+80. **No push notifications yet.** Firebase isn't set up, so "member
+    notified by push" (5.4, 5.10) shows up in the app instead: the new
+    program on the Workout tab, and coach comments and reactions on the
+    workout.
+
+81. **Trainer feedback** is a comment and/or one of five reactions (thumbs
+    up, fire, fist, clap, star), drawn as icons rather than emoji so they
+    look the same everywhere. Members read them; replies are not built.
+
+82. **The Plans tab became "Training"**: My members (coaches only), the
+    programs, and the exercise library. Trainers and the owner also get
+    "Training today" on their home screen: who is planned today (ticked when
+    done) and who missed sessions in the last week.
+
+83. **Not built in M3, planned for later:**
+    - push notifications;
+    - members uploading their own exercise videos, and an embedded YouTube
+      player;
+    - members replying to comments;
+    - trainers logging a workout on a member's behalf;
+    - the general drift cache.

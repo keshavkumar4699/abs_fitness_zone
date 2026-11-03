@@ -500,7 +500,7 @@ class _BodyPainter extends CustomPainter {
         ..color = isSel || isPrimary
             ? accent.fill
             : isSecondary
-            ? accent.fill.withValues(alpha: 0.45)
+            ? colors.pop(PopHue.sky).fill
             : colors.pop(muscleHue(m)).soft;
       for (final b in e.value) {
         final r = rr(b);

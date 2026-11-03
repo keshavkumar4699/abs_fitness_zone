@@ -1,6 +1,7 @@
 import 'package:abs_fitness/app/router.dart';
 import 'package:abs_fitness/features/workouts/application/workouts_providers.dart';
 import 'package:abs_fitness/features/workouts/data/workouts_repository.dart';
+import 'package:abs_fitness/features/workouts/presentation/my_workout_screen.dart' show MyWorkoutScreen;
 import 'package:abs_fitness/features/workouts/presentation/workout_ui.dart' show WorkoutLogCard;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -249,6 +250,44 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('summary-done')));
     await settle(tester);
     expect(find.text('Done for today. Great work!'), findsWidgets);
+  });
+
+  testWidgets('a finished workout can be fixed for 24 hours (5.7)', (tester) async {
+    final w = FakeWorkoutsRepository();
+    final c = await pumpApp(tester, user: memberUser, workouts: w, prefs: {'member_onboarding_done': true}, size: tall);
+    await settle(tester);
+    await go(tester, c, Routes.meWorkout);
+    await tester.tap(find.byKey(const ValueKey('start-workout')).hitTestable());
+    await settle(tester);
+    await tester.tap(find.byKey(const ValueKey('tick-0-0')));
+    await settle(tester, 2);
+    await tester.tap(find.byKey(const ValueKey('player-finish')));
+    await settle(tester, 4);
+    await tester.tap(find.byKey(const ValueKey('finish-anyway')));
+    await settle(tester, 20);
+    await tester.tap(find.byKey(const ValueKey('summary-done')));
+    await settle(tester);
+    final clientId = w.saved.single['client_id'];
+
+    final today = find.descendant(of: find.byType(WorkoutLogCard), matching: find.textContaining('3 Nov 2026'));
+    await tester.scrollUntilVisible(
+      today,
+      300,
+      scrollable: find.descendant(of: find.byType(MyWorkoutScreen), matching: find.byType(Scrollable)).first,
+    );
+    await tester.tap(today.first);
+    await settle(tester);
+    expect(find.byKey(const ValueKey('edit-workout')), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('edit-workout')));
+    await settle(tester);
+    await tester.tap(find.byTooltip('+ reps').first);
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('player-finish')));
+    await settle(tester, 20);
+    expect(w.saved, hasLength(2));
+    expect(w.saved.last['client_id'], clientId, reason: 'the same workout is replaced, not duplicated');
+    expect(w.saved.last['finished_at'], w.saved.first['finished_at'], reason: 'edits keep the original times');
+    expect((w.saved.last['sets'] as List<dynamic>).single, containsPair('reps', 9));
   });
 
   testWidgets('player works offline and uploads later; leaving keeps the session', (tester) async {

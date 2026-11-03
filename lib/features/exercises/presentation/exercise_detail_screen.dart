@@ -203,7 +203,7 @@ class _Body extends StatelessWidget {
                     for (final m in e.primaryMuscles)
                       PopSticker(label: '${l.exPrimary}: ${muscleLabel(l, m)}', hue: PopHue.lime),
                     for (final m in e.secondaryMuscles)
-                      PopSticker(label: '${l.exSecondary}: ${muscleLabel(l, m)}', hue: muscleHue(m)),
+                      PopSticker(label: '${l.exSecondary}: ${muscleLabel(l, m)}', hue: PopHue.sky),
                   ],
                 ),
               ],

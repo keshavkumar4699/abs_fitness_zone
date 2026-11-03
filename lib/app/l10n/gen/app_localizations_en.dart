@@ -497,9 +497,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get memberCardTitle => 'Member card';
 
   @override
-  String get memberHomeComingBody => 'Your workouts, diet and progress land here soon.';
-
-  @override
   String get staffManage => 'Manage';
 
   @override
@@ -1030,9 +1027,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get transferDone => 'Days transferred';
-
-  @override
-  String get workoutsSoon => 'Workout plans arrive with the Workouts update.';
 
   @override
   String get dietSoon => 'Diet plans arrive with the Diet update.';
@@ -2564,9 +2558,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exOurEquipment => 'Equipment we have';
 
   @override
-  String get exOurEquipmentBody => 'Only show exercises the gym can do';
-
-  @override
   String get exEquipment => 'Equipment';
 
   @override
@@ -2574,9 +2565,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exCategory => 'Type';
-
-  @override
-  String get exAny => 'Any';
 
   @override
   String get exClearFilters => 'Clear filters';
@@ -3090,9 +3078,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get buildGroup => 'Superset with';
 
   @override
-  String get buildNoGroup => 'None';
-
-  @override
   String get buildRemoveItem => 'Remove exercise';
 
   @override
@@ -3231,12 +3216,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wkStreak => 'Streak';
 
   @override
-  String wkStreakValue(int count) {
-    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count sessions', one: '1 session');
-    return '$_temp0';
-  }
-
-  @override
   String get wkAdherence => 'On plan';
 
   @override
@@ -3291,9 +3270,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get wkEnded => 'Program ended';
-
-  @override
-  String get wkToday => 'Today';
 
   @override
   String wkTodayWorkout(String name) {
@@ -3370,9 +3346,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get playTitle => 'Workout';
-
-  @override
   String get playExitTitle => 'Leave the workout?';
 
   @override
@@ -3404,11 +3377,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get playMetres => 'm';
-
-  @override
-  String playLast(String value) {
-    return 'Last: $value';
-  }
 
   @override
   String get playAddSet => 'Add set';
@@ -3530,4 +3498,7 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get wkEditWorkout => 'Edit workout';
 }
