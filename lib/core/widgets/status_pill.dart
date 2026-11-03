@@ -3,7 +3,20 @@ import 'package:flutter/material.dart';
 import '../../app/l10n/l10n.dart';
 import '../../app/theme/theme.dart';
 
-enum PillStatus { active, expiring, expired, frozen, paid, partial, overdue, lead }
+enum PillStatus {
+  active,
+  expiring,
+  expired,
+  frozen,
+  paid,
+  partial,
+  overdue,
+  lead,
+  cancelled,
+  inactive,
+  upcoming,
+  pending,
+}
 
 /// Sticker-style status: solid pop colour + ink text, never colour alone.
 class StatusPill extends StatelessWidget {
@@ -19,7 +32,8 @@ class StatusPill extends StatelessWidget {
     PillStatus.expiring || PillStatus.partial => PopHue.tangerine,
     PillStatus.expired || PillStatus.overdue => PopHue.coral,
     PillStatus.frozen => PopHue.sky,
-    PillStatus.lead => PopHue.grape,
+    PillStatus.lead || PillStatus.upcoming || PillStatus.pending => PopHue.grape,
+    PillStatus.cancelled || PillStatus.inactive => PopHue.coral,
   };
 
   /// Text-safe colour for rings and icons.
@@ -39,6 +53,10 @@ class StatusPill extends StatelessWidget {
       PillStatus.partial => l.statusPartial,
       PillStatus.overdue => l.statusOverdue,
       PillStatus.lead => l.statusLead,
+      PillStatus.cancelled => l.statusCancelled,
+      PillStatus.inactive => l.statusInactive,
+      PillStatus.upcoming => l.statusUpcoming,
+      PillStatus.pending => l.statusPending,
     };
     return PopSticker(label: label, hue: hueFor(status), dot: true, color: p);
   }

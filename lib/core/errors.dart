@@ -56,6 +56,18 @@ class StaffEmailTakenFailure extends AppFailure {
   const StaffEmailTakenFailure();
 }
 
+/// Another member already has this phone number.
+class DuplicatePhoneFailure extends AppFailure {
+  const DuplicatePhoneFailure();
+}
+
+/// A business rule in the database refused the change; [message] explains
+/// it (e.g. "only 3 freeze days left on this plan").
+class RuleFailure extends AppFailure {
+  const RuleFailure(this.message);
+  final String message;
+}
+
 /// The user may not perform this action (RLS / role check said no).
 class NotAllowedFailure extends AppFailure {
   const NotAllowedFailure();
@@ -88,7 +100,11 @@ String friendlyError(AppLocalizations l, Object error) {
     RateLimitedFailure() => l.authRateLimited,
     StaffEmailTakenFailure() => l.staffInviteEmailTaken,
     NotAllowedFailure() => l.commonNotAllowed,
+    DuplicatePhoneFailure() => l.memberDuplicatePhone,
+    RuleFailure(:final message) => _sentence(message),
     NotFoundFailure() => l.memberPinNotFound,
     _ => l.commonGenericError,
   };
 }
+
+String _sentence(String s) => s.isEmpty ? s : '${s[0].toUpperCase()}${s.substring(1)}${s.endsWith('.') ? '' : '.'}';

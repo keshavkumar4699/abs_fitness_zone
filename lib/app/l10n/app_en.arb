@@ -267,5 +267,595 @@
   },
   "staffOwnerLocked": "The owner account is always on.",
   "staffYou": "You",
-  "goHome": "Go home"
+  "goHome": "Go home",
+  "memberDuplicatePhone": "Another member already uses this phone number.",
+  "membersTitle": "Members",
+  "membersSearchHint": "Search name, phone or ID",
+  "membersEmptyTitle": "No members yet",
+  "membersEmptyBody": "Add your first member or import your existing list.",
+  "membersNoMatchTitle": "No matches",
+  "membersNoMatchBody": "No members match this search or these filters.",
+  "membersClearFilters": "Clear filters",
+  "membersAdd": "Add member",
+  "membersImport": "Import",
+  "membersExport": "Export CSV",
+  "membersFilters": "Filters",
+  "membersSort": "Sort",
+  "sortName": "Name",
+  "sortEndDate": "Ending soonest",
+  "sortJoined": "Newest",
+  "filterStatus": "Status",
+  "filterPlan": "Plan",
+  "filterTrainer": "Trainer",
+  "filterBatch": "Batch",
+  "filterGender": "Gender",
+  "filterBirthday": "Birthday this month",
+  "filterJoined": "Joined between",
+  "filterArchived": "Show archived",
+  "filterApply": "Show results",
+  "filterSave": "Save filter",
+  "filterSaveName": "Filter name",
+  "filterSaved": "Saved filters",
+  "filterAny": "Any",
+  "filterFrom": "From",
+  "filterTo": "To",
+  "batchMorning": "Morning",
+  "batchEvening": "Evening",
+  "genderMale": "Male",
+  "genderFemale": "Female",
+  "genderOther": "Other",
+  "bulkAssignTrainer": "Assign trainer",
+  "bulkExport": "Export",
+  "bulkNoTrainer": "No trainer",
+  "remindWhatsApp": "Remind",
+  "selectAll": "Select all",
+  "statusCancelled": "Cancelled",
+  "statusInactive": "Inactive",
+  "statusUpcoming": "Starts soon",
+  "statusPending": "Pending",
+  "noPlan": "No plan",
+  "addMemberTitle": "New member",
+  "stepBasics": "Basics",
+  "stepHealth": "Health",
+  "stepMembership": "Membership",
+  "fieldAltPhone": "Alternate phone",
+  "fieldGender": "Gender",
+  "fieldDob": "Date of birth",
+  "fieldAddress": "Address",
+  "fieldEmergencyName": "Emergency contact name",
+  "fieldEmergencyRelation": "Relation",
+  "fieldEmergencyPhone": "Emergency phone",
+  "fieldBloodGroup": "Blood group",
+  "fieldBatch": "Batch",
+  "fieldTrainer": "Trainer",
+  "fieldSource": "How did they hear about us?",
+  "fieldNotes": "Notes",
+  "fieldPhoto": "Photo",
+  "fieldPhotoAdd": "Add photo",
+  "fieldPhotoChange": "Change photo",
+  "fieldHeight": "Height (cm)",
+  "fieldWeight": "Weight (kg)",
+  "fieldGoal": "Goal",
+  "fieldLevel": "Experience",
+  "fieldConditions": "Medical conditions",
+  "fieldInjuries": "Injuries",
+  "fieldMedications": "Medications",
+  "fieldDoctorClearance": "A doctor has cleared them for exercise",
+  "fieldConsentHealth": "Member agrees to share health details with the gym",
+  "fieldConsentWhatsapp": "Member agrees to receive WhatsApp updates",
+  "goalFatLoss": "Fat loss",
+  "goalMuscleGain": "Muscle gain",
+  "goalStrength": "Strength",
+  "goalGeneral": "General fitness",
+  "goalRehab": "Rehab",
+  "levelBeginner": "Beginner",
+  "levelIntermediate": "Intermediate",
+  "levelAdvanced": "Advanced",
+  "parqTitle": "Health questions",
+  "parqHeart": "Has a doctor ever said they have a heart condition?",
+  "parqChestPain": "Do they feel chest pain during physical activity?",
+  "parqDizzy": "Do they lose balance from dizziness, or ever faint?",
+  "parqBone": "Do they have a bone or joint problem that exercise could make worse?",
+  "parqBp": "Are they taking medicine for blood pressure or the heart?",
+  "parqPregnant": "Are they pregnant, or did they give birth in the last 6 months?",
+  "parqOther": "Is there any other reason they should not exercise?",
+  "parqWarning": "Answered yes: ask for a doctor's clearance before training.",
+  "planSelect": "Choose a plan",
+  "planNone": "Skip for now",
+  "startDate": "Start date",
+  "startToday": "Today",
+  "addonsTitle": "Add-ons",
+  "discount": "Discount (₹)",
+  "discountReason": "Reason for discount",
+  "summaryTotal": "Total",
+  "summaryJoiningFee": "Joining fee",
+  "summaryPlan": "Plan",
+  "summaryAddons": "Add-ons",
+  "summaryDiscount": "Discount",
+  "saveMember": "Save member",
+  "draftRestored": "We kept your unsaved draft.",
+  "discardDraft": "Start fresh",
+  "back": "Back",
+  "paymentNote": "Payment is collected in the Payments update, coming next.",
+  "consentRequired": "Tick the consent box to save health details.",
+  "discountNeedsReason": "Add a reason for the discount.",
+  "discountTooBig": "Discount can't be more than the total.",
+  "tabOverview": "Overview",
+  "tabMembership": "Membership",
+  "tabPayments": "Payments",
+  "tabWorkouts": "Workouts",
+  "tabDiet": "Diet",
+  "tabProgress": "Progress",
+  "tabAttendance": "Attendance",
+  "tabNotes": "Notes",
+  "actionCollect": "Collect",
+  "actionRenew": "Renew",
+  "actionWhatsApp": "WhatsApp",
+  "actionCall": "Call",
+  "actionEdit": "Edit profile",
+  "actionSetPin": "Set app PIN",
+  "actionArchive": "Archive",
+  "actionRestore": "Restore",
+  "actionDelete": "Delete forever",
+  "actionMore": "More actions",
+  "deleteConfirmBody": "Only do this when the member asks in writing. Type their name to confirm.",
+  "deleted": "Member deleted",
+  "archivedDone": "Member archived",
+  "restoredDone": "Member restored",
+  "infoPhone": "Phone",
+  "infoEmail": "Email",
+  "infoDob": "Birthday",
+  "infoAddress": "Address",
+  "infoEmergency": "Emergency",
+  "infoBatch": "Batch",
+  "infoTrainer": "Trainer",
+  "infoJoined": "Joined",
+  "infoSource": "Source",
+  "infoBlood": "Blood group",
+  "healthTitle": "Health",
+  "healthNone": "No health details yet.",
+  "healthPrivate": "Health details are visible only to the owner, the member and their trainer.",
+  "membershipCurrent": "Current membership",
+  "membershipHistory": "History",
+  "membershipNone": "No membership yet",
+  "membershipStart": "Start membership",
+  "freeze": "Freeze",
+  "unfreeze": "Unfreeze",
+  "cancelMembership": "Cancel",
+  "transfer": "Transfer",
+  "freezeTitle": "Freeze membership",
+  "freezeDays": "Number of days",
+  "freezeFrom": "Starting",
+  "freezeReason": "Reason",
+  "unfreezeDone": "Welcome back! Membership unfrozen.",
+  "renewTitle": "Renew membership",
+  "renewSamePlan": "Same plan",
+  "cancelTitle": "Cancel this membership?",
+  "cancelReason": "Reason",
+  "refundAmount": "Refund given (₹)",
+  "cancelDone": "Membership cancelled",
+  "transferTitle": "Transfer remaining days",
+  "transferPick": "Who gets the days?",
+  "transferDone": "Days transferred",
+  "paymentsSoon": "Invoices and payments arrive in the Payments update, coming next.",
+  "workoutsSoon": "Workout plans arrive with the Workouts update.",
+  "dietSoon": "Diet plans arrive with the Diet update.",
+  "progressAdd": "Add measurement",
+  "progressEmpty": "No measurements yet",
+  "weightTrend": "Weight trend (kg)",
+  "measurementSaved": "Measurement saved",
+  "fieldBodyFat": "Body fat %",
+  "fieldChest": "Chest (cm)",
+  "fieldWaist": "Waist (cm)",
+  "fieldHips": "Hips (cm)",
+  "fieldArms": "Arms (cm)",
+  "fieldThighs": "Thighs (cm)",
+  "fieldMeasuredOn": "Date",
+  "attendanceMark": "Mark present today",
+  "attendanceMarked": "Marked present",
+  "attendanceAlready": "Already checked in today",
+  "attendanceLast12": "Last 12 weeks",
+  "attendanceEmpty": "No visits yet",
+  "notesHint": "Add a note…",
+  "notesAdd": "Add",
+  "notesEmpty": "Nothing here yet",
+  "collectSoon": "Collecting payments arrives in the Payments update, coming next.",
+  "pickDate": "Pick a date",
+  "dateNotSet": "Not set",
+  "plansTitle": "Membership plans",
+  "plansTab": "Plans",
+  "addonsTab": "Add-ons",
+  "planNew": "New plan",
+  "addonNew": "New add-on",
+  "planName": "Plan name",
+  "planDuration": "Duration",
+  "unitMonths": "Months",
+  "unitDays": "Days",
+  "planPrice": "Price (₹)",
+  "planJoiningFee": "Joining fee (₹)",
+  "planGst": "GST",
+  "planFreeze": "Freeze days allowed",
+  "planIncludesPt": "Includes personal training",
+  "planColor": "Colour",
+  "planArchived": "Archived",
+  "planArchive": "Archive",
+  "planUnarchive": "Bring back",
+  "plansEmptyTitle": "No plans yet",
+  "plansEmptyBody": "Create your first membership plan so members can join.",
+  "addonsEmpty": "No add-ons yet",
+  "addonName": "Add-on name",
+  "addonPrice": "Price (₹)",
+  "addonKind": "Type",
+  "kindPt": "Personal training",
+  "kindLocker": "Locker",
+  "kindDiet": "Diet consultation",
+  "kindOther": "Other",
+  "saved": "Saved",
+  "morePlans": "Membership plans",
+  "morePlansSubtitle": "Plans, prices and add-ons",
+  "moreGymQr": "Check-in QR",
+  "moreGymQrSubtitle": "Show today's code for member self check-in",
+  "moreGymProfile": "Gym profile",
+  "moreGymProfileSubtitle": "Name, address, UPI ID and rules",
+  "moreImport": "Import members",
+  "moreImportSubtitle": "Bring in your existing list from a spreadsheet",
+  "noGst": "None",
+  "checkInTitle": "Check-in",
+  "checkInSearch": "Search member to check in",
+  "checkInScanHint": "Point at the member's QR code",
+  "checkInAlready": "Already checked in today",
+  "checkInWarnExpired": "Membership expired",
+  "checkInWarnInactive": "No active membership",
+  "checkInWarnFrozen": "Membership is frozen",
+  "checkInWarnCancelled": "Membership cancelled",
+  "checkInOk": "OK",
+  "checkInCameraOff": "Camera unavailable. Search by name instead.",
+  "checkInUnknownCode": "That QR code isn't an ABS Fitness member card.",
+  "gymQrTitle": "Today's check-in code",
+  "gymQrBody": "Members scan this with the ABS Fitness app to check in. It changes every day.",
+  "memberCheckIn": "Check in",
+  "memberCheckInTitle": "Scan the gym code",
+  "memberCheckInHint": "Point at the QR code at the front desk.",
+  "memberQrTitle": "My check-in code",
+  "memberQrBody": "Show this at the front desk to check in.",
+  "importTitle": "Import members",
+  "importPick": "Choose a CSV file",
+  "importPickBody": "Save your existing sheet as CSV (File → Download → CSV), then pick it here. The first row should have the column names.",
+  "importMapTitle": "Match your columns",
+  "importNotMapped": "Not in file",
+  "importPreview": "Preview",
+  "importDone": "Import finished",
+  "importShareReport": "Share error report",
+  "importAnother": "Import another file",
+  "importFileError": "Couldn't read that file. Make sure it's a CSV.",
+  "importNeedNamePhone": "Pick the name and phone columns to continue.",
+  "importRequired": "required",
+  "gymProfileTitle": "Gym profile",
+  "fieldGymName": "Gym name",
+  "fieldGymPhone": "Gym phone",
+  "fieldGymAddress": "Address",
+  "fieldUpi": "UPI ID",
+  "fieldGstin": "GSTIN (optional)",
+  "fieldExpiringWindow": "Warn this many days before a plan ends",
+  "fieldAbsentDays": "Flag members absent for this many days",
+  "fieldLapsedRenew": "When a lapsed member renews, start from",
+  "lapsedToday": "Today",
+  "lapsedEnd": "Day after old end",
+  "rulesTitle": "Rules",
+  "dashActive": "Active members",
+  "dashExpiring": "Expiring soon",
+  "dashCheckIns": "Today's check-ins",
+  "dashNew": "New this month",
+  "dashNeedsAction": "Needs action today",
+  "dashAllClear": "All clear! Nothing needs you right now.",
+  "dashLiveFeed": "Live check-ins",
+  "dashNoCheckIns": "No check-ins yet today",
+  "reasonBirthday": "Birthday today",
+  "reasonAbsent": "Not seen for a while",
+  "dashSetupPlans": "Create membership plans",
+  "dashSetupPlansBody": "Plans and prices members can join.",
+  "dashSetupGym": "Fill in your gym profile",
+  "dashSetupGymBody": "Name, address and UPI ID for receipts and links.",
+  "myProgressTitle": "My progress",
+  "myProgressEmpty": "Your trainer will record your measurements here.",
+  "myVisitsTitle": "Visits this month",
+  "membersSelected": "{count} selected",
+  "@membersSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bulkTrainerAssigned": "Trainer updated for {count, plural, =1{1 member} other{{count} members}}",
+  "@bulkTrainerAssigned": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportReady": "{count, plural, =1{1 member exported} other{{count} members exported}}",
+  "@exportReady": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "whatsappReminderText": "Hi {name}, your {plan} membership at {gym} ends on {date}. Renew at the front desk to keep going!",
+  "@whatsappReminderText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "plan": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappExpiredText": "Hi {name}, we miss you at {gym}! Your membership ended on {date}. Come back and renew any time.",
+  "@whatsappExpiredText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappBirthdayText": "Happy birthday {name}! Wishing you a strong year ahead from all of us at {gym}.",
+  "@whatsappBirthdayText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappAbsentText": "Hi {name}, we haven't seen you at {gym} for a few days. Everything okay? Your next workout is waiting!",
+  "@whatsappAbsentText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      }
+    }
+  },
+  "stepOf": "Step {count} of 3",
+  "@stepOf": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "endsOn": "Ends {date}",
+  "@endsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "startsOn": "Starts {date}",
+  "@startsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "memberSaved": "{name} added",
+  "@memberSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateWarning": "Possible duplicate: {name} ({code})",
+  "@duplicateWarning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteConfirmTitle": "Delete {name} forever?",
+  "@deleteConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "freezeLeft": "{count, plural, =0{No freeze days left on this plan} =1{1 freeze day left on this plan} other{{count} freeze days left on this plan}}",
+  "@freezeLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "freezeDone": "{count, plural, =1{Frozen for 1 day} other{Frozen for {count} days}}",
+  "@freezeDone": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "renewDone": "Renewed until {date}",
+  "@renewDone": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "attendanceVisits": "{count, plural, =0{No visits} =1{1 visit} other{{count} visits}}",
+  "@attendanceVisits": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planActive": "{count, plural, =0{No active members} =1{1 active member} other{{count} active members}}",
+  "@planActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planDurationMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "@planDurationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planDurationDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@planDurationDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "planFreezeDays": "{count, plural, =0{No freezes} =1{1 freeze day} other{{count} freeze days}}",
+  "@planFreezeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checkInWelcome": "Welcome, {name}!",
+  "@checkInWelcome": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "checkInDaysLeft": "{count, plural, =0{Last day today} =1{1 day left} other{{count} days left}}",
+  "@checkInDaysLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importReady": "{count, plural, =1{1 row ready to import} other{{count} rows ready to import}}",
+  "@importReady": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importProblems": "{count, plural, =1{1 row has problems} other{{count} rows have problems}}",
+  "@importProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importStart": "{count, plural, =1{Import 1 member} other{Import {count} members}}",
+  "@importStart": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importRunning": "Importing… {done} of {total}",
+  "@importRunning": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "importImported": "{count} imported",
+  "@importImported": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importDuplicates": "{count} duplicates skipped",
+  "@importDuplicates": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importErrors": "{count} not imported",
+  "@importErrors": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonRenewal": "Renewal due {date}",
+  "@reasonRenewal": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonExpired": "Expired {date}",
+  "@reasonExpired": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonAbsentSince": "Last visit {date}",
+  "@reasonAbsentSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "visitedAt": "Checked in {time}",
+  "@visitedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

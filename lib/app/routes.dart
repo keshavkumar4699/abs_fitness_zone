@@ -20,7 +20,17 @@ abstract final class Routes {
   static const staffTeam = '/staff/more/team';
   static const memberPin = '/staff/more/member-pin';
 
+  static const memberNew = '/staff/members/new';
+  static const memberImport = '/staff/members/import';
+  static String memberDetail(String id) => '/staff/members/$id';
+  static String memberEdit(String id) => '/staff/members/$id/edit';
+  static const checkIn = '/staff/check-in';
+  static const membershipPlans = '/staff/more/membership-plans';
+  static const gymQr = '/staff/more/check-in-qr';
+  static const gymProfile = '/staff/more/gym-profile';
+
   static const meHome = '/me/home';
+  static const meCheckIn = '/me/check-in';
   static const meWorkout = '/me/workout';
   static const meDiet = '/me/diet';
   static const meProgress = '/me/progress';
@@ -63,5 +73,14 @@ String? authRedirect({required AsyncValue<AppUser?> auth, required bool onboardi
   if (location.startsWith('/me') && user.role.isStaff) return home;
   if (location.startsWith(Routes.staffTeam) && !user.role.isOwner) return Routes.staffMore;
   if (location.startsWith(Routes.memberPin) && !user.role.isDesk) return Routes.staffMore;
+  // Owner-only and desk-only staff pages.
+  if (location.startsWith(Routes.gymProfile) && !user.role.isOwner) return Routes.staffMore;
+  if ((location.startsWith(Routes.gymQr) ||
+          location == Routes.memberNew ||
+          location == Routes.memberImport ||
+          (location.startsWith('/staff/members/') && location.endsWith('/edit'))) &&
+      !user.role.isDesk) {
+    return Routes.staffMembers;
+  }
   return null;
 }

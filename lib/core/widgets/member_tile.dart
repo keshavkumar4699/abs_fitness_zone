@@ -75,7 +75,17 @@ class MemberTile extends StatelessWidget {
     this.onCollect,
     this.onRemind,
     this.heroTag,
+    this.avatar,
+    this.onLongPress,
+    this.selected = false,
   });
+
+  /// Custom avatar (e.g. one that loads a private photo).
+  final Widget? avatar;
+  final VoidCallback? onLongPress;
+
+  /// Highlighted in multi-select mode.
+  final bool selected;
 
   /// Hero tag shared with the member detail avatar (usually the member id).
   final Object? heroTag;
@@ -94,12 +104,13 @@ class MemberTile extends StatelessWidget {
     final c = context.colors;
     final t = context.text;
     final ring = StatusPill.colorFor(c, status);
-    final avatar = AbsAvatar(name: name, imageUrl: photoUrl, ringColor: ring);
+    final avatar = this.avatar ?? AbsAvatar(name: name, imageUrl: photoUrl, ringColor: ring);
 
     final tile = Material(
-      color: c.bg,
+      color: selected ? c.pop(PopHue.grape).soft : c.bg,
       child: InkWell(
         onTap: onTap,
+        onLongPress: onLongPress,
         child: ConstrainedBox(
           constraints: const BoxConstraints(minHeight: AbsSize.touchTarget + AbsSpace.x4),
           child: Padding(

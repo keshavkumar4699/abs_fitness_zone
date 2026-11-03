@@ -98,6 +98,9 @@ class FakeStaffRepository implements StaffRepository {
   }
 
   @override
+  Future<List<StaffMember>> trainers() async => staff.where((s) => s.role == UserRole.trainer && s.isActive).toList();
+
+  @override
   Future<void> setActive({required String staffId, required bool active}) async {
     if (error != null) throw error!;
     final i = staff.indexWhere((s) => s.id == staffId);

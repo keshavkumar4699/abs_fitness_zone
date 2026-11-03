@@ -1321,6 +1321,1956 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go home'**
   String get goHome;
+
+  /// No description provided for @memberDuplicatePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Another member already uses this phone number.'**
+  String get memberDuplicatePhone;
+
+  /// No description provided for @membersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get membersTitle;
+
+  /// No description provided for @membersSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search name, phone or ID'**
+  String get membersSearchHint;
+
+  /// No description provided for @membersEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No members yet'**
+  String get membersEmptyTitle;
+
+  /// No description provided for @membersEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first member or import your existing list.'**
+  String get membersEmptyBody;
+
+  /// No description provided for @membersNoMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches'**
+  String get membersNoMatchTitle;
+
+  /// No description provided for @membersNoMatchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No members match this search or these filters.'**
+  String get membersNoMatchBody;
+
+  /// No description provided for @membersClearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get membersClearFilters;
+
+  /// No description provided for @membersAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add member'**
+  String get membersAdd;
+
+  /// No description provided for @membersImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get membersImport;
+
+  /// No description provided for @membersExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get membersExport;
+
+  /// No description provided for @membersFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get membersFilters;
+
+  /// No description provided for @membersSort.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort'**
+  String get membersSort;
+
+  /// No description provided for @sortName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get sortName;
+
+  /// No description provided for @sortEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Ending soonest'**
+  String get sortEndDate;
+
+  /// No description provided for @sortJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get sortJoined;
+
+  /// No description provided for @filterStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get filterStatus;
+
+  /// No description provided for @filterPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan'**
+  String get filterPlan;
+
+  /// No description provided for @filterTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer'**
+  String get filterTrainer;
+
+  /// No description provided for @filterBatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Batch'**
+  String get filterBatch;
+
+  /// No description provided for @filterGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get filterGender;
+
+  /// No description provided for @filterBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday this month'**
+  String get filterBirthday;
+
+  /// No description provided for @filterJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined between'**
+  String get filterJoined;
+
+  /// No description provided for @filterArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Show archived'**
+  String get filterArchived;
+
+  /// No description provided for @filterApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get filterApply;
+
+  /// No description provided for @filterSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save filter'**
+  String get filterSave;
+
+  /// No description provided for @filterSaveName.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter name'**
+  String get filterSaveName;
+
+  /// No description provided for @filterSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved filters'**
+  String get filterSaved;
+
+  /// No description provided for @filterAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get filterAny;
+
+  /// No description provided for @filterFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get filterFrom;
+
+  /// No description provided for @filterTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get filterTo;
+
+  /// No description provided for @batchMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get batchMorning;
+
+  /// No description provided for @batchEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get batchEvening;
+
+  /// No description provided for @genderMale.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get genderMale;
+
+  /// No description provided for @genderFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get genderFemale;
+
+  /// No description provided for @genderOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get genderOther;
+
+  /// No description provided for @bulkAssignTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign trainer'**
+  String get bulkAssignTrainer;
+
+  /// No description provided for @bulkExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get bulkExport;
+
+  /// No description provided for @bulkNoTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'No trainer'**
+  String get bulkNoTrainer;
+
+  /// No description provided for @remindWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind'**
+  String get remindWhatsApp;
+
+  /// No description provided for @selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get selectAll;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusCancelled;
+
+  /// No description provided for @statusInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get statusInactive;
+
+  /// No description provided for @statusUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts soon'**
+  String get statusUpcoming;
+
+  /// No description provided for @statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get statusPending;
+
+  /// No description provided for @noPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'No plan'**
+  String get noPlan;
+
+  /// No description provided for @addMemberTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New member'**
+  String get addMemberTitle;
+
+  /// No description provided for @stepBasics.
+  ///
+  /// In en, this message translates to:
+  /// **'Basics'**
+  String get stepBasics;
+
+  /// No description provided for @stepHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get stepHealth;
+
+  /// No description provided for @stepMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership'**
+  String get stepMembership;
+
+  /// No description provided for @fieldAltPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternate phone'**
+  String get fieldAltPhone;
+
+  /// No description provided for @fieldGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get fieldGender;
+
+  /// No description provided for @fieldDob.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get fieldDob;
+
+  /// No description provided for @fieldAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get fieldAddress;
+
+  /// No description provided for @fieldEmergencyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contact name'**
+  String get fieldEmergencyName;
+
+  /// No description provided for @fieldEmergencyRelation.
+  ///
+  /// In en, this message translates to:
+  /// **'Relation'**
+  String get fieldEmergencyRelation;
+
+  /// No description provided for @fieldEmergencyPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency phone'**
+  String get fieldEmergencyPhone;
+
+  /// No description provided for @fieldBloodGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood group'**
+  String get fieldBloodGroup;
+
+  /// No description provided for @fieldBatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Batch'**
+  String get fieldBatch;
+
+  /// No description provided for @fieldTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer'**
+  String get fieldTrainer;
+
+  /// No description provided for @fieldSource.
+  ///
+  /// In en, this message translates to:
+  /// **'How did they hear about us?'**
+  String get fieldSource;
+
+  /// No description provided for @fieldNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get fieldNotes;
+
+  /// No description provided for @fieldPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo'**
+  String get fieldPhoto;
+
+  /// No description provided for @fieldPhotoAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photo'**
+  String get fieldPhotoAdd;
+
+  /// No description provided for @fieldPhotoChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change photo'**
+  String get fieldPhotoChange;
+
+  /// No description provided for @fieldHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Height (cm)'**
+  String get fieldHeight;
+
+  /// No description provided for @fieldWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight (kg)'**
+  String get fieldWeight;
+
+  /// No description provided for @fieldGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal'**
+  String get fieldGoal;
+
+  /// No description provided for @fieldLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Experience'**
+  String get fieldLevel;
+
+  /// No description provided for @fieldConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical conditions'**
+  String get fieldConditions;
+
+  /// No description provided for @fieldInjuries.
+  ///
+  /// In en, this message translates to:
+  /// **'Injuries'**
+  String get fieldInjuries;
+
+  /// No description provided for @fieldMedications.
+  ///
+  /// In en, this message translates to:
+  /// **'Medications'**
+  String get fieldMedications;
+
+  /// No description provided for @fieldDoctorClearance.
+  ///
+  /// In en, this message translates to:
+  /// **'A doctor has cleared them for exercise'**
+  String get fieldDoctorClearance;
+
+  /// No description provided for @fieldConsentHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Member agrees to share health details with the gym'**
+  String get fieldConsentHealth;
+
+  /// No description provided for @fieldConsentWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'Member agrees to receive WhatsApp updates'**
+  String get fieldConsentWhatsapp;
+
+  /// No description provided for @goalFatLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Fat loss'**
+  String get goalFatLoss;
+
+  /// No description provided for @goalMuscleGain.
+  ///
+  /// In en, this message translates to:
+  /// **'Muscle gain'**
+  String get goalMuscleGain;
+
+  /// No description provided for @goalStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength'**
+  String get goalStrength;
+
+  /// No description provided for @goalGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General fitness'**
+  String get goalGeneral;
+
+  /// No description provided for @goalRehab.
+  ///
+  /// In en, this message translates to:
+  /// **'Rehab'**
+  String get goalRehab;
+
+  /// No description provided for @levelBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get levelBeginner;
+
+  /// No description provided for @levelIntermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get levelIntermediate;
+
+  /// No description provided for @levelAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get levelAdvanced;
+
+  /// No description provided for @parqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health questions'**
+  String get parqTitle;
+
+  /// No description provided for @parqHeart.
+  ///
+  /// In en, this message translates to:
+  /// **'Has a doctor ever said they have a heart condition?'**
+  String get parqHeart;
+
+  /// No description provided for @parqChestPain.
+  ///
+  /// In en, this message translates to:
+  /// **'Do they feel chest pain during physical activity?'**
+  String get parqChestPain;
+
+  /// No description provided for @parqDizzy.
+  ///
+  /// In en, this message translates to:
+  /// **'Do they lose balance from dizziness, or ever faint?'**
+  String get parqDizzy;
+
+  /// No description provided for @parqBone.
+  ///
+  /// In en, this message translates to:
+  /// **'Do they have a bone or joint problem that exercise could make worse?'**
+  String get parqBone;
+
+  /// No description provided for @parqBp.
+  ///
+  /// In en, this message translates to:
+  /// **'Are they taking medicine for blood pressure or the heart?'**
+  String get parqBp;
+
+  /// No description provided for @parqPregnant.
+  ///
+  /// In en, this message translates to:
+  /// **'Are they pregnant, or did they give birth in the last 6 months?'**
+  String get parqPregnant;
+
+  /// No description provided for @parqOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Is there any other reason they should not exercise?'**
+  String get parqOther;
+
+  /// No description provided for @parqWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered yes: ask for a doctor\'s clearance before training.'**
+  String get parqWarning;
+
+  /// No description provided for @planSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a plan'**
+  String get planSelect;
+
+  /// No description provided for @planNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip for now'**
+  String get planNone;
+
+  /// No description provided for @startDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date'**
+  String get startDate;
+
+  /// No description provided for @startToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get startToday;
+
+  /// No description provided for @addonsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add-ons'**
+  String get addonsTitle;
+
+  /// No description provided for @discount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount (₹)'**
+  String get discount;
+
+  /// No description provided for @discountReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for discount'**
+  String get discountReason;
+
+  /// No description provided for @summaryTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get summaryTotal;
+
+  /// No description provided for @summaryJoiningFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining fee'**
+  String get summaryJoiningFee;
+
+  /// No description provided for @summaryPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan'**
+  String get summaryPlan;
+
+  /// No description provided for @summaryAddons.
+  ///
+  /// In en, this message translates to:
+  /// **'Add-ons'**
+  String get summaryAddons;
+
+  /// No description provided for @summaryDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get summaryDiscount;
+
+  /// No description provided for @saveMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Save member'**
+  String get saveMember;
+
+  /// No description provided for @draftRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'We kept your unsaved draft.'**
+  String get draftRestored;
+
+  /// No description provided for @discardDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Start fresh'**
+  String get discardDraft;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @paymentNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment is collected in the Payments update, coming next.'**
+  String get paymentNote;
+
+  /// No description provided for @consentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick the consent box to save health details.'**
+  String get consentRequired;
+
+  /// No description provided for @discountNeedsReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reason for the discount.'**
+  String get discountNeedsReason;
+
+  /// No description provided for @discountTooBig.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount can\'t be more than the total.'**
+  String get discountTooBig;
+
+  /// No description provided for @tabOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get tabOverview;
+
+  /// No description provided for @tabMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership'**
+  String get tabMembership;
+
+  /// No description provided for @tabPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get tabPayments;
+
+  /// No description provided for @tabWorkouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Workouts'**
+  String get tabWorkouts;
+
+  /// No description provided for @tabDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet'**
+  String get tabDiet;
+
+  /// No description provided for @tabProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get tabProgress;
+
+  /// No description provided for @tabAttendance.
+  ///
+  /// In en, this message translates to:
+  /// **'Attendance'**
+  String get tabAttendance;
+
+  /// No description provided for @tabNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get tabNotes;
+
+  /// No description provided for @actionCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect'**
+  String get actionCollect;
+
+  /// No description provided for @actionRenew.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew'**
+  String get actionRenew;
+
+  /// No description provided for @actionWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get actionWhatsApp;
+
+  /// No description provided for @actionCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get actionCall;
+
+  /// No description provided for @actionEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get actionEdit;
+
+  /// No description provided for @actionSetPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Set app PIN'**
+  String get actionSetPin;
+
+  /// No description provided for @actionArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get actionArchive;
+
+  /// No description provided for @actionRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get actionRestore;
+
+  /// No description provided for @actionDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete forever'**
+  String get actionDelete;
+
+  /// No description provided for @actionMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More actions'**
+  String get actionMore;
+
+  /// No description provided for @deleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only do this when the member asks in writing. Type their name to confirm.'**
+  String get deleteConfirmBody;
+
+  /// No description provided for @deleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Member deleted'**
+  String get deleted;
+
+  /// No description provided for @archivedDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Member archived'**
+  String get archivedDone;
+
+  /// No description provided for @restoredDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Member restored'**
+  String get restoredDone;
+
+  /// No description provided for @infoPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get infoPhone;
+
+  /// No description provided for @infoEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get infoEmail;
+
+  /// No description provided for @infoDob.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday'**
+  String get infoDob;
+
+  /// No description provided for @infoAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get infoAddress;
+
+  /// No description provided for @infoEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get infoEmergency;
+
+  /// No description provided for @infoBatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Batch'**
+  String get infoBatch;
+
+  /// No description provided for @infoTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer'**
+  String get infoTrainer;
+
+  /// No description provided for @infoJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get infoJoined;
+
+  /// No description provided for @infoSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get infoSource;
+
+  /// No description provided for @infoBlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood group'**
+  String get infoBlood;
+
+  /// No description provided for @healthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get healthTitle;
+
+  /// No description provided for @healthNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No health details yet.'**
+  String get healthNone;
+
+  /// No description provided for @healthPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Health details are visible only to the owner, the member and their trainer.'**
+  String get healthPrivate;
+
+  /// No description provided for @membershipCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current membership'**
+  String get membershipCurrent;
+
+  /// No description provided for @membershipHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get membershipHistory;
+
+  /// No description provided for @membershipNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No membership yet'**
+  String get membershipNone;
+
+  /// No description provided for @membershipStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start membership'**
+  String get membershipStart;
+
+  /// No description provided for @freeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Freeze'**
+  String get freeze;
+
+  /// No description provided for @unfreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfreeze'**
+  String get unfreeze;
+
+  /// No description provided for @cancelMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelMembership;
+
+  /// No description provided for @transfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer'**
+  String get transfer;
+
+  /// No description provided for @freezeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Freeze membership'**
+  String get freezeTitle;
+
+  /// No description provided for @freezeDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of days'**
+  String get freezeDays;
+
+  /// No description provided for @freezeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting'**
+  String get freezeFrom;
+
+  /// No description provided for @freezeReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get freezeReason;
+
+  /// No description provided for @unfreezeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back! Membership unfrozen.'**
+  String get unfreezeDone;
+
+  /// No description provided for @renewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Renew membership'**
+  String get renewTitle;
+
+  /// No description provided for @renewSamePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Same plan'**
+  String get renewSamePlan;
+
+  /// No description provided for @cancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this membership?'**
+  String get cancelTitle;
+
+  /// No description provided for @cancelReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get cancelReason;
+
+  /// No description provided for @refundAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund given (₹)'**
+  String get refundAmount;
+
+  /// No description provided for @cancelDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership cancelled'**
+  String get cancelDone;
+
+  /// No description provided for @transferTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer remaining days'**
+  String get transferTitle;
+
+  /// No description provided for @transferPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Who gets the days?'**
+  String get transferPick;
+
+  /// No description provided for @transferDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Days transferred'**
+  String get transferDone;
+
+  /// No description provided for @paymentsSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoices and payments arrive in the Payments update, coming next.'**
+  String get paymentsSoon;
+
+  /// No description provided for @workoutsSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout plans arrive with the Workouts update.'**
+  String get workoutsSoon;
+
+  /// No description provided for @dietSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet plans arrive with the Diet update.'**
+  String get dietSoon;
+
+  /// No description provided for @progressAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add measurement'**
+  String get progressAdd;
+
+  /// No description provided for @progressEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No measurements yet'**
+  String get progressEmpty;
+
+  /// No description provided for @weightTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight trend (kg)'**
+  String get weightTrend;
+
+  /// No description provided for @measurementSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Measurement saved'**
+  String get measurementSaved;
+
+  /// No description provided for @fieldBodyFat.
+  ///
+  /// In en, this message translates to:
+  /// **'Body fat %'**
+  String get fieldBodyFat;
+
+  /// No description provided for @fieldChest.
+  ///
+  /// In en, this message translates to:
+  /// **'Chest (cm)'**
+  String get fieldChest;
+
+  /// No description provided for @fieldWaist.
+  ///
+  /// In en, this message translates to:
+  /// **'Waist (cm)'**
+  String get fieldWaist;
+
+  /// No description provided for @fieldHips.
+  ///
+  /// In en, this message translates to:
+  /// **'Hips (cm)'**
+  String get fieldHips;
+
+  /// No description provided for @fieldArms.
+  ///
+  /// In en, this message translates to:
+  /// **'Arms (cm)'**
+  String get fieldArms;
+
+  /// No description provided for @fieldThighs.
+  ///
+  /// In en, this message translates to:
+  /// **'Thighs (cm)'**
+  String get fieldThighs;
+
+  /// No description provided for @fieldMeasuredOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get fieldMeasuredOn;
+
+  /// No description provided for @attendanceMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark present today'**
+  String get attendanceMark;
+
+  /// No description provided for @attendanceMarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked present'**
+  String get attendanceMarked;
+
+  /// No description provided for @attendanceAlready.
+  ///
+  /// In en, this message translates to:
+  /// **'Already checked in today'**
+  String get attendanceAlready;
+
+  /// No description provided for @attendanceLast12.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 12 weeks'**
+  String get attendanceLast12;
+
+  /// No description provided for @attendanceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No visits yet'**
+  String get attendanceEmpty;
+
+  /// No description provided for @notesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a note…'**
+  String get notesHint;
+
+  /// No description provided for @notesAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get notesAdd;
+
+  /// No description provided for @notesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet'**
+  String get notesEmpty;
+
+  /// No description provided for @collectSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Collecting payments arrives in the Payments update, coming next.'**
+  String get collectSoon;
+
+  /// No description provided for @pickDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a date'**
+  String get pickDate;
+
+  /// No description provided for @dateNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get dateNotSet;
+
+  /// No description provided for @plansTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership plans'**
+  String get plansTitle;
+
+  /// No description provided for @plansTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Plans'**
+  String get plansTab;
+
+  /// No description provided for @addonsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Add-ons'**
+  String get addonsTab;
+
+  /// No description provided for @planNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New plan'**
+  String get planNew;
+
+  /// No description provided for @addonNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New add-on'**
+  String get addonNew;
+
+  /// No description provided for @planName.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan name'**
+  String get planName;
+
+  /// No description provided for @planDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get planDuration;
+
+  /// No description provided for @unitMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'Months'**
+  String get unitMonths;
+
+  /// No description provided for @unitDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get unitDays;
+
+  /// No description provided for @planPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (₹)'**
+  String get planPrice;
+
+  /// No description provided for @planJoiningFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining fee (₹)'**
+  String get planJoiningFee;
+
+  /// No description provided for @planGst.
+  ///
+  /// In en, this message translates to:
+  /// **'GST'**
+  String get planGst;
+
+  /// No description provided for @planFreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Freeze days allowed'**
+  String get planFreeze;
+
+  /// No description provided for @planIncludesPt.
+  ///
+  /// In en, this message translates to:
+  /// **'Includes personal training'**
+  String get planIncludesPt;
+
+  /// No description provided for @planColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour'**
+  String get planColor;
+
+  /// No description provided for @planArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get planArchived;
+
+  /// No description provided for @planArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get planArchive;
+
+  /// No description provided for @planUnarchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring back'**
+  String get planUnarchive;
+
+  /// No description provided for @plansEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No plans yet'**
+  String get plansEmptyTitle;
+
+  /// No description provided for @plansEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first membership plan so members can join.'**
+  String get plansEmptyBody;
+
+  /// No description provided for @addonsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No add-ons yet'**
+  String get addonsEmpty;
+
+  /// No description provided for @addonName.
+  ///
+  /// In en, this message translates to:
+  /// **'Add-on name'**
+  String get addonName;
+
+  /// No description provided for @addonPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (₹)'**
+  String get addonPrice;
+
+  /// No description provided for @addonKind.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get addonKind;
+
+  /// No description provided for @kindPt.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal training'**
+  String get kindPt;
+
+  /// No description provided for @kindLocker.
+  ///
+  /// In en, this message translates to:
+  /// **'Locker'**
+  String get kindLocker;
+
+  /// No description provided for @kindDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Diet consultation'**
+  String get kindDiet;
+
+  /// No description provided for @kindOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get kindOther;
+
+  /// No description provided for @saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get saved;
+
+  /// No description provided for @morePlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership plans'**
+  String get morePlans;
+
+  /// No description provided for @morePlansSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plans, prices and add-ons'**
+  String get morePlansSubtitle;
+
+  /// No description provided for @moreGymQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in QR'**
+  String get moreGymQr;
+
+  /// No description provided for @moreGymQrSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show today\'s code for member self check-in'**
+  String get moreGymQrSubtitle;
+
+  /// No description provided for @moreGymProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym profile'**
+  String get moreGymProfile;
+
+  /// No description provided for @moreGymProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, address, UPI ID and rules'**
+  String get moreGymProfileSubtitle;
+
+  /// No description provided for @moreImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import members'**
+  String get moreImport;
+
+  /// No description provided for @moreImportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring in your existing list from a spreadsheet'**
+  String get moreImportSubtitle;
+
+  /// No description provided for @noGst.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get noGst;
+
+  /// No description provided for @checkInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in'**
+  String get checkInTitle;
+
+  /// No description provided for @checkInSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search member to check in'**
+  String get checkInSearch;
+
+  /// No description provided for @checkInScanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Point at the member\'s QR code'**
+  String get checkInScanHint;
+
+  /// No description provided for @checkInAlready.
+  ///
+  /// In en, this message translates to:
+  /// **'Already checked in today'**
+  String get checkInAlready;
+
+  /// No description provided for @checkInWarnExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership expired'**
+  String get checkInWarnExpired;
+
+  /// No description provided for @checkInWarnInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'No active membership'**
+  String get checkInWarnInactive;
+
+  /// No description provided for @checkInWarnFrozen.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership is frozen'**
+  String get checkInWarnFrozen;
+
+  /// No description provided for @checkInWarnCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership cancelled'**
+  String get checkInWarnCancelled;
+
+  /// No description provided for @checkInOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get checkInOk;
+
+  /// No description provided for @checkInCameraOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera unavailable. Search by name instead.'**
+  String get checkInCameraOff;
+
+  /// No description provided for @checkInUnknownCode.
+  ///
+  /// In en, this message translates to:
+  /// **'That QR code isn\'t an ABS Fitness member card.'**
+  String get checkInUnknownCode;
+
+  /// No description provided for @gymQrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s check-in code'**
+  String get gymQrTitle;
+
+  /// No description provided for @gymQrBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Members scan this with the ABS Fitness app to check in. It changes every day.'**
+  String get gymQrBody;
+
+  /// No description provided for @memberCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check in'**
+  String get memberCheckIn;
+
+  /// No description provided for @memberCheckInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan the gym code'**
+  String get memberCheckInTitle;
+
+  /// No description provided for @memberCheckInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Point at the QR code at the front desk.'**
+  String get memberCheckInHint;
+
+  /// No description provided for @memberQrTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My check-in code'**
+  String get memberQrTitle;
+
+  /// No description provided for @memberQrBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this at the front desk to check in.'**
+  String get memberQrBody;
+
+  /// No description provided for @importTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import members'**
+  String get importTitle;
+
+  /// No description provided for @importPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a CSV file'**
+  String get importPick;
+
+  /// No description provided for @importPickBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Save your existing sheet as CSV (File → Download → CSV), then pick it here. The first row should have the column names.'**
+  String get importPickBody;
+
+  /// No description provided for @importMapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Match your columns'**
+  String get importMapTitle;
+
+  /// No description provided for @importNotMapped.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in file'**
+  String get importNotMapped;
+
+  /// No description provided for @importPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get importPreview;
+
+  /// No description provided for @importDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Import finished'**
+  String get importDone;
+
+  /// No description provided for @importShareReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Share error report'**
+  String get importShareReport;
+
+  /// No description provided for @importAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Import another file'**
+  String get importAnother;
+
+  /// No description provided for @importFileError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read that file. Make sure it\'s a CSV.'**
+  String get importFileError;
+
+  /// No description provided for @importNeedNamePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the name and phone columns to continue.'**
+  String get importNeedNamePhone;
+
+  /// No description provided for @importRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'required'**
+  String get importRequired;
+
+  /// No description provided for @gymProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym profile'**
+  String get gymProfileTitle;
+
+  /// No description provided for @fieldGymName.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym name'**
+  String get fieldGymName;
+
+  /// No description provided for @fieldGymPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym phone'**
+  String get fieldGymPhone;
+
+  /// No description provided for @fieldGymAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get fieldGymAddress;
+
+  /// No description provided for @fieldUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI ID'**
+  String get fieldUpi;
+
+  /// No description provided for @fieldGstin.
+  ///
+  /// In en, this message translates to:
+  /// **'GSTIN (optional)'**
+  String get fieldGstin;
+
+  /// No description provided for @fieldExpiringWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Warn this many days before a plan ends'**
+  String get fieldExpiringWindow;
+
+  /// No description provided for @fieldAbsentDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag members absent for this many days'**
+  String get fieldAbsentDays;
+
+  /// No description provided for @fieldLapsedRenew.
+  ///
+  /// In en, this message translates to:
+  /// **'When a lapsed member renews, start from'**
+  String get fieldLapsedRenew;
+
+  /// No description provided for @lapsedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get lapsedToday;
+
+  /// No description provided for @lapsedEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Day after old end'**
+  String get lapsedEnd;
+
+  /// No description provided for @rulesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules'**
+  String get rulesTitle;
+
+  /// No description provided for @dashActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active members'**
+  String get dashActive;
+
+  /// No description provided for @dashExpiring.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiring soon'**
+  String get dashExpiring;
+
+  /// No description provided for @dashCheckIns.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s check-ins'**
+  String get dashCheckIns;
+
+  /// No description provided for @dashNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New this month'**
+  String get dashNew;
+
+  /// No description provided for @dashNeedsAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs action today'**
+  String get dashNeedsAction;
+
+  /// No description provided for @dashAllClear.
+  ///
+  /// In en, this message translates to:
+  /// **'All clear! Nothing needs you right now.'**
+  String get dashAllClear;
+
+  /// No description provided for @dashLiveFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Live check-ins'**
+  String get dashLiveFeed;
+
+  /// No description provided for @dashNoCheckIns.
+  ///
+  /// In en, this message translates to:
+  /// **'No check-ins yet today'**
+  String get dashNoCheckIns;
+
+  /// No description provided for @reasonBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday today'**
+  String get reasonBirthday;
+
+  /// No description provided for @reasonAbsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Not seen for a while'**
+  String get reasonAbsent;
+
+  /// No description provided for @dashSetupPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Create membership plans'**
+  String get dashSetupPlans;
+
+  /// No description provided for @dashSetupPlansBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Plans and prices members can join.'**
+  String get dashSetupPlansBody;
+
+  /// No description provided for @dashSetupGym.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in your gym profile'**
+  String get dashSetupGym;
+
+  /// No description provided for @dashSetupGymBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, address and UPI ID for receipts and links.'**
+  String get dashSetupGymBody;
+
+  /// No description provided for @myProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My progress'**
+  String get myProgressTitle;
+
+  /// No description provided for @myProgressEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your trainer will record your measurements here.'**
+  String get myProgressEmpty;
+
+  /// No description provided for @myVisitsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Visits this month'**
+  String get myVisitsTitle;
+
+  /// No description provided for @membersSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String membersSelected(int count);
+
+  /// No description provided for @bulkTrainerAssigned.
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer updated for {count, plural, =1{1 member} other{{count} members}}'**
+  String bulkTrainerAssigned(int count);
+
+  /// No description provided for @exportReady.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 member exported} other{{count} members exported}}'**
+  String exportReady(int count);
+
+  /// No description provided for @whatsappReminderText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, your {plan} membership at {gym} ends on {date}. Renew at the front desk to keep going!'**
+  String whatsappReminderText(String name, String plan, String gym, String date);
+
+  /// No description provided for @whatsappExpiredText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, we miss you at {gym}! Your membership ended on {date}. Come back and renew any time.'**
+  String whatsappExpiredText(String name, String gym, String date);
+
+  /// No description provided for @whatsappBirthdayText.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy birthday {name}! Wishing you a strong year ahead from all of us at {gym}.'**
+  String whatsappBirthdayText(String name, String gym);
+
+  /// No description provided for @whatsappAbsentText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, we haven\'t seen you at {gym} for a few days. Everything okay? Your next workout is waiting!'**
+  String whatsappAbsentText(String name, String gym);
+
+  /// No description provided for @stepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {count} of 3'**
+  String stepOf(int count);
+
+  /// No description provided for @endsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends {date}'**
+  String endsOn(String date);
+
+  /// No description provided for @startsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts {date}'**
+  String startsOn(String date);
+
+  /// No description provided for @memberSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} added'**
+  String memberSaved(String name);
+
+  /// No description provided for @duplicateWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible duplicate: {name} ({code})'**
+  String duplicateWarning(String name, String code);
+
+  /// No description provided for @deleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name} forever?'**
+  String deleteConfirmTitle(String name);
+
+  /// No description provided for @freezeLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No freeze days left on this plan} =1{1 freeze day left on this plan} other{{count} freeze days left on this plan}}'**
+  String freezeLeft(int count);
+
+  /// No description provided for @freezeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Frozen for 1 day} other{Frozen for {count} days}}'**
+  String freezeDone(int count);
+
+  /// No description provided for @renewDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Renewed until {date}'**
+  String renewDone(String date);
+
+  /// No description provided for @attendanceVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No visits} =1{1 visit} other{{count} visits}}'**
+  String attendanceVisits(int count);
+
+  /// No description provided for @planActive.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No active members} =1{1 active member} other{{count} active members}}'**
+  String planActive(int count);
+
+  /// No description provided for @planDurationMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 month} other{{count} months}}'**
+  String planDurationMonths(int count);
+
+  /// No description provided for @planDurationDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String planDurationDays(int count);
+
+  /// No description provided for @planFreezeDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No freezes} =1{1 freeze day} other{{count} freeze days}}'**
+  String planFreezeDays(int count);
+
+  /// No description provided for @checkInWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {name}!'**
+  String checkInWelcome(String name);
+
+  /// No description provided for @checkInDaysLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Last day today} =1{1 day left} other{{count} days left}}'**
+  String checkInDaysLeft(int count);
+
+  /// No description provided for @importReady.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 row ready to import} other{{count} rows ready to import}}'**
+  String importReady(int count);
+
+  /// No description provided for @importProblems.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 row has problems} other{{count} rows have problems}}'**
+  String importProblems(int count);
+
+  /// No description provided for @importStart.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Import 1 member} other{Import {count} members}}'**
+  String importStart(int count);
+
+  /// No description provided for @importRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Importing… {done} of {total}'**
+  String importRunning(int done, int total);
+
+  /// No description provided for @importImported.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} imported'**
+  String importImported(int count);
+
+  /// No description provided for @importDuplicates.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} duplicates skipped'**
+  String importDuplicates(int count);
+
+  /// No description provided for @importErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} not imported'**
+  String importErrors(int count);
+
+  /// No description provided for @reasonRenewal.
+  ///
+  /// In en, this message translates to:
+  /// **'Renewal due {date}'**
+  String reasonRenewal(String date);
+
+  /// No description provided for @reasonExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired {date}'**
+  String reasonExpired(String date);
+
+  /// No description provided for @reasonAbsentSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Last visit {date}'**
+  String reasonAbsentSince(String date);
+
+  /// No description provided for @visitedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked in {time}'**
+  String visitedAt(String time);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -44,6 +44,9 @@ abstract interface class StaffRepository {
 
   /// Turns a staff member's access off or back on (owner only, via RLS).
   Future<void> setActive({required String staffId, required bool active});
+
+  /// Active trainers, for assigning members.
+  Future<List<StaffMember>> trainers();
 }
 
 class SupabaseStaffRepository implements StaffRepository {
@@ -79,6 +82,22 @@ class SupabaseStaffRepository implements StaffRepository {
         403 => const NotAllowedFailure(),
         _ => ServerFailure('invite-staff ${e.status}'),
       };
+    }
+  }
+
+  @override
+  Future<List<StaffMember>> trainers() async {
+    try {
+      final rows = await _client
+          .from('staff')
+          .select('id, name, email, phone, role, is_active')
+          .eq('role', 'trainer')
+          .eq('is_active', true)
+          .isFilter('archived_at', null)
+          .order('name');
+      return rows.map(StaffMember.fromJson).toList();
+    } on PostgrestException catch (e) {
+      throw ServerFailure(e.message);
     }
   }
 
