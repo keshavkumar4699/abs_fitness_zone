@@ -226,3 +226,95 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     - Optional check-out.
     - The drift offline cache: lists show error + retry when offline.
     - Biometric unlock and app lock.
+
+## M2 Payments
+
+45. **Money rules live in the database.** Every payment, void, refund,
+    instalment plan and day close goes through a security-definer RPC.
+    Direct writes to money tables are blocked by a guard trigger, and a
+    deferred check makes sure an invoice's paid amount always equals its
+    confirmed payments. Nothing financial is ever deleted: voids and refunds
+    are new rows, with a reason, and every change lands in the audit log.
+
+46. **Invoice and receipt numbers** run per financial year (April–March):
+    `ABS/26-27/0001` for invoices and `RCPT/26-27/0001` for receipts. They are
+    allocated from a counter table inside the same transaction, so they are
+    sequential and never reused. A voided invoice keeps its number.
+
+47. **Invoices are created automatically** when a membership starts or
+    renews, at the end of the same transaction. Lines are the plan, the
+    joining fee (first membership only) and add-ons. A discount is spread over
+    the lines in order. Transfers and ₹0 memberships raise no invoice. The
+    desk can also raise an ad-hoc invoice through `create_invoice` (the app
+    screen for that comes with the shop/PT work later).
+
+48. **GST is off by default.** When the owner turns it on (a GSTIN is
+    required), plan prices are treated as **GST-inclusive** by default, which
+    matches how Indian gyms quote prices. Switching "Prices include GST" off
+    adds GST on top. GST is split into equal CGST and SGST (intra-state); an
+    odd paisa goes to SGST. Only new invoices are affected.
+
+49. **Partial payments and overpayments.** Any amount can be collected. If it
+    is more than the balance, the extra becomes **member credit** (a ledger),
+    and the receipt says so. Credit is used only when the desk chooses
+    "Use credit", so it never silently pays an invoice. Credit applications
+    are not counted as revenue a second time.
+
+50. **Instalments**: up to 4 dated parts that must add up to the invoice
+    total. Payments fill them in order; the first unpaid part's date is the
+    invoice's "next due date", which drives Due / Overdue and reminders.
+
+51. **Member self-pay in free mode.** The member app opens the UPI app with a
+    `upi://pay` link (gym UPI ID, amount, invoice number) or shows the same
+    link as a QR. After paying, the member taps "I've paid" and enters the
+    UTR. The claim is **pending** until the desk approves it; nothing counts
+    until then. On approval the receipt is numbered and the payment counts on
+    the approval day (that is when the desk confirmed the money arrived).
+    A UTR can be used once.
+
+52. **Razorpay is optional and off by default.** With keys set as Edge
+    Function secrets and the switch on in Gym profile, the desk can create a
+    payment link for an invoice and share it. The webhook checks the
+    `x-razorpay-signature` HMAC and is idempotent on the event ID, so retries
+    never double-count. Refunds through Razorpay itself are recorded in the
+    app by the owner as a manual refund.
+
+53. **Who can do what with money.**
+    - Front desk: collect, verify claims, split into instalments, share links,
+      apply credit, close their own day.
+    - Owner only: void a payment, refund, void an invoice (only when nothing
+      is paid on it), reopen a closed day, expenses, revenue figures.
+    - Trainers never see payments: the Payments tab shows a friendly page,
+      the routes redirect, and RLS returns no rows.
+    - Members see only their own invoices, payments and receipts.
+
+54. **Day close** is per staff member per IST day. It records totals by mode,
+    the cash counted and the difference, then locks that person's collecting
+    and verifying for the day until the owner reopens it. The owner is never
+    locked out.
+
+55. **Dues engine and reminders.** Open invoices are refreshed nightly at
+    00:10 IST and whenever a payment changes. The reminder schedule is 3 days
+    before, on the day, and 3 and 7 days after the due date
+    (`due_reminder_days` setting). In M2 the Payments tab lists today's
+    reminders with one-tap WhatsApp (pre-filled, including the UPI link).
+    Automatic sending arrives with the WhatsApp milestone (M5).
+
+56. **Receipts are made on the phone** (A5 PDF, Nunito font for ₹, about
+    13 KB, built in about 0.1 s). They are shared or printed through the
+    system sheet. Receipt text is English for now.
+
+57. **Overdue members at check-in.** The welcome screen shows "₹X fees
+    pending" and stays up for 2.4 s instead of 1.2 s so the desk notices.
+    Check-in is never blocked for dues.
+
+58. **Payment dates.** The app always collects for today. The RPC accepts a
+    date up to 30 days back for corrections, which the desk UI doesn't expose.
+
+59. **Deleting a member keeps their invoices and payments** with the name,
+    code and phone snapshot; only the link to the member is cleared.
+
+60. **Not built in M2, planned for later:** automatic WhatsApp fee reminders
+    (M5), full revenue reports and exports (M7; M2 adds the
+    `collections_summary` hook used by the dashboard), the ad-hoc invoice
+    screen, Razorpay checkout inside the member app, and offline collection.

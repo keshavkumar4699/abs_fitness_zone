@@ -376,7 +376,7 @@
   "draftRestored": "We kept your unsaved draft.",
   "discardDraft": "Start fresh",
   "back": "Back",
-  "paymentNote": "Payment is collected in the Payments update, coming next.",
+  "paymentNote": "An invoice is created for this plan. Collect now or later from Payments.",
   "consentRequired": "Tick the consent box to save health details.",
   "discountNeedsReason": "Add a reason for the discount.",
   "discountTooBig": "Discount can't be more than the total.",
@@ -437,7 +437,6 @@
   "transferTitle": "Transfer remaining days",
   "transferPick": "Who gets the days?",
   "transferDone": "Days transferred",
-  "paymentsSoon": "Invoices and payments arrive in the Payments update, coming next.",
   "workoutsSoon": "Workout plans arrive with the Workouts update.",
   "dietSoon": "Diet plans arrive with the Diet update.",
   "progressAdd": "Add measurement",
@@ -459,7 +458,6 @@
   "notesHint": "Add a note…",
   "notesAdd": "Add",
   "notesEmpty": "Nothing here yet",
-  "collectSoon": "Collecting payments arrives in the Payments update, coming next.",
   "pickDate": "Pick a date",
   "dateNotSet": "Not set",
   "plansTitle": "Membership plans",
@@ -858,5 +856,645 @@
       }
     }
   },
-  "daysShort": "days"
+  "daysShort": "days",
+  "payTitle": "Payments",
+  "paySearchHint": "Search name, invoice or receipt",
+  "payCollectedToday": "Collected today",
+  "payMyCollections": "Your collections today",
+  "payPaymentsCount": "{count, plural, =0{No payments yet} =1{1 payment} other{{count} payments}}",
+  "@payPaymentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payDayClosed": "Day closed",
+  "payCloseDay": "Close day",
+  "payTabDue": "Due",
+  "payTabOverdue": "Overdue",
+  "payTabPaid": "Paid",
+  "payTabPending": "To verify",
+  "payEmptyDueTitle": "Nothing due",
+  "payEmptyDueBody": "No open invoices right now.",
+  "payEmptyOverdueTitle": "No overdue fees",
+  "payEmptyOverdueBody": "Everyone is paid up. High five!",
+  "payEmptyPaidTitle": "No paid invoices yet",
+  "payEmptyPaidBody": "Paid invoices show up here.",
+  "payEmptyPendingTitle": "Nothing to verify",
+  "payEmptyPendingBody": "When a member taps \"I've paid\", their UPI reference waits here for a quick check.",
+  "payEmptySearchTitle": "No matches",
+  "payEmptySearchBody": "Try another name, invoice or receipt number.",
+  "payDueIn": "{days, plural, =0{Due today} =1{Due tomorrow} other{Due in {days} days}}",
+  "@payDueIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "payOverdueBy": "{days, plural, =1{1 day overdue} other{{days} days overdue}}",
+  "@payOverdueBy": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "payBalance": "{amount} due",
+  "@payBalance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "payHistory": "History",
+  "payReminders": "Fee reminders today",
+  "payRemindersBody": "{count, plural, =1{1 member to nudge} other{{count} members to nudge}}",
+  "@payRemindersBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "payCollect": "Collect",
+  "payTrainerTitle": "Payments are with the desk",
+  "payTrainerBody": "Fees and receipts are handled by the front desk and the owner.",
+  "payApprove": "Approve",
+  "payReject": "Reject",
+  "payRejectTitle": "Reject this payment?",
+  "payRejectReason": "Why? (the member sees this)",
+  "payUtr": "UTR {utr}",
+  "@payUtr": {
+    "placeholders": {
+      "utr": {
+        "type": "String"
+      }
+    }
+  },
+  "payApproved": "Approved. Receipt {receipt}",
+  "@payApproved": {
+    "placeholders": {
+      "receipt": {
+        "type": "String"
+      }
+    }
+  },
+  "payRejected": "Payment rejected",
+  "payClaimedAt": "Sent {time}",
+  "@payClaimedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "modeCash": "Cash",
+  "modeUpi": "UPI",
+  "modeCard": "Card",
+  "modeBank": "Bank transfer",
+  "modeOnline": "Online",
+  "modeCredit": "Credit",
+  "invoiceStatusPartial": "Part paid",
+  "invoiceStatusPaid": "Paid",
+  "invoiceStatusVoid": "Void",
+  "paymentStatusPending": "Waiting for check",
+  "paymentStatusRejected": "Rejected",
+  "paymentStatusVoided": "Voided",
+  "collectTitle": "Collect payment",
+  "collectSearchHint": "Member name, phone or ID",
+  "collectNoMembers": "No members match",
+  "collectPickInvoice": "Which invoice?",
+  "collectNothingDueTitle": "Nothing due",
+  "collectNothingDueBody": "{name} has no open invoices.",
+  "@collectNothingDueBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "collectAmount": "Amount",
+  "collectFull": "Full {amount}",
+  "@collectFull": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectInstalment": "Instalment {amount}",
+  "@collectInstalment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectMode": "Paid by",
+  "collectUtr": "UPI / bank reference (UTR)",
+  "collectUtrHelp": "The 12-digit reference from the payment app",
+  "collectUtrMissing": "Enter the UPI / bank reference (at least 6 characters).",
+  "collectExtraCredit": "{amount} extra is saved as credit",
+  "@collectExtraCredit": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectStillDue": "{amount} will still be due",
+  "@collectStillDue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectConfirm": "Collect {amount}",
+  "@collectConfirm": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectEnterAmount": "Enter an amount",
+  "collectUseCredit": "Use credit {amount}",
+  "@collectUseCredit": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectDone": "Payment received!",
+  "collectCreditSaved": "{amount} saved as credit",
+  "@collectCreditSaved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "collectReceiptNo": "Receipt {receipt}",
+  "@collectReceiptNo": {
+    "placeholders": {
+      "receipt": {
+        "type": "String"
+      }
+    }
+  },
+  "collectShareReceipt": "Share receipt",
+  "collectShare": "Share",
+  "collectPrint": "Print",
+  "collectWhatsApp": "Send on WhatsApp",
+  "collectAnother": "Done",
+  "collectChangeMember": "Change",
+  "keypadBackspace": "Delete digit",
+  "receiptWhatsAppText": "Hi {name}, we received {amount} at {gym}. Receipt {receipt}. Thank you!",
+  "@receiptWhatsAppText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "receipt": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptFailed": "Could not make the receipt. Try again.",
+  "invoiceTitle": "Invoice",
+  "invoiceItems": "Items",
+  "invoiceDiscount": "Discount",
+  "invoiceTaxable": "Taxable value",
+  "invoiceCgst": "CGST",
+  "invoiceSgst": "SGST",
+  "invoiceTotal": "Total",
+  "invoicePaid": "Paid",
+  "invoiceBalance": "Balance",
+  "invoiceIssued": "Issued {date}",
+  "@invoiceIssued": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "invoicePayments": "Payments",
+  "invoiceNoPayments": "No payments yet",
+  "invoiceInstalments": "Instalments",
+  "invoiceSplit": "Split into instalments",
+  "invoiceSplitHelp": "Up to 4 parts that add up to {total}.",
+  "@invoiceSplitHelp": {
+    "placeholders": {
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceAddPart": "Add part",
+  "invoicePart": "Part {n}",
+  "@invoicePart": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "invoiceSplitMismatch": "Parts add up to {sum}; they must equal {total}.",
+  "@invoiceSplitMismatch": {
+    "placeholders": {
+      "sum": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceSplitSaved": "Instalments saved",
+  "invoiceSendLink": "Send link",
+  "invoiceShowQr": "UPI QR",
+  "invoiceQrBody": "Scan with any UPI app to pay {amount}",
+  "@invoiceQrBody": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceNoUpi": "Add the gym's UPI ID in Gym profile to share payment links.",
+  "invoiceGatewayLink": "Razorpay link",
+  "invoiceGatewayReady": "Payment link ready",
+  "invoiceUpiText": "Hi {name}, your fees of {amount} at {gym} are due ({invoice}). Pay by UPI: {link}",
+  "@invoiceUpiText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "invoice": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceGatewayText": "Hi {name}, pay your fees of {amount} at {gym} here: {link}",
+  "@invoiceGatewayText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceVoid": "Void invoice",
+  "invoiceVoidTitle": "Void {invoice}?",
+  "@invoiceVoidTitle": {
+    "placeholders": {
+      "invoice": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceVoidBody": "The invoice stays on record marked void. This cannot be undone.",
+  "invoiceVoided": "Invoice voided",
+  "invoiceVoidedReason": "Voided: {reason}",
+  "@invoiceVoidedReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceReason": "Reason",
+  "invoiceApplyCredit": "Use {amount} credit",
+  "@invoiceApplyCredit": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "invoiceCreditApplied": "Credit applied",
+  "paymentVoid": "Void payment",
+  "paymentVoidTitle": "Void receipt {receipt}?",
+  "@paymentVoidTitle": {
+    "placeholders": {
+      "receipt": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentVoidDone": "Payment voided",
+  "paymentRefund": "Refund",
+  "paymentRefundTitle": "Refund from {receipt}",
+  "@paymentRefundTitle": {
+    "placeholders": {
+      "receipt": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentRefundAmount": "Refund amount",
+  "paymentRefundMode": "Refund by",
+  "paymentRefundDone": "Refund recorded",
+  "paymentRefunded": "Refunded {amount}",
+  "@paymentRefunded": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonRequired": "Add a reason.",
+  "amountRequired": "Enter an amount more than zero.",
+  "dayCloseTitle": "Close the day",
+  "dayCloseBody": "Count the cash drawer, then lock today's collections.",
+  "dayCloseByMode": "Today's collections",
+  "dayCloseTotal": "Total",
+  "dayCloseCounted": "Cash you counted",
+  "dayCloseExpected": "Expected cash {amount}",
+  "@dayCloseExpected": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dayCloseOver": "{amount} over",
+  "@dayCloseOver": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dayCloseShort": "{amount} short",
+  "@dayCloseShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dayCloseExact": "Matches exactly",
+  "dayCloseNote": "Note (optional)",
+  "dayCloseConfirm": "Close day",
+  "dayCloseDone": "Day closed. Nice work!",
+  "dayCloseLocked": "Closed at {time}. New collections need the owner to reopen your day.",
+  "@dayCloseLocked": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "dayCloseHistory": "Recent closes",
+  "dayCloseReopen": "Reopen",
+  "dayCloseReopened": "Day reopened",
+  "dayCloseReopenedPill": "Reopened",
+  "dayCloseCountedLine": "Counted {counted} · expected {expected}",
+  "@dayCloseCountedLine": {
+    "placeholders": {
+      "counted": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "expensesTitle": "Expenses",
+  "expensesTotal": "Spent in {month}",
+  "@expensesTotal": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "expensesEmptyTitle": "No expenses this month",
+  "expensesEmptyBody": "Add rent, salaries and bills to see what the gym really earns.",
+  "expenseAdd": "Add expense",
+  "expenseCategory": "Category",
+  "expenseAmount": "Amount",
+  "expenseDate": "Date",
+  "expenseNote": "Note (optional)",
+  "expenseSaved": "Expense saved",
+  "expenseDeleted": "Expense deleted",
+  "expenseDelete": "Delete expense",
+  "expenseRent": "Rent",
+  "expenseSalaries": "Salaries",
+  "expenseElectricity": "Electricity",
+  "expenseEquipment": "Equipment",
+  "expenseMaintenance": "Maintenance",
+  "expenseMarketing": "Marketing",
+  "expenseSupplies": "Supplies",
+  "expenseOther": "Other",
+  "previousMonth": "Previous month",
+  "nextMonth": "Next month",
+  "historyTitle": "Payment history",
+  "historySearchHint": "Name, receipt or UTR",
+  "historyAllModes": "All modes",
+  "historyDates": "Dates",
+  "historyClear": "Clear filters",
+  "historyEmptyTitle": "No payments found",
+  "historyEmptyBody": "Try another search or filter.",
+  "dashRevenue": "Collected",
+  "dashToday": "Today",
+  "dashWeek": "This week",
+  "dashMonth": "This month",
+  "dashOverdue": "Overdue fees",
+  "dashToVerify": "Payments to verify",
+  "dashOutstanding": "{amount} outstanding",
+  "@dashOutstanding": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "dashLast30": "Last 30 days",
+  "dashInvoices": "{count, plural, =0{No invoices} =1{1 invoice} other{{count} invoices}}",
+  "@dashInvoices": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonOverdue": "{amount} overdue since {date}",
+  "@reasonOverdue": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappDuesText": "Hi {name}, a friendly reminder: {amount} is due at {gym} (since {date}).",
+  "@whatsappDuesText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappDueSoonText": "Hi {name}, your fees of {amount} at {gym} are due on {date}.",
+  "@whatsappDueSoonText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappDueTodayText": "Hi {name}, your fees of {amount} at {gym} are due today.",
+  "@whatsappDueTodayText": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "gym": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappPayLine": "Pay by UPI: {link}",
+  "@whatsappPayLine": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "meDuesTitle": "Fees due",
+  "meDueBy": "Due {date}",
+  "@meDueBy": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "mePayNow": "Pay now",
+  "meAllPaid": "All paid up. Thank you!",
+  "mePayTitle": "Pay fees",
+  "mePayUpi": "Pay with a UPI app",
+  "mePayScan": "Or scan this QR from another phone",
+  "mePaid": "I've paid",
+  "mePaidTitle": "Tell us you've paid",
+  "mePaidBody": "Enter the UPI reference (UTR) from your payment app. The desk checks it and your receipt appears here.",
+  "mePaidAmount": "Amount you paid",
+  "mePaidSubmit": "Send for check",
+  "mePaidSent": "Sent! We'll confirm it soon.",
+  "mePaidPending": "{amount} waiting for the desk to check",
+  "@mePaidPending": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mePayments": "My payments",
+  "mePaymentsSubtitle": "Invoices and receipts",
+  "meNoUpi": "The gym hasn't set up UPI yet. Please pay at the front desk.",
+  "meNoInvoicesTitle": "No invoices yet",
+  "meNoInvoicesBody": "Your invoices and receipts will show up here.",
+  "mePayAtDesk": "You can also pay at the front desk.",
+  "meRejected": "Not confirmed: {reason}",
+  "@meRejected": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "noUpiApp": "No UPI app opened. Scan the QR instead.",
+  "checkInDues": "{amount} fees pending",
+  "@checkInDues": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "memberCredit": "Credit {amount}",
+  "@memberCredit": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "memberDues": "{amount} due",
+  "@memberDues": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "memberNoInvoicesTitle": "No invoices yet",
+  "memberNoInvoicesBody": "An invoice is created when a plan starts or renews.",
+  "gymPaymentsSection": "Payments",
+  "gymGstEnabled": "Charge GST",
+  "gymGstEnabledBody": "Shows CGST and SGST on invoices (needs a GSTIN).",
+  "gymGstInclusive": "Prices include GST",
+  "gymGstInclusiveBody": "Off: GST is added on top of plan prices.",
+  "gymRazorpay": "Razorpay payment links",
+  "gymRazorpayBody": "Needs Razorpay keys on the server. UPI links work without it.",
+  "moreDayClose": "Day close",
+  "moreDayCloseSubtitle": "Count cash and lock the day",
+  "moreExpenses": "Expenses",
+  "moreExpensesSubtitle": "Rent, salaries and bills",
+  "morePaymentHistory": "Payment history",
+  "morePaymentHistorySubtitle": "Every receipt, with filters"
 }

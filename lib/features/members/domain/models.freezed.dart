@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Member {
 
- String get id;@JsonKey(name: 'member_code') String get memberCode; String get name; String get phone;@JsonKey(name: 'alt_phone') String? get altPhone; String? get email; String? get gender;@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? get dob; String? get address;@JsonKey(name: 'emergency_name') String? get emergencyName;@JsonKey(name: 'emergency_relation') String? get emergencyRelation;@JsonKey(name: 'emergency_phone') String? get emergencyPhone;@JsonKey(name: 'blood_group') String? get bloodGroup;@JsonKey(name: 'photo_url') String? get photoPath; String? get goal; String? get level;@JsonKey(name: 'diet_pref') String? get dietPref; String get language;@JsonKey(name: 'trainer_id') String? get trainerId; String? get batch; String? get source;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? get joinedOn; String? get notes;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? get membershipStart;@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? get membershipEnd;@JsonKey(name: 'current_membership_id') String? get currentMembershipId;@JsonKey(name: 'whatsapp_opt_out') bool get whatsappOptOut;@JsonKey(name: 'archived_at') DateTime? get archivedAt;
+ String get id;@JsonKey(name: 'member_code') String get memberCode; String get name; String get phone;@JsonKey(name: 'alt_phone') String? get altPhone; String? get email; String? get gender;@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? get dob; String? get address;@JsonKey(name: 'emergency_name') String? get emergencyName;@JsonKey(name: 'emergency_relation') String? get emergencyRelation;@JsonKey(name: 'emergency_phone') String? get emergencyPhone;@JsonKey(name: 'blood_group') String? get bloodGroup;@JsonKey(name: 'photo_url') String? get photoPath; String? get goal; String? get level;@JsonKey(name: 'diet_pref') String? get dietPref; String get language;@JsonKey(name: 'trainer_id') String? get trainerId; String? get batch; String? get source;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? get joinedOn; String? get notes;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? get membershipStart;@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? get membershipEnd;@JsonKey(name: 'current_membership_id') String? get currentMembershipId;@JsonKey(name: 'whatsapp_opt_out') bool get whatsappOptOut;@JsonKey(name: 'archived_at') DateTime? get archivedAt;@JsonKey(name: 'dues_paise') int get duesPaise;
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $MemberCopyWith<Member> get copyWith => _$MemberCopyWithImpl<Member>(this as Mem
 @override
 bool operator ==(Object other) {
   final _this = this as Member;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Member&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.altPhone, _this.altPhone) || other.altPhone == _this.altPhone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.gender, _this.gender) || other.gender == _this.gender)&&(identical(other.dob, _this.dob) || other.dob == _this.dob)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.emergencyName, _this.emergencyName) || other.emergencyName == _this.emergencyName)&&(identical(other.emergencyRelation, _this.emergencyRelation) || other.emergencyRelation == _this.emergencyRelation)&&(identical(other.emergencyPhone, _this.emergencyPhone) || other.emergencyPhone == _this.emergencyPhone)&&(identical(other.bloodGroup, _this.bloodGroup) || other.bloodGroup == _this.bloodGroup)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.goal, _this.goal) || other.goal == _this.goal)&&(identical(other.level, _this.level) || other.level == _this.level)&&(identical(other.dietPref, _this.dietPref) || other.dietPref == _this.dietPref)&&(identical(other.language, _this.language) || other.language == _this.language)&&(identical(other.trainerId, _this.trainerId) || other.trainerId == _this.trainerId)&&(identical(other.batch, _this.batch) || other.batch == _this.batch)&&(identical(other.source, _this.source) || other.source == _this.source)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.joinedOn, _this.joinedOn) || other.joinedOn == _this.joinedOn)&&(identical(other.notes, _this.notes) || other.notes == _this.notes)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.membershipStart, _this.membershipStart) || other.membershipStart == _this.membershipStart)&&(identical(other.membershipEnd, _this.membershipEnd) || other.membershipEnd == _this.membershipEnd)&&(identical(other.currentMembershipId, _this.currentMembershipId) || other.currentMembershipId == _this.currentMembershipId)&&(identical(other.whatsappOptOut, _this.whatsappOptOut) || other.whatsappOptOut == _this.whatsappOptOut)&&(identical(other.archivedAt, _this.archivedAt) || other.archivedAt == _this.archivedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Member&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.altPhone, _this.altPhone) || other.altPhone == _this.altPhone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.gender, _this.gender) || other.gender == _this.gender)&&(identical(other.dob, _this.dob) || other.dob == _this.dob)&&(identical(other.address, _this.address) || other.address == _this.address)&&(identical(other.emergencyName, _this.emergencyName) || other.emergencyName == _this.emergencyName)&&(identical(other.emergencyRelation, _this.emergencyRelation) || other.emergencyRelation == _this.emergencyRelation)&&(identical(other.emergencyPhone, _this.emergencyPhone) || other.emergencyPhone == _this.emergencyPhone)&&(identical(other.bloodGroup, _this.bloodGroup) || other.bloodGroup == _this.bloodGroup)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.goal, _this.goal) || other.goal == _this.goal)&&(identical(other.level, _this.level) || other.level == _this.level)&&(identical(other.dietPref, _this.dietPref) || other.dietPref == _this.dietPref)&&(identical(other.language, _this.language) || other.language == _this.language)&&(identical(other.trainerId, _this.trainerId) || other.trainerId == _this.trainerId)&&(identical(other.batch, _this.batch) || other.batch == _this.batch)&&(identical(other.source, _this.source) || other.source == _this.source)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.joinedOn, _this.joinedOn) || other.joinedOn == _this.joinedOn)&&(identical(other.notes, _this.notes) || other.notes == _this.notes)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.membershipStart, _this.membershipStart) || other.membershipStart == _this.membershipStart)&&(identical(other.membershipEnd, _this.membershipEnd) || other.membershipEnd == _this.membershipEnd)&&(identical(other.currentMembershipId, _this.currentMembershipId) || other.currentMembershipId == _this.currentMembershipId)&&(identical(other.whatsappOptOut, _this.whatsappOptOut) || other.whatsappOptOut == _this.whatsappOptOut)&&(identical(other.archivedAt, _this.archivedAt) || other.archivedAt == _this.archivedAt)&&(identical(other.duesPaise, _this.duesPaise) || other.duesPaise == _this.duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as Member;
-  return Object.hashAll([runtimeType,_this.id,_this.memberCode,_this.name,_this.phone,_this.altPhone,_this.email,_this.gender,_this.dob,_this.address,_this.emergencyName,_this.emergencyRelation,_this.emergencyPhone,_this.bloodGroup,_this.photoPath,_this.goal,_this.level,_this.dietPref,_this.language,_this.trainerId,_this.batch,_this.source,_this.status,_this.joinedOn,_this.notes,_this.planName,_this.membershipStart,_this.membershipEnd,_this.currentMembershipId,_this.whatsappOptOut,_this.archivedAt]);
+  return Object.hashAll([runtimeType,_this.id,_this.memberCode,_this.name,_this.phone,_this.altPhone,_this.email,_this.gender,_this.dob,_this.address,_this.emergencyName,_this.emergencyRelation,_this.emergencyPhone,_this.bloodGroup,_this.photoPath,_this.goal,_this.level,_this.dietPref,_this.language,_this.trainerId,_this.batch,_this.source,_this.status,_this.joinedOn,_this.notes,_this.planName,_this.membershipStart,_this.membershipEnd,_this.currentMembershipId,_this.whatsappOptOut,_this.archivedAt,_this.duesPaise]);
 }
 
 @override
 String toString() {
   final _this = this as Member;
-  return 'Member(id: ${_this.id}, memberCode: ${_this.memberCode}, name: ${_this.name}, phone: ${_this.phone}, altPhone: ${_this.altPhone}, email: ${_this.email}, gender: ${_this.gender}, dob: ${_this.dob}, address: ${_this.address}, emergencyName: ${_this.emergencyName}, emergencyRelation: ${_this.emergencyRelation}, emergencyPhone: ${_this.emergencyPhone}, bloodGroup: ${_this.bloodGroup}, photoPath: ${_this.photoPath}, goal: ${_this.goal}, level: ${_this.level}, dietPref: ${_this.dietPref}, language: ${_this.language}, trainerId: ${_this.trainerId}, batch: ${_this.batch}, source: ${_this.source}, status: ${_this.status}, joinedOn: ${_this.joinedOn}, notes: ${_this.notes}, planName: ${_this.planName}, membershipStart: ${_this.membershipStart}, membershipEnd: ${_this.membershipEnd}, currentMembershipId: ${_this.currentMembershipId}, whatsappOptOut: ${_this.whatsappOptOut}, archivedAt: ${_this.archivedAt})';
+  return 'Member(id: ${_this.id}, memberCode: ${_this.memberCode}, name: ${_this.name}, phone: ${_this.phone}, altPhone: ${_this.altPhone}, email: ${_this.email}, gender: ${_this.gender}, dob: ${_this.dob}, address: ${_this.address}, emergencyName: ${_this.emergencyName}, emergencyRelation: ${_this.emergencyRelation}, emergencyPhone: ${_this.emergencyPhone}, bloodGroup: ${_this.bloodGroup}, photoPath: ${_this.photoPath}, goal: ${_this.goal}, level: ${_this.level}, dietPref: ${_this.dietPref}, language: ${_this.language}, trainerId: ${_this.trainerId}, batch: ${_this.batch}, source: ${_this.source}, status: ${_this.status}, joinedOn: ${_this.joinedOn}, notes: ${_this.notes}, planName: ${_this.planName}, membershipStart: ${_this.membershipStart}, membershipEnd: ${_this.membershipEnd}, currentMembershipId: ${_this.currentMembershipId}, whatsappOptOut: ${_this.whatsappOptOut}, archivedAt: ${_this.archivedAt}, duesPaise: ${_this.duesPaise})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $MemberCopyWith<$Res>  {
   factory $MemberCopyWith(Member value, $Res Function(Member) _then) = _$MemberCopyWithImpl;
 @useResult
 $Res call({
- String id,@JsonKey(name: 'member_code') String memberCode, String name, String phone,@JsonKey(name: 'alt_phone') String? altPhone, String? email, String? gender,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? dob, String? address,@JsonKey(name: 'emergency_name') String? emergencyName,@JsonKey(name: 'emergency_relation') String? emergencyRelation,@JsonKey(name: 'emergency_phone') String? emergencyPhone,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'photo_url') String? photoPath, String? goal, String? level,@JsonKey(name: 'diet_pref') String? dietPref, String language,@JsonKey(name: 'trainer_id') String? trainerId, String? batch, String? source,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? joinedOn, String? notes,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? membershipStart,@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? membershipEnd,@JsonKey(name: 'current_membership_id') String? currentMembershipId,@JsonKey(name: 'whatsapp_opt_out') bool whatsappOptOut,@JsonKey(name: 'archived_at') DateTime? archivedAt
+ String id,@JsonKey(name: 'member_code') String memberCode, String name, String phone,@JsonKey(name: 'alt_phone') String? altPhone, String? email, String? gender,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? dob, String? address,@JsonKey(name: 'emergency_name') String? emergencyName,@JsonKey(name: 'emergency_relation') String? emergencyRelation,@JsonKey(name: 'emergency_phone') String? emergencyPhone,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'photo_url') String? photoPath, String? goal, String? level,@JsonKey(name: 'diet_pref') String? dietPref, String language,@JsonKey(name: 'trainer_id') String? trainerId, String? batch, String? source,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? joinedOn, String? notes,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? membershipStart,@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? membershipEnd,@JsonKey(name: 'current_membership_id') String? currentMembershipId,@JsonKey(name: 'whatsapp_opt_out') bool whatsappOptOut,@JsonKey(name: 'archived_at') DateTime? archivedAt,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -71,7 +71,7 @@ class _$MemberCopyWithImpl<$Res>
 
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberCode = null,Object? name = null,Object? phone = null,Object? altPhone = freezed,Object? email = freezed,Object? gender = freezed,Object? dob = freezed,Object? address = freezed,Object? emergencyName = freezed,Object? emergencyRelation = freezed,Object? emergencyPhone = freezed,Object? bloodGroup = freezed,Object? photoPath = freezed,Object? goal = freezed,Object? level = freezed,Object? dietPref = freezed,Object? language = null,Object? trainerId = freezed,Object? batch = freezed,Object? source = freezed,Object? status = null,Object? joinedOn = freezed,Object? notes = freezed,Object? planName = freezed,Object? membershipStart = freezed,Object? membershipEnd = freezed,Object? currentMembershipId = freezed,Object? whatsappOptOut = null,Object? archivedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberCode = null,Object? name = null,Object? phone = null,Object? altPhone = freezed,Object? email = freezed,Object? gender = freezed,Object? dob = freezed,Object? address = freezed,Object? emergencyName = freezed,Object? emergencyRelation = freezed,Object? emergencyPhone = freezed,Object? bloodGroup = freezed,Object? photoPath = freezed,Object? goal = freezed,Object? level = freezed,Object? dietPref = freezed,Object? language = null,Object? trainerId = freezed,Object? batch = freezed,Object? source = freezed,Object? status = null,Object? joinedOn = freezed,Object? notes = freezed,Object? planName = freezed,Object? membershipStart = freezed,Object? membershipEnd = freezed,Object? currentMembershipId = freezed,Object? whatsappOptOut = null,Object? archivedAt = freezed,Object? duesPaise = null,}) {
   return _then(Member(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,memberCode: null == memberCode ? _self.memberCode : memberCode // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,8 @@ as DateTime?,membershipEnd: freezed == membershipEnd ? _self.membershipEnd : mem
 as DateTime?,currentMembershipId: freezed == currentMembershipId ? _self.currentMembershipId : currentMembershipId // ignore: cast_nullable_to_non_nullable
 as String?,whatsappOptOut: null == whatsappOptOut ? _self.whatsappOptOut : whatsappOptOut // ignore: cast_nullable_to_non_nullable
 as bool,archivedAt: freezed == archivedAt ? _self.archivedAt : archivedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -188,10 +189,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Member() when $default != null:
-return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt);case _:
+return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt,_that.duesPaise);case _:
   return orElse();
 
 }
@@ -209,10 +210,10 @@ return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt, @JsonKey(name: 'dues_paise')  int duesPaise)  $default,) {final _that = this;
 switch (_that) {
 case _Member():
-return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt);case _:
+return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt,_that.duesPaise);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -229,10 +230,10 @@ return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'member_code')  String memberCode,  String name,  String phone, @JsonKey(name: 'alt_phone')  String? altPhone,  String? email,  String? gender, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? dob,  String? address, @JsonKey(name: 'emergency_name')  String? emergencyName, @JsonKey(name: 'emergency_relation')  String? emergencyRelation, @JsonKey(name: 'emergency_phone')  String? emergencyPhone, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'photo_url')  String? photoPath,  String? goal,  String? level, @JsonKey(name: 'diet_pref')  String? dietPref,  String language, @JsonKey(name: 'trainer_id')  String? trainerId,  String? batch,  String? source, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut)  DateTime? joinedOn,  String? notes, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut)  DateTime? membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut)  DateTime? membershipEnd, @JsonKey(name: 'current_membership_id')  String? currentMembershipId, @JsonKey(name: 'whatsapp_opt_out')  bool whatsappOptOut, @JsonKey(name: 'archived_at')  DateTime? archivedAt, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,) {final _that = this;
 switch (_that) {
 case _Member() when $default != null:
-return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt);case _:
+return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,_that.email,_that.gender,_that.dob,_that.address,_that.emergencyName,_that.emergencyRelation,_that.emergencyPhone,_that.bloodGroup,_that.photoPath,_that.goal,_that.level,_that.dietPref,_that.language,_that.trainerId,_that.batch,_that.source,_that.status,_that.joinedOn,_that.notes,_that.planName,_that.membershipStart,_that.membershipEnd,_that.currentMembershipId,_that.whatsappOptOut,_that.archivedAt,_that.duesPaise);case _:
   return null;
 
 }
@@ -244,7 +245,7 @@ return $default(_that.id,_that.memberCode,_that.name,_that.phone,_that.altPhone,
 @JsonSerializable()
 
 class _Member extends Member {
-  const _Member({required this.id, @JsonKey(name: 'member_code') required this.memberCode, required this.name, required this.phone, @JsonKey(name: 'alt_phone') this.altPhone, this.email, this.gender, @JsonKey(fromJson: _date, toJson: _dateOut) this.dob, this.address, @JsonKey(name: 'emergency_name') this.emergencyName, @JsonKey(name: 'emergency_relation') this.emergencyRelation, @JsonKey(name: 'emergency_phone') this.emergencyPhone, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'photo_url') this.photoPath, this.goal, this.level, @JsonKey(name: 'diet_pref') this.dietPref, this.language = 'en', @JsonKey(name: 'trainer_id') this.trainerId, this.batch, this.source, @JsonKey(fromJson: _status, toJson: _statusOut) this.status = MemberStatus.inactive, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) this.joinedOn, this.notes, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) this.membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) this.membershipEnd, @JsonKey(name: 'current_membership_id') this.currentMembershipId, @JsonKey(name: 'whatsapp_opt_out') this.whatsappOptOut = false, @JsonKey(name: 'archived_at') this.archivedAt}): super._();
+  const _Member({required this.id, @JsonKey(name: 'member_code') required this.memberCode, required this.name, required this.phone, @JsonKey(name: 'alt_phone') this.altPhone, this.email, this.gender, @JsonKey(fromJson: _date, toJson: _dateOut) this.dob, this.address, @JsonKey(name: 'emergency_name') this.emergencyName, @JsonKey(name: 'emergency_relation') this.emergencyRelation, @JsonKey(name: 'emergency_phone') this.emergencyPhone, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'photo_url') this.photoPath, this.goal, this.level, @JsonKey(name: 'diet_pref') this.dietPref, this.language = 'en', @JsonKey(name: 'trainer_id') this.trainerId, this.batch, this.source, @JsonKey(fromJson: _status, toJson: _statusOut) this.status = MemberStatus.inactive, @JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) this.joinedOn, this.notes, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) this.membershipStart, @JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) this.membershipEnd, @JsonKey(name: 'current_membership_id') this.currentMembershipId, @JsonKey(name: 'whatsapp_opt_out') this.whatsappOptOut = false, @JsonKey(name: 'archived_at') this.archivedAt, @JsonKey(name: 'dues_paise') this.duesPaise = 0}): super._();
   factory _Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
 @override final  String id;
@@ -277,6 +278,7 @@ class _Member extends Member {
 @override@JsonKey(name: 'current_membership_id') final  String? currentMembershipId;
 @override@JsonKey(name: 'whatsapp_opt_out') final  bool whatsappOptOut;
 @override@JsonKey(name: 'archived_at') final  DateTime? archivedAt;
+@override@JsonKey(name: 'dues_paise') final  int duesPaise;
 
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
@@ -291,18 +293,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Member&&(identical(other.id, id) || other.id == id)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.altPhone, altPhone) || other.altPhone == altPhone)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.emergencyName, emergencyName) || other.emergencyName == emergencyName)&&(identical(other.emergencyRelation, emergencyRelation) || other.emergencyRelation == emergencyRelation)&&(identical(other.emergencyPhone, emergencyPhone) || other.emergencyPhone == emergencyPhone)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.goal, goal) || other.goal == goal)&&(identical(other.level, level) || other.level == level)&&(identical(other.dietPref, dietPref) || other.dietPref == dietPref)&&(identical(other.language, language) || other.language == language)&&(identical(other.trainerId, trainerId) || other.trainerId == trainerId)&&(identical(other.batch, batch) || other.batch == batch)&&(identical(other.source, source) || other.source == source)&&(identical(other.status, status) || other.status == status)&&(identical(other.joinedOn, joinedOn) || other.joinedOn == joinedOn)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.membershipStart, membershipStart) || other.membershipStart == membershipStart)&&(identical(other.membershipEnd, membershipEnd) || other.membershipEnd == membershipEnd)&&(identical(other.currentMembershipId, currentMembershipId) || other.currentMembershipId == currentMembershipId)&&(identical(other.whatsappOptOut, whatsappOptOut) || other.whatsappOptOut == whatsappOptOut)&&(identical(other.archivedAt, archivedAt) || other.archivedAt == archivedAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Member&&(identical(other.id, id) || other.id == id)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.altPhone, altPhone) || other.altPhone == altPhone)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.emergencyName, emergencyName) || other.emergencyName == emergencyName)&&(identical(other.emergencyRelation, emergencyRelation) || other.emergencyRelation == emergencyRelation)&&(identical(other.emergencyPhone, emergencyPhone) || other.emergencyPhone == emergencyPhone)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.goal, goal) || other.goal == goal)&&(identical(other.level, level) || other.level == level)&&(identical(other.dietPref, dietPref) || other.dietPref == dietPref)&&(identical(other.language, language) || other.language == language)&&(identical(other.trainerId, trainerId) || other.trainerId == trainerId)&&(identical(other.batch, batch) || other.batch == batch)&&(identical(other.source, source) || other.source == source)&&(identical(other.status, status) || other.status == status)&&(identical(other.joinedOn, joinedOn) || other.joinedOn == joinedOn)&&(identical(other.notes, notes) || other.notes == notes)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.membershipStart, membershipStart) || other.membershipStart == membershipStart)&&(identical(other.membershipEnd, membershipEnd) || other.membershipEnd == membershipEnd)&&(identical(other.currentMembershipId, currentMembershipId) || other.currentMembershipId == currentMembershipId)&&(identical(other.whatsappOptOut, whatsappOptOut) || other.whatsappOptOut == whatsappOptOut)&&(identical(other.archivedAt, archivedAt) || other.archivedAt == archivedAt)&&(identical(other.duesPaise, duesPaise) || other.duesPaise == duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hashAll([runtimeType,id,memberCode,name,phone,altPhone,email,gender,dob,address,emergencyName,emergencyRelation,emergencyPhone,bloodGroup,photoPath,goal,level,dietPref,language,trainerId,batch,source,status,joinedOn,notes,planName,membershipStart,membershipEnd,currentMembershipId,whatsappOptOut,archivedAt]);
+    return Object.hashAll([runtimeType,id,memberCode,name,phone,altPhone,email,gender,dob,address,emergencyName,emergencyRelation,emergencyPhone,bloodGroup,photoPath,goal,level,dietPref,language,trainerId,batch,source,status,joinedOn,notes,planName,membershipStart,membershipEnd,currentMembershipId,whatsappOptOut,archivedAt,duesPaise]);
 }
 
 @override
 String toString() {
-    return 'Member(id: $id, memberCode: $memberCode, name: $name, phone: $phone, altPhone: $altPhone, email: $email, gender: $gender, dob: $dob, address: $address, emergencyName: $emergencyName, emergencyRelation: $emergencyRelation, emergencyPhone: $emergencyPhone, bloodGroup: $bloodGroup, photoPath: $photoPath, goal: $goal, level: $level, dietPref: $dietPref, language: $language, trainerId: $trainerId, batch: $batch, source: $source, status: $status, joinedOn: $joinedOn, notes: $notes, planName: $planName, membershipStart: $membershipStart, membershipEnd: $membershipEnd, currentMembershipId: $currentMembershipId, whatsappOptOut: $whatsappOptOut, archivedAt: $archivedAt)';
+    return 'Member(id: $id, memberCode: $memberCode, name: $name, phone: $phone, altPhone: $altPhone, email: $email, gender: $gender, dob: $dob, address: $address, emergencyName: $emergencyName, emergencyRelation: $emergencyRelation, emergencyPhone: $emergencyPhone, bloodGroup: $bloodGroup, photoPath: $photoPath, goal: $goal, level: $level, dietPref: $dietPref, language: $language, trainerId: $trainerId, batch: $batch, source: $source, status: $status, joinedOn: $joinedOn, notes: $notes, planName: $planName, membershipStart: $membershipStart, membershipEnd: $membershipEnd, currentMembershipId: $currentMembershipId, whatsappOptOut: $whatsappOptOut, archivedAt: $archivedAt, duesPaise: $duesPaise)';
 }
 
 
@@ -313,7 +315,7 @@ abstract mixin class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   factory _$MemberCopyWith(_Member value, $Res Function(_Member) _then) = __$MemberCopyWithImpl;
 @override @useResult
 $Res call({
- String id,@JsonKey(name: 'member_code') String memberCode, String name, String phone,@JsonKey(name: 'alt_phone') String? altPhone, String? email, String? gender,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? dob, String? address,@JsonKey(name: 'emergency_name') String? emergencyName,@JsonKey(name: 'emergency_relation') String? emergencyRelation,@JsonKey(name: 'emergency_phone') String? emergencyPhone,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'photo_url') String? photoPath, String? goal, String? level,@JsonKey(name: 'diet_pref') String? dietPref, String language,@JsonKey(name: 'trainer_id') String? trainerId, String? batch, String? source,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? joinedOn, String? notes,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? membershipStart,@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? membershipEnd,@JsonKey(name: 'current_membership_id') String? currentMembershipId,@JsonKey(name: 'whatsapp_opt_out') bool whatsappOptOut,@JsonKey(name: 'archived_at') DateTime? archivedAt
+ String id,@JsonKey(name: 'member_code') String memberCode, String name, String phone,@JsonKey(name: 'alt_phone') String? altPhone, String? email, String? gender,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? dob, String? address,@JsonKey(name: 'emergency_name') String? emergencyName,@JsonKey(name: 'emergency_relation') String? emergencyRelation,@JsonKey(name: 'emergency_phone') String? emergencyPhone,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'photo_url') String? photoPath, String? goal, String? level,@JsonKey(name: 'diet_pref') String? dietPref, String language,@JsonKey(name: 'trainer_id') String? trainerId, String? batch, String? source,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'joined_on', fromJson: _date, toJson: _dateOut) DateTime? joinedOn, String? notes,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'membership_start', fromJson: _date, toJson: _dateOut) DateTime? membershipStart,@JsonKey(name: 'membership_end', fromJson: _date, toJson: _dateOut) DateTime? membershipEnd,@JsonKey(name: 'current_membership_id') String? currentMembershipId,@JsonKey(name: 'whatsapp_opt_out') bool whatsappOptOut,@JsonKey(name: 'archived_at') DateTime? archivedAt,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -330,7 +332,7 @@ class __$MemberCopyWithImpl<$Res>
 
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberCode = null,Object? name = null,Object? phone = null,Object? altPhone = freezed,Object? email = freezed,Object? gender = freezed,Object? dob = freezed,Object? address = freezed,Object? emergencyName = freezed,Object? emergencyRelation = freezed,Object? emergencyPhone = freezed,Object? bloodGroup = freezed,Object? photoPath = freezed,Object? goal = freezed,Object? level = freezed,Object? dietPref = freezed,Object? language = null,Object? trainerId = freezed,Object? batch = freezed,Object? source = freezed,Object? status = null,Object? joinedOn = freezed,Object? notes = freezed,Object? planName = freezed,Object? membershipStart = freezed,Object? membershipEnd = freezed,Object? currentMembershipId = freezed,Object? whatsappOptOut = null,Object? archivedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberCode = null,Object? name = null,Object? phone = null,Object? altPhone = freezed,Object? email = freezed,Object? gender = freezed,Object? dob = freezed,Object? address = freezed,Object? emergencyName = freezed,Object? emergencyRelation = freezed,Object? emergencyPhone = freezed,Object? bloodGroup = freezed,Object? photoPath = freezed,Object? goal = freezed,Object? level = freezed,Object? dietPref = freezed,Object? language = null,Object? trainerId = freezed,Object? batch = freezed,Object? source = freezed,Object? status = null,Object? joinedOn = freezed,Object? notes = freezed,Object? planName = freezed,Object? membershipStart = freezed,Object? membershipEnd = freezed,Object? currentMembershipId = freezed,Object? whatsappOptOut = null,Object? archivedAt = freezed,Object? duesPaise = null,}) {
   return _then(_Member(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,memberCode: null == memberCode ? _self.memberCode : memberCode // ignore: cast_nullable_to_non_nullable
@@ -362,7 +364,8 @@ as DateTime?,membershipEnd: freezed == membershipEnd ? _self.membershipEnd : mem
 as DateTime?,currentMembershipId: freezed == currentMembershipId ? _self.currentMembershipId : currentMembershipId // ignore: cast_nullable_to_non_nullable
 as String?,whatsappOptOut: null == whatsappOptOut ? _self.whatsappOptOut : whatsappOptOut // ignore: cast_nullable_to_non_nullable
 as bool,archivedAt: freezed == archivedAt ? _self.archivedAt : archivedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as DateTime?,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -2731,7 +2734,7 @@ as DateTime,
 /// @nodoc
 mixin _$CheckInResult {
 
-@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'days_left') int? get daysLeft; bool get already;
+@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'days_left') int? get daysLeft; bool get already;@JsonKey(name: 'dues_paise') int get duesPaise;
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2745,20 +2748,20 @@ $CheckInResultCopyWith<CheckInResult> get copyWith => _$CheckInResultCopyWithImp
 @override
 bool operator ==(Object other) {
   final _this = this as CheckInResult;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckInResult&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.daysLeft, _this.daysLeft) || other.daysLeft == _this.daysLeft)&&(identical(other.already, _this.already) || other.already == _this.already));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckInResult&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.daysLeft, _this.daysLeft) || other.daysLeft == _this.daysLeft)&&(identical(other.already, _this.already) || other.already == _this.already)&&(identical(other.duesPaise, _this.duesPaise) || other.duesPaise == _this.duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as CheckInResult;
-  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.status,_this.planName,_this.daysLeft,_this.already);
+  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.status,_this.planName,_this.daysLeft,_this.already,_this.duesPaise);
 }
 
 @override
 String toString() {
   final _this = this as CheckInResult;
-  return 'CheckInResult(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, status: ${_this.status}, planName: ${_this.planName}, daysLeft: ${_this.daysLeft}, already: ${_this.already})';
+  return 'CheckInResult(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, status: ${_this.status}, planName: ${_this.planName}, daysLeft: ${_this.daysLeft}, already: ${_this.already}, duesPaise: ${_this.duesPaise})';
 }
 
 
@@ -2769,7 +2772,7 @@ abstract mixin class $CheckInResultCopyWith<$Res>  {
   factory $CheckInResultCopyWith(CheckInResult value, $Res Function(CheckInResult) _then) = _$CheckInResultCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -2786,7 +2789,7 @@ class _$CheckInResultCopyWithImpl<$Res>
 
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? duesPaise = null,}) {
   return _then(CheckInResult(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -2796,7 +2799,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as MemberStatus,planName: freezed == planName ? _self.planName : planName // ignore: cast_nullable_to_non_nullable
 as String?,daysLeft: freezed == daysLeft ? _self.daysLeft : daysLeft // ignore: cast_nullable_to_non_nullable
 as int?,already: null == already ? _self.already : already // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -2881,10 +2885,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CheckInResult() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
   return orElse();
 
 }
@@ -2902,10 +2906,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)  $default,) {final _that = this;
 switch (_that) {
 case _CheckInResult():
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2922,10 +2926,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,) {final _that = this;
 switch (_that) {
 case _CheckInResult() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
   return null;
 
 }
@@ -2937,7 +2941,7 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 @JsonSerializable()
 
 class _CheckInResult extends CheckInResult {
-  const _CheckInResult({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(fromJson: _status, toJson: _statusOut) required this.status, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'days_left') this.daysLeft, this.already = false}): super._();
+  const _CheckInResult({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(fromJson: _status, toJson: _statusOut) required this.status, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'days_left') this.daysLeft, this.already = false, @JsonKey(name: 'dues_paise') this.duesPaise = 0}): super._();
   factory _CheckInResult.fromJson(Map<String, dynamic> json) => _$CheckInResultFromJson(json);
 
 @override@JsonKey(name: 'member_id') final  String memberId;
@@ -2948,6 +2952,7 @@ class _CheckInResult extends CheckInResult {
 @override@JsonKey(name: 'plan_name') final  String? planName;
 @override@JsonKey(name: 'days_left') final  int? daysLeft;
 @override@JsonKey() final  bool already;
+@override@JsonKey(name: 'dues_paise') final  int duesPaise;
 
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
@@ -2962,18 +2967,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckInResult&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.daysLeft, daysLeft) || other.daysLeft == daysLeft)&&(identical(other.already, already) || other.already == already));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckInResult&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.daysLeft, daysLeft) || other.daysLeft == daysLeft)&&(identical(other.already, already) || other.already == already)&&(identical(other.duesPaise, duesPaise) || other.duesPaise == duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,status,planName,daysLeft,already);
+    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,status,planName,daysLeft,already,duesPaise);
 }
 
 @override
 String toString() {
-    return 'CheckInResult(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, status: $status, planName: $planName, daysLeft: $daysLeft, already: $already)';
+    return 'CheckInResult(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, status: $status, planName: $planName, daysLeft: $daysLeft, already: $already, duesPaise: $duesPaise)';
 }
 
 
@@ -2984,7 +2989,7 @@ abstract mixin class _$CheckInResultCopyWith<$Res> implements $CheckInResultCopy
   factory _$CheckInResultCopyWith(_CheckInResult value, $Res Function(_CheckInResult) _then) = __$CheckInResultCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -3001,7 +3006,7 @@ class __$CheckInResultCopyWithImpl<$Res>
 
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? duesPaise = null,}) {
   return _then(_CheckInResult(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -3011,7 +3016,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as MemberStatus,planName: freezed == planName ? _self.planName : planName // ignore: cast_nullable_to_non_nullable
 as String?,daysLeft: freezed == daysLeft ? _self.daysLeft : daysLeft // ignore: cast_nullable_to_non_nullable
 as int?,already: null == already ? _self.already : already // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

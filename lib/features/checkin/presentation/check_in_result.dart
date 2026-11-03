@@ -6,13 +6,15 @@ import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
 import '../../../app/theme/theme.dart';
+import '../../../core/utils/money.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../members/domain/models.dart';
 import '../../members/presentation/member_ui.dart';
 import '../../members/presentation/widgets/member_photo.dart';
 
-/// Full-screen result: a happy tick that closes itself after 1.2 s, or a
-/// warning (expired, frozen, cancelled, no plan) that needs a tap.
+/// Full-screen result: a happy tick that closes itself after 1.2 s (2.4 s
+/// when fees are pending, so the desk notices), or a warning (expired,
+/// frozen, cancelled, no plan) that needs a tap.
 Future<void> showCheckInResult(BuildContext context, CheckInResult r) {
   if (r.needsAttention) {
     HapticFeedback.heavyImpact();
@@ -51,7 +53,7 @@ class _ResultViewState extends State<_ResultView> {
   void initState() {
     super.initState();
     if (!widget.result.needsAttention) {
-      _close = Timer(const Duration(milliseconds: 1200), () {
+      _close = Timer(Duration(milliseconds: widget.result.hasDues ? 2400 : 1200), () {
         if (mounted) Navigator.of(context).maybePop();
       });
     }
@@ -123,6 +125,16 @@ class _ResultViewState extends State<_ResultView> {
                       )
                     else if (r.daysLeft != null)
                       Text(l.checkInDaysLeft(r.daysLeft!), style: t.title.copyWith(color: p.onFill)),
+                    if (r.hasDues) ...[
+                      const SizedBox(height: AbsSpace.x2),
+                      PopSticker(
+                        key: const ValueKey('check-in-dues'),
+                        label: l.checkInDues(Money.format(r.duesPaise)),
+                        hue: PopHue.tangerine,
+                        dot: true,
+                        numeric: true,
+                      ),
+                    ],
                     if (r.already) ...[
                       const SizedBox(height: AbsSpace.x2),
                       PopSticker(label: l.checkInAlready, hue: PopHue.grape),

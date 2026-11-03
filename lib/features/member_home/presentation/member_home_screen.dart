@@ -8,6 +8,7 @@ import '../../../app/l10n/l10n.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/utils/dates.dart';
+import '../../../core/utils/money.dart';
 import '../../../core/utils/phone.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
@@ -64,6 +65,7 @@ class MemberHomeScreen extends ConsumerWidget {
                       status: m.status,
                     ),
                     const SizedBox(height: AbsSpace.x5),
+                    _FeesCard(member: m),
                     _DaysAndVisits(member: m),
                     const SizedBox(height: AbsSpace.x5),
                     AbsButton(
@@ -88,6 +90,63 @@ class MemberHomeScreen extends ConsumerWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Fees due (with Pay now) or a quiet link to receipts.
+class _FeesCard extends StatelessWidget {
+  const _FeesCard({required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final t = context.text;
+    final c = context.colors;
+    final due = member.duesPaise > 0;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AbsSpace.x5),
+      child: AbsCard(
+        key: const ValueKey('fees-card'),
+        hue: due ? PopHue.tangerine : PopHue.mint,
+        solid: due,
+        onTap: () => context.push(Routes.mePayments),
+        padding: const EdgeInsets.all(AbsSpace.x4),
+        child: Row(
+          children: [
+            IconBubble(
+              icon: due
+                  ? PhosphorIcons.currencyInr(PhosphorIconsStyle.bold)
+                  : PhosphorIcons.receipt(PhosphorIconsStyle.bold),
+              hue: due ? PopHue.tangerine : PopHue.mint,
+            ),
+            const SizedBox(width: AbsSpace.x3),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    due ? l.meDuesTitle : l.mePayments,
+                    style: t.heading.copyWith(color: due ? c.pop(PopHue.tangerine).onFill : null),
+                  ),
+                  Text(
+                    due ? Money.format(member.duesPaise) : l.mePaymentsSubtitle,
+                    style: due
+                        ? t.numericOf(t.title).copyWith(color: c.pop(PopHue.tangerine).onFill)
+                        : t.caption.copyWith(color: c.textSecondary),
+                  ),
+                ],
+              ),
+            ),
+            if (due)
+              PopSticker(label: l.mePayNow, hue: PopHue.grape)
+            else
+              Icon(PhosphorIcons.caretRight(PhosphorIconsStyle.bold), size: AbsSize.iconSmall),
+          ],
         ),
       ),
     );

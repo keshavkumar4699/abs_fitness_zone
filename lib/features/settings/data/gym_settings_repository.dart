@@ -16,12 +16,20 @@ class GymSettings {
 
   String text(String key) => (values[key] as String?) ?? '';
   int number(String key, int fallback) => (values[key] as num?)?.toInt() ?? fallback;
+  bool flag(String key, {bool fallback = false}) => switch (values[key]) {
+    final bool b => b,
+    final String s => s == 'true',
+    _ => fallback,
+  };
 
   String get gymName => text('gym_name');
   String get upiId => text('upi_id');
   int get expiringWindowDays => number('expiring_window_days', 7);
   int get absentDays => number('absent_days', 7);
   String get lapsedRenewFrom => values['lapsed_renew_from'] as String? ?? 'today';
+  bool get gstEnabled => flag('gst_enabled');
+  bool get gstInclusive => flag('gst_inclusive', fallback: true);
+  bool get razorpayEnabled => flag('razorpay_enabled');
 }
 
 abstract interface class GymSettingsRepository {
@@ -44,6 +52,9 @@ class SupabaseGymSettingsRepository implements GymSettingsRepository {
     'expiring_window_days',
     'absent_days',
     'lapsed_renew_from',
+    'gst_enabled',
+    'gst_inclusive',
+    'razorpay_enabled',
   ];
 
   @override

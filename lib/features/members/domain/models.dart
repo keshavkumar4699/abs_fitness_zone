@@ -66,6 +66,7 @@ abstract class Member with _$Member {
     @JsonKey(name: 'current_membership_id') String? currentMembershipId,
     @JsonKey(name: 'whatsapp_opt_out') @Default(false) bool whatsappOptOut,
     @JsonKey(name: 'archived_at') DateTime? archivedAt,
+    @JsonKey(name: 'dues_paise') @Default(0) int duesPaise,
   }) = _Member;
 
   factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
@@ -258,12 +259,16 @@ abstract class CheckInResult with _$CheckInResult {
     @JsonKey(name: 'plan_name') String? planName,
     @JsonKey(name: 'days_left') int? daysLeft,
     @Default(false) bool already,
+    @JsonKey(name: 'dues_paise') @Default(0) int duesPaise,
   }) = _CheckInResult;
 
   factory CheckInResult.fromJson(Map<String, dynamic> json) => _$CheckInResultFromJson(json);
 
   /// Expired, cancelled, inactive or never had a plan: let the desk know.
   bool get needsAttention => !status.isCurrent;
+
+  /// Unpaid fees to mention at the desk (2.9).
+  bool get hasDues => duesPaise > 0;
 }
 
 @freezed
@@ -281,7 +286,7 @@ abstract class DashboardCounts with _$DashboardCounts {
   factory DashboardCounts.fromJson(Map<String, dynamic> json) => _$DashboardCountsFromJson(json);
 }
 
-enum ActionReason { renewalDue, expired, birthday, absent }
+enum ActionReason { overdue, renewalDue, expired, birthday, absent }
 
 @freezed
 abstract class NeedsAction with _$NeedsAction {
@@ -298,12 +303,14 @@ abstract class NeedsAction with _$NeedsAction {
 }
 
 ActionReason _reason(Object? v) => switch (v) {
+  'overdue' => ActionReason.overdue,
   'renewal_due' => ActionReason.renewalDue,
   'expired' => ActionReason.expired,
   'birthday' => ActionReason.birthday,
   _ => ActionReason.absent,
 };
 String _reasonOut(ActionReason r) => switch (r) {
+  ActionReason.overdue => 'overdue',
   ActionReason.renewalDue => 'renewal_due',
   ActionReason.expired => 'expired',
   ActionReason.birthday => 'birthday',

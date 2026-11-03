@@ -14,6 +14,10 @@ import '../../../core/utils/phone.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../auth/domain/app_user.dart';
+import '../../payments/application/payments_providers.dart';
+import '../../payments/domain/payment_models.dart';
+import '../../payments/presentation/collect_sheet.dart';
+import '../../payments/presentation/payment_ui.dart';
 import '../../settings/data/gym_settings_repository.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
@@ -41,14 +45,32 @@ class _Perms {
 
 /// Member detail: header with status + days-left ring, eight tabs and a
 /// sticky bottom bar (Collect, Renew, WhatsApp, Call).
-class MemberDetailScreen extends ConsumerWidget {
-  const MemberDetailScreen({super.key, required this.memberId});
+class MemberDetailScreen extends ConsumerStatefulWidget {
+  const MemberDetailScreen({super.key, required this.memberId, this.openCollect = false});
 
   final String memberId;
 
+  /// Opens the collect sheet once the member loads (after adding a member).
+  final bool openCollect;
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MemberDetailScreen> createState() => _MemberDetailScreenState();
+}
+
+class _MemberDetailScreenState extends ConsumerState<MemberDetailScreen> {
+  bool _collectOpened = false;
+
+  String get memberId => widget.memberId;
+
+  @override
+  Widget build(BuildContext context) {
     final member = ref.watch(memberProvider(memberId));
+    if (widget.openCollect && !_collectOpened && member.hasValue) {
+      _collectOpened = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) showCollectSheet(context, member: CollectTarget.of(member.value!));
+      });
+    }
     return Scaffold(
       body: AsyncView<Member>(
         value: member,
@@ -112,7 +134,7 @@ class _Detail extends ConsumerWidget {
     final tabs = [
       l.tabOverview,
       l.tabMembership,
-      l.tabPayments,
+      if (perms.desk) l.tabPayments,
       l.tabWorkouts,
       l.tabDiet,
       l.tabProgress,
@@ -151,18 +173,30 @@ class _Detail extends ConsumerWidget {
             decoration: stickerDecoration(c, borderRadius: BorderRadius.circular(AbsRadius.sheet)),
             child: Row(
               children: [
-                _BarButton(
-                  icon: PhosphorIcons.currencyInr(PhosphorIconsStyle.bold),
-                  label: l.actionCollect,
-                  hue: PopHue.tangerine,
-                  onTap: () => showAbsSnackbar(context, l.collectSoon),
-                ),
+                if (perms.desk)
+                  _BarButton(
+                    icon: PhosphorIcons.currencyInr(PhosphorIconsStyle.bold),
+                    label: l.actionCollect,
+                    hue: PopHue.tangerine,
+                    onTap: () => showCollectSheet(context, member: CollectTarget.of(member)),
+                  ),
                 if (perms.desk)
                   _BarButton(
                     icon: PhosphorIcons.arrowsClockwise(PhosphorIconsStyle.bold),
                     label: l.actionRenew,
                     hue: PopHue.lime,
-                    onTap: () => showPlanSheet(context, member: member, renew: member.currentMembershipId != null),
+                    onTap: () async {
+                      final done = await showPlanSheet(
+                        context,
+                        member: member,
+                        renew: member.currentMembershipId != null,
+                      );
+                      // The renewal raised an invoice: offer to collect now.
+                      if (done == true && context.mounted) {
+                        ref.refreshPayments(memberId: member.id);
+                        await showCollectSheet(context, member: CollectTarget.of(member));
+                      }
+                    },
                   ),
                 _BarButton(
                   icon: PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold),
@@ -201,7 +235,19 @@ class _Detail extends ConsumerWidget {
                           Text(member.name, style: t.title, maxLines: 2, overflow: TextOverflow.ellipsis),
                           Text(member.planName ?? l.noPlan, style: t.label.copyWith(color: c.textSecondary)),
                           const SizedBox(height: AbsSpace.x1),
-                          StatusPill(status: pillFor(member.status), days: days ?? 0),
+                          Wrap(
+                            spacing: AbsSpace.x2,
+                            runSpacing: AbsSpace.x1,
+                            children: [
+                              StatusPill(status: pillFor(member.status), days: days ?? 0),
+                              if (perms.desk && member.duesPaise > 0)
+                                PopSticker(
+                                  key: const ValueKey('member-dues'),
+                                  label: l.memberDues(Money.format(member.duesPaise)),
+                                  hue: PopHue.coral,
+                                ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -234,7 +280,7 @@ class _Detail extends ConsumerWidget {
                 children: [
                   _OverviewTab(member: member, perms: perms),
                   _MembershipTab(member: member, perms: perms),
-                  _SoonTab(message: l.paymentsSoon, hue: PopHue.tangerine),
+                  if (perms.desk) _PaymentsTab(member: member),
                   _SoonTab(message: l.workoutsSoon, hue: PopHue.bubblegum),
                   _SoonTab(message: l.dietSoon, hue: PopHue.mint),
                   _ProgressTab(member: member, perms: perms),
@@ -355,6 +401,63 @@ class _SoonTab extends StatelessWidget {
     illustration: EmptyIllustration.rocket,
     hue: hue,
   );
+}
+
+// ---------------------------------------------------------------------------
+// Payments (desk and owner)
+// ---------------------------------------------------------------------------
+
+class _PaymentsTab extends ConsumerWidget {
+  const _PaymentsTab({required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final invoices = ref.watch(memberInvoicesProvider(member.id));
+    final payments = ref.watch(memberPaymentsProvider(member.id)).value ?? const <Payment>[];
+    final credit = ref.watch(memberCreditProvider(member.id)).value ?? 0;
+    return AsyncView<List<Invoice>>(
+      value: invoices,
+      onRetry: () => ref.invalidate(memberInvoicesProvider(member.id)),
+      loading: const SkeletonList(itemCount: 3),
+      isEmpty: (list) => list.isEmpty,
+      empty: EmptyState(
+        title: l.memberNoInvoicesTitle,
+        message: l.memberNoInvoicesBody,
+        illustration: EmptyIllustration.receipt,
+        hue: PopHue.tangerine,
+      ),
+      data: (list) => _TabList(
+        children: [
+          if (credit > 0)
+            Padding(
+              padding: const EdgeInsets.only(bottom: AbsSpace.x3),
+              child: PopSticker(label: l.memberCredit(Money.format(credit)), hue: PopHue.lime, numeric: true),
+            ),
+          for (final i in list)
+            InvoiceTile(
+              invoice: i,
+              showMember: false,
+              onTap: () => context.push(Routes.invoiceDetail(i.id)),
+              onCollect: () => showCollectSheet(context, invoice: i),
+            ),
+          if (payments.isNotEmpty) ...[
+            const SizedBox(height: AbsSpace.x2),
+            Text(l.invoicePayments, style: context.text.title),
+            const SizedBox(height: AbsSpace.x2),
+            for (final p in payments)
+              PaymentTile(
+                payment: p,
+                showMember: false,
+                onTap: p.invoiceId == null ? null : () => context.push(Routes.invoiceDetail(p.invoiceId!)),
+              ),
+          ],
+        ],
+      ),
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------

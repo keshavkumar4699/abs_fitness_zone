@@ -348,6 +348,7 @@ class FakeMembersRepository implements MembersRepository {
       planName: m.planName,
       daysLeft: m.daysLeft(now: DateTime.utc(2026, 11, 3, 5)),
       already: already,
+      duesPaise: m.duesPaise,
     );
   }
 
@@ -391,6 +392,15 @@ class FakeMembersRepository implements MembersRepository {
         phone: m.phone,
         reason: ActionReason.expired,
         detail: _d(m.membershipEnd!),
+      ),
+    // Matches sampleInvoices(): Sneha's fees went overdue on 31 Oct.
+    for (final m in members.where((m) => m.id == 'm-4' && m.duesPaise > 0))
+      NeedsAction(
+        memberId: m.id,
+        name: m.name,
+        phone: m.phone,
+        reason: ActionReason.overdue,
+        detail: '2026-10-31|${m.duesPaise}',
       ),
   ];
 
@@ -443,6 +453,7 @@ List<Member> sampleMembers() {
     DateTime? end,
     String? batch,
     String? trainer,
+    int dues = 0,
   }) => Member(
     id: id,
     memberCode: code,
@@ -455,6 +466,7 @@ List<Member> sampleMembers() {
     batch: batch,
     trainerId: trainer,
     joinedOn: DateTime.utc(2026, 1, 10),
+    duesPaise: dues,
   );
   return [
     m(
@@ -479,6 +491,7 @@ List<Member> sampleMembers() {
       start: DateTime.utc(2026, 10, 7),
       end: DateTime.utc(2026, 11, 6),
       batch: 'evening',
+      dues: 100000,
     ),
     m(
       'm-3',
@@ -489,6 +502,7 @@ List<Member> sampleMembers() {
       plan: 'Monthly',
       start: DateTime.utc(2026, 9, 1),
       end: DateTime.utc(2026, 9, 30),
+      dues: 150000,
     ),
     m(
       'm-4',
@@ -499,6 +513,7 @@ List<Member> sampleMembers() {
       plan: 'Quarterly',
       start: DateTime.utc(2026, 9, 15),
       end: DateTime.utc(2026, 12, 20),
+      dues: 400000,
     ),
     m('m-5', 'ABS-0005', 'Zoya Khan', '+919876500005', MemberStatus.inactive),
   ];

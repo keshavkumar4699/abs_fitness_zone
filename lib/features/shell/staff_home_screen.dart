@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../app/l10n/l10n.dart';
+import '../../app/providers.dart';
 import '../../app/routes.dart';
 import '../../app/theme/theme.dart';
 import '../../core/services/contact_links.dart';
 import '../../core/utils/dates.dart';
+import '../../core/utils/money.dart';
 import '../../core/widgets/widgets.dart';
 import '../auth/application/auth_providers.dart';
 import '../auth/domain/app_user.dart';
@@ -15,11 +17,15 @@ import '../members/application/members_providers.dart';
 import '../members/domain/models.dart';
 import '../members/presentation/member_ui.dart';
 import '../members/presentation/widgets/member_photo.dart';
+import '../payments/application/payments_providers.dart';
+import '../payments/domain/payment_models.dart';
+import '../payments/presentation/payment_ui.dart';
 import '../settings/data/gym_settings_repository.dart';
 import 'greeting_header.dart';
 
-/// Staff home dashboard (M1: counts only; revenue joins in M2). Trainers see
-/// the same view scoped to their own members by RLS.
+/// Staff home dashboard: the owner's revenue hero, member counts, fee dues
+/// for the desk, needs-action and live check-ins. Trainers see the member
+/// view scoped to their own members by RLS, and no money.
 class StaffHomeScreen extends ConsumerWidget {
   const StaffHomeScreen({super.key});
 
@@ -27,7 +33,10 @@ class StaffHomeScreen extends ConsumerWidget {
     ref
       ..invalidate(dashboardProvider)
       ..invalidate(needsActionProvider)
-      ..invalidate(plansProvider);
+      ..invalidate(plansProvider)
+      ..invalidate(duesSummaryProvider)
+      ..invalidate(collectionsProvider)
+      ..invalidate(collectionsTrendProvider);
     await ref.read(dashboardProvider.future);
   }
 
@@ -139,6 +148,7 @@ class StaffHomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: AbsSpace.x3),
               ],
+              if (user.role.canSeeRevenue) ...[const _RevenueHero(), const SizedBox(height: AbsSpace.x4)],
               AsyncView<DashboardCounts>(
                 value: counts,
                 isEmpty: (_) => false,
@@ -149,6 +159,7 @@ class StaffHomeScreen extends ConsumerWidget {
                 ),
                 data: (c) => _TileGrid(tiles: tiles, counts: c),
               ),
+              if (user.role.isDesk) const _DuesTiles(),
               const SizedBox(height: AbsSpace.x5),
               Text(l.dashNeedsAction, style: t.title),
               const SizedBox(height: AbsSpace.x2),
@@ -164,6 +175,121 @@ class StaffHomeScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Owner-only revenue: Today / This week / This month with a 30-day trend.
+class _RevenueHero extends ConsumerStatefulWidget {
+  const _RevenueHero();
+
+  @override
+  ConsumerState<_RevenueHero> createState() => _RevenueHeroState();
+}
+
+class _RevenueHeroState extends ConsumerState<_RevenueHero> {
+  RevenuePeriod _period = RevenuePeriod.today;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final c = context.colors;
+    final t = context.text;
+    final summary = ref.watch(collectionsProvider(_period)).value;
+    final trend = ref.watch(collectionsTrendProvider).value;
+    final today = IstDates.today(now: ref.watch(clockProvider)());
+    final byDay = {for (final d in trend?.byDay ?? const <DayAmount>[]) paymentDate(d.day): d.paise};
+    final spark = [
+      for (var i = 29; i >= 0; i--) (byDay[paymentDate(today.subtract(Duration(days: i)))] ?? 0).toDouble(),
+    ];
+    final p = c.pop(PopHue.lime);
+    return Pressable(
+      onTap: () => context.go(Routes.staffPayments),
+      child: Container(
+        key: const ValueKey('revenue-hero'),
+        padding: const EdgeInsets.all(AbsSpace.x5),
+        decoration: stickerDecoration(c, color: p.fill, lip: c.isDark ? p.deep : c.ink),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SegmentedTabs(
+              labels: [l.dashToday, l.dashWeek, l.dashMonth],
+              selected: _period.index,
+              dense: true,
+              hue: PopHue.tangerine,
+              onChanged: (i) => setState(() => _period = RevenuePeriod.values[i]),
+            ),
+            const SizedBox(height: AbsSpace.x4),
+            Text(l.dashRevenue, style: t.label.copyWith(color: p.onFill)),
+            CountUp(
+              value: summary?.collected ?? 0,
+              format: (v) => Money.format(v.round()),
+              style: t.numericOf(t.displayXL).copyWith(color: p.onFill, height: 1.1),
+            ),
+            Text(
+              [
+                l.payPaymentsCount(summary?.paymentsCount ?? 0),
+                if ((summary?.outstanding ?? 0) > 0) l.dashOutstanding(Money.format(summary!.outstanding)),
+              ].join(' · '),
+              style: t.label.copyWith(color: p.onFill),
+            ),
+            const SizedBox(height: AbsSpace.x3),
+            Row(
+              children: [
+                Text(l.dashLast30, style: t.caption.copyWith(color: p.onFill)),
+                const SizedBox(width: AbsSpace.x3),
+                Expanded(
+                  child: SizedBox(
+                    height: AbsSize.sparklineHeight,
+                    child: Sparkline(values: spark, color: p.onFill),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Fee dues for the desk: overdue ₹ and count, and claims to verify.
+class _DuesTiles extends ConsumerWidget {
+  const _DuesTiles();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = context.l10n;
+    final dues = ref.watch(duesSummaryProvider).value;
+    if (dues == null) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(top: AbsSpace.x1),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: StatTile(
+              key: const ValueKey('overdue-tile'),
+              label: '${l.dashOverdue} · ${l.dashInvoices(dues.overdueCount)}',
+              value: dues.overduePaise,
+              format: (v) => Money.format(v.round()),
+              hue: PopHue.coral,
+              icon: PhosphorIcons.warningCircle(PhosphorIconsStyle.bold),
+              onTap: () => context.go(Routes.staffPayments),
+            ),
+          ),
+          const SizedBox(width: AbsSpace.x3),
+          Expanded(
+            child: StatTile(
+              label: l.dashToVerify,
+              value: dues.pendingClaims,
+              hue: PopHue.grape,
+              icon: PhosphorIcons.sealCheck(PhosphorIconsStyle.bold),
+              onTap: () => context.go(Routes.staffPayments),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -252,8 +378,21 @@ class _NeedsActionList extends ConsumerWidget {
 
     (String, PopHue, IconData, String) look(NeedsAction a) {
       final first = a.name.split(' ').first;
+      if (a.reason == ActionReason.overdue) {
+        // detail: "next_due_date|balance_paise"
+        final parts = (a.detail ?? '').split('|');
+        final due = DateTime.tryParse(parts.first);
+        final balance = parts.length > 1 ? int.tryParse(parts[1]) ?? 0 : 0;
+        return (
+          l.reasonOverdue(Money.format(balance), dateLabel(due)),
+          PopHue.coral,
+          PhosphorIcons.currencyInr(PhosphorIconsStyle.bold),
+          duesReminderText(l, name: a.name, balancePaise: balance, dueDate: due, gym: gym),
+        );
+      }
       final date = a.detail == null || a.detail!.isEmpty ? '' : dateLabel(DateTime.tryParse(a.detail!));
       return switch (a.reason) {
+        ActionReason.overdue => throw StateError('handled above'),
         ActionReason.renewalDue => (
           l.reasonRenewal(date),
           PopHue.tangerine,

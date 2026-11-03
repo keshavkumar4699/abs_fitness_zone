@@ -31,6 +31,30 @@ abstract final class Money {
     return rupees * paisePerRupee + int.parse(fraction);
   }
 
+  /// Paise as plain keypad input: 150000 → "1500", 150050 → "1500.50".
+  static String inputOf(int paise) {
+    final rupees = paise ~/ paisePerRupee;
+    final rest = paise % paisePerRupee;
+    return rest == 0 ? '$rupees' : '$rupees.${rest.toString().padLeft(2, '0')}';
+  }
+
+  /// Indian digit grouping for text being typed ("150000.5" → "1,50,000.5").
+  static String groupInput(String input) {
+    final dot = input.indexOf('.');
+    final whole = dot < 0 ? input : input.substring(0, dot);
+    final tail = dot < 0 ? '' : input.substring(dot);
+    if (whole.length <= 3) return '$whole$tail';
+    final last3 = whole.substring(whole.length - 3);
+    var head = whole.substring(0, whole.length - 3);
+    final parts = <String>[];
+    while (head.length > 2) {
+      parts.insert(0, head.substring(head.length - 2));
+      head = head.substring(0, head.length - 2);
+    }
+    if (head.isNotEmpty) parts.insert(0, head);
+    return '${parts.join(',')},$last3$tail';
+  }
+
   /// Applies a percentage (basis points avoid floating error: 1250 = 12.5%)
   /// to [paise], rounding half up to the nearest paisa.
   static int percentOf(int paise, int basisPoints) {

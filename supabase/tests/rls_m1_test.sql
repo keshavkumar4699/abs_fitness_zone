@@ -73,7 +73,8 @@ select pg_temp.check((select membership_end from public.members where phone = '+
 select pg_temp.check((select joining_fee_paise + addons_paise from public.memberships m join public.members mb on mb.id = m.member_id
                       where mb.phone = '+919876500011') = 80000, 'first membership charges joining fee + add-ons');
 select pg_temp.check((select count(*) from public.member_events e join public.members mb on mb.id = e.member_id
-                      where mb.phone = '+919876500011') = 2, 'timeline: joined + membership started');
+                      where mb.phone = '+919876500011' and e.kind in ('joined', 'membership_started')) = 2,
+                     'timeline: joined + membership started');
 
 -- Desk cannot read health; owner and the assigned trainer can.
 set role authenticated;

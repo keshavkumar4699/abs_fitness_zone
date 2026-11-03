@@ -15,6 +15,7 @@ import '../../../core/services/contact_links.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../settings/data/gym_settings_repository.dart';
+import '../../payments/presentation/collect_sheet.dart';
 import '../application/member_csv.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
@@ -212,6 +213,7 @@ class _MembersScreenState extends ConsumerState<MembersScreen> {
                 onTap: _selecting ? () => _toggle(m.id) : () => context.push(Routes.memberDetail(m.id)),
                 onLongPress: isDesk ? () => _toggle(m.id) : null,
                 onRemind: _selecting ? null : () => ContactLinks.openWhatsApp(m.phone, text: reminderText(l, m, gym)),
+                onCollect: _selecting || !isDesk ? null : () => showCollectSheet(context, member: CollectTarget.of(m)),
               ),
             );
           },

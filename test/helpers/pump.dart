@@ -7,6 +7,7 @@ import 'package:abs_fitness/features/auth/domain/app_user.dart';
 import 'package:abs_fitness/features/checkin/presentation/scanner_view.dart';
 import 'package:abs_fitness/features/members/data/members_repository.dart';
 import 'package:abs_fitness/features/members/data/plans_repository.dart';
+import 'package:abs_fitness/features/payments/data/payments_repository.dart';
 import 'package:abs_fitness/features/settings/application/theme_mode_controller.dart';
 import 'package:abs_fitness/features/settings/data/gym_settings_repository.dart';
 import 'package:abs_fitness/features/settings/data/staff_repository.dart';
@@ -19,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fakes.dart';
 import 'member_fakes.dart';
+import 'payment_fakes.dart';
 
 /// Phone viewport used by widget and golden tests (Pixel-class, 1×).
 const phoneSize = Size(390, 844);
@@ -81,6 +83,7 @@ Future<ProviderContainer> pumpApp(
   MembersRepository? members,
   PlansRepository? plans,
   GymSettingsRepository? gymSettings,
+  PaymentsRepository? payments,
   Brightness brightness = Brightness.dark,
   Size size = phoneSize,
   Map<String, Object> prefs = const {},
@@ -98,6 +101,7 @@ Future<ProviderContainer> pumpApp(
       membersRepositoryProvider.overrideWithValue(members ?? seededMembers()),
       plansRepositoryProvider.overrideWithValue(plans ?? FakePlansRepository()),
       gymSettingsRepositoryProvider.overrideWithValue(gymSettings ?? FakeGymSettingsRepository()),
+      paymentsRepositoryProvider.overrideWithValue(payments ?? FakePaymentsRepository()),
       scannerEnabledProvider.overrideWithValue(false),
       // Fixed clock: 3 Nov 2026, 10:00 IST.
       clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 4, 30)),

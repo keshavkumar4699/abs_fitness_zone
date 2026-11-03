@@ -22,6 +22,12 @@ import '../features/members/presentation/import_members_screen.dart';
 import '../features/members/presentation/member_detail_screen.dart';
 import '../features/members/presentation/members_screen.dart';
 import '../features/members/presentation/membership_plans_screen.dart';
+import '../features/member_home/presentation/my_payments_screen.dart';
+import '../features/payments/presentation/day_close_screen.dart';
+import '../features/payments/presentation/expenses_screen.dart';
+import '../features/payments/presentation/invoice_detail_screen.dart';
+import '../features/payments/presentation/payment_history_screen.dart';
+import '../features/payments/presentation/payments_screen.dart';
 import '../features/settings/presentation/gym_profile_screen.dart';
 import '../features/settings/presentation/member_pin_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
@@ -73,6 +79,16 @@ GoRouter router(Ref ref) {
       GoRoute(path: Routes.gallery, builder: (_, _) => const GalleryScreen()),
       GoRoute(path: Routes.checkIn, builder: (_, _) => const CheckInScreen()),
       GoRoute(path: Routes.meCheckIn, builder: (_, _) => const MemberCheckInScreen()),
+      GoRoute(
+        path: Routes.mePayments,
+        builder: (_, _) => const MyPaymentsScreen(),
+        routes: [
+          GoRoute(
+            path: ':invoiceId',
+            builder: (_, state) => MemberPayScreen(invoiceId: state.pathParameters['invoiceId']!),
+          ),
+        ],
+      ),
       StatefulShellRoute(
         builder: (context, state, shell) => StaffShell(shell: shell),
         navigatorContainerBuilder: (context, shell, children) =>
@@ -94,7 +110,10 @@ GoRouter router(Ref ref) {
                   GoRoute(
                     path: ':id',
                     parentNavigatorKey: _rootKey,
-                    builder: (_, state) => MemberDetailScreen(memberId: state.pathParameters['id']!),
+                    builder: (_, state) => MemberDetailScreen(
+                      memberId: state.pathParameters['id']!,
+                      openCollect: state.uri.queryParameters['collect'] == '1',
+                    ),
                     routes: [
                       GoRoute(
                         path: 'edit',
@@ -109,7 +128,23 @@ GoRouter router(Ref ref) {
           ),
           StatefulShellBranch(
             routes: [
-              tab(Routes.staffPayments, (c) => ComingSoonScreen(title: c.l10n.navPayments, hue: StaffHues.payments)),
+              tab(
+                Routes.staffPayments,
+                (_) => const PaymentsScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'invoice/:id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => InvoiceDetailScreen(invoiceId: state.pathParameters['id']!),
+                  ),
+                  GoRoute(
+                    path: 'history',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, _) => const PaymentHistoryScreen(),
+                  ),
+                  GoRoute(path: 'day-close', parentNavigatorKey: _rootKey, builder: (_, _) => const DayCloseScreen()),
+                ],
+              ),
             ],
           ),
           StatefulShellBranch(
@@ -138,6 +173,7 @@ GoRouter router(Ref ref) {
                   GoRoute(path: 'membership-plans', builder: (_, _) => const MembershipPlansScreen()),
                   GoRoute(path: 'check-in-qr', builder: (_, _) => const GymQrScreen()),
                   GoRoute(path: 'gym-profile', builder: (_, _) => const GymProfileScreen()),
+                  GoRoute(path: 'expenses', builder: (_, _) => const ExpensesScreen()),
                 ],
               ),
             ],

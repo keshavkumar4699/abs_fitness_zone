@@ -982,7 +982,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
-  String get paymentNote => 'Payment is collected in the Payments update, coming next.';
+  String get paymentNote => 'An invoice is created for this plan. Collect now or later from Payments.';
 
   @override
   String get consentRequired => 'Tick the consent box to save health details.';
@@ -1165,9 +1165,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get transferDone => 'Days transferred';
 
   @override
-  String get paymentsSoon => 'Invoices and payments arrive in the Payments update, coming next.';
-
-  @override
   String get workoutsSoon => 'Workout plans arrive with the Workouts update.';
 
   @override
@@ -1229,9 +1226,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notesEmpty => 'Nothing here yet';
-
-  @override
-  String get collectSoon => 'Collecting payments arrives in the Payments update, coming next.';
 
   @override
   String get pickDate => 'Pick a date';
@@ -1771,4 +1765,815 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get daysShort => 'days';
+
+  @override
+  String get payTitle => 'Payments';
+
+  @override
+  String get paySearchHint => 'Search name, invoice or receipt';
+
+  @override
+  String get payCollectedToday => 'Collected today';
+
+  @override
+  String get payMyCollections => 'Your collections today';
+
+  @override
+  String payPaymentsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count payments',
+      one: '1 payment',
+      zero: 'No payments yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get payDayClosed => 'Day closed';
+
+  @override
+  String get payCloseDay => 'Close day';
+
+  @override
+  String get payTabDue => 'Due';
+
+  @override
+  String get payTabOverdue => 'Overdue';
+
+  @override
+  String get payTabPaid => 'Paid';
+
+  @override
+  String get payTabPending => 'To verify';
+
+  @override
+  String get payEmptyDueTitle => 'Nothing due';
+
+  @override
+  String get payEmptyDueBody => 'No open invoices right now.';
+
+  @override
+  String get payEmptyOverdueTitle => 'No overdue fees';
+
+  @override
+  String get payEmptyOverdueBody => 'Everyone is paid up. High five!';
+
+  @override
+  String get payEmptyPaidTitle => 'No paid invoices yet';
+
+  @override
+  String get payEmptyPaidBody => 'Paid invoices show up here.';
+
+  @override
+  String get payEmptyPendingTitle => 'Nothing to verify';
+
+  @override
+  String get payEmptyPendingBody =>
+      'When a member taps \"I\'ve paid\", their UPI reference waits here for a quick check.';
+
+  @override
+  String get payEmptySearchTitle => 'No matches';
+
+  @override
+  String get payEmptySearchBody => 'Try another name, invoice or receipt number.';
+
+  @override
+  String payDueIn(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Due in $days days',
+      one: 'Due tomorrow',
+      zero: 'Due today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String payOverdueBy(int days) {
+    String _temp0 = intl.Intl.pluralLogic(days, locale: localeName, other: '$days days overdue', one: '1 day overdue');
+    return '$_temp0';
+  }
+
+  @override
+  String payBalance(String amount) {
+    return '$amount due';
+  }
+
+  @override
+  String get payHistory => 'History';
+
+  @override
+  String get payReminders => 'Fee reminders today';
+
+  @override
+  String payRemindersBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count members to nudge',
+      one: '1 member to nudge',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get payCollect => 'Collect';
+
+  @override
+  String get payTrainerTitle => 'Payments are with the desk';
+
+  @override
+  String get payTrainerBody => 'Fees and receipts are handled by the front desk and the owner.';
+
+  @override
+  String get payApprove => 'Approve';
+
+  @override
+  String get payReject => 'Reject';
+
+  @override
+  String get payRejectTitle => 'Reject this payment?';
+
+  @override
+  String get payRejectReason => 'Why? (the member sees this)';
+
+  @override
+  String payUtr(String utr) {
+    return 'UTR $utr';
+  }
+
+  @override
+  String payApproved(String receipt) {
+    return 'Approved. Receipt $receipt';
+  }
+
+  @override
+  String get payRejected => 'Payment rejected';
+
+  @override
+  String payClaimedAt(String time) {
+    return 'Sent $time';
+  }
+
+  @override
+  String get modeCash => 'Cash';
+
+  @override
+  String get modeUpi => 'UPI';
+
+  @override
+  String get modeCard => 'Card';
+
+  @override
+  String get modeBank => 'Bank transfer';
+
+  @override
+  String get modeOnline => 'Online';
+
+  @override
+  String get modeCredit => 'Credit';
+
+  @override
+  String get invoiceStatusPartial => 'Part paid';
+
+  @override
+  String get invoiceStatusPaid => 'Paid';
+
+  @override
+  String get invoiceStatusVoid => 'Void';
+
+  @override
+  String get paymentStatusPending => 'Waiting for check';
+
+  @override
+  String get paymentStatusRejected => 'Rejected';
+
+  @override
+  String get paymentStatusVoided => 'Voided';
+
+  @override
+  String get collectTitle => 'Collect payment';
+
+  @override
+  String get collectSearchHint => 'Member name, phone or ID';
+
+  @override
+  String get collectNoMembers => 'No members match';
+
+  @override
+  String get collectPickInvoice => 'Which invoice?';
+
+  @override
+  String get collectNothingDueTitle => 'Nothing due';
+
+  @override
+  String collectNothingDueBody(String name) {
+    return '$name has no open invoices.';
+  }
+
+  @override
+  String get collectAmount => 'Amount';
+
+  @override
+  String collectFull(String amount) {
+    return 'Full $amount';
+  }
+
+  @override
+  String collectInstalment(String amount) {
+    return 'Instalment $amount';
+  }
+
+  @override
+  String get collectMode => 'Paid by';
+
+  @override
+  String get collectUtr => 'UPI / bank reference (UTR)';
+
+  @override
+  String get collectUtrHelp => 'The 12-digit reference from the payment app';
+
+  @override
+  String get collectUtrMissing => 'Enter the UPI / bank reference (at least 6 characters).';
+
+  @override
+  String collectExtraCredit(String amount) {
+    return '$amount extra is saved as credit';
+  }
+
+  @override
+  String collectStillDue(String amount) {
+    return '$amount will still be due';
+  }
+
+  @override
+  String collectConfirm(String amount) {
+    return 'Collect $amount';
+  }
+
+  @override
+  String get collectEnterAmount => 'Enter an amount';
+
+  @override
+  String collectUseCredit(String amount) {
+    return 'Use credit $amount';
+  }
+
+  @override
+  String get collectDone => 'Payment received!';
+
+  @override
+  String collectCreditSaved(String amount) {
+    return '$amount saved as credit';
+  }
+
+  @override
+  String collectReceiptNo(String receipt) {
+    return 'Receipt $receipt';
+  }
+
+  @override
+  String get collectShareReceipt => 'Share receipt';
+
+  @override
+  String get collectShare => 'Share';
+
+  @override
+  String get collectPrint => 'Print';
+
+  @override
+  String get collectWhatsApp => 'Send on WhatsApp';
+
+  @override
+  String get collectAnother => 'Done';
+
+  @override
+  String get collectChangeMember => 'Change';
+
+  @override
+  String get keypadBackspace => 'Delete digit';
+
+  @override
+  String receiptWhatsAppText(String name, String amount, String gym, String receipt) {
+    return 'Hi $name, we received $amount at $gym. Receipt $receipt. Thank you!';
+  }
+
+  @override
+  String get receiptFailed => 'Could not make the receipt. Try again.';
+
+  @override
+  String get invoiceTitle => 'Invoice';
+
+  @override
+  String get invoiceItems => 'Items';
+
+  @override
+  String get invoiceDiscount => 'Discount';
+
+  @override
+  String get invoiceTaxable => 'Taxable value';
+
+  @override
+  String get invoiceCgst => 'CGST';
+
+  @override
+  String get invoiceSgst => 'SGST';
+
+  @override
+  String get invoiceTotal => 'Total';
+
+  @override
+  String get invoicePaid => 'Paid';
+
+  @override
+  String get invoiceBalance => 'Balance';
+
+  @override
+  String invoiceIssued(String date) {
+    return 'Issued $date';
+  }
+
+  @override
+  String get invoicePayments => 'Payments';
+
+  @override
+  String get invoiceNoPayments => 'No payments yet';
+
+  @override
+  String get invoiceInstalments => 'Instalments';
+
+  @override
+  String get invoiceSplit => 'Split into instalments';
+
+  @override
+  String invoiceSplitHelp(String total) {
+    return 'Up to 4 parts that add up to $total.';
+  }
+
+  @override
+  String get invoiceAddPart => 'Add part';
+
+  @override
+  String invoicePart(int n) {
+    return 'Part $n';
+  }
+
+  @override
+  String invoiceSplitMismatch(String sum, String total) {
+    return 'Parts add up to $sum; they must equal $total.';
+  }
+
+  @override
+  String get invoiceSplitSaved => 'Instalments saved';
+
+  @override
+  String get invoiceSendLink => 'Send link';
+
+  @override
+  String get invoiceShowQr => 'UPI QR';
+
+  @override
+  String invoiceQrBody(String amount) {
+    return 'Scan with any UPI app to pay $amount';
+  }
+
+  @override
+  String get invoiceNoUpi => 'Add the gym\'s UPI ID in Gym profile to share payment links.';
+
+  @override
+  String get invoiceGatewayLink => 'Razorpay link';
+
+  @override
+  String get invoiceGatewayReady => 'Payment link ready';
+
+  @override
+  String invoiceUpiText(String name, String amount, String gym, String invoice, String link) {
+    return 'Hi $name, your fees of $amount at $gym are due ($invoice). Pay by UPI: $link';
+  }
+
+  @override
+  String invoiceGatewayText(String name, String amount, String gym, String link) {
+    return 'Hi $name, pay your fees of $amount at $gym here: $link';
+  }
+
+  @override
+  String get invoiceVoid => 'Void invoice';
+
+  @override
+  String invoiceVoidTitle(String invoice) {
+    return 'Void $invoice?';
+  }
+
+  @override
+  String get invoiceVoidBody => 'The invoice stays on record marked void. This cannot be undone.';
+
+  @override
+  String get invoiceVoided => 'Invoice voided';
+
+  @override
+  String invoiceVoidedReason(String reason) {
+    return 'Voided: $reason';
+  }
+
+  @override
+  String get invoiceReason => 'Reason';
+
+  @override
+  String invoiceApplyCredit(String amount) {
+    return 'Use $amount credit';
+  }
+
+  @override
+  String get invoiceCreditApplied => 'Credit applied';
+
+  @override
+  String get paymentVoid => 'Void payment';
+
+  @override
+  String paymentVoidTitle(String receipt) {
+    return 'Void receipt $receipt?';
+  }
+
+  @override
+  String get paymentVoidDone => 'Payment voided';
+
+  @override
+  String get paymentRefund => 'Refund';
+
+  @override
+  String paymentRefundTitle(String receipt) {
+    return 'Refund from $receipt';
+  }
+
+  @override
+  String get paymentRefundAmount => 'Refund amount';
+
+  @override
+  String get paymentRefundMode => 'Refund by';
+
+  @override
+  String get paymentRefundDone => 'Refund recorded';
+
+  @override
+  String paymentRefunded(String amount) {
+    return 'Refunded $amount';
+  }
+
+  @override
+  String get reasonRequired => 'Add a reason.';
+
+  @override
+  String get amountRequired => 'Enter an amount more than zero.';
+
+  @override
+  String get dayCloseTitle => 'Close the day';
+
+  @override
+  String get dayCloseBody => 'Count the cash drawer, then lock today\'s collections.';
+
+  @override
+  String get dayCloseByMode => 'Today\'s collections';
+
+  @override
+  String get dayCloseTotal => 'Total';
+
+  @override
+  String get dayCloseCounted => 'Cash you counted';
+
+  @override
+  String dayCloseExpected(String amount) {
+    return 'Expected cash $amount';
+  }
+
+  @override
+  String dayCloseOver(String amount) {
+    return '$amount over';
+  }
+
+  @override
+  String dayCloseShort(String amount) {
+    return '$amount short';
+  }
+
+  @override
+  String get dayCloseExact => 'Matches exactly';
+
+  @override
+  String get dayCloseNote => 'Note (optional)';
+
+  @override
+  String get dayCloseConfirm => 'Close day';
+
+  @override
+  String get dayCloseDone => 'Day closed. Nice work!';
+
+  @override
+  String dayCloseLocked(String time) {
+    return 'Closed at $time. New collections need the owner to reopen your day.';
+  }
+
+  @override
+  String get dayCloseHistory => 'Recent closes';
+
+  @override
+  String get dayCloseReopen => 'Reopen';
+
+  @override
+  String get dayCloseReopened => 'Day reopened';
+
+  @override
+  String get dayCloseReopenedPill => 'Reopened';
+
+  @override
+  String dayCloseCountedLine(String counted, String expected) {
+    return 'Counted $counted · expected $expected';
+  }
+
+  @override
+  String get expensesTitle => 'Expenses';
+
+  @override
+  String expensesTotal(String month) {
+    return 'Spent in $month';
+  }
+
+  @override
+  String get expensesEmptyTitle => 'No expenses this month';
+
+  @override
+  String get expensesEmptyBody => 'Add rent, salaries and bills to see what the gym really earns.';
+
+  @override
+  String get expenseAdd => 'Add expense';
+
+  @override
+  String get expenseCategory => 'Category';
+
+  @override
+  String get expenseAmount => 'Amount';
+
+  @override
+  String get expenseDate => 'Date';
+
+  @override
+  String get expenseNote => 'Note (optional)';
+
+  @override
+  String get expenseSaved => 'Expense saved';
+
+  @override
+  String get expenseDeleted => 'Expense deleted';
+
+  @override
+  String get expenseDelete => 'Delete expense';
+
+  @override
+  String get expenseRent => 'Rent';
+
+  @override
+  String get expenseSalaries => 'Salaries';
+
+  @override
+  String get expenseElectricity => 'Electricity';
+
+  @override
+  String get expenseEquipment => 'Equipment';
+
+  @override
+  String get expenseMaintenance => 'Maintenance';
+
+  @override
+  String get expenseMarketing => 'Marketing';
+
+  @override
+  String get expenseSupplies => 'Supplies';
+
+  @override
+  String get expenseOther => 'Other';
+
+  @override
+  String get previousMonth => 'Previous month';
+
+  @override
+  String get nextMonth => 'Next month';
+
+  @override
+  String get historyTitle => 'Payment history';
+
+  @override
+  String get historySearchHint => 'Name, receipt or UTR';
+
+  @override
+  String get historyAllModes => 'All modes';
+
+  @override
+  String get historyDates => 'Dates';
+
+  @override
+  String get historyClear => 'Clear filters';
+
+  @override
+  String get historyEmptyTitle => 'No payments found';
+
+  @override
+  String get historyEmptyBody => 'Try another search or filter.';
+
+  @override
+  String get dashRevenue => 'Collected';
+
+  @override
+  String get dashToday => 'Today';
+
+  @override
+  String get dashWeek => 'This week';
+
+  @override
+  String get dashMonth => 'This month';
+
+  @override
+  String get dashOverdue => 'Overdue fees';
+
+  @override
+  String get dashToVerify => 'Payments to verify';
+
+  @override
+  String dashOutstanding(String amount) {
+    return '$amount outstanding';
+  }
+
+  @override
+  String get dashLast30 => 'Last 30 days';
+
+  @override
+  String dashInvoices(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count invoices',
+      one: '1 invoice',
+      zero: 'No invoices',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String reasonOverdue(String amount, String date) {
+    return '$amount overdue since $date';
+  }
+
+  @override
+  String whatsappDuesText(String name, String amount, String gym, String date) {
+    return 'Hi $name, a friendly reminder: $amount is due at $gym (since $date).';
+  }
+
+  @override
+  String whatsappDueSoonText(String name, String amount, String gym, String date) {
+    return 'Hi $name, your fees of $amount at $gym are due on $date.';
+  }
+
+  @override
+  String whatsappDueTodayText(String name, String amount, String gym) {
+    return 'Hi $name, your fees of $amount at $gym are due today.';
+  }
+
+  @override
+  String whatsappPayLine(String link) {
+    return 'Pay by UPI: $link';
+  }
+
+  @override
+  String get meDuesTitle => 'Fees due';
+
+  @override
+  String meDueBy(String date) {
+    return 'Due $date';
+  }
+
+  @override
+  String get mePayNow => 'Pay now';
+
+  @override
+  String get meAllPaid => 'All paid up. Thank you!';
+
+  @override
+  String get mePayTitle => 'Pay fees';
+
+  @override
+  String get mePayUpi => 'Pay with a UPI app';
+
+  @override
+  String get mePayScan => 'Or scan this QR from another phone';
+
+  @override
+  String get mePaid => 'I\'ve paid';
+
+  @override
+  String get mePaidTitle => 'Tell us you\'ve paid';
+
+  @override
+  String get mePaidBody =>
+      'Enter the UPI reference (UTR) from your payment app. The desk checks it and your receipt appears here.';
+
+  @override
+  String get mePaidAmount => 'Amount you paid';
+
+  @override
+  String get mePaidSubmit => 'Send for check';
+
+  @override
+  String get mePaidSent => 'Sent! We\'ll confirm it soon.';
+
+  @override
+  String mePaidPending(String amount) {
+    return '$amount waiting for the desk to check';
+  }
+
+  @override
+  String get mePayments => 'My payments';
+
+  @override
+  String get mePaymentsSubtitle => 'Invoices and receipts';
+
+  @override
+  String get meNoUpi => 'The gym hasn\'t set up UPI yet. Please pay at the front desk.';
+
+  @override
+  String get meNoInvoicesTitle => 'No invoices yet';
+
+  @override
+  String get meNoInvoicesBody => 'Your invoices and receipts will show up here.';
+
+  @override
+  String get mePayAtDesk => 'You can also pay at the front desk.';
+
+  @override
+  String meRejected(String reason) {
+    return 'Not confirmed: $reason';
+  }
+
+  @override
+  String get noUpiApp => 'No UPI app opened. Scan the QR instead.';
+
+  @override
+  String checkInDues(String amount) {
+    return '$amount fees pending';
+  }
+
+  @override
+  String memberCredit(String amount) {
+    return 'Credit $amount';
+  }
+
+  @override
+  String memberDues(String amount) {
+    return '$amount due';
+  }
+
+  @override
+  String get memberNoInvoicesTitle => 'No invoices yet';
+
+  @override
+  String get memberNoInvoicesBody => 'An invoice is created when a plan starts or renews.';
+
+  @override
+  String get gymPaymentsSection => 'Payments';
+
+  @override
+  String get gymGstEnabled => 'Charge GST';
+
+  @override
+  String get gymGstEnabledBody => 'Shows CGST and SGST on invoices (needs a GSTIN).';
+
+  @override
+  String get gymGstInclusive => 'Prices include GST';
+
+  @override
+  String get gymGstInclusiveBody => 'Off: GST is added on top of plan prices.';
+
+  @override
+  String get gymRazorpay => 'Razorpay payment links';
+
+  @override
+  String get gymRazorpayBody => 'Needs Razorpay keys on the server. UPI links work without it.';
+
+  @override
+  String get moreDayClose => 'Day close';
+
+  @override
+  String get moreDayCloseSubtitle => 'Count cash and lock the day';
+
+  @override
+  String get moreExpenses => 'Expenses';
+
+  @override
+  String get moreExpensesSubtitle => 'Rent, salaries and bills';
+
+  @override
+  String get morePaymentHistory => 'Payment history';
+
+  @override
+  String get morePaymentHistorySubtitle => 'Every receipt, with filters';
 }

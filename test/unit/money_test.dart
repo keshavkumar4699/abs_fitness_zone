@@ -38,4 +38,20 @@ void main() {
       expect(Money.percentOf(333, 5000), 167); // 50% of 333 paise = 166.5 → 167
     });
   });
+
+  group('Money keypad input', () {
+    test('inputOf round-trips with parse', () {
+      expect(Money.inputOf(150000), '1500');
+      expect(Money.inputOf(150050), '1500.50');
+      expect(Money.inputOf(5), '0.05');
+      expect(Money.parse(Money.inputOf(123456789)), 123456789);
+    });
+
+    test('groupInput uses Indian grouping and keeps typed decimals', () {
+      expect(Money.groupInput('999'), '999');
+      expect(Money.groupInput('1500'), '1,500');
+      expect(Money.groupInput('150000.5'), '1,50,000.5');
+      expect(Money.groupInput('1234567.'), '12,34,567.');
+    });
+  });
 }

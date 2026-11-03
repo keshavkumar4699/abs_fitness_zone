@@ -9,8 +9,8 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | --- | --- | --- |
 | **M0 Foundations** | Theme tokens, core components + Gallery, staff & member auth, role-guarded router, CI, database foundations | ✅ Done ([report](docs/milestones/M0.md), [fixes + redesign](docs/milestones/M0.1.md)) |
 | **M1 Members** | F1: members, plans, memberships, status engine, check-in, import/export, dashboard counts | ✅ Done ([report](docs/milestones/M1.md)) |
-| M2 Payments | F2, receipts, UPI QR, day close, dues engine | Next |
-| M3 Exercise library + Workouts | F4, F5, member app shell, workout player | — |
+| **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md)) |
+| M3 Exercise library + Workouts | F4, F5, member app shell, workout player | Next |
 | M4 Diet | F6 | — |
 | M5 WhatsApp | F8 | — |
 | M6 AI automation | F7 | — |
@@ -31,7 +31,10 @@ lib/
   features/
     auth/                   data / domain / application / presentation
     settings/               More, staff roster + invite, member PIN, appearance
-    member_home/            member onboarding + profile
+    members/                members, plans, memberships, check-in data, import
+    payments/               invoices, collect sheet, receipts (PDF), day close, expenses
+    checkin/                desk scanner/search, member self check-in, gym QR
+    member_home/            member onboarding, home, progress, my payments + pay
     gallery/                hidden component gallery
     shell/                  adaptive staff/member shells
 supabase/
@@ -121,6 +124,24 @@ flutter build apk --release --dart-define-from-file=env/prod.json
 9. First-time setup on Home walks the owner through the gym profile,
    membership plans and inviting staff. To bring in an existing member list,
    use More → Import members with a CSV.
+10. **Payments (M2).** In **More → Gym profile**, fill in the gym's **UPI ID**
+    (used for member pay links and QR codes) and, if the gym is
+    GST-registered, the **GSTIN** with **Charge GST** on. The M2 migration also
+    schedules the nightly dues refresh at 00:10 IST (`pg_cron`) and adds
+    Realtime on `payments`, when those are available.
+11. **Razorpay (optional).** UPI links and QR codes work without it. To add
+    payment links, set the secrets, then turn on **Razorpay payment links** in
+    Gym profile:
+
+    ```bash
+    supabase secrets set RAZORPAY_KEY_ID=rzp_live_xxx RAZORPAY_KEY_SECRET=xxx RAZORPAY_WEBHOOK_SECRET=xxx
+    ```
+
+    In the Razorpay dashboard, add a webhook for the `payment_link.paid`
+    event pointing at
+    `https://YOUR_PROJECT_REF.supabase.co/functions/v1/razorpay-webhook`, using
+    the same webhook secret. The keys stay on the server; the app never sees
+    them.
 
 ## Tests
 

@@ -106,6 +106,30 @@ class MoreScreen extends ConsumerWidget {
               Routes.memberPin,
               PopHue.tangerine,
             ),
+          if (user.role.isDesk)
+            item(
+              PhosphorIcons.lockKey(PhosphorIconsStyle.bold),
+              l.moreDayClose,
+              l.moreDayCloseSubtitle,
+              Routes.dayClose,
+              PopHue.grape,
+            ),
+          if (user.role.isDesk)
+            item(
+              PhosphorIcons.clockCounterClockwise(PhosphorIconsStyle.bold),
+              l.morePaymentHistory,
+              l.morePaymentHistorySubtitle,
+              Routes.paymentHistory,
+              PopHue.sky,
+            ),
+          if (user.role.isOwner)
+            item(
+              PhosphorIcons.receipt(PhosphorIconsStyle.bold),
+              l.moreExpenses,
+              l.moreExpensesSubtitle,
+              Routes.expenses,
+              PopHue.coral,
+            ),
           item(
             PhosphorIcons.tag(PhosphorIconsStyle.bold),
             l.morePlans,

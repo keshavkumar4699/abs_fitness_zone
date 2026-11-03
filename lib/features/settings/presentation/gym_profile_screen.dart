@@ -10,9 +10,11 @@ import '../../../core/utils/phone.dart';
 import '../../../core/utils/phone_input.dart';
 import '../../../core/validators.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../payments/application/payments_providers.dart';
 import '../data/gym_settings_repository.dart';
 
-/// Owner: gym name, contact, UPI ID, GSTIN and the member rules.
+/// Owner: gym name, contact, UPI ID, GSTIN, the member rules and the
+/// payment switches (GST, prices inclusive of GST, Razorpay links).
 class GymProfileScreen extends ConsumerWidget {
   const GymProfileScreen({super.key});
 
@@ -53,6 +55,9 @@ class _FormState extends ConsumerState<_Form> {
   late final _window = TextEditingController(text: '${widget.settings.expiringWindowDays}');
   late final _absent = TextEditingController(text: '${widget.settings.absentDays}');
   late String _lapsed = widget.settings.lapsedRenewFrom;
+  late bool _gst = widget.settings.gstEnabled;
+  late bool _gstInclusive = widget.settings.gstInclusive;
+  late bool _razorpay = widget.settings.razorpayEnabled;
   bool _busy = false;
 
   @override
@@ -78,10 +83,14 @@ class _FormState extends ConsumerState<_Form> {
         'expiring_window_days': int.parse(_window.text.trim()),
         'absent_days': int.parse(_absent.text.trim()),
         'lapsed_renew_from': _lapsed,
+        'gst_enabled': _gst,
+        'gst_inclusive': _gstInclusive,
+        'razorpay_enabled': _razorpay,
       });
       ref
         ..invalidate(gymSettingsProvider)
-        ..invalidate(publicGymProfileProvider);
+        ..invalidate(publicGymProfileProvider)
+        ..invalidate(billingProfileProvider);
       if (!mounted) return;
       showAbsSnackbar(context, l.saved, tone: SnackTone.success);
       context.pop();
@@ -134,7 +143,11 @@ class _FormState extends ConsumerState<_Form> {
             label: l.fieldGstin,
             controller: _gstin,
             inputFormatters: [LengthLimitingTextInputFormatter(15)],
-            validator: (s) => (s == null || s.trim().isEmpty || s.trim().length == 15) ? null : l.commonRequired,
+            validator: (s) {
+              final g = s?.trim() ?? '';
+              if (g.isEmpty) return _gst ? l.gymGstEnabledBody : null;
+              return g.length == 15 ? null : l.commonRequired;
+            },
           ),
           const SizedBox(height: AbsSpace.x6),
           Text(l.rulesTitle, style: context.text.title),
@@ -162,6 +175,40 @@ class _FormState extends ConsumerState<_Form> {
             labels: [l.lapsedToday, l.lapsedEnd],
             selected: _lapsed == 'end' ? 1 : 0,
             onChanged: (i) => setState(() => _lapsed = i == 1 ? 'end' : 'today'),
+          ),
+          const SizedBox(height: AbsSpace.x6),
+          Text(l.gymPaymentsSection, style: context.text.title),
+          const SizedBox(height: AbsSpace.x2),
+          AbsCard(
+            padding: const EdgeInsets.symmetric(vertical: AbsSpace.x1),
+            child: Material(
+              type: MaterialType.transparency,
+              child: Column(
+                children: [
+                  SwitchListTile(
+                    key: const ValueKey('gst-enabled'),
+                    title: Text(l.gymGstEnabled, style: context.text.heading),
+                    subtitle: Text(l.gymGstEnabledBody),
+                    value: _gst,
+                    onChanged: (v) => setState(() => _gst = v),
+                  ),
+                  if (_gst)
+                    SwitchListTile(
+                      title: Text(l.gymGstInclusive, style: context.text.heading),
+                      subtitle: Text(l.gymGstInclusiveBody),
+                      value: _gstInclusive,
+                      onChanged: (v) => setState(() => _gstInclusive = v),
+                    ),
+                  SwitchListTile(
+                    key: const ValueKey('razorpay-enabled'),
+                    title: Text(l.gymRazorpay, style: context.text.heading),
+                    subtitle: Text(l.gymRazorpayBody),
+                    value: _razorpay,
+                    onChanged: (v) => setState(() => _razorpay = v),
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: AbsSpace.x6),
           AbsButton(label: l.commonSave, hue: PopHue.grape, isLoading: _busy, onPressed: _save),

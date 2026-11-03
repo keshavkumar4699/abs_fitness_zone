@@ -1973,7 +1973,7 @@ abstract class AppLocalizations {
   /// No description provided for @paymentNote.
   ///
   /// In en, this message translates to:
-  /// **'Payment is collected in the Payments update, coming next.'**
+  /// **'An invoice is created for this plan. Collect now or later from Payments.'**
   String get paymentNote;
 
   /// No description provided for @consentRequired.
@@ -2336,12 +2336,6 @@ abstract class AppLocalizations {
   /// **'Days transferred'**
   String get transferDone;
 
-  /// No description provided for @paymentsSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Invoices and payments arrive in the Payments update, coming next.'**
-  String get paymentsSoon;
-
   /// No description provided for @workoutsSoon.
   ///
   /// In en, this message translates to:
@@ -2467,12 +2461,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing here yet'**
   String get notesEmpty;
-
-  /// No description provided for @collectSoon.
-  ///
-  /// In en, this message translates to:
-  /// **'Collecting payments arrives in the Payments update, coming next.'**
-  String get collectSoon;
 
   /// No description provided for @pickDate.
   ///
@@ -3277,6 +3265,1368 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'days'**
   String get daysShort;
+
+  /// No description provided for @payTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get payTitle;
+
+  /// No description provided for @paySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search name, invoice or receipt'**
+  String get paySearchHint;
+
+  /// No description provided for @payCollectedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected today'**
+  String get payCollectedToday;
+
+  /// No description provided for @payMyCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Your collections today'**
+  String get payMyCollections;
+
+  /// No description provided for @payPaymentsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No payments yet} =1{1 payment} other{{count} payments}}'**
+  String payPaymentsCount(int count);
+
+  /// No description provided for @payDayClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Day closed'**
+  String get payDayClosed;
+
+  /// No description provided for @payCloseDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Close day'**
+  String get payCloseDay;
+
+  /// No description provided for @payTabDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Due'**
+  String get payTabDue;
+
+  /// No description provided for @payTabOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get payTabOverdue;
+
+  /// No description provided for @payTabPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get payTabPaid;
+
+  /// No description provided for @payTabPending.
+  ///
+  /// In en, this message translates to:
+  /// **'To verify'**
+  String get payTabPending;
+
+  /// No description provided for @payEmptyDueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing due'**
+  String get payEmptyDueTitle;
+
+  /// No description provided for @payEmptyDueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No open invoices right now.'**
+  String get payEmptyDueBody;
+
+  /// No description provided for @payEmptyOverdueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No overdue fees'**
+  String get payEmptyOverdueTitle;
+
+  /// No description provided for @payEmptyOverdueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone is paid up. High five!'**
+  String get payEmptyOverdueBody;
+
+  /// No description provided for @payEmptyPaidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No paid invoices yet'**
+  String get payEmptyPaidTitle;
+
+  /// No description provided for @payEmptyPaidBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid invoices show up here.'**
+  String get payEmptyPaidBody;
+
+  /// No description provided for @payEmptyPendingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to verify'**
+  String get payEmptyPendingTitle;
+
+  /// No description provided for @payEmptyPendingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'When a member taps \"I\'ve paid\", their UPI reference waits here for a quick check.'**
+  String get payEmptyPendingBody;
+
+  /// No description provided for @payEmptySearchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matches'**
+  String get payEmptySearchTitle;
+
+  /// No description provided for @payEmptySearchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another name, invoice or receipt number.'**
+  String get payEmptySearchBody;
+
+  /// No description provided for @payDueIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Due today} =1{Due tomorrow} other{Due in {days} days}}'**
+  String payDueIn(int days);
+
+  /// No description provided for @payOverdueBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{1 day overdue} other{{days} days overdue}}'**
+  String payOverdueBy(int days);
+
+  /// No description provided for @payBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} due'**
+  String payBalance(String amount);
+
+  /// No description provided for @payHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get payHistory;
+
+  /// No description provided for @payReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee reminders today'**
+  String get payReminders;
+
+  /// No description provided for @payRemindersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 member to nudge} other{{count} members to nudge}}'**
+  String payRemindersBody(int count);
+
+  /// No description provided for @payCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect'**
+  String get payCollect;
+
+  /// No description provided for @payTrainerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments are with the desk'**
+  String get payTrainerTitle;
+
+  /// No description provided for @payTrainerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Fees and receipts are handled by the front desk and the owner.'**
+  String get payTrainerBody;
+
+  /// No description provided for @payApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get payApprove;
+
+  /// No description provided for @payReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get payReject;
+
+  /// No description provided for @payRejectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject this payment?'**
+  String get payRejectTitle;
+
+  /// No description provided for @payRejectReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Why? (the member sees this)'**
+  String get payRejectReason;
+
+  /// No description provided for @payUtr.
+  ///
+  /// In en, this message translates to:
+  /// **'UTR {utr}'**
+  String payUtr(String utr);
+
+  /// No description provided for @payApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved. Receipt {receipt}'**
+  String payApproved(String receipt);
+
+  /// No description provided for @payRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment rejected'**
+  String get payRejected;
+
+  /// No description provided for @payClaimedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {time}'**
+  String payClaimedAt(String time);
+
+  /// No description provided for @modeCash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get modeCash;
+
+  /// No description provided for @modeUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI'**
+  String get modeUpi;
+
+  /// No description provided for @modeCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Card'**
+  String get modeCard;
+
+  /// No description provided for @modeBank.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank transfer'**
+  String get modeBank;
+
+  /// No description provided for @modeOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get modeOnline;
+
+  /// No description provided for @modeCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit'**
+  String get modeCredit;
+
+  /// No description provided for @invoiceStatusPartial.
+  ///
+  /// In en, this message translates to:
+  /// **'Part paid'**
+  String get invoiceStatusPartial;
+
+  /// No description provided for @invoiceStatusPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get invoiceStatusPaid;
+
+  /// No description provided for @invoiceStatusVoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Void'**
+  String get invoiceStatusVoid;
+
+  /// No description provided for @paymentStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for check'**
+  String get paymentStatusPending;
+
+  /// No description provided for @paymentStatusRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get paymentStatusRejected;
+
+  /// No description provided for @paymentStatusVoided.
+  ///
+  /// In en, this message translates to:
+  /// **'Voided'**
+  String get paymentStatusVoided;
+
+  /// No description provided for @collectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect payment'**
+  String get collectTitle;
+
+  /// No description provided for @collectSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Member name, phone or ID'**
+  String get collectSearchHint;
+
+  /// No description provided for @collectNoMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'No members match'**
+  String get collectNoMembers;
+
+  /// No description provided for @collectPickInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Which invoice?'**
+  String get collectPickInvoice;
+
+  /// No description provided for @collectNothingDueTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing due'**
+  String get collectNothingDueTitle;
+
+  /// No description provided for @collectNothingDueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has no open invoices.'**
+  String collectNothingDueBody(String name);
+
+  /// No description provided for @collectAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get collectAmount;
+
+  /// No description provided for @collectFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full {amount}'**
+  String collectFull(String amount);
+
+  /// No description provided for @collectInstalment.
+  ///
+  /// In en, this message translates to:
+  /// **'Instalment {amount}'**
+  String collectInstalment(String amount);
+
+  /// No description provided for @collectMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid by'**
+  String get collectMode;
+
+  /// No description provided for @collectUtr.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI / bank reference (UTR)'**
+  String get collectUtr;
+
+  /// No description provided for @collectUtrHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The 12-digit reference from the payment app'**
+  String get collectUtrHelp;
+
+  /// No description provided for @collectUtrMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the UPI / bank reference (at least 6 characters).'**
+  String get collectUtrMissing;
+
+  /// No description provided for @collectExtraCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} extra is saved as credit'**
+  String collectExtraCredit(String amount);
+
+  /// No description provided for @collectStillDue.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} will still be due'**
+  String collectStillDue(String amount);
+
+  /// No description provided for @collectConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect {amount}'**
+  String collectConfirm(String amount);
+
+  /// No description provided for @collectEnterAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount'**
+  String get collectEnterAmount;
+
+  /// No description provided for @collectUseCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Use credit {amount}'**
+  String collectUseCredit(String amount);
+
+  /// No description provided for @collectDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received!'**
+  String get collectDone;
+
+  /// No description provided for @collectCreditSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} saved as credit'**
+  String collectCreditSaved(String amount);
+
+  /// No description provided for @collectReceiptNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt {receipt}'**
+  String collectReceiptNo(String receipt);
+
+  /// No description provided for @collectShareReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Share receipt'**
+  String get collectShareReceipt;
+
+  /// No description provided for @collectShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get collectShare;
+
+  /// No description provided for @collectPrint.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get collectPrint;
+
+  /// No description provided for @collectWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send on WhatsApp'**
+  String get collectWhatsApp;
+
+  /// No description provided for @collectAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get collectAnother;
+
+  /// No description provided for @collectChangeMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get collectChangeMember;
+
+  /// No description provided for @keypadBackspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete digit'**
+  String get keypadBackspace;
+
+  /// No description provided for @receiptWhatsAppText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, we received {amount} at {gym}. Receipt {receipt}. Thank you!'**
+  String receiptWhatsAppText(String name, String amount, String gym, String receipt);
+
+  /// No description provided for @receiptFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not make the receipt. Try again.'**
+  String get receiptFailed;
+
+  /// No description provided for @invoiceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice'**
+  String get invoiceTitle;
+
+  /// No description provided for @invoiceItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get invoiceItems;
+
+  /// No description provided for @invoiceDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get invoiceDiscount;
+
+  /// No description provided for @invoiceTaxable.
+  ///
+  /// In en, this message translates to:
+  /// **'Taxable value'**
+  String get invoiceTaxable;
+
+  /// No description provided for @invoiceCgst.
+  ///
+  /// In en, this message translates to:
+  /// **'CGST'**
+  String get invoiceCgst;
+
+  /// No description provided for @invoiceSgst.
+  ///
+  /// In en, this message translates to:
+  /// **'SGST'**
+  String get invoiceSgst;
+
+  /// No description provided for @invoiceTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get invoiceTotal;
+
+  /// No description provided for @invoicePaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get invoicePaid;
+
+  /// No description provided for @invoiceBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance'**
+  String get invoiceBalance;
+
+  /// No description provided for @invoiceIssued.
+  ///
+  /// In en, this message translates to:
+  /// **'Issued {date}'**
+  String invoiceIssued(String date);
+
+  /// No description provided for @invoicePayments.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get invoicePayments;
+
+  /// No description provided for @invoiceNoPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'No payments yet'**
+  String get invoiceNoPayments;
+
+  /// No description provided for @invoiceInstalments.
+  ///
+  /// In en, this message translates to:
+  /// **'Instalments'**
+  String get invoiceInstalments;
+
+  /// No description provided for @invoiceSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'Split into instalments'**
+  String get invoiceSplit;
+
+  /// No description provided for @invoiceSplitHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 4 parts that add up to {total}.'**
+  String invoiceSplitHelp(String total);
+
+  /// No description provided for @invoiceAddPart.
+  ///
+  /// In en, this message translates to:
+  /// **'Add part'**
+  String get invoiceAddPart;
+
+  /// No description provided for @invoicePart.
+  ///
+  /// In en, this message translates to:
+  /// **'Part {n}'**
+  String invoicePart(int n);
+
+  /// No description provided for @invoiceSplitMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Parts add up to {sum}; they must equal {total}.'**
+  String invoiceSplitMismatch(String sum, String total);
+
+  /// No description provided for @invoiceSplitSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Instalments saved'**
+  String get invoiceSplitSaved;
+
+  /// No description provided for @invoiceSendLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Send link'**
+  String get invoiceSendLink;
+
+  /// No description provided for @invoiceShowQr.
+  ///
+  /// In en, this message translates to:
+  /// **'UPI QR'**
+  String get invoiceShowQr;
+
+  /// No description provided for @invoiceQrBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan with any UPI app to pay {amount}'**
+  String invoiceQrBody(String amount);
+
+  /// No description provided for @invoiceNoUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the gym\'s UPI ID in Gym profile to share payment links.'**
+  String get invoiceNoUpi;
+
+  /// No description provided for @invoiceGatewayLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Razorpay link'**
+  String get invoiceGatewayLink;
+
+  /// No description provided for @invoiceGatewayReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment link ready'**
+  String get invoiceGatewayReady;
+
+  /// No description provided for @invoiceUpiText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, your fees of {amount} at {gym} are due ({invoice}). Pay by UPI: {link}'**
+  String invoiceUpiText(String name, String amount, String gym, String invoice, String link);
+
+  /// No description provided for @invoiceGatewayText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, pay your fees of {amount} at {gym} here: {link}'**
+  String invoiceGatewayText(String name, String amount, String gym, String link);
+
+  /// No description provided for @invoiceVoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Void invoice'**
+  String get invoiceVoid;
+
+  /// No description provided for @invoiceVoidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Void {invoice}?'**
+  String invoiceVoidTitle(String invoice);
+
+  /// No description provided for @invoiceVoidBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The invoice stays on record marked void. This cannot be undone.'**
+  String get invoiceVoidBody;
+
+  /// No description provided for @invoiceVoided.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice voided'**
+  String get invoiceVoided;
+
+  /// No description provided for @invoiceVoidedReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Voided: {reason}'**
+  String invoiceVoidedReason(String reason);
+
+  /// No description provided for @invoiceReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get invoiceReason;
+
+  /// No description provided for @invoiceApplyCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Use {amount} credit'**
+  String invoiceApplyCredit(String amount);
+
+  /// No description provided for @invoiceCreditApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit applied'**
+  String get invoiceCreditApplied;
+
+  /// No description provided for @paymentVoid.
+  ///
+  /// In en, this message translates to:
+  /// **'Void payment'**
+  String get paymentVoid;
+
+  /// No description provided for @paymentVoidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Void receipt {receipt}?'**
+  String paymentVoidTitle(String receipt);
+
+  /// No description provided for @paymentVoidDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment voided'**
+  String get paymentVoidDone;
+
+  /// No description provided for @paymentRefund.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund'**
+  String get paymentRefund;
+
+  /// No description provided for @paymentRefundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund from {receipt}'**
+  String paymentRefundTitle(String receipt);
+
+  /// No description provided for @paymentRefundAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund amount'**
+  String get paymentRefundAmount;
+
+  /// No description provided for @paymentRefundMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund by'**
+  String get paymentRefundMode;
+
+  /// No description provided for @paymentRefundDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund recorded'**
+  String get paymentRefundDone;
+
+  /// No description provided for @paymentRefunded.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunded {amount}'**
+  String paymentRefunded(String amount);
+
+  /// No description provided for @reasonRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reason.'**
+  String get reasonRequired;
+
+  /// No description provided for @amountRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount more than zero.'**
+  String get amountRequired;
+
+  /// No description provided for @dayCloseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close the day'**
+  String get dayCloseTitle;
+
+  /// No description provided for @dayCloseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Count the cash drawer, then lock today\'s collections.'**
+  String get dayCloseBody;
+
+  /// No description provided for @dayCloseByMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s collections'**
+  String get dayCloseByMode;
+
+  /// No description provided for @dayCloseTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get dayCloseTotal;
+
+  /// No description provided for @dayCloseCounted.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash you counted'**
+  String get dayCloseCounted;
+
+  /// No description provided for @dayCloseExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected cash {amount}'**
+  String dayCloseExpected(String amount);
+
+  /// No description provided for @dayCloseOver.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} over'**
+  String dayCloseOver(String amount);
+
+  /// No description provided for @dayCloseShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} short'**
+  String dayCloseShort(String amount);
+
+  /// No description provided for @dayCloseExact.
+  ///
+  /// In en, this message translates to:
+  /// **'Matches exactly'**
+  String get dayCloseExact;
+
+  /// No description provided for @dayCloseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get dayCloseNote;
+
+  /// No description provided for @dayCloseConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Close day'**
+  String get dayCloseConfirm;
+
+  /// No description provided for @dayCloseDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Day closed. Nice work!'**
+  String get dayCloseDone;
+
+  /// No description provided for @dayCloseLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed at {time}. New collections need the owner to reopen your day.'**
+  String dayCloseLocked(String time);
+
+  /// No description provided for @dayCloseHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent closes'**
+  String get dayCloseHistory;
+
+  /// No description provided for @dayCloseReopen.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen'**
+  String get dayCloseReopen;
+
+  /// No description provided for @dayCloseReopened.
+  ///
+  /// In en, this message translates to:
+  /// **'Day reopened'**
+  String get dayCloseReopened;
+
+  /// No description provided for @dayCloseReopenedPill.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopened'**
+  String get dayCloseReopenedPill;
+
+  /// No description provided for @dayCloseCountedLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Counted {counted} · expected {expected}'**
+  String dayCloseCountedLine(String counted, String expected);
+
+  /// No description provided for @expensesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get expensesTitle;
+
+  /// No description provided for @expensesTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Spent in {month}'**
+  String expensesTotal(String month);
+
+  /// No description provided for @expensesEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses this month'**
+  String get expensesEmptyTitle;
+
+  /// No description provided for @expensesEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add rent, salaries and bills to see what the gym really earns.'**
+  String get expensesEmptyBody;
+
+  /// No description provided for @expenseAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get expenseAdd;
+
+  /// No description provided for @expenseCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get expenseCategory;
+
+  /// No description provided for @expenseAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get expenseAmount;
+
+  /// No description provided for @expenseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get expenseDate;
+
+  /// No description provided for @expenseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get expenseNote;
+
+  /// No description provided for @expenseSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense saved'**
+  String get expenseSaved;
+
+  /// No description provided for @expenseDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense deleted'**
+  String get expenseDeleted;
+
+  /// No description provided for @expenseDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete expense'**
+  String get expenseDelete;
+
+  /// No description provided for @expenseRent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent'**
+  String get expenseRent;
+
+  /// No description provided for @expenseSalaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Salaries'**
+  String get expenseSalaries;
+
+  /// No description provided for @expenseElectricity.
+  ///
+  /// In en, this message translates to:
+  /// **'Electricity'**
+  String get expenseElectricity;
+
+  /// No description provided for @expenseEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipment'**
+  String get expenseEquipment;
+
+  /// No description provided for @expenseMaintenance.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance'**
+  String get expenseMaintenance;
+
+  /// No description provided for @expenseMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing'**
+  String get expenseMarketing;
+
+  /// No description provided for @expenseSupplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplies'**
+  String get expenseSupplies;
+
+  /// No description provided for @expenseOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get expenseOther;
+
+  /// No description provided for @previousMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous month'**
+  String get previousMonth;
+
+  /// No description provided for @nextMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Next month'**
+  String get nextMonth;
+
+  /// No description provided for @historyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment history'**
+  String get historyTitle;
+
+  /// No description provided for @historySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, receipt or UTR'**
+  String get historySearchHint;
+
+  /// No description provided for @historyAllModes.
+  ///
+  /// In en, this message translates to:
+  /// **'All modes'**
+  String get historyAllModes;
+
+  /// No description provided for @historyDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Dates'**
+  String get historyDates;
+
+  /// No description provided for @historyClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear filters'**
+  String get historyClear;
+
+  /// No description provided for @historyEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No payments found'**
+  String get historyEmptyTitle;
+
+  /// No description provided for @historyEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another search or filter.'**
+  String get historyEmptyBody;
+
+  /// No description provided for @dashRevenue.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected'**
+  String get dashRevenue;
+
+  /// No description provided for @dashToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dashToday;
+
+  /// No description provided for @dashWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get dashWeek;
+
+  /// No description provided for @dashMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get dashMonth;
+
+  /// No description provided for @dashOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue fees'**
+  String get dashOverdue;
+
+  /// No description provided for @dashToVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments to verify'**
+  String get dashToVerify;
+
+  /// No description provided for @dashOutstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} outstanding'**
+  String dashOutstanding(String amount);
+
+  /// No description provided for @dashLast30.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get dashLast30;
+
+  /// No description provided for @dashInvoices.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No invoices} =1{1 invoice} other{{count} invoices}}'**
+  String dashInvoices(int count);
+
+  /// No description provided for @reasonOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} overdue since {date}'**
+  String reasonOverdue(String amount, String date);
+
+  /// No description provided for @whatsappDuesText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, a friendly reminder: {amount} is due at {gym} (since {date}).'**
+  String whatsappDuesText(String name, String amount, String gym, String date);
+
+  /// No description provided for @whatsappDueSoonText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, your fees of {amount} at {gym} are due on {date}.'**
+  String whatsappDueSoonText(String name, String amount, String gym, String date);
+
+  /// No description provided for @whatsappDueTodayText.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}, your fees of {amount} at {gym} are due today.'**
+  String whatsappDueTodayText(String name, String amount, String gym);
+
+  /// No description provided for @whatsappPayLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay by UPI: {link}'**
+  String whatsappPayLine(String link);
+
+  /// No description provided for @meDuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fees due'**
+  String get meDuesTitle;
+
+  /// No description provided for @meDueBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Due {date}'**
+  String meDueBy(String date);
+
+  /// No description provided for @mePayNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get mePayNow;
+
+  /// No description provided for @meAllPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'All paid up. Thank you!'**
+  String get meAllPaid;
+
+  /// No description provided for @mePayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay fees'**
+  String get mePayTitle;
+
+  /// No description provided for @mePayUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay with a UPI app'**
+  String get mePayUpi;
+
+  /// No description provided for @mePayScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Or scan this QR from another phone'**
+  String get mePayScan;
+
+  /// No description provided for @mePaid.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ve paid'**
+  String get mePaid;
+
+  /// No description provided for @mePaidTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us you\'ve paid'**
+  String get mePaidTitle;
+
+  /// No description provided for @mePaidBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the UPI reference (UTR) from your payment app. The desk checks it and your receipt appears here.'**
+  String get mePaidBody;
+
+  /// No description provided for @mePaidAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount you paid'**
+  String get mePaidAmount;
+
+  /// No description provided for @mePaidSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send for check'**
+  String get mePaidSubmit;
+
+  /// No description provided for @mePaidSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent! We\'ll confirm it soon.'**
+  String get mePaidSent;
+
+  /// No description provided for @mePaidPending.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} waiting for the desk to check'**
+  String mePaidPending(String amount);
+
+  /// No description provided for @mePayments.
+  ///
+  /// In en, this message translates to:
+  /// **'My payments'**
+  String get mePayments;
+
+  /// No description provided for @mePaymentsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoices and receipts'**
+  String get mePaymentsSubtitle;
+
+  /// No description provided for @meNoUpi.
+  ///
+  /// In en, this message translates to:
+  /// **'The gym hasn\'t set up UPI yet. Please pay at the front desk.'**
+  String get meNoUpi;
+
+  /// No description provided for @meNoInvoicesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No invoices yet'**
+  String get meNoInvoicesTitle;
+
+  /// No description provided for @meNoInvoicesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your invoices and receipts will show up here.'**
+  String get meNoInvoicesBody;
+
+  /// No description provided for @mePayAtDesk.
+  ///
+  /// In en, this message translates to:
+  /// **'You can also pay at the front desk.'**
+  String get mePayAtDesk;
+
+  /// No description provided for @meRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not confirmed: {reason}'**
+  String meRejected(String reason);
+
+  /// No description provided for @noUpiApp.
+  ///
+  /// In en, this message translates to:
+  /// **'No UPI app opened. Scan the QR instead.'**
+  String get noUpiApp;
+
+  /// No description provided for @checkInDues.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} fees pending'**
+  String checkInDues(String amount);
+
+  /// No description provided for @memberCredit.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit {amount}'**
+  String memberCredit(String amount);
+
+  /// No description provided for @memberDues.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} due'**
+  String memberDues(String amount);
+
+  /// No description provided for @memberNoInvoicesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No invoices yet'**
+  String get memberNoInvoicesTitle;
+
+  /// No description provided for @memberNoInvoicesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'An invoice is created when a plan starts or renews.'**
+  String get memberNoInvoicesBody;
+
+  /// No description provided for @gymPaymentsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get gymPaymentsSection;
+
+  /// No description provided for @gymGstEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Charge GST'**
+  String get gymGstEnabled;
+
+  /// No description provided for @gymGstEnabledBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows CGST and SGST on invoices (needs a GSTIN).'**
+  String get gymGstEnabledBody;
+
+  /// No description provided for @gymGstInclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Prices include GST'**
+  String get gymGstInclusive;
+
+  /// No description provided for @gymGstInclusiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: GST is added on top of plan prices.'**
+  String get gymGstInclusiveBody;
+
+  /// No description provided for @gymRazorpay.
+  ///
+  /// In en, this message translates to:
+  /// **'Razorpay payment links'**
+  String get gymRazorpay;
+
+  /// No description provided for @gymRazorpayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs Razorpay keys on the server. UPI links work without it.'**
+  String get gymRazorpayBody;
+
+  /// No description provided for @moreDayClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Day close'**
+  String get moreDayClose;
+
+  /// No description provided for @moreDayCloseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Count cash and lock the day'**
+  String get moreDayCloseSubtitle;
+
+  /// No description provided for @moreExpenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get moreExpenses;
+
+  /// No description provided for @moreExpensesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rent, salaries and bills'**
+  String get moreExpensesSubtitle;
+
+  /// No description provided for @morePaymentHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment history'**
+  String get morePaymentHistory;
+
+  /// No description provided for @morePaymentHistorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every receipt, with filters'**
+  String get morePaymentHistorySubtitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -41,6 +41,7 @@ _Member _$MemberFromJson(Map<String, dynamic> json) => _Member(
   archivedAt: json['archived_at'] == null
       ? null
       : DateTime.parse(json['archived_at'] as String),
+  duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$MemberToJson(_Member instance) => <String, dynamic>{
@@ -74,6 +75,7 @@ Map<String, dynamic> _$MemberToJson(_Member instance) => <String, dynamic>{
   'current_membership_id': instance.currentMembershipId,
   'whatsapp_opt_out': instance.whatsappOptOut,
   'archived_at': instance.archivedAt?.toIso8601String(),
+  'dues_paise': instance.duesPaise,
 };
 
 _Plan _$PlanFromJson(Map<String, dynamic> json) => _Plan(
@@ -283,6 +285,7 @@ _CheckInResult _$CheckInResultFromJson(Map<String, dynamic> json) =>
       planName: json['plan_name'] as String?,
       daysLeft: (json['days_left'] as num?)?.toInt(),
       already: json['already'] as bool? ?? false,
+      duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$CheckInResultToJson(_CheckInResult instance) =>
@@ -295,6 +298,7 @@ Map<String, dynamic> _$CheckInResultToJson(_CheckInResult instance) =>
       'plan_name': instance.planName,
       'days_left': instance.daysLeft,
       'already': instance.already,
+      'dues_paise': instance.duesPaise,
     };
 
 _DashboardCounts _$DashboardCountsFromJson(Map<String, dynamic> json) =>

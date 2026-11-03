@@ -8,7 +8,7 @@ import '../../app/l10n/l10n.dart';
 import '../../app/theme/theme.dart';
 import 'abs_button.dart';
 
-enum EmptyIllustration { dumbbell, people, search, clock, rocket }
+enum EmptyIllustration { dumbbell, people, search, clock, rocket, trophy, wallet, receipt }
 
 /// Playful empty state: a bobbing sticker illustration on a pop blob, one
 /// sentence and one primary action.
@@ -36,6 +36,9 @@ class EmptyState extends StatelessWidget {
     EmptyIllustration.search => PhosphorIcons.magnifyingGlass(PhosphorIconsStyle.bold),
     EmptyIllustration.clock => PhosphorIcons.hourglassHigh(PhosphorIconsStyle.bold),
     EmptyIllustration.rocket => PhosphorIcons.rocketLaunch(PhosphorIconsStyle.bold),
+    EmptyIllustration.trophy => PhosphorIcons.trophy(PhosphorIconsStyle.bold),
+    EmptyIllustration.wallet => PhosphorIcons.wallet(PhosphorIconsStyle.bold),
+    EmptyIllustration.receipt => PhosphorIcons.receipt(PhosphorIconsStyle.bold),
   };
 
   @override

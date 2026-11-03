@@ -176,7 +176,8 @@ class _AddMemberScreenState extends ConsumerState<AddMemberScreen> {
         ..invalidate(dashboardProvider);
       if (!mounted) return;
       showAbsSnackbar(context, l.memberSaved(_data.name.text.trim()), tone: SnackTone.success);
-      context.pushReplacement(Routes.memberDetail(id));
+      // With a plan, an invoice was raised: land on the member with Collect open.
+      context.pushReplacement('${Routes.memberDetail(id)}${_data.planId == null ? '' : '?collect=1'}');
     } catch (e) {
       if (mounted) showAbsSnackbar(context, friendlyError(l, e), tone: SnackTone.error);
     } finally {

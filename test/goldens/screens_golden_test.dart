@@ -5,6 +5,7 @@ import 'package:abs_fitness/app/app.dart';
 import 'package:abs_fitness/app/router.dart';
 import 'package:abs_fitness/features/auth/domain/app_user.dart';
 import 'package:abs_fitness/features/member_home/data/my_member_repository.dart';
+import 'package:abs_fitness/features/members/domain/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
@@ -13,10 +14,12 @@ import '../helpers/fakes.dart';
 import '../helpers/member_fakes.dart';
 import '../helpers/pump.dart';
 
-/// Screenshots of every M0 screen in light and dark mode (spec rule 10).
+/// Screenshots of every screen in light and dark mode (spec rule 10).
 /// Regenerate: flutter test --update-goldens --tags golden
 void main() {
-  final overrides = <Override>[myMemberProvider.overrideWith((ref) async => sampleMembers().first)];
+  List<Override> overridesFor(Member me) => [myMemberProvider.overrideWith((ref) async => me)];
+  final sneha = sampleMembers()[3];
+  final snehaUser = memberUser.copyWith(memberId: sneha.id, name: sneha.name);
 
   Future<void> shot(
     WidgetTester tester,
@@ -26,6 +29,7 @@ void main() {
     String? route,
     bool onboarded = true,
     Size size = phoneSize,
+    Member? me,
     Future<void> Function(WidgetTester tester)? interact,
   }) async {
     final container = await pumpApp(
@@ -34,7 +38,7 @@ void main() {
       brightness: brightness,
       size: size,
       prefs: {'member_onboarding_done': onboarded},
-      overrides: overrides,
+      overrides: overridesFor(me ?? sampleMembers().first),
     );
     if (route != null) {
       container.read(routerProvider).go(route);
@@ -151,6 +155,80 @@ void main() {
     );
     testWidgets('gym profile ${b.name}', (t) => shot(t, 'gym_profile', b, user: ownerUser, route: Routes.gymProfile));
     testWidgets('my progress ${b.name}', (t) => shot(t, 'my_progress', b, user: memberUser, route: Routes.meProgress));
+    // M2 screens.
+    testWidgets('payments ${b.name}', (t) => shot(t, 'payments', b, user: deskUser, route: Routes.staffPayments));
+    testWidgets(
+      'payments overdue ${b.name}',
+      (t) => shot(
+        t,
+        'payments_overdue',
+        b,
+        user: ownerUser,
+        route: Routes.staffPayments,
+        interact: (tester) => tester.tap(find.text('Overdue 2').hitTestable()),
+      ),
+    );
+    testWidgets(
+      'collect sheet ${b.name}',
+      (t) => shot(
+        t,
+        'collect_sheet',
+        b,
+        user: deskUser,
+        route: Routes.invoiceDetail('inv-2'),
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('invoice-collect'))),
+      ),
+    );
+    testWidgets(
+      'collect done ${b.name}',
+      (t) => shot(
+        t,
+        'collect_done',
+        b,
+        user: deskUser,
+        route: Routes.invoiceDetail('inv-2'),
+        interact: (tester) async {
+          await tester.tap(find.byKey(const ValueKey('invoice-collect')));
+          for (var i = 0; i < 8; i++) {
+            await tester.pump(const Duration(milliseconds: 100));
+          }
+          await tester.tap(find.byKey(const ValueKey('collect-confirm')));
+          for (var i = 0; i < 20; i++) {
+            await tester.pump(const Duration(milliseconds: 100));
+          }
+        },
+      ),
+    );
+    testWidgets(
+      'invoice detail ${b.name}',
+      (t) => shot(t, 'invoice_detail', b, user: ownerUser, route: Routes.invoiceDetail('inv-2')),
+    );
+    testWidgets('day close ${b.name}', (t) => shot(t, 'day_close', b, user: deskUser, route: Routes.dayClose));
+    testWidgets('expenses ${b.name}', (t) => shot(t, 'expenses', b, user: ownerUser, route: Routes.expenses));
+    testWidgets(
+      'payment history ${b.name}',
+      (t) => shot(t, 'payment_history', b, user: deskUser, route: Routes.paymentHistory),
+    );
+    testWidgets(
+      'member detail payments ${b.name}',
+      (t) => shot(
+        t,
+        'member_detail_payments',
+        b,
+        user: ownerUser,
+        route: Routes.memberDetail('m-2'),
+        interact: (tester) => tester.tap(find.text('Payments').hitTestable()),
+      ),
+    );
+    testWidgets('member home dues ${b.name}', (t) => shot(t, 'member_home_dues', b, user: snehaUser, me: sneha));
+    testWidgets(
+      'my payments ${b.name}',
+      (t) => shot(t, 'my_payments', b, user: snehaUser, me: sneha, route: Routes.mePayments),
+    );
+    testWidgets(
+      'member pay ${b.name}',
+      (t) => shot(t, 'member_pay', b, user: snehaUser, me: sneha, route: Routes.mePay('inv-4')),
+    );
     testWidgets(
       'staff shell desktop ${b.name}',
       (t) => shot(t, 'staff_shell_desktop', b, user: ownerUser, route: Routes.staffTeam, size: const Size(1440, 900)),
