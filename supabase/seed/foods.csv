@@ -1,0 +1,301 @@
+key,name,local_name,category,unit,serving_g,step,kcal,protein_g,carbs_g,fat_g,fibre_g,veg_type,jain_ok,allergens,grocery
+roti,Roti / phulka (no ghee),रोटी,grains,roti,40,0.5,105,3.6,21.6,0.5,3.2,vegan,1,gluten,Whole wheat atta:30
+roti-ghee,Roti with ghee,घी वाली रोटी,grains,roti,45,0.5,150,3.6,21.6,5.5,3.2,veg,1,gluten;dairy,Whole wheat atta:30;Ghee:5
+multigrain-roti,Multigrain roti,मल्टीग्रेन रोटी,grains,roti,40,0.5,110,4,20,1.2,3.5,vegan,1,gluten,Multigrain atta:30
+bajra-roti,Bajra roti,बाजरा रोटी,grains,roti,40,0.5,110,3.4,20,1.5,3.4,vegan,1,,Bajra flour:30
+jowar-roti,Jowar roti,ज्वार रोटी,grains,roti,40,0.5,105,3.2,22,0.6,2.9,vegan,1,,Jowar flour:30
+ragi-roti,Ragi roti,रागी रोटी,grains,roti,40,0.5,100,2.2,22,0.4,3.4,vegan,1,,Ragi flour:30
+makki-roti,Makki ki roti,मक्की की रोटी,grains,roti,55,0.5,160,3.5,30,3,3,vegan,1,,Maize flour:40
+missi-roti,Missi roti,मिस्सी रोटी,grains,roti,50,0.5,150,6,24,3.5,4.5,vegan,0,gluten,Whole wheat atta:20;Besan:15
+plain-paratha,Plain paratha,सादा पराठा,grains,piece,60,0.5,230,5,30,10,4,vegan,1,gluten,Whole wheat atta:45;Cooking oil:7
+aloo-paratha,Aloo paratha,आलू पराठा,grains,piece,120,0.5,290,6.5,42,11,4.5,vegan,0,gluten,Whole wheat atta:50;Potato:60;Cooking oil:7
+paneer-paratha,Paneer paratha,पनीर पराठा,grains,piece,120,0.5,320,12,36,14,4,veg,0,gluten;dairy,Whole wheat atta:50;Paneer:40;Cooking oil:7
+gobi-paratha,Gobi paratha,गोभी पराठा,grains,piece,120,0.5,260,6.5,38,9.5,5,vegan,0,gluten,Whole wheat atta:50;Cauliflower:60;Cooking oil:7
+methi-thepla,Methi thepla,मेथी थेपला,grains,piece,40,0.5,120,3.2,16,5,2.5,vegan,1,gluten,Whole wheat atta:25;Methi leaves:10
+naan,Naan,नान,grains,piece,90,0.5,260,8,45,5,2,veg,1,gluten;dairy,Maida:60
+butter-naan,Butter naan,बटर नान,grains,piece,100,0.5,320,8.5,46,11,2,veg,1,gluten;dairy,Maida:60;Butter:7
+puri,Puri,पूरी,grains,piece,25,1,100,1.8,11,5.5,1,vegan,1,gluten,Whole wheat atta:15;Cooking oil:5
+bhatura,Bhatura,भटूरा,grains,piece,70,1,260,5.5,32,12,1.5,veg,1,gluten;dairy,Maida:45;Cooking oil:10
+pav,Pav (bun),पाव,grains,piece,40,1,110,3.5,20,1.6,0.8,veg,1,gluten,Pav:1pc
+white-bread,White bread,ब्रेड,grains,slice,25,1,67,2.2,12.5,0.8,0.6,vegan,1,gluten,White bread:1pc
+brown-bread,Brown bread,ब्राउन ब्रेड,grains,slice,28,1,70,3,12,1,1.8,vegan,1,gluten,Brown bread:1pc
+multigrain-bread,Multigrain bread,मल्टीग्रेन ब्रेड,grains,slice,30,1,75,3.5,12,1.3,2.2,vegan,1,gluten,Multigrain bread:1pc
+white-rice,Steamed white rice,चावल,grains,katori,150,0.5,195,4,43,0.4,0.6,vegan,1,,Rice:50
+brown-rice,Brown rice,ब्राउन राइस,grains,katori,150,0.5,168,3.9,35,1.3,2.7,vegan,1,,Brown rice:50
+cooked-rice-100g,Cooked rice (by weight),पके चावल,grains,g,100,0.25,130,2.7,28,0.3,0.4,vegan,1,,Rice:35
+jeera-rice,Jeera rice,जीरा राइस,grains,katori,150,0.5,230,4,42,5,0.8,veg,1,dairy,Rice:50;Ghee:5
+veg-pulao,Veg pulao,वेज पुलाव,grains,katori,150,0.5,210,4.5,35,5.5,2.5,vegan,0,,Rice:45;Mixed vegetables:40;Cooking oil:5
+khichdi,Moong dal khichdi,खिचड़ी,grains,katori,200,0.5,230,8.5,38,5,3.5,veg,1,dairy,Rice:30;Moong dal:25;Ghee:5
+curd-rice,Curd rice,दही चावल,grains,katori,200,0.5,250,7,38,7.5,1,veg,1,dairy,Rice:40;Curd:100
+lemon-rice,Lemon rice,लेमन राइस,grains,katori,150,0.5,240,4.5,40,7,1.5,vegan,1,peanut,Rice:50;Peanuts:5;Lemon:1pc
+veg-biryani,Veg biryani,वेज बिरयानी,grains,plate,250,0.5,400,8,60,14,4,veg,0,dairy,Basmati rice:75;Mixed vegetables:60;Curd:20
+chicken-biryani,Chicken biryani,चिकन बिरयानी,grains,plate,300,0.5,520,26,62,18,2.5,non_veg,0,dairy,Basmati rice:80;Chicken:100;Curd:20
+egg-biryani,Egg biryani,अंडा बिरयानी,grains,plate,250,0.5,430,15,56,16,2,egg,0,egg;dairy,Basmati rice:75;Eggs:2pc
+poha,Poha,पोहा,grains,plate,150,0.5,250,5,42,7,2.5,vegan,0,peanut,Poha (flattened rice):50;Peanuts:8;Onion:30
+upma,Upma,उपमा,grains,plate,200,0.5,260,6.5,38,9,3,vegan,0,gluten,Rava (semolina):50;Onion:30
+vermicelli-upma,Vermicelli upma,सेवई उपमा,grains,plate,200,0.5,250,6,40,7.5,2.5,vegan,0,gluten,Vermicelli:50
+idli,Idli,इडली,grains,piece,40,1,58,2,12,0.2,0.6,vegan,1,,Idli batter:40
+rava-idli,Rava idli,रवा इडली,grains,piece,50,1,85,2.5,13,2.5,0.6,veg,1,gluten;dairy,Rava (semolina):20;Curd:15
+plain-dosa,Plain dosa,डोसा,grains,piece,80,0.5,170,3.9,28,4.5,1,vegan,1,,Dosa batter:80
+masala-dosa,Masala dosa,मसाला डोसा,grains,piece,150,0.5,300,6,42,12,3.5,vegan,0,,Dosa batter:80;Potato:60
+rava-dosa,Rava dosa,रवा डोसा,grains,piece,80,0.5,180,3.5,26,7,1,vegan,1,gluten,Rava (semolina):30
+uttapam,Onion uttapam,उत्तपम,grains,piece,120,0.5,210,5,34,6,2,vegan,0,,Dosa batter:100;Onion:30
+appam,Appam,अप्पम,grains,piece,60,1,120,2,23,2,0.5,vegan,1,,Rice:25;Coconut:10
+pesarattu,Pesarattu (moong dosa),पेसरट्टू,grains,piece,100,0.5,170,9,24,4,4,vegan,0,,Whole moong:45
+oats-milk,Oats porridge with milk,दूध वाले ओट्स,grains,bowl,250,0.5,255,12,35,7.5,4.5,veg,1,gluten;dairy,Rolled oats:40;Milk:200ml
+oats-water,Oats cooked in water,ओट्स,grains,bowl,200,0.5,150,5.3,27,2.8,4,vegan,1,gluten,Rolled oats:40
+rolled-oats-dry,Rolled oats (dry weight),ओट्स (सूखे),grains,g,100,0.25,379,13,68,6.5,10,vegan,1,gluten,Rolled oats:100
+masala-oats,Masala oats,मसाला ओट्स,grains,bowl,200,0.5,180,6,29,4.5,5,vegan,0,gluten,Rolled oats:40;Mixed vegetables:50
+veg-daliya,Vegetable daliya,वेज दलिया,grains,bowl,200,0.5,190,6,34,3.5,6,vegan,0,gluten,Broken wheat (daliya):45;Mixed vegetables:50
+milk-daliya,Sweet milk daliya,दूध दलिया,grains,bowl,200,0.5,240,9,38,6,4,veg,1,gluten;dairy,Broken wheat (daliya):35;Milk:150ml;Jaggery:10
+cornflakes,Cornflakes,कॉर्नफ्लेक्स,grains,cup,30,0.5,113,2.2,25,0.3,0.9,vegan,1,,Cornflakes:30
+muesli,Muesli (no added sugar),म्यूसली,grains,cup,40,0.5,150,4,26,3,3.5,vegan,1,gluten;nuts,Muesli:40
+sabudana-khichdi,Sabudana khichdi,साबूदाना खिचड़ी,grains,plate,200,0.5,380,4,62,13,1.5,vegan,0,peanut,Sabudana:60;Peanuts:15;Potato:40
+quinoa,Quinoa (cooked),क्विनोआ,grains,katori,150,0.5,180,6.6,32,2.9,4.2,vegan,1,,Quinoa:55
+thalipeeth,Thalipeeth,थालीपीठ,grains,piece,70,0.5,180,5.5,26,6,4,vegan,0,,Bhajani flour:45
+toor-dal,Toor dal (arhar),अरहर दाल,pulses,katori,150,0.5,150,8,20,4.5,4.5,vegan,1,,Toor dal:35
+moong-dal,Moong dal (yellow),मूंग दाल,pulses,katori,150,0.5,140,8.5,19,3.5,3.5,vegan,1,,Moong dal:35
+masoor-dal,Masoor dal,मसूर दाल,pulses,katori,150,0.5,145,9,19,3.8,4,vegan,1,,Masoor dal:35
+chana-dal,Chana dal,चना दाल,pulses,katori,150,0.5,175,9.5,24,4.5,6,vegan,1,,Chana dal:40
+urad-dal,Urad dal (dhuli),उड़द दाल,pulses,katori,150,0.5,165,9,21,5,4.5,vegan,0,,Urad dal:35
+dal-tadka,Dal tadka,दाल तड़का,pulses,katori,150,0.5,170,8.5,20,6.5,4.5,veg,0,dairy,Toor dal:35;Ghee:5
+dal-makhani,Dal makhani,दाल मखनी,pulses,katori,150,0.5,250,9,22,14,6,veg,0,dairy,Whole urad dal:35;Butter:7;Fresh cream:10
+dal-palak,Dal palak,दाल पालक,pulses,katori,150,0.5,150,8,18,5,5,vegan,0,,Toor dal:30;Spinach:50
+rajma,Rajma curry,राजमा,pulses,katori,150,0.5,190,9,26,5.5,7.5,vegan,0,,Rajma (kidney beans):40;Onion:30;Tomato:40
+chole,Chole (chickpea curry),छोले,pulses,katori,150,0.5,215,9.5,29,7,8,vegan,0,,Kabuli chana:45;Onion:30;Tomato:40
+kala-chana-curry,Kala chana curry,काला चना,pulses,katori,150,0.5,200,10,27,5.5,9,vegan,0,,Kala chana:45;Onion:30
+boiled-chana,Boiled kala chana,उबले चने,pulses,katori,100,0.5,165,9,27,2.6,7.5,vegan,1,,Kala chana:40
+lobia,Lobia curry,लोबिया,pulses,katori,150,0.5,180,9,25,4.5,7,vegan,0,,Lobia (black-eyed beans):40
+whole-moong-curry,Whole moong curry,साबुत मूंग,pulses,katori,150,0.5,160,9.5,22,4,6,vegan,0,,Whole moong:40
+sambar,Sambar,सांबर,pulses,katori,150,0.5,110,5,15,3.5,4,vegan,0,,Toor dal:20;Mixed vegetables:50
+rasam,Rasam,रसम,pulses,katori,150,0.5,50,1.5,7,1.8,1,vegan,0,,Tomato:50;Toor dal:5
+kadhi,Kadhi,कढ़ी,pulses,katori,150,0.5,140,5,11,8.5,1,veg,1,dairy,Curd:100;Besan:15
+sprouts-salad,Moong sprouts salad,अंकुरित मूंग,pulses,katori,100,0.5,110,7.5,17,1.2,4.5,vegan,0,,Whole moong:35;Tomato:20;Onion:15
+chana-sundal,Chana sundal,चना सुंडल,pulses,katori,100,0.5,160,8,24,3.5,7,vegan,1,,Kabuli chana:40;Coconut:5
+besan-chilla,Besan chilla,बेसन चीला,pulses,piece,80,0.5,160,7.5,18,6.5,3.5,vegan,0,,Besan:40;Onion:15
+moong-chilla,Moong dal chilla,मूंग दाल चीला,pulses,piece,80,0.5,150,8.5,18,4.5,3,vegan,0,,Moong dal:40
+soya-curry,Soya chunks curry,सोया चंक्स करी,pulses,katori,150,0.5,190,17,14,7,5,vegan,0,soy,Soya chunks:35;Onion:30;Tomato:40
+soya-chunks,Soya chunks (dry weight),सोया चंक्स,pulses,handful,30,0.5,104,15.6,10,0.2,3.9,vegan,1,soy,Soya chunks:30
+tofu,Tofu,टोफू,pulses,g,100,0.25,145,15,3.5,8.5,2,vegan,1,soy,Tofu:100
+hummus,Hummus,हम्मस,pulses,tbsp,15,1,40,1.2,2.2,3,0.9,vegan,0,sesame,Hummus:15
+mixed-veg,Mixed vegetable sabzi,मिक्स वेज,vegetables,katori,150,0.5,120,3,12,7,4,vegan,0,,Mixed vegetables:150;Cooking oil:5
+aloo-gobi,Aloo gobi,आलू गोभी,vegetables,katori,150,0.5,150,3.5,17,8,4,vegan,0,,Cauliflower:90;Potato:60;Cooking oil:5
+aloo-matar,Aloo matar,आलू मटर,vegetables,katori,150,0.5,160,4.5,19,7.5,5,vegan,0,,Potato:60;Green peas:60;Cooking oil:5
+jeera-aloo,Jeera aloo,जीरा आलू,vegetables,katori,150,0.5,190,3,25,9,3,vegan,0,,Potato:150;Cooking oil:7
+dum-aloo,Dum aloo,दम आलू,vegetables,katori,150,0.5,210,3.5,22,12,3,veg,0,dairy,Potato:120;Curd:20;Cooking oil:7
+bhindi,Bhindi masala,भिंडी मसाला,vegetables,katori,150,0.5,130,3,12,8,5,vegan,0,,Bhindi (okra):150;Cooking oil:7
+aloo-palak,Aloo palak,आलू पालक,vegetables,katori,150,0.5,120,3.5,13,6.5,4,vegan,0,,Spinach:100;Potato:40;Cooking oil:5
+baingan-bharta,Baingan bharta,बैंगन भरता,vegetables,katori,150,0.5,120,2.5,12,7.5,5,vegan,0,,Brinjal:150;Cooking oil:7
+lauki,Lauki sabzi,लौकी,vegetables,katori,150,0.5,80,1.5,8,5,2.5,vegan,1,,Lauki (bottle gourd):150;Cooking oil:5
+turai,Turai sabzi,तुरई,vegetables,katori,150,0.5,80,1.5,8,5,2.5,vegan,1,,Turai (ridge gourd):150;Cooking oil:5
+cabbage,Cabbage sabzi,पत्ता गोभी,vegetables,katori,150,0.5,95,2.5,9,5.5,3.5,vegan,1,,Cabbage:150;Cooking oil:5
+beans,French beans sabzi,फ्रेंच बीन्स,vegetables,katori,150,0.5,100,3,10,5.5,4,vegan,1,,French beans:150;Cooking oil:5
+beans-poriyal,Beans poriyal,बीन्स पोरियल,vegetables,katori,150,0.5,120,3,10,8,4.5,vegan,1,,French beans:130;Coconut:15
+karela,Karela sabzi,करेला,vegetables,katori,150,0.5,110,2.5,10,7,4,vegan,0,,Karela:150;Cooking oil:7
+sarson-saag,Sarson ka saag,सरसों का साग,vegetables,katori,150,0.5,150,4.5,9,11,4.5,veg,0,dairy,Mustard greens:150;Ghee:7
+kaddu,Kaddu sabzi,कद्दू,vegetables,katori,150,0.5,110,1.5,15,5,2.5,vegan,1,,Pumpkin:150;Cooking oil:5
+capsicum,Shimla mirch sabzi,शिमला मिर्च,vegetables,katori,150,0.5,110,2.5,10,7,3,vegan,0,,Capsicum:150;Cooking oil:7
+mushroom,Mushroom masala,मशरूम मसाला,vegetables,katori,150,0.5,120,5,8,8,2.5,vegan,0,,Mushroom:150;Onion:30;Cooking oil:7
+avial,Avial,अवियल,vegetables,katori,150,0.5,160,3,11,12,4,veg,0,dairy,Mixed vegetables:130;Coconut:20;Curd:20
+sauteed-veg,Sauteed vegetables,सॉटे सब्ज़ियाँ,vegetables,katori,150,0.5,90,3,10,4.5,4,vegan,0,,Mixed vegetables:150;Cooking oil:4
+veg-soup,Vegetable soup,वेज सूप,vegetables,bowl,250,0.5,80,2.5,12,2.5,3,vegan,0,,Mixed vegetables:100
+tomato-soup,Tomato soup,टमाटर सूप,vegetables,bowl,250,0.5,110,2.5,16,4,2.5,veg,0,dairy,Tomato:200;Fresh cream:5
+green-salad,Green salad,हरा सलाद,vegetables,plate,150,0.5,30,1.3,6,0.2,2,vegan,0,,Cucumber:60;Tomato:50;Onion:30
+kachumber,Kachumber salad,कचूमर सलाद,vegetables,katori,100,0.5,30,1,6,0.3,1.5,vegan,0,,Cucumber:40;Tomato:40;Onion:20
+cucumber,Cucumber,खीरा,vegetables,g,100,0.25,16,0.7,3.6,0.1,0.5,vegan,1,,Cucumber:100
+carrot,Carrot,गाजर,vegetables,g,100,0.25,41,0.9,9.6,0.2,2.8,vegan,0,,Carrot:100
+tomato,Tomato,टमाटर,vegetables,g,100,0.25,18,0.9,3.9,0.2,1.2,vegan,1,,Tomato:100
+onion,Onion,प्याज़,vegetables,g,100,0.25,40,1.1,9.3,0.1,1.7,vegan,0,,Onion:100
+broccoli,Broccoli (steamed),ब्रोकली,vegetables,g,100,0.25,35,2.4,7.2,0.4,3.3,vegan,1,,Broccoli:100
+spinach,Spinach (boiled),पालक,vegetables,g,100,0.25,23,3,3.8,0.3,2.4,vegan,1,,Spinach:110
+sweet-corn,Sweet corn (boiled),स्वीट कॉर्न,vegetables,katori,100,0.5,96,3.4,19,1.5,2.4,vegan,1,,Sweet corn:100
+boiled-potato,Boiled potato,उबला आलू,vegetables,g,100,0.25,87,1.9,20,0.1,1.8,vegan,0,,Potato:100
+sweet-potato,Sweet potato (boiled),शकरकंद,vegetables,g,100,0.25,86,1.6,20,0.1,3,vegan,0,,Sweet potato:100
+beetroot,Beetroot,चुकंदर,vegetables,g,100,0.25,43,1.6,9.6,0.2,2.8,vegan,0,,Beetroot:100
+toned-milk,Toned milk,टोंड दूध,dairy,glass,250,0.5,145,7.8,11.8,7.5,0,veg,1,dairy,Milk:250ml
+double-toned-milk,Double toned milk,डबल टोंड दूध,dairy,glass,250,0.5,112,7.8,11.8,3.8,0,veg,1,dairy,Milk:250ml
+full-cream-milk,Full cream milk,फुल क्रीम दूध,dairy,glass,250,0.5,220,8,12.5,15.5,0,veg,1,dairy,Full cream milk:250ml
+skimmed-milk,Skimmed milk,स्किम्ड दूध,dairy,glass,250,0.5,88,8.5,12.5,0.3,0,veg,1,dairy,Skimmed milk:250ml
+curd,Curd (dahi),दही,dairy,katori,150,0.5,90,4.7,7,4.7,0,veg,1,dairy,Curd:150
+hung-curd,Hung curd / Greek yogurt,हंग कर्ड,dairy,katori,100,0.5,90,9,4.5,4,0,veg,1,dairy,Curd:200
+buttermilk,Buttermilk (chaas),छाछ,dairy,glass,250,0.5,50,2.8,4,2.4,0,veg,1,dairy,Curd:80
+sweet-lassi,Sweet lassi,मीठी लस्सी,dairy,glass,250,0.5,230,7,34,7,0,veg,1,dairy,Curd:180;Sugar:20
+cucumber-raita,Cucumber raita,खीरा रायता,dairy,katori,150,0.5,85,4.5,7,4.5,0.5,veg,1,dairy,Curd:120;Cucumber:30
+boondi-raita,Boondi raita,बूंदी रायता,dairy,katori,150,0.5,140,5,11,8.5,0.5,veg,1,dairy,Curd:120;Boondi:15
+paneer,Paneer,पनीर,dairy,g,100,0.25,265,18,3.6,20,0,veg,1,dairy,Paneer:100
+low-fat-paneer,Low-fat paneer,लो-फैट पनीर,dairy,g,100,0.25,180,22,4,8.5,0,veg,1,dairy,Low-fat paneer:100
+paneer-bhurji,Paneer bhurji,पनीर भुर्जी,dairy,katori,150,0.5,330,18,8,25,1,veg,0,dairy,Paneer:110;Onion:20;Tomato:20
+palak-paneer,Palak paneer,पालक पनीर,dairy,katori,150,0.5,250,11,8,19.5,2.5,veg,0,dairy,Paneer:60;Spinach:100
+matar-paneer,Matar paneer,मटर पनीर,dairy,katori,150,0.5,260,11,13,18,3,veg,0,dairy,Paneer:60;Green peas:40;Tomato:40
+kadai-paneer,Kadai paneer,कड़ाही पनीर,dairy,katori,150,0.5,290,12,10,22.5,2.5,veg,0,dairy,Paneer:70;Capsicum:40;Onion:30
+paneer-tikka,Paneer tikka,पनीर टिक्का,dairy,plate,150,0.5,320,20,8,23,1.5,veg,0,dairy,Paneer:120;Curd:20
+cheese-slice,Cheese slice,चीज़ स्लाइस,dairy,slice,20,1,62,3.6,1.2,4.8,0,veg,1,dairy,Cheese slices:1pc
+haldi-doodh,Turmeric milk (haldi doodh),हल्दी दूध,dairy,glass,250,0.5,160,8,14,8,0,veg,1,dairy,Milk:250ml
+boiled-egg,Boiled egg,उबला अंडा,eggs,piece,50,1,78,6.3,0.6,5.3,0,egg,0,egg,Eggs:1pc
+egg-white,Egg white (boiled),अंडे की सफ़ेदी,eggs,piece,33,1,17,3.6,0.2,0.1,0,egg,0,egg,Eggs:1pc
+omelette,Masala omelette (2 eggs),ऑमलेट,eggs,piece,120,0.5,200,13,3,15,0.5,egg,0,egg,Eggs:2pc;Onion:20
+egg-white-omelette,Egg white omelette (4 whites),एग व्हाइट ऑमलेट,eggs,piece,140,0.5,90,14.5,2,2.5,0.5,egg,0,egg,Eggs:4pc
+egg-bhurji,Egg bhurji (2 eggs),अंडा भुर्जी,eggs,katori,120,0.5,220,13,4,17,0.5,egg,0,egg,Eggs:2pc;Onion:20
+egg-curry,Egg curry (2 eggs),अंडा करी,eggs,katori,200,0.5,280,14,9,21,1.5,egg,0,egg,Eggs:2pc;Onion:40;Tomato:40
+bread-omelette,Bread omelette,ब्रेड ऑमलेट,eggs,plate,120,0.5,260,11,27,12,1.5,egg,0,egg;gluten,Eggs:1pc;White bread:2pc
+chicken-breast,Chicken breast (grilled),ग्रिल्ड चिकन ब्रेस्ट,meat_fish,g,100,0.25,165,31,0,3.6,0,non_veg,0,,Chicken breast:130
+boiled-chicken,Boiled chicken (shredded),उबला चिकन,meat_fish,g,100,0.25,150,28,0,4,0,non_veg,0,,Chicken breast:130
+chicken-curry,Chicken curry,चिकन करी,meat_fish,katori,150,0.5,240,20,6,15,1,non_veg,0,,Chicken:100;Onion:40;Tomato:40
+butter-chicken,Butter chicken,बटर चिकन,meat_fish,katori,150,0.5,330,20,9,24,1,non_veg,0,dairy,Chicken:100;Butter:10;Fresh cream:15
+tandoori-chicken,Tandoori chicken (2 pieces),तंदूरी चिकन,meat_fish,plate,150,0.5,260,33,4,12.5,0.5,non_veg,0,dairy,Chicken:200;Curd:30
+chicken-tikka,Chicken tikka,चिकन टिक्का,meat_fish,plate,120,0.5,210,28,4,9,0.5,non_veg,0,dairy,Chicken breast:150;Curd:20
+chicken-keema,Chicken keema,चिकन कीमा,meat_fish,katori,150,0.5,260,24,6,15.5,1.5,non_veg,0,,Chicken mince:110;Onion:30
+chicken-seekh,Chicken seekh kebab (2 pieces),चिकन सीख कबाब,meat_fish,plate,100,0.5,200,20,4,11.5,0.5,non_veg,0,,Chicken mince:100
+chicken-soup,Chicken clear soup,चिकन सूप,meat_fish,bowl,250,0.5,90,10,4,3.8,0.5,non_veg,0,,Chicken:60
+fish-curry,Fish curry,मछली करी,meat_fish,katori,150,0.5,210,19,5,12.5,1,non_veg,0,fish,Fish:100;Onion:30;Tomato:30
+fish-fry,Fish fry,फिश फ्राई,meat_fish,piece,100,0.5,220,20,6,13,0.3,non_veg,0,fish,Fish:110;Cooking oil:7
+grilled-fish,Fish (grilled),ग्रिल्ड मछली,meat_fish,g,100,0.25,130,22,0,4.5,0,non_veg,0,fish,Fish:120
+tuna,Tuna (canned in water),टूना,meat_fish,g,100,0.25,116,26,0,0.8,0,non_veg,0,fish,Canned tuna:100
+prawn-curry,Prawn curry,झींगा करी,meat_fish,katori,150,0.5,200,20,6,10.5,1,non_veg,0,shellfish,Prawns:100;Onion:30
+mutton-curry,Mutton curry,मटन करी,meat_fish,katori,150,0.5,310,22,6,22,1,non_veg,0,,Mutton:100;Onion:40;Tomato:40
+mutton-keema,Mutton keema,मटन कीमा,meat_fish,katori,150,0.5,330,22,6,24,1.5,non_veg,0,,Mutton mince:100;Onion:30
+banana,Banana,केला,fruits,piece,120,1,105,1.3,27,0.4,3.1,vegan,1,,Bananas:1pc
+apple,Apple,सेब,fruits,piece,180,1,95,0.5,25,0.3,4.4,vegan,1,,Apples:1pc
+orange,Orange,संतरा,fruits,piece,130,1,62,1.2,15.4,0.2,3.1,vegan,1,,Oranges:1pc
+sweet-lime,Mosambi (sweet lime),मौसमी,fruits,piece,150,1,65,1,14,0.3,1.5,vegan,1,,Mosambi:1pc
+pear,Pear,नाशपाती,fruits,piece,170,1,97,0.6,26,0.2,5.3,vegan,1,,Pears:1pc
+guava,Guava,अमरूद,fruits,piece,100,1,68,2.6,14.3,1,5.4,vegan,1,,Guavas:1pc
+chikoo,Chikoo (sapota),चीकू,fruits,piece,100,1,83,0.4,20,1.1,5.3,vegan,1,,Chikoo:1pc
+amla,Amla,आंवला,fruits,piece,30,1,13,0.3,3,0,1,vegan,1,,Amla:1pc
+papaya,Papaya,पपीता,fruits,katori,150,0.5,65,0.7,16.5,0.4,2.6,vegan,1,,Papaya:150
+watermelon,Watermelon,तरबूज़,fruits,katori,150,0.5,45,0.9,11.3,0.2,0.6,vegan,1,,Watermelon:150
+muskmelon,Muskmelon,खरबूजा,fruits,katori,150,0.5,51,1.3,12,0.3,1.4,vegan,1,,Muskmelon:150
+mango,Mango,आम,fruits,katori,150,0.5,90,1.2,22.5,0.6,2.4,vegan,1,,Mangoes:150
+pomegranate,Pomegranate,अनार,fruits,katori,100,0.5,83,1.7,18.7,1.2,4,vegan,1,,Pomegranates:170
+grapes,Grapes,अंगूर,fruits,katori,100,0.5,69,0.7,18,0.2,0.9,vegan,1,,Grapes:100
+pineapple,Pineapple,अनानास,fruits,katori,100,0.5,50,0.5,13,0.1,1.4,vegan,1,,Pineapple:100
+jamun,Jamun,जामुन,fruits,katori,100,0.5,60,0.7,14,0.2,0.6,vegan,1,,Jamun:100
+litchi,Litchi,लीची,fruits,katori,100,0.5,66,0.8,16.5,0.4,1.3,vegan,1,,Litchi:100
+strawberries,Strawberries,स्ट्रॉबेरी,fruits,katori,100,0.5,32,0.7,7.7,0.3,2,vegan,1,,Strawberries:100
+fruit-bowl,Fruit bowl (mixed),फ्रूट बाउल,fruits,katori,150,0.5,85,1,21,0.3,2.5,vegan,1,,Mixed fruit:150
+dates,Dates (khajur),खजूर,fruits,piece,8,1,23,0.2,6,0,0.6,vegan,1,,Dates:8
+raisins,Raisins (kishmish),किशमिश,fruits,tbsp,10,1,30,0.3,7.9,0.1,0.4,vegan,1,,Raisins:10
+dried-fig,Dried fig (anjeer),अंजीर,fruits,piece,10,1,25,0.3,6.4,0.1,1,vegan,1,,Dried figs:10
+fresh-coconut,Fresh coconut,नारियल,fruits,piece,30,0.5,106,1,4.6,10,2.7,vegan,1,,Coconut:30
+almonds,Almonds (10),बादाम,nuts_seeds,handful,12,0.5,70,2.5,2.6,6,1.5,vegan,1,nuts,Almonds:12
+walnuts,Walnuts,अखरोट,nuts_seeds,handful,15,0.5,98,2.3,2,9.8,1,vegan,1,nuts,Walnuts:15
+cashews,Cashews (10),काजू,nuts_seeds,handful,15,0.5,83,2.7,4.5,6.6,0.5,vegan,1,nuts,Cashews:15
+pistachios,Pistachios,पिस्ता,nuts_seeds,handful,15,0.5,85,3,4.2,6.8,1.5,vegan,1,nuts,Pistachios:15
+mixed-nuts,Mixed nuts,मिक्स नट्स,nuts_seeds,handful,30,0.5,180,5,6,16,2,vegan,1,nuts,Mixed nuts:30
+roasted-peanuts,Roasted peanuts,भुनी मूंगफली,nuts_seeds,handful,30,0.5,170,7.8,4.8,14.4,2.6,vegan,1,peanut,Peanuts:30
+peanut-butter,Peanut butter,पीनट बटर,nuts_seeds,tbsp,16,0.5,94,4,3.2,8,1,vegan,1,peanut,Peanut butter:16
+flaxseed,Flaxseeds (alsi),अलसी,nuts_seeds,tbsp,10,0.5,53,1.8,2.9,4.2,2.7,vegan,1,,Flaxseeds:10
+chia,Chia seeds,चिया सीड्स,nuts_seeds,tbsp,12,0.5,58,2,5,3.7,4.1,vegan,1,,Chia seeds:12
+pumpkin-seeds,Pumpkin seeds,कद्दू के बीज,nuts_seeds,tbsp,10,0.5,56,3,1.1,4.9,0.6,vegan,1,,Pumpkin seeds:10
+sunflower-seeds,Sunflower seeds,सूरजमुखी के बीज,nuts_seeds,tbsp,10,0.5,58,2.1,2,5.1,0.9,vegan,1,,Sunflower seeds:10
+sesame,Sesame seeds (til),तिल,nuts_seeds,tbsp,9,0.5,52,1.6,2.1,4.5,1.1,vegan,1,sesame,Sesame seeds:9
+makhana,Roasted makhana,भुना मखाना,nuts_seeds,katori,25,0.5,95,2.4,19,1,3.6,vegan,1,,Makhana:25
+roasted-chana,Roasted chana,भुने चने,snacks,handful,30,0.5,110,6.5,17,1.6,5,vegan,1,,Roasted chana:30
+dhokla,Khaman dhokla,ढोकला,snacks,piece,30,1,50,2,7,1.5,0.7,vegan,1,,Besan:12
+handvo,Handvo,हांडवो,snacks,piece,100,0.5,190,6.5,25,7,3,veg,0,dairy,Rice:25;Mixed dal:15;Curd:15
+khakhra,Khakhra,खाखरा,snacks,piece,20,1,85,2.8,13,2.4,2,vegan,1,gluten,Khakhra:1pc
+samosa,Samosa,समोसा,snacks,piece,70,1,260,4,28,15,2,vegan,0,gluten,Samosa:1pc
+kachori,Kachori,कचौरी,snacks,piece,60,1,230,5,24,13,2,vegan,0,gluten,Kachori:1pc
+pakora,Onion pakora,प्याज़ पकौड़ा,snacks,plate,80,0.5,230,5,20,14.5,2.5,vegan,0,,Besan:30;Onion:40;Cooking oil:10
+vada-pav,Vada pav,वड़ा पाव,snacks,piece,150,1,290,6.5,40,12,3,vegan,0,gluten,Pav:1pc;Potato:70;Besan:15
+pav-bhaji,Pav bhaji (2 pav),पाव भाजी,snacks,plate,300,0.5,450,11,62,18,7,veg,0,gluten;dairy,Pav:2pc;Mixed vegetables:150;Butter:10
+medu-vada,Medu vada,मेदू वड़ा,snacks,piece,50,1,140,4,13,8,1.5,vegan,0,,Urad dal:20;Cooking oil:7
+dahi-vada,Dahi vada (2 pieces),दही वड़ा,snacks,plate,150,0.5,250,9,28,11.5,2,veg,0,dairy,Urad dal:30;Curd:80
+bhel-puri,Bhel puri,भेल पूरी,snacks,plate,100,0.5,190,5,32,5,3,vegan,0,peanut,Puffed rice:30;Onion:20;Sev:10
+pani-puri,Pani puri (6),पानी पूरी,snacks,plate,120,0.5,220,4,34,8,3,vegan,0,gluten,Pani puri:6pc
+chana-chaat,Chana chaat,चना चाट,snacks,katori,150,0.5,190,9,30,3.5,7.5,vegan,0,,Kabuli chana:45;Onion:20;Tomato:20
+veg-sandwich,Veg sandwich,वेज सैंडविच,snacks,piece,150,0.5,220,6,32,7,4,veg,0,gluten;dairy,White bread:2pc;Mixed vegetables:50;Butter:5
+paneer-sandwich,Paneer sandwich,पनीर सैंडविच,snacks,piece,170,0.5,320,15,30,15.5,3,veg,0,gluten;dairy,Brown bread:2pc;Paneer:50
+chicken-sandwich,Chicken sandwich,चिकन सैंडविच,snacks,piece,170,0.5,300,20,30,10.5,2.5,non_veg,0,gluten,Brown bread:2pc;Chicken breast:70
+egg-sandwich,Egg sandwich,एग सैंडविच,snacks,piece,160,0.5,280,13,28,13,2.5,egg,0,egg;gluten,Brown bread:2pc;Eggs:2pc
+veg-momos,Veg momos (6),वेज मोमोज़,snacks,plate,150,0.5,250,7,40,6.5,3,vegan,0,gluten,Momos:6pc
+chicken-momos,Chicken momos (6),चिकन मोमोज़,snacks,plate,150,0.5,290,15,36,9,2,non_veg,0,gluten,Momos:6pc
+instant-noodles,Instant noodles (1 pack),इंस्टेंट नूडल्स,snacks,plate,70,0.5,315,7,43,13,2,vegan,0,gluten,Instant noodles:1pc
+pizza-slice,Pizza (1 slice),पिज़्ज़ा,snacks,slice,100,1,270,11,33,10,2,veg,0,gluten;dairy,Pizza:1pc
+veg-burger,Veg burger,वेज बर्गर,snacks,piece,150,1,360,9,46,15.5,3,veg,0,gluten;dairy,Burger:1pc
+french-fries,French fries (medium),फ्रेंच फ्राइज़,snacks,katori,115,0.5,360,4,47,17.5,4,vegan,0,,Potato:150;Cooking oil:15
+namkeen,Namkeen mix,नमकीन,snacks,katori,30,0.5,160,4.5,13,10,2,vegan,0,peanut,Namkeen:30
+poha-chivda,Poha chivda,पोहा चिवड़ा,snacks,katori,30,0.5,150,3,18,7.5,1.5,vegan,1,peanut,Poha chivda:30
+popcorn,Popcorn (plain),पॉपकॉर्न,snacks,katori,20,0.5,78,2.6,15.6,0.9,2.9,vegan,1,,Popcorn kernels:20
+murmura,Puffed rice (murmura),मुरमुरा,snacks,katori,20,0.5,80,1.3,18,0.1,0.3,vegan,1,,Puffed rice:20
+marie-biscuit,Marie biscuit,मैरी बिस्किट,snacks,piece,7,1,31,0.5,5.3,0.9,0.2,veg,1,gluten,Marie biscuits:1pc
+digestive-biscuit,Digestive biscuit,डाइजेस्टिव बिस्किट,snacks,piece,15,1,70,1,10,3,0.8,veg,1,gluten;dairy,Digestive biscuits:1pc
+rusk,Rusk,रस्क,snacks,piece,12,1,50,1.3,8.5,1.2,0.4,veg,1,gluten,Rusk:1pc
+gulab-jamun,Gulab jamun,गुलाब जामुन,sweets,piece,40,1,150,2,22,6,0.2,veg,1,gluten;dairy,Gulab jamun:1pc
+rasgulla,Rasgulla,रसगुल्ला,sweets,piece,50,1,106,2,23,0.8,0,veg,1,dairy,Rasgulla:1pc
+jalebi,Jalebi,जलेबी,sweets,piece,25,1,110,0.6,16,4.9,0.1,vegan,1,gluten,Jalebi:1pc
+rice-kheer,Rice kheer,खीर,sweets,katori,150,0.5,250,6.5,36,9,0.3,veg,1,dairy;nuts,Milk:130ml;Rice:15;Sugar:15
+sooji-halwa,Sooji halwa,सूजी हलवा,sweets,katori,100,0.5,330,4,42,16,1,veg,1,gluten;dairy,Rava (semolina):30;Ghee:15;Sugar:20
+gajar-halwa,Gajar halwa,गाजर हलवा,sweets,katori,100,0.5,280,5,34,14,2,veg,0,dairy;nuts,Carrot:120;Milk:60ml;Ghee:10;Sugar:15
+besan-ladoo,Besan ladoo,बेसन लड्डू,sweets,piece,30,1,140,2.8,14,8.2,0.8,veg,1,dairy,Besan:12;Ghee:8;Sugar:10
+motichoor-ladoo,Motichoor ladoo,मोतीचूर लड्डू,sweets,piece,30,1,130,1.8,18,5.8,0.3,veg,1,dairy,Ladoo:1pc
+kaju-katli,Kaju katli,काजू कतली,sweets,piece,15,1,70,1.5,8.5,3.4,0.2,veg,1,nuts,Kaju katli:1pc
+milk-barfi,Milk barfi,बर्फी,sweets,piece,30,1,125,3,17,5,0,veg,1,dairy,Barfi:1pc
+rasmalai,Rasmalai,रसमलाई,sweets,piece,70,1,180,5,22,8,0,veg,1,dairy;nuts,Rasmalai:1pc
+shrikhand,Shrikhand,श्रीखंड,sweets,katori,100,0.5,250,6,38,8.5,0,veg,1,dairy,Curd:200;Sugar:30
+peanut-chikki,Peanut chikki,मूंगफली चिक्की,sweets,piece,25,1,125,4,12,7,1.2,vegan,1,peanut,Peanut chikki:1pc
+dark-chocolate,Dark chocolate (70%),डार्क चॉकलेट,sweets,piece,10,1,60,0.8,4.6,4.3,1.1,vegan,1,,Dark chocolate:10
+ice-cream,Ice cream (vanilla),आइसक्रीम,sweets,scoop,65,1,135,2.3,15.5,7.2,0.5,veg,1,dairy,Ice cream:65ml
+chai,Tea with milk and sugar,चाय,drinks,cup,150,0.5,90,2.5,13,3,0,veg,1,dairy,Milk:60ml;Sugar:7;Tea leaves:2
+chai-no-sugar,Tea with milk (no sugar),बिना चीनी की चाय,drinks,cup,150,0.5,45,2.5,4,2.3,0,veg,1,dairy,Milk:60ml;Tea leaves:2
+green-tea,Green tea,ग्रीन टी,drinks,cup,200,1,2,0,0.5,0,0,vegan,1,,Green tea bags:1pc
+black-coffee,Black coffee,ब्लैक कॉफ़ी,drinks,cup,200,1,5,0.3,0.5,0,0,vegan,1,,Coffee powder:2
+milk-coffee,Coffee with milk and sugar,दूध वाली कॉफ़ी,drinks,cup,150,0.5,100,3.5,14,3.5,0,veg,1,dairy,Milk:100ml;Sugar:7;Coffee powder:2
+lemon-water,Lemon water (no sugar),नींबू पानी,drinks,glass,250,1,8,0.1,2,0,0,vegan,1,,Lemon:1pc
+nimbu-pani,Nimbu pani with sugar,मीठा नींबू पानी,drinks,glass,250,1,60,0.1,15,0,0,vegan,1,,Lemon:1pc;Sugar:15
+coconut-water,Coconut water,नारियल पानी,drinks,glass,250,0.5,48,1.8,9.3,0.5,2.8,vegan,1,,Tender coconut:1pc
+orange-juice,Orange juice (fresh),संतरे का जूस,drinks,glass,250,0.5,112,1.7,26,0.5,0.5,vegan,1,,Oranges:3pc
+sugarcane-juice,Sugarcane juice,गन्ने का रस,drinks,glass,250,0.5,180,0.3,45,0,0,vegan,1,,Sugarcane juice:250ml
+banana-shake,Banana milkshake,बनाना शेक,drinks,glass,250,0.5,230,8,36,6,1.5,veg,1,dairy,Milk:200ml;Bananas:1pc;Sugar:10
+mango-shake,Mango milkshake,मैंगो शेक,drinks,glass,250,0.5,250,7,42,6,1.5,veg,1,dairy,Milk:180ml;Mangoes:100;Sugar:10
+aam-panna,Aam panna,आम पन्ना,drinks,glass,250,0.5,120,0.5,29,0.2,0.5,vegan,1,,Raw mango:60;Sugar:20
+jaljeera,Jaljeera,जलजीरा,drinks,glass,250,1,25,0.2,6,0,0.2,vegan,1,,Jaljeera powder:5
+sattu-drink,Sattu sharbat,सत्तू शरबत,drinks,glass,250,0.5,120,6.5,19,2,4,vegan,1,,Sattu:30
+soy-milk,Soy milk (unsweetened),सोया दूध,drinks,glass,250,0.5,90,7.5,4,4.5,1,vegan,1,soy,Soy milk:250ml
+cola,Cola / soft drink,कोल्ड ड्रिंक,drinks,glass,250,0.5,105,0,26.5,0,0,vegan,1,,Soft drink:250ml
+ghee,Ghee,घी,fats_oils,tsp,5,0.5,45,0,0,5,0,veg,1,dairy,Ghee:5
+butter,Butter,मक्खन,fats_oils,tsp,5,0.5,36,0,0,4.1,0,veg,1,dairy,Butter:5
+cooking-oil,Cooking oil,तेल,fats_oils,tsp,5,0.5,45,0,0,5,0,vegan,1,,Cooking oil:5
+mustard-oil,Mustard oil,सरसों का तेल,fats_oils,tsp,5,0.5,45,0,0,5,0,vegan,1,,Mustard oil:5
+coconut-oil,Coconut oil,नारियल तेल,fats_oils,tsp,5,0.5,45,0,0,5,0,vegan,1,,Coconut oil:5
+olive-oil,Olive oil,ऑलिव ऑयल,fats_oils,tsp,5,0.5,44,0,0,5,0,vegan,1,,Olive oil:5
+fresh-cream,Fresh cream,मलाई,fats_oils,tbsp,15,0.5,50,0.3,0.5,5.3,0,veg,1,dairy,Fresh cream:15
+mayonnaise,Mayonnaise,मेयोनेज़,fats_oils,tbsp,15,0.5,100,0.2,0.4,11,0,egg,0,egg,Mayonnaise:15
+sugar,Sugar,चीनी,condiments,tsp,5,0.5,20,0,5,0,0,vegan,1,,Sugar:5
+jaggery,Jaggery (gud),गुड़,condiments,piece,10,0.5,38,0,9.8,0,0,vegan,1,,Jaggery:10
+honey,Honey,शहद,condiments,tsp,7,0.5,21,0,5.8,0,0,veg,0,,Honey:7
+mango-pickle,Mango pickle,आम का अचार,condiments,tbsp,15,0.5,40,0.3,2,3.5,0.5,vegan,1,,Pickle:15
+green-chutney,Green chutney,हरी चटनी,condiments,tbsp,15,0.5,10,0.5,1.5,0.2,0.5,vegan,0,,Coriander leaves:10
+coconut-chutney,Coconut chutney,नारियल चटनी,condiments,tbsp,15,0.5,30,0.4,1.2,2.7,0.6,vegan,1,,Coconut:12
+imli-chutney,Imli chutney,इमली चटनी,condiments,tbsp,20,0.5,50,0.2,12.5,0,0.3,vegan,1,,Tamarind:5;Jaggery:10
+ketchup,Tomato ketchup,टोमैटो केचप,condiments,tbsp,15,0.5,15,0.2,3.8,0,0,vegan,0,,Ketchup:15
+papad,Papad (roasted),पापड़,condiments,piece,12,1,40,3,7,0.4,1.5,vegan,1,,Papad:1pc
+whey,Whey protein,व्हे प्रोटीन,supplements,scoop,30,0.5,120,24,3,1.5,0,veg,1,dairy,Whey protein:30
+whey-isolate,Whey isolate,व्हे आइसोलेट,supplements,scoop,30,0.5,110,27,1,0.5,0,veg,1,dairy,Whey isolate:30
+plant-protein,Plant protein (pea),प्लांट प्रोटीन,supplements,scoop,33,0.5,120,24,3,2,1,vegan,1,,Plant protein:33
+protein-bar,Protein bar,प्रोटीन बार,supplements,piece,60,1,220,20,22,7,3,veg,1,dairy;nuts;soy,Protein bars:1pc
+mass-gainer,Mass gainer,मास गेनर,supplements,scoop,75,0.5,290,14,54,2.5,1,veg,1,dairy,Mass gainer:75
+kulcha,Amritsari kulcha,अमृतसरी कुलचा,grains,piece,120,0.5,330,8,48,12,2.5,veg,0,gluten;dairy,Maida:70;Potato:30
+dal-chawal,Dal chawal,दाल चावल,grains,plate,350,0.5,360,13,63,5.5,5,vegan,1,,Rice:60;Toor dal:35
+rajma-chawal,Rajma chawal,राजमा चावल,grains,plate,350,0.5,430,14,72,9,8,vegan,0,,Rice:60;Rajma (kidney beans):40
+chole-bhature,Chole bhature,छोले भटूरे,grains,plate,300,0.5,650,17,80,29,9,veg,0,gluten;dairy,Maida:90;Kabuli chana:45;Cooking oil:20
+veg-thali,Veg thali,वेज थाली,grains,plate,550,0.5,650,20,100,18,12,veg,0,gluten;dairy,Whole wheat atta:60;Rice:50;Toor dal:35;Mixed vegetables:150
+idli-sambar,Idli sambar (2 idli),इडली सांबर,grains,plate,230,0.5,230,9,40,4,4.5,vegan,0,,Idli batter:80;Toor dal:20;Mixed vegetables:50
+poori-bhaji,Poori bhaji (3 puri),पूरी भाजी,grains,plate,250,0.5,480,8,58,24,5,vegan,0,gluten,Whole wheat atta:45;Potato:100;Cooking oil:15
+pongal,Ven pongal,पोंगल,grains,katori,200,0.5,260,8,38,8.5,2,veg,1,dairy,Rice:35;Moong dal:15;Ghee:7
+oats-chilla,Oats chilla,ओट्स चीला,grains,piece,80,0.5,140,5.5,20,4.5,3,vegan,0,gluten,Rolled oats:30;Besan:10
+egg-fried-rice,Egg fried rice,एग फ्राइड राइस,grains,plate,250,0.5,420,12,58,15.5,2,egg,0,egg;soy;gluten,Rice:70;Eggs:2pc
+chicken-fried-rice,Chicken fried rice,चिकन फ्राइड राइस,grains,plate,300,0.5,520,22,66,18,2.5,non_veg,0,soy;gluten,Rice:75;Chicken:80
+hakka-noodles,Veg hakka noodles,हक्का नूडल्स,grains,plate,250,0.5,420,9,62,15,4,vegan,0,gluten;soy,Noodles:75;Mixed vegetables:80
+veg-manchurian,Veg manchurian,वेज मंचूरियन,vegetables,katori,150,0.5,250,5,25,14.5,3,vegan,0,gluten;soy,Mixed vegetables:120;Maida:20
+chilli-paneer,Chilli paneer,चिली पनीर,dairy,katori,150,0.5,320,15,15,22,2,veg,0,dairy;soy,Paneer:90;Capsicum:40
+mango-lassi,Mango lassi,मैंगो लस्सी,drinks,glass,250,0.5,260,7,42,7,1,veg,1,dairy,Curd:150;Mangoes:80;Sugar:10
+chicken-salad,Chicken salad,चिकन सलाद,meat_fish,bowl,250,0.5,230,28,8,10,3,non_veg,0,,Chicken breast:120;Mixed vegetables:100
+kiwi,Kiwi,कीवी,fruits,piece,75,1,46,0.8,11,0.4,2.3,vegan,1,,Kiwis:1pc
+custard-apple,Custard apple (sitaphal),सीताफल,fruits,piece,100,1,94,2.1,23.6,0.3,4.4,vegan,1,,Custard apples:1pc
+avocado,Avocado (half),एवोकाडो,fruits,piece,70,1,112,1.4,6,10.3,4.7,vegan,1,,Avocados:1pc
+paneer-roll,Paneer kathi roll,पनीर काठी रोल,snacks,piece,200,0.5,420,16,45,19.5,3,veg,0,gluten;dairy,Whole wheat atta:50;Paneer:70
+chicken-roll,Chicken kathi roll,चिकन काठी रोल,snacks,piece,200,0.5,400,22,42,16,2.5,non_veg,0,gluten,Whole wheat atta:50;Chicken breast:80
+egg-roll,Egg roll,एग रोल,snacks,piece,180,0.5,360,14,40,16,2,egg,0,egg;gluten,Whole wheat atta:50;Eggs:1pc
+chicken-shawarma,Chicken shawarma,चिकन शवर्मा,snacks,piece,250,0.5,480,28,40,23,3,non_veg,0,gluten,Pita bread:1pc;Chicken:100
+protein-shake-milk,Whey shake with milk,दूध के साथ व्हे,supplements,glass,280,0.5,265,32,15,9,0,veg,1,dairy,Whey protein:30;Milk:250ml

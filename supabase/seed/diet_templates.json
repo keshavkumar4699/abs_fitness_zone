@@ -1,0 +1,1255 @@
+[
+ {
+  "name": "Veg fat loss 1,500 kcal",
+  "description": "High-protein vegetarian plan with paneer, dal and curd. Plenty of vegetables to stay full.",
+  "goal": "fat_loss",
+  "diet_pref": "veg",
+  "kcal_target": 1500,
+  "protein_g": 80,
+  "carbs_g": 190,
+  "fat_g": 45,
+  "macro_preset": "high_protein",
+  "supplements": [
+   "Multivitamin"
+  ],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "lemon-water",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "moong-chilla",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "green-chutney",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "oats-milk",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "besan-chilla",
+      "qty": 2,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "papaya",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "guava",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": "Salad first, then the rest.",
+    "items": [
+     {
+      "food": "roti",
+      "qty": 1.5,
+      "alt_group": 0
+     },
+     {
+      "food": "moong-dal",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "mixed-veg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "brown-rice",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "rajma",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "curd",
+      "qty": 0.5,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "evening_snack",
+    "time_of_day": "17:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "chai-no-sugar",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "roasted-chana",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "buttermilk",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "makhana",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "20:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "low-fat-paneer",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "sauteed-veg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "soya-curry",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1.5,
+      "alt_group": 1
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "bedtime",
+    "time_of_day": "22:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "double-toned-milk",
+      "qty": 0.5,
+      "alt_group": 0
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Eggetarian fat loss 1,800 kcal",
+  "description": "Eggs, dal and curd for protein, with whole grains and fruit.",
+  "goal": "fat_loss",
+  "diet_pref": "eggetarian",
+  "kcal_target": 1800,
+  "protein_g": 90,
+  "carbs_g": 210,
+  "fat_g": 70,
+  "macro_preset": "high_protein",
+  "supplements": [
+   "Multivitamin"
+  ],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "lemon-water",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "egg-white-omelette",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "brown-bread",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "egg-bhurji",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "multigrain-roti",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "oats-milk",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 1,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "apple",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "pear",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "toor-dal",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "mixed-veg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "brown-rice",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "chole",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "pre_workout",
+    "time_of_day": "17:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "black-coffee",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "post_workout",
+    "time_of_day": "19:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "boiled-egg",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "buttermilk",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "hung-curd",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roasted-chana",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "21:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "egg-curry",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "palak-paneer",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1.5,
+      "alt_group": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Veg balanced 2,000 kcal",
+  "description": "Everyday home food in the right amounts: roti, rice, dal, sabzi and curd.",
+  "goal": "maintenance",
+  "diet_pref": "veg",
+  "kcal_target": 2000,
+  "protein_g": 70,
+  "carbs_g": 290,
+  "fat_g": 65,
+  "macro_preset": "balanced",
+  "supplements": [],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "chai",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "poha",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "idli",
+      "qty": 4,
+      "alt_group": 1
+     },
+     {
+      "food": "sambar",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "upma",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "apple",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "white-rice",
+      "qty": 0.5,
+      "alt_group": 0
+     },
+     {
+      "food": "toor-dal",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "bhindi",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "cucumber-raita",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "rajma-chawal",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "cucumber-raita",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "evening_snack",
+    "time_of_day": "17:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "chai",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "dhokla",
+      "qty": 3,
+      "alt_group": 0
+     },
+     {
+      "food": "buttermilk",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roasted-peanuts",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "20:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "matar-paneer",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "khichdi",
+      "qty": 1.5,
+      "alt_group": 1
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "papad",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Non-veg muscle gain 2,500 kcal",
+  "description": "Chicken, eggs and fish with rice and roti, timed around training.",
+  "goal": "muscle_gain",
+  "diet_pref": "non_veg",
+  "kcal_target": 2500,
+  "protein_g": 160,
+  "carbs_g": 295,
+  "fat_g": 80,
+  "macro_preset": "high_protein",
+  "supplements": [
+   "Whey protein",
+   "Creatine",
+   "Multivitamin"
+  ],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "omelette",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "brown-bread",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "toned-milk",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "oats-milk",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 3,
+      "alt_group": 1
+     },
+     {
+      "food": "paneer-paratha",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 1,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "roasted-peanuts",
+      "qty": 0.5,
+      "alt_group": 0
+     },
+     {
+      "food": "apple",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "white-rice",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "chicken-curry",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "chicken-biryani",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "cucumber-raita",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 2,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 3,
+      "alt_group": 2
+     },
+     {
+      "food": "white-rice",
+      "qty": 0.5,
+      "alt_group": 2
+     },
+     {
+      "food": "fish-curry",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "pre_workout",
+    "time_of_day": "17:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "black-coffee",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "post_workout",
+    "time_of_day": "19:00",
+    "notes": "Within an hour of training.",
+    "items": [
+     {
+      "food": "whey",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "toned-milk",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "21:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "chicken-breast",
+      "qty": 1.5,
+      "alt_group": 0
+     },
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "sauteed-veg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "egg-curry",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "white-rice",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "boiled-egg",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Jain balanced 1,800 kcal",
+  "description": "No onion, garlic or root vegetables. Dal, paneer and seasonal sabzi.",
+  "goal": "maintenance",
+  "diet_pref": "jain",
+  "kcal_target": 1800,
+  "protein_g": 70,
+  "carbs_g": 230,
+  "fat_g": 65,
+  "macro_preset": "balanced",
+  "supplements": [],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "lemon-water",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "methi-thepla",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "idli",
+      "qty": 4,
+      "alt_group": 1
+     },
+     {
+      "food": "coconut-chutney",
+      "qty": 2,
+      "alt_group": 1
+     },
+     {
+      "food": "oats-milk",
+      "qty": 1,
+      "alt_group": 2
+     },
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 2
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "papaya",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "pomegranate",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "moong-dal",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "lauki",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "white-rice",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "kadhi",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "cabbage",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "evening_snack",
+    "time_of_day": "17:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "chai",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "khakhra",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "buttermilk",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "makhana",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roasted-peanuts",
+      "qty": 0.5,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "19:30",
+    "notes": "Many Jain members eat before sunset; move the time if so.",
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "paneer",
+      "qty": 0.75,
+      "alt_group": 0
+     },
+     {
+      "food": "beans",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "khichdi",
+      "qty": 1.5,
+      "alt_group": 1
+     },
+     {
+      "food": "curd",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "papad",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Vegan high protein 2,200 kcal",
+  "description": "Soya, tofu, dals and peanuts for protein, with no dairy or eggs.",
+  "goal": "muscle_gain",
+  "diet_pref": "vegan",
+  "kcal_target": 2200,
+  "protein_g": 130,
+  "carbs_g": 275,
+  "fat_g": 70,
+  "macro_preset": "high_protein",
+  "supplements": [
+   "Creatine",
+   "Vitamin B12"
+  ],
+  "meals": [
+   {
+    "meal_slot": "early_morning",
+    "time_of_day": "06:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "soy-milk",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "almonds",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "breakfast",
+    "time_of_day": "08:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "besan-chilla",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "green-chutney",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "peanut-butter",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "oats-water",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "peanut-butter",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "soy-milk",
+      "qty": 0.5,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "mid_morning",
+    "time_of_day": "11:00",
+    "notes": null,
+    "items": [
+     {
+      "food": "sprouts-salad",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "orange",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "lunch",
+    "time_of_day": "13:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "brown-rice",
+      "qty": 0.5,
+      "alt_group": 0
+     },
+     {
+      "food": "chole",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "mixed-veg",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "rajma-chawal",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "roti",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "mixed-veg",
+      "qty": 0.5,
+      "alt_group": 1
+     },
+     {
+      "food": "green-salad",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   },
+   {
+    "meal_slot": "post_workout",
+    "time_of_day": "18:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "plant-protein",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "banana",
+      "qty": 1,
+      "alt_group": 0
+     }
+    ]
+   },
+   {
+    "meal_slot": "dinner",
+    "time_of_day": "20:30",
+    "notes": null,
+    "items": [
+     {
+      "food": "tofu",
+      "qty": 1.5,
+      "alt_group": 0
+     },
+     {
+      "food": "soya-curry",
+      "qty": 1,
+      "alt_group": 0
+     },
+     {
+      "food": "roti",
+      "qty": 2,
+      "alt_group": 0
+     },
+     {
+      "food": "dal-chawal",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "soya-chunks",
+      "qty": 1,
+      "alt_group": 1
+     },
+     {
+      "food": "tofu",
+      "qty": 1,
+      "alt_group": 1
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -53,7 +53,11 @@ abstract interface class CatalogueStore {
 
 /// A JSON file in the app's support folder (phones, desktop).
 class FileCatalogueStore implements CatalogueStore {
-  Future<File> _file() async => File('${(await getApplicationSupportDirectory()).path}/exercise_catalogue_v1.json');
+  FileCatalogueStore([this.fileName = 'exercise_catalogue_v1.json']);
+
+  final String fileName;
+
+  Future<File> _file() async => File('${(await getApplicationSupportDirectory()).path}/$fileName');
 
   @override
   Future<({DateTime? syncedAt, List<Map<String, dynamic>> rows})?> read() async {
@@ -75,10 +79,10 @@ class FileCatalogueStore implements CatalogueStore {
 
 /// Browser storage (web).
 class PrefsCatalogueStore implements CatalogueStore {
-  PrefsCatalogueStore(this._prefs);
+  PrefsCatalogueStore(this._prefs, [this._key = 'exercise_catalogue_v1']);
 
   final SharedPreferences _prefs;
-  static const _key = 'exercise_catalogue_v1';
+  final String _key;
 
   @override
   Future<({DateTime? syncedAt, List<Map<String, dynamic>> rows})?> read() async {
