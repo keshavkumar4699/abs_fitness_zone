@@ -11,8 +11,8 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | **M1 Members** | F1: members, plans, memberships, status engine, check-in, import/export, dashboard counts | ✅ Done ([report](docs/milestones/M1.md)) |
 | **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md), [Google sign-in](docs/milestones/M2.1.md)) |
 | **M3 Exercise library + Workouts** | F4: 876-exercise library with body map, search, filters, favourites, custom exercises. F5: program builder, templates, assign, coach overview, workout player with rest timer and PRs, offline logging, progress | ✅ Done ([report](docs/milestones/M3.md)) |
-| M4 Diet | F6 | Next |
-| M5 WhatsApp | F8 | — |
+| **M4 Diet** | F6: 300-food Indian database with Hindi names and review, targets calculator, meal-wise plan builder with live totals and "or" options, templates with scaling, assign, member diet tracking with water and supplements, reminders, nutrition overview, grocery list, PDF | ✅ Done ([report](docs/milestones/M4.md)) |
+| M5 WhatsApp | F8 | Next |
 | M6 AI automation | F7 | — |
 | M7 Reports | F15 | — |
 | M8 Website + launch | F14, launch checklist | — |
@@ -34,6 +34,7 @@ lib/
     members/                members, plans, memberships, check-in data, import
     payments/               invoices, collect sheet, receipts (PDF), day close, expenses
     exercises/              catalogue (cached offline), body map, detail, custom exercises
+    diet/                   foods, plan builder, targets, assign, member diet tracking, reminders
     workouts/               programs, builder, assign, coach views, player, progress
     checkin/                desk scanner/search, member self check-in, gym QR
     member_home/            member onboarding, home, progress, my payments + pay
@@ -42,7 +43,7 @@ lib/
 supabase/
   migrations/               SQL, one per milestone
   functions/                Edge Functions (Deno/TypeScript)
-  seed/                     exercises.json (free-exercise-db, public domain)
+  seed/                     exercises.json (free-exercise-db, public domain), foods.csv
   tests/                    RLS tests (plain SQL) + local Supabase stub
 test/                       unit, widget, golden (screenshots) tests
 .github/workflows/          ci.yml, release.yml, backup.yml, keepalive.yml
@@ -127,9 +128,10 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    Then the owner taps **Continue with Google** in the app. (The order
    doesn't matter: signing in first and running this afterwards also works.)
 5. The migrations also set up these Supabase pieces when they're available:
-   - Nightly jobs (`pg_cron`): status refresh at 00:05 IST, dues at 00:10 IST
-     and workout programs at 00:15 IST. If `pg_cron` isn't enabled, enable
-     it under **Database → Extensions** and run `supabase db push` again.
+   - Nightly jobs (`pg_cron`): status refresh at 00:05 IST, dues at 00:10 IST,
+     workout programs at 00:15 IST and diet plans at 00:20 IST. If `pg_cron`
+     isn't enabled, enable it under **Database → Extensions** and run
+     `supabase db push` again.
    - The live check-in feed (Realtime on `attendance` and `payments`).
    - A private `member-photos` bucket and a public `exercises` bucket.
 6. **Staff**: the owner uses **More → Staff → Add staff** with each person's
@@ -164,15 +166,25 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    ```
 
    The owner can untick missing equipment in **Plans → Exercises → wrench**.
-10. First-time setup on Home walks the owner through the gym profile,
+10. **Foods (M4).** The 300 seeded foods are typical home recipes and
+    portions, and the spec asks for them to be checked before launch. The
+    gym's dietitian or a trainer opens **Plans → Diet → Foods → Not
+    reviewed**, corrects anything that's off and marks each food reviewed.
+    The same list is in `supabase/seed/foods.csv` for review in a
+    spreadsheet before the first `supabase db push` (change it, then run
+    `python3 scripts/gen_food_seed.py`); after that, edit foods in the app.
+    To add USDA FoodData Central items, download a CSV release from
+    https://fdc.nal.usda.gov/download-datasets and follow the steps at the
+    top of `scripts/import_usda_foods.py`.
+11. First-time setup on Home walks the owner through the gym profile,
    membership plans and inviting staff. To bring in an existing member list,
    use More → Import members with a CSV.
-11. **Payments (M2).** In **More → Gym profile**, fill in the gym's **UPI ID**
+12. **Payments (M2).** In **More → Gym profile**, fill in the gym's **UPI ID**
     (used for member pay links and QR codes) and, if the gym is
     GST-registered, the **GSTIN** with **Charge GST** on. The M2 migration also
     schedules the nightly dues refresh at 00:10 IST (`pg_cron`) and adds
     Realtime on `payments`, when those are available.
-12. **Razorpay (optional).** UPI links and QR codes work without it. To add
+13. **Razorpay (optional).** UPI links and QR codes work without it. To add
     payment links, set the secrets, then turn on **Razorpay payment links** in
     Gym profile:
 

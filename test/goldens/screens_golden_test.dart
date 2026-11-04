@@ -367,6 +367,127 @@ void main() {
       'my exercises ${b.name}',
       (t) => shot(t, 'my_exercises', b, user: memberUser, route: Routes.meExercises),
     );
+    // M4: diet and nutrition.
+    Future<void> openDiet(WidgetTester tester, [String? tab]) async {
+      await tester.tap(find.descendant(of: find.byKey(const ValueKey('training-area')), matching: find.text('Diet')));
+      await frames(tester, 6);
+      if (tab != null) await tester.tap(find.text(tab).first);
+    }
+
+    testWidgets(
+      'training diet members ${b.name}',
+      (t) => shot(t, 'training_diet_members', b, user: ownerUser, route: Routes.staffPlans, interact: openDiet),
+    );
+    testWidgets(
+      'training diet plans ${b.name}',
+      (t) => shot(
+        t,
+        'training_diet_plans',
+        b,
+        user: ownerUser,
+        route: Routes.staffPlans,
+        interact: (tester) => openDiet(tester, 'Diet plans'),
+      ),
+    );
+    testWidgets(
+      'foods ${b.name}',
+      (t) => shot(
+        t,
+        'foods',
+        b,
+        user: ownerUser,
+        route: Routes.staffPlans,
+        interact: (tester) => openDiet(tester, 'Foods'),
+      ),
+    );
+    testWidgets(
+      'food sheet ${b.name}',
+      (t) => shot(
+        t,
+        'food_sheet',
+        b,
+        user: ownerUser,
+        route: Routes.staffPlans,
+        interact: (tester) async {
+          await openDiet(tester, 'Foods');
+          await frames(tester, 6);
+          await tester.tap(find.byKey(const ValueKey('food-row-aloo-gobi')));
+        },
+      ),
+    );
+    testWidgets(
+      'food editor ${b.name}',
+      (t) => shot(t, 'food_editor', b, user: ownerUser, route: Routes.foodEdit('paneer')),
+    );
+    testWidgets(
+      'diet template detail ${b.name}',
+      (t) => shot(t, 'diet_template_detail', b, user: ownerUser, route: Routes.dietDetail('dt-1')),
+    );
+    testWidgets(
+      'diet builder ${b.name}',
+      (t) => shot(t, 'diet_builder', b, user: ownerUser, route: Routes.dietEdit('dt-1')),
+    );
+    testWidgets(
+      'diet builder member ${b.name}',
+      (t) => shot(t, 'diet_builder_member', b, user: ownerUser, route: '${Routes.dietEdit('snap-aarav')}?member=m-1'),
+    );
+    testWidgets(
+      'targets calculator ${b.name}',
+      (t) => shot(
+        t,
+        'targets_calculator',
+        b,
+        user: ownerUser,
+        route: Routes.dietEdit('dt-1'),
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('open-calculator'))),
+      ),
+    );
+    testWidgets(
+      'assign diet ${b.name}',
+      (t) => shot(
+        t,
+        'assign_diet',
+        b,
+        user: ownerUser,
+        route: Routes.dietDetail('dt-1'),
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('diet-assign'))),
+      ),
+    );
+    testWidgets(
+      'member detail diet ${b.name}',
+      (t) => shot(t, 'member_detail_diet', b, user: ownerUser, route: '${Routes.memberDetail('m-1')}?tab=diet'),
+    );
+    testWidgets('my diet ${b.name}', (t) => shot(t, 'my_diet', b, user: memberUser, route: Routes.meDiet));
+    testWidgets(
+      'meal sheet ${b.name}',
+      (t) => shot(
+        t,
+        'meal_sheet',
+        b,
+        user: memberUser,
+        route: Routes.meDiet,
+        interact: (tester) async {
+          await tester.ensureVisible(find.byKey(const ValueKey('timeline-dinner')));
+          await frames(tester, 2);
+          await tester.tap(find.byKey(const ValueKey('timeline-dinner')));
+        },
+      ),
+    );
+    testWidgets(
+      'grocery list ${b.name}',
+      (t) => shot(
+        t,
+        'grocery_list',
+        b,
+        user: memberUser,
+        route: Routes.meDiet,
+        interact: (tester) async {
+          await tester.ensureVisible(find.byKey(const ValueKey('open-grocery')));
+          await frames(tester, 2);
+          await tester.tap(find.byKey(const ValueKey('open-grocery')));
+        },
+      ),
+    );
     testWidgets(
       'staff shell desktop ${b.name}',
       (t) => shot(t, 'staff_shell_desktop', b, user: ownerUser, route: Routes.staffTeam, size: const Size(1440, 900)),

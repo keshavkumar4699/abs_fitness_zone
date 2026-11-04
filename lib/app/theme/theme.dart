@@ -56,6 +56,7 @@ ThemeData buildAbsTheme(Brightness brightness) {
     scaffoldBackgroundColor: c.bg,
     canvasColor: c.bg,
     fontFamily: AbsFonts.text,
+    fontFamilyFallback: AbsFonts.fallback,
     textTheme: t.toTextTheme(),
     extensions: [c, t],
     // InkSparkle needs a fragment shader; keep the safe ripple on web.

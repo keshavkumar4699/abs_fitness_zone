@@ -5,6 +5,8 @@ import 'package:abs_fitness/app/theme/theme.dart';
 import 'package:abs_fitness/features/auth/application/auth_providers.dart';
 import 'package:abs_fitness/features/auth/domain/app_user.dart';
 import 'package:abs_fitness/features/checkin/presentation/scanner_view.dart';
+import 'package:abs_fitness/features/diet/application/meal_reminders.dart';
+import 'package:abs_fitness/features/diet/data/diet_repository.dart';
 import 'package:abs_fitness/features/members/data/members_repository.dart';
 import 'package:abs_fitness/features/members/data/plans_repository.dart';
 import 'package:abs_fitness/features/exercises/data/exercise_repository.dart';
@@ -22,6 +24,7 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'diet_fakes.dart';
 import 'fakes.dart';
 import 'member_fakes.dart';
 import 'payment_fakes.dart';
@@ -93,6 +96,8 @@ Future<ProviderContainer> pumpApp(
   ExerciseRepository? exercises,
   WorkoutsRepository? workouts,
   RestAlerts? restAlerts,
+  DietRepository? diet,
+  MealReminders? mealReminders,
   Brightness brightness = Brightness.dark,
   Size size = phoneSize,
   Map<String, Object> prefs = const {},
@@ -114,6 +119,8 @@ Future<ProviderContainer> pumpApp(
       exerciseRepositoryProvider.overrideWithValue(exercises ?? _sharedExercises()),
       workoutsRepositoryProvider.overrideWithValue(workouts ?? FakeWorkoutsRepository()),
       restAlertsProvider.overrideWithValue(restAlerts ?? const NoopRestAlerts()),
+      dietRepositoryProvider.overrideWithValue(diet ?? FakeDietRepository()),
+      mealRemindersProvider.overrideWithValue(mealReminders ?? const NoopMealReminders()),
       scannerEnabledProvider.overrideWithValue(false),
       networkImagesEnabledProvider.overrideWithValue(false),
       // Fixed clock: 3 Nov 2026, 10:00 IST.

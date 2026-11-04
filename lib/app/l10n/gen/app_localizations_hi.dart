@@ -150,15 +150,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get navProfile => 'Profile';
 
   @override
-  String get comingSoonTitle => 'Warming up!';
-
-  @override
-  String get comingSoonBody => 'This section is doing its stretches and arrives in an upcoming update.';
-
-  @override
-  String get comingSoonAction => 'Back to home';
-
-  @override
   String greeting(String name) {
     return 'Hey $name!';
   }
@@ -1027,9 +1018,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get transferDone => 'Days transferred';
-
-  @override
-  String get dietSoon => 'Diet plans arrive with the Diet update.';
 
   @override
   String get progressAdd => 'Add measurement';
@@ -3501,4 +3489,919 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get wkEditWorkout => 'Edit workout';
+
+  @override
+  String get trainAreaWorkouts => 'Workouts';
+
+  @override
+  String get trainAreaDiet => 'Diet';
+
+  @override
+  String get trainTabDiets => 'Diet plans';
+
+  @override
+  String get trainTabFoods => 'Foods';
+
+  @override
+  String get dietNew => 'New diet plan';
+
+  @override
+  String get foodAdd => 'Add food';
+
+  @override
+  String get dietEmptyMembersBody =>
+      'Members assigned to you show up here with their diet plan and how closely they follow it.';
+
+  @override
+  String get dietNeverLogged => 'No meals marked yet';
+
+  @override
+  String dietLastLogged(String date) {
+    return 'Last marked $date';
+  }
+
+  @override
+  String dietTodayMarked(int done, int total) {
+    return '$done of $total today';
+  }
+
+  @override
+  String dietMissedMeals(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count missed meals',
+      one: '1 missed meal',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dietHealthFlag => 'Health condition';
+
+  @override
+  String get dietNoPlanShort => 'No diet plan';
+
+  @override
+  String get dietSearchPlans => 'Search diet plans';
+
+  @override
+  String get dietPlansEmptyTitle => 'No diet plans';
+
+  @override
+  String get dietPlansEmptyBody => 'Try another search, or build the gym\'s first plan.';
+
+  @override
+  String get mealEarlyMorning => 'Early morning';
+
+  @override
+  String get mealBreakfast => 'Breakfast';
+
+  @override
+  String get mealMidMorning => 'Mid-morning';
+
+  @override
+  String get mealLunch => 'Lunch';
+
+  @override
+  String get mealEveningSnack => 'Evening snack';
+
+  @override
+  String get mealPreWorkout => 'Pre-workout';
+
+  @override
+  String get mealPostWorkout => 'Post-workout';
+
+  @override
+  String get mealDinner => 'Dinner';
+
+  @override
+  String get mealBedtime => 'Bedtime';
+
+  @override
+  String get foodCatGrains => 'Grains & breads';
+
+  @override
+  String get foodCatPulses => 'Dals & pulses';
+
+  @override
+  String get foodCatVegetables => 'Vegetables';
+
+  @override
+  String get foodCatFruits => 'Fruits';
+
+  @override
+  String get foodCatDairy => 'Dairy';
+
+  @override
+  String get foodCatEggs => 'Eggs';
+
+  @override
+  String get foodCatMeatFish => 'Meat & fish';
+
+  @override
+  String get foodCatNuts => 'Nuts & seeds';
+
+  @override
+  String get foodCatSnacks => 'Snacks';
+
+  @override
+  String get foodCatSweets => 'Sweets';
+
+  @override
+  String get foodCatDrinks => 'Drinks';
+
+  @override
+  String get foodCatFats => 'Ghee & oils';
+
+  @override
+  String get foodCatCondiments => 'Chutneys & extras';
+
+  @override
+  String get foodCatSupplements => 'Supplements';
+
+  @override
+  String get vegVegan => 'Vegan';
+
+  @override
+  String get vegVeg => 'Veg';
+
+  @override
+  String get vegEgg => 'Egg';
+
+  @override
+  String get vegNonVeg => 'Non-veg';
+
+  @override
+  String get prefVeg => 'Vegetarian';
+
+  @override
+  String get prefEggetarian => 'Eggetarian';
+
+  @override
+  String get prefNonVeg => 'Non-vegetarian';
+
+  @override
+  String get prefVegan => 'Vegan';
+
+  @override
+  String get prefJain => 'Jain';
+
+  @override
+  String get prefAny => 'No preference';
+
+  @override
+  String get dietGoalFatLoss => 'Fat loss';
+
+  @override
+  String get dietGoalMuscleGain => 'Muscle gain';
+
+  @override
+  String get dietGoalMaintenance => 'Maintenance';
+
+  @override
+  String get presetHighProtein => 'High protein';
+
+  @override
+  String get presetKetoLight => 'Keto-light';
+
+  @override
+  String get presetBalanced => 'Balanced';
+
+  @override
+  String get allergyDairy => 'Dairy';
+
+  @override
+  String get allergyGluten => 'Gluten';
+
+  @override
+  String get allergyNuts => 'Tree nuts';
+
+  @override
+  String get allergyPeanut => 'Peanuts';
+
+  @override
+  String get allergySoy => 'Soy';
+
+  @override
+  String get allergyEgg => 'Egg';
+
+  @override
+  String get allergyFish => 'Fish';
+
+  @override
+  String get allergyShellfish => 'Shellfish';
+
+  @override
+  String get allergySesame => 'Sesame';
+
+  @override
+  String conflictPref(String pref) {
+    return 'Not $pref';
+  }
+
+  @override
+  String conflictAllergy(String allergen) {
+    return 'Contains $allergen';
+  }
+
+  @override
+  String conflictAvoid(String word) {
+    return 'Avoids $word';
+  }
+
+  @override
+  String allergicTo(String allergen) {
+    return 'Allergic to $allergen';
+  }
+
+  @override
+  String avoids(String food) {
+    return 'Avoids $food';
+  }
+
+  @override
+  String unitKatori(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'katori', one: 'katori');
+    return '$_temp0';
+  }
+
+  @override
+  String unitRoti(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'rotis', one: 'roti');
+    return '$_temp0';
+  }
+
+  @override
+  String unitPiece(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'pieces', one: 'piece');
+    return '$_temp0';
+  }
+
+  @override
+  String unitGlass(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'glasses', one: 'glass');
+    return '$_temp0';
+  }
+
+  @override
+  String unitCup(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'cups', one: 'cup');
+    return '$_temp0';
+  }
+
+  @override
+  String unitBowl(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'bowls', one: 'bowl');
+    return '$_temp0';
+  }
+
+  @override
+  String unitPlate(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'plates', one: 'plate');
+    return '$_temp0';
+  }
+
+  @override
+  String unitSlice(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'slices', one: 'slice');
+    return '$_temp0';
+  }
+
+  @override
+  String get unitTbsp => 'tbsp';
+
+  @override
+  String get unitTsp => 'tsp';
+
+  @override
+  String unitScoop(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'scoops', one: 'scoop');
+    return '$_temp0';
+  }
+
+  @override
+  String unitHandful(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: 'handfuls', one: 'handful');
+    return '$_temp0';
+  }
+
+  @override
+  String get dietCalories => 'Calories';
+
+  @override
+  String get dietProtein => 'Protein';
+
+  @override
+  String get dietCarbs => 'Carbs';
+
+  @override
+  String get dietFat => 'Fat';
+
+  @override
+  String get dietP => 'P';
+
+  @override
+  String get dietC => 'C';
+
+  @override
+  String get dietF => 'F';
+
+  @override
+  String get dietProteinG => 'Protein (g)';
+
+  @override
+  String get dietCarbsG => 'Carbs (g)';
+
+  @override
+  String get dietFatG => 'Fat (g)';
+
+  @override
+  String get dietFibreG => 'Fibre (g)';
+
+  @override
+  String foodSearchHint(int count) {
+    return 'Search $count foods';
+  }
+
+  @override
+  String foodSuits(String pref) {
+    return 'Suits $pref';
+  }
+
+  @override
+  String get foodNotReviewed => 'Not reviewed';
+
+  @override
+  String foodNotReviewedCount(int count) {
+    return 'Not reviewed ($count)';
+  }
+
+  @override
+  String get foodReviewed => 'Reviewed';
+
+  @override
+  String get foodCustom => 'Gym\'s own';
+
+  @override
+  String get foodEmptyTitle => 'No foods match';
+
+  @override
+  String get foodEmptyBody => 'Try another word or clear the filters.';
+
+  @override
+  String foodPerServing(String serving) {
+    return 'Per $serving';
+  }
+
+  @override
+  String foodFibre(String grams) {
+    return 'Fibre $grams g';
+  }
+
+  @override
+  String foodPer100(int kcal, String protein) {
+    return 'Per 100 g: $kcal kcal, $protein g protein';
+  }
+
+  @override
+  String get foodAllergens => 'Allergens';
+
+  @override
+  String get foodToBuy => 'To buy for one serving';
+
+  @override
+  String get foodJainOk => 'Jain-friendly';
+
+  @override
+  String get foodJainHint => 'No onion, garlic or root vegetables';
+
+  @override
+  String get foodMarkReviewed => 'Mark as reviewed';
+
+  @override
+  String get foodReviewedDone => 'Marked as reviewed';
+
+  @override
+  String get foodEdit => 'Edit values';
+
+  @override
+  String get foodRemove => 'Remove';
+
+  @override
+  String get foodRemoved => 'Food removed';
+
+  @override
+  String get foodNewTitle => 'New food';
+
+  @override
+  String get foodEditTitle => 'Edit food';
+
+  @override
+  String get foodSaved => 'Food saved';
+
+  @override
+  String get foodSaveReviewed => 'Save and mark reviewed';
+
+  @override
+  String get foodReviewHint =>
+      'These values came with the app and haven\'t been checked yet. Correct anything that\'s off for how the gym\'s members cook it, then save to mark it reviewed.';
+
+  @override
+  String get foodFieldName => 'Name';
+
+  @override
+  String get foodFieldLocalName => 'Hindi name';
+
+  @override
+  String get foodFieldCategory => 'Food group';
+
+  @override
+  String get foodFieldServing => 'Measured in';
+
+  @override
+  String foodFieldGrams(String unit) {
+    return 'Grams in one $unit';
+  }
+
+  @override
+  String get foodFieldVeg => 'Type';
+
+  @override
+  String foodValuesPer100(String unit) {
+    return 'Values per 100 $unit';
+  }
+
+  @override
+  String foodValuesPerServing(String unit) {
+    return 'Values per $unit';
+  }
+
+  @override
+  String get foodBadNumber => 'Enter a number in range';
+
+  @override
+  String foodMismatch(int kcal) {
+    return 'Protein, carbs and fat add up to about $kcal kcal. Check the calories.';
+  }
+
+  @override
+  String get dietPlan => 'Diet plan';
+
+  @override
+  String get dietMeals => 'Meals';
+
+  @override
+  String dietMealsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count meals', one: '1 meal');
+    return '$_temp0';
+  }
+
+  @override
+  String dietFoodsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count foods', one: '1 food');
+    return '$_temp0';
+  }
+
+  @override
+  String dietOr(int group) {
+    return 'Or option $group';
+  }
+
+  @override
+  String get dietSupplements => 'Supplements';
+
+  @override
+  String get dietDisclaimer =>
+      'This plan is general guidance, not medical advice. If you have a medical condition, are pregnant or take medicines, check with your doctor before changing what you eat.';
+
+  @override
+  String get dietPlannedVsTarget => 'Planned vs target';
+
+  @override
+  String get dietAssign => 'Assign diet';
+
+  @override
+  String get dietDuplicate => 'Duplicate & scale';
+
+  @override
+  String get dietDuplicateTitle => 'Duplicate and scale';
+
+  @override
+  String get dietDuplicateKcal => 'Calories a day for the copy';
+
+  @override
+  String get dietKcalRange => 'Calories must be between 800 and 6,000 a day';
+
+  @override
+  String dietRemoveTitle(String name) {
+    return 'Remove $name?';
+  }
+
+  @override
+  String get dietRemoveBody => 'It disappears from the library. Members already on it keep their own copy.';
+
+  @override
+  String get dietRemoved => 'Plan removed';
+
+  @override
+  String medicalFlagTitle(String name) {
+    return '$name has a health condition';
+  }
+
+  @override
+  String get medicalFlagBody => 'Check the plan suits them, and ask them to clear diet changes with their doctor.';
+
+  @override
+  String get dietNewTitle => 'New diet plan';
+
+  @override
+  String get dietEditTitle => 'Edit diet plan';
+
+  @override
+  String dietEditFor(String name) {
+    return '$name\'s plan';
+  }
+
+  @override
+  String get dietSaved => 'Diet plan saved';
+
+  @override
+  String get dietNeedsFoods => 'Add a food to each meal, or remove the empty ones.';
+
+  @override
+  String dietConflictsPlan(int count, String pref) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count foods aren\'t $pref',
+      one: '1 food isn\'t $pref',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dietConflictsMember(int count, String name) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count foods don\'t suit $name',
+      one: '1 food doesn\'t suit $name',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dietTargets => 'Daily targets';
+
+  @override
+  String dietScaleToTarget(String kcal) {
+    return 'Scale foods to $kcal kcal';
+  }
+
+  @override
+  String get dietPreference => 'Diet';
+
+  @override
+  String get dietAddSupplement => 'Add';
+
+  @override
+  String get dietSupplementName => 'Supplement name';
+
+  @override
+  String get dietAddMeal => 'Add a meal';
+
+  @override
+  String get dietAddFood => 'Add food';
+
+  @override
+  String dietAddFoods(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count foods',
+      one: 'Add 1 food',
+      zero: 'Pick foods',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dietLess => 'Less';
+
+  @override
+  String get dietMore => 'More';
+
+  @override
+  String get dietAmountGrams => 'Amount in grams';
+
+  @override
+  String get dietAmountServings => 'Number of servings';
+
+  @override
+  String get dietSetTime => 'Set time';
+
+  @override
+  String get dietRemoveMeal => 'Remove meal';
+
+  @override
+  String get dietRemoveOption => 'Remove option';
+
+  @override
+  String get dietSuggestOption => 'Suggest an option';
+
+  @override
+  String get dietAddOption => 'Add an option';
+
+  @override
+  String get dietMealNotes => 'Notes for this meal';
+
+  @override
+  String get targetsTitle => 'Targets calculator';
+
+  @override
+  String get targetsBody =>
+      'From BMR (Mifflin-St Jeor) and daily activity: a starting point to adjust as they progress.';
+
+  @override
+  String get targetsCalculate => 'Calculate';
+
+  @override
+  String get targetsGender => 'Sex';
+
+  @override
+  String get targetsAge => 'Age';
+
+  @override
+  String get targetsHeight => 'Height (cm)';
+
+  @override
+  String get targetsWeight => 'Weight (kg)';
+
+  @override
+  String get targetsActivity => 'Activity';
+
+  @override
+  String get targetsGoal => 'Goal';
+
+  @override
+  String get targetsPreset => 'Macro split';
+
+  @override
+  String get targetsProteinPerKg => 'Protein per kg body weight';
+
+  @override
+  String get targetsNeedProfile => 'Enter age, height and weight to calculate.';
+
+  @override
+  String targetsBmrTdee(String bmr, String tdee) {
+    return 'BMR $bmr kcal · maintenance $tdee kcal';
+  }
+
+  @override
+  String get targetsUse => 'Use these targets';
+
+  @override
+  String get activitySedentary => 'Sedentary';
+
+  @override
+  String get activityLight => 'Lightly active';
+
+  @override
+  String get activityModerate => 'Moderately active';
+
+  @override
+  String get activityActive => 'Very active';
+
+  @override
+  String get activityAthlete => 'Athlete';
+
+  @override
+  String get dietPickPlan => 'Pick a diet plan';
+
+  @override
+  String get dietAssignReplaces =>
+      'From the start date it replaces their current diet plan. Earlier plans stay in their history.';
+
+  @override
+  String assignHealthWarning(String name, String conditions) {
+    return '$name: $conditions. Check the plan suits them.';
+  }
+
+  @override
+  String assignFoodsWarning(int count, String name) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$name: $count foods don\'t suit their preferences',
+      one: '$name: 1 food doesn\'t suit their preferences',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dietPrivate => 'Diet plans and logs are private: only the member\'s trainer and the owner can see them.';
+
+  @override
+  String get dietNoPlanTitle => 'No diet plan yet';
+
+  @override
+  String get dietNoPlanStaffBody => 'Pick a plan from the library and adjust it to their targets.';
+
+  @override
+  String get dietNoPlanBody => 'Your trainer will add one. You can still track water.';
+
+  @override
+  String get dietNoPlanThatDay => 'There was no plan on this day.';
+
+  @override
+  String get dietStatusActive => 'Running';
+
+  @override
+  String get dietStatusQueued => 'Starts later';
+
+  @override
+  String get dietStatusReplaced => 'Replaced';
+
+  @override
+  String get dietStatusEnded => 'Ended';
+
+  @override
+  String dietStarts(String date) {
+    return 'Starts $date';
+  }
+
+  @override
+  String dietSince(String date) {
+    return 'Since $date';
+  }
+
+  @override
+  String get dietTune => 'Adjust their plan';
+
+  @override
+  String get dietEnd => 'End plan';
+
+  @override
+  String dietEndTitle(String name) {
+    return 'End $name?';
+  }
+
+  @override
+  String get dietEndBody => 'The member stops seeing this plan. What they logged stays.';
+
+  @override
+  String get dietEnded => 'Plan ended';
+
+  @override
+  String get dietToday => 'Today';
+
+  @override
+  String get dietHistory => 'Earlier plans';
+
+  @override
+  String get dietWeeklyAdherence => 'On plan, week by week';
+
+  @override
+  String get dietThisWeek => 'This week';
+
+  @override
+  String get dietAdherence => 'Meals on plan';
+
+  @override
+  String dietWeightRange(String min, String max) {
+    return 'Weight $min–$max kg';
+  }
+
+  @override
+  String get dietCoachNotes => 'Coach notes';
+
+  @override
+  String get dietNoNotes => 'No notes yet.';
+
+  @override
+  String get dietAddNote => 'Add a note for the member';
+
+  @override
+  String waterAverage(String avg, int goal) {
+    return 'Water $avg of $goal a day';
+  }
+
+  @override
+  String get prefsTitle => 'Food preferences';
+
+  @override
+  String get prefsAllergies => 'Allergies';
+
+  @override
+  String get prefsAvoid => 'Foods to avoid';
+
+  @override
+  String get prefsAvoidHint => 'Foods to avoid, separated by commas';
+
+  @override
+  String get prefsSaved => 'Preferences saved';
+
+  @override
+  String get dietDayToday => 'Today';
+
+  @override
+  String get dietDayYesterday => 'Yesterday';
+
+  @override
+  String dietNewPlan(String name) {
+    return 'New plan from your coach: $name';
+  }
+
+  @override
+  String dietStartsOn(String name, String date) {
+    return '$name starts $date';
+  }
+
+  @override
+  String dietWeekOnPlan(int percent) {
+    return '$percent% this week';
+  }
+
+  @override
+  String dietMarkedOf(int done, int total) {
+    return '$done of $total meals marked';
+  }
+
+  @override
+  String get dietAllMarked => 'All meals marked today';
+
+  @override
+  String dietNextMeal(String meal, String time) {
+    return 'Next: $meal at $time';
+  }
+
+  @override
+  String get meTodayMeals => 'Today\'s meals';
+
+  @override
+  String get markEaten => 'Eaten';
+
+  @override
+  String get markPartly => 'Partly';
+
+  @override
+  String get markSkipped => 'Skipped';
+
+  @override
+  String get markSwapped => 'Swapped';
+
+  @override
+  String markSwappedTo(String option) {
+    return 'Swapped: $option';
+  }
+
+  @override
+  String get markClear => 'Clear';
+
+  @override
+  String get waterTitle => 'Water';
+
+  @override
+  String waterGlasses(int glasses, int goal) {
+    return '$glasses of $goal glasses';
+  }
+
+  @override
+  String get waterGoalHint => 'One glass is 250 ml. Your goal comes from your weight.';
+
+  @override
+  String get waterAdd => 'Add a glass';
+
+  @override
+  String get waterRemove => 'Remove a glass';
+
+  @override
+  String get remindersOn => 'Remind me at meal times';
+
+  @override
+  String get remindersOff => 'Turn off meal reminders';
+
+  @override
+  String get remindersOnDone => 'Meal reminders on';
+
+  @override
+  String get remindersOffDone => 'Meal reminders off';
+
+  @override
+  String reminderTitle(String meal) {
+    return 'Time for $meal';
+  }
+
+  @override
+  String get groceryTitle => 'Grocery list';
+
+  @override
+  String get groceryFor7Days => 'For 7 days of the plan as written (not the \"or\" options).';
+
+  @override
+  String get groceryShare => 'Share on WhatsApp';
+
+  @override
+  String get dietPlanName => 'Plan name';
 }

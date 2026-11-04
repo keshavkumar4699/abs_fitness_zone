@@ -19,6 +19,7 @@ import '../../payments/domain/payment_models.dart';
 import '../../payments/presentation/collect_sheet.dart';
 import '../../payments/presentation/payment_ui.dart';
 import '../../settings/data/gym_settings_repository.dart';
+import '../../diet/presentation/member_diet_tab.dart';
 import '../../workouts/presentation/member_workouts_tab.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
@@ -147,6 +148,7 @@ class _Detail extends ConsumerWidget {
 
     final start = switch (initialTab) {
       'workouts' => tabs.indexOf(l.tabWorkouts),
+      'diet' => tabs.indexOf(l.tabDiet),
       'payments' => tabs.indexOf(l.tabPayments),
       'progress' => tabs.indexOf(l.tabProgress),
       _ => 0,
@@ -291,7 +293,7 @@ class _Detail extends ConsumerWidget {
                   _MembershipTab(member: member, perms: perms),
                   if (perms.desk) _PaymentsTab(member: member),
                   MemberWorkoutsTab(member: member, canCoach: perms.owner || perms.ownTrainer),
-                  _SoonTab(message: l.dietSoon, hue: PopHue.mint),
+                  MemberDietTab(member: member, canCoach: perms.owner || perms.ownTrainer),
                   _ProgressTab(member: member, perms: perms),
                   _AttendanceTab(member: member, perms: perms),
                   _NotesTab(member: member, perms: perms),
@@ -396,25 +398,6 @@ class _TabList extends StatelessWidget {
     children: children,
   );
 }
-
-class _SoonTab extends StatelessWidget {
-  const _SoonTab({required this.message, required this.hue});
-
-  final String message;
-  final PopHue hue;
-
-  @override
-  Widget build(BuildContext context) => EmptyState(
-    title: context.l10n.comingSoonTitle,
-    message: message,
-    illustration: EmptyIllustration.rocket,
-    hue: hue,
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Payments (desk and owner)
-// ---------------------------------------------------------------------------
 
 class _PaymentsTab extends ConsumerWidget {
   const _PaymentsTab({required this.member});

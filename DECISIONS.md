@@ -495,3 +495,137 @@ it here, and continue. Newest entries go at the bottom of each milestone.
     - members replying to comments;
     - trainers logging a workout on a member's behalf;
     - the general drift cache.
+
+## M4 Diet
+
+84. **The food database is the gym's own list of 300 foods** (6.1) in
+    `supabase/seed/foods.csv`, so the dietitian can review it in a
+    spreadsheet. `scripts/gen_food_seed.py` turns it into the seed
+    migration, and CI checks the two match.
+    - Values are typical home-style recipes and portions. Every food's
+      calories are checked against protein, carbs and fat (within 15%).
+    - Each food has a serving people use (1 katori = 150 g of dal or sabzi,
+      1 roti, 1 glass = 250 ml, 100 g for weighed foods) and the smallest
+      sensible step: half a roti, one egg, 25 g.
+    - Seeded foods start **not reviewed**, as the spec asks. Coaches see a
+      "Not reviewed" filter and mark foods reviewed; correcting a value
+      also counts as reviewing it. Custom foods are reviewed by their
+      author.
+    - USDA FoodData Central can't be reached from the build machine, so
+      `scripts/import_usda_foods.py` adds chosen USDA items from the
+      official CSV download (per 100 g, "not reviewed", food group, veg
+      type and allergens guessed for the dietitian to check).
+
+85. **Food types and preferences.** A food is vegan, veg (dairy allowed),
+    egg or non-veg, and may be Jain-friendly (no onion, garlic, root
+    vegetables or honey). Vegetarian allows vegan and veg; eggetarian adds
+    egg; vegan is vegan only; Jain is vegan or veg and Jain-friendly.
+    Allergens come from a fixed list of nine.
+
+86. **Allergies and foods to avoid live with the health form**
+    (`member_health`), because they are health data: only the member,
+    their trainer and the owner see them. The member or their coach edits
+    them. "Foods to avoid" is free text matched against food names in
+    English and Hindi.
+
+87. **Diet data is private.** The spec lists diet as sensitive data, so a
+    member's plan, meal, water and supplement logs and comments are visible
+    only to the member, their trainer and the owner. The front desk browses
+    the gym's plan library and foods but sees a note on a member's Diet
+    tab. (Workout programs stay visible to the desk, as in M3.)
+
+88. **A plan is one day of meals**, repeated daily. Meals are the nine
+    slots in the spec, each at most once, with a time and notes. Each meal
+    can have up to two "or" options (6.5).
+
+89. **"Suggest an option"** builds a swap from the meal: each food becomes
+    the food of the same group with the closest protein per calorie that
+    suits the preference, sized to the same calories. Small items under 20
+    kcal (chutney, black coffee) stay as they are. If nothing in the group
+    suits (paneer for a vegan), any group is searched.
+
+90. **Targets calculator (6.2).**
+    - BMR: Mifflin-St Jeor, with the midpoint (−78) when sex isn't stated.
+    - TDEE: activity factors 1.2, 1.375, 1.55, 1.725 and 1.9.
+    - Calories: fat loss is 20% under maintenance (never below BMR or 1,200
+      kcal), muscle gain is 300 kcal over, and everything rounds to 50.
+    - Macros: protein is g per kg (2.0 high protein, 1.6 balanced, 1.8
+      keto-light, adjustable), capped at 40% of calories. Fat is 25% (high
+      protein) or 30% (balanced) with carbs taking the rest; keto-light caps
+      carbs at 20% and fat takes the rest. Grams round to 5.
+    - It starts from the member's profile (sex, age, height, latest weight).
+      Activity isn't stored; it is picked in the calculator.
+
+91. **Scaling (6.6)** moves every quantity, options included, by new ÷ old
+    calorie target and rounds to the food's step, never below one step.
+    The name's calorie figure and the macro targets follow. "Duplicate &
+    scale" opens the builder on the unsaved copy. The builder also offers
+    "Scale foods to target" when the plan is more than 5% off its target.
+
+92. **Assigning (6.7)** copies the plan into the member's own snapshot, as
+    programs do.
+    - A start of today, or up to a week back, replaces the running plan at
+      once.
+    - A future start queues the new plan; the current one runs until the
+      day before.
+    - A newer assignment drops an older queued plan.
+    - Plans have no end date; they run until replaced or ended. Earlier
+      plans stay in the history.
+
+93. **No push notifications yet** (as in M3). The member sees "New plan
+    from your coach" on the Diet tab for three days after assigning.
+
+94. **Meals are logged by slot, not by meal row**, so editing a member's
+    plan never orphans what they marked.
+    - Each log stores the calories and macros eaten at the time: eaten is
+      the meal, partly is half, swapped is the chosen option, skipped is 0.
+    - Members can log today and the two days before.
+    - Marks, water and supplements go to an outbox first and upload when
+      online. Like workout logs, they are personal and non-financial, and
+      re-sending is safe because the RPCs upsert. The last tap wins.
+
+95. **Adherence (6.11)** means the meals due that were eaten or swapped,
+    with partly counting half. Past days count every meal in the plan;
+    today counts only what's already marked, so the morning doesn't look
+    bad. "Missed meals" are meals due in the last seven days (before today)
+    that were skipped or never marked. The coach view shows the last 7
+    days, and the chart shows Monday-start weeks with the weekly average
+    weight from measurements on top.
+
+96. **Water (6.9):** the goal is 35 ml per kg in 250 ml glasses, between 6
+    and 16 a day (8 when the weight isn't known). The supplement checklist
+    comes from the plan's supplements, ticked per day.
+
+97. **The water wave runs once per change.** The spec keeps every animation
+    between 120 and 450 ms, so the glass fills with one wave over the
+    expressive token and settles, rather than looping.
+
+98. **Meal reminders (6.10)** are local notifications that repeat daily at
+    each meal's time (IST). Members turn them on from the bell on the Diet
+    tab, and they follow plan changes. There are none on the web.
+
+99. **The grocery list (6.12)** covers 7 days of the meals as written (not
+    the options), using each food's "to buy" ingredients: 1 roti is 30 g of
+    atta, 1 katori of dal is 35 g of dry dal. Amounts read naturally (650 g,
+    1.2 kg, 14 eggs), and the list shares as WhatsApp text.
+
+100. **The medical disclaimer** is on every plan view, the builder, the
+     member's Diet tab, the shared text and the PDF. Members with health
+     conditions (conditions or medicines on the health form, or a yes on
+     the PAR-Q) are flagged in the builder, the assign sheet and the
+     nutrition overview.
+
+101. **Training has two areas.** A Workouts / Diet switch sits in the
+     header. Diet has My members (the nutrition overview, coaches only),
+     Diet plans and Foods.
+
+102. **Hindi text uses a bundled Devanagari font** (Noto Sans Devanagari,
+     OFL) as the fallback for every style. Baloo 2 and Nunito are Latin
+     subsets, and the Hindi interface will need the font anyway.
+
+103. **Not built in M4, planned for later:**
+     - push notifications;
+     - multi-day (weekday-varying) plans;
+     - editing a custom food's grocery ingredients (it buys the food
+       itself);
+     - members logging foods outside their plan.

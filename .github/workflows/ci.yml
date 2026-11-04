@@ -78,6 +78,12 @@ jobs:
       PGPASSWORD: postgres
     steps:
       - uses: actions/checkout@v4
+      - name: Seeds match their sources (foods.csv, starter diet plans)
+        run: |
+          python3 scripts/gen_food_seed.py
+          git diff --exit-code -- supabase
+      - name: USDA importer self-test
+        run: python3 scripts/import_usda_foods.py --self-test
       - run: scripts/test_db.sh
 
   android:

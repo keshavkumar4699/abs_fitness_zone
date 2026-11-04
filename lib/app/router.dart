@@ -25,6 +25,11 @@ import '../features/payments/presentation/expenses_screen.dart';
 import '../features/payments/presentation/invoice_detail_screen.dart';
 import '../features/payments/presentation/payment_history_screen.dart';
 import '../features/payments/presentation/payments_screen.dart';
+import '../features/diet/domain/diet_models.dart';
+import '../features/diet/presentation/diet_builder_screen.dart';
+import '../features/diet/presentation/diet_template_detail_screen.dart';
+import '../features/diet/presentation/food_editor_screen.dart';
+import '../features/diet/presentation/my_diet_screen.dart';
 import '../features/exercises/presentation/custom_exercise_screen.dart';
 import '../features/exercises/presentation/exercise_detail_screen.dart';
 import '../features/exercises/presentation/exercise_library_screen.dart';
@@ -36,13 +41,11 @@ import '../features/workouts/presentation/training_screen.dart';
 import '../features/workouts/presentation/workout_player_screen.dart';
 import '../features/settings/presentation/more_screen.dart';
 import '../features/settings/presentation/team_screen.dart';
-import '../features/shell/coming_soon_screen.dart';
 import '../features/member_home/presentation/member_home_screen.dart';
 import '../features/shell/member_shell.dart';
 import '../features/shell/not_found_screen.dart';
 import '../features/shell/staff_home_screen.dart';
 import '../features/shell/staff_shell.dart';
-import 'l10n/l10n.dart';
 import 'routes.dart';
 
 export 'routes.dart';
@@ -206,6 +209,32 @@ GoRouter router(Ref ref) {
                       ),
                     ],
                   ),
+                  GoRoute(
+                    path: 'diets/new',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => DietBuilderScreen(initial: state.extra as DietTemplate?),
+                  ),
+                  GoRoute(
+                    path: 'diets/:id',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => DietTemplateDetailScreen(templateId: state.pathParameters['id']!),
+                    routes: [
+                      GoRoute(
+                        path: 'edit',
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) => DietBuilderScreen(
+                          templateId: state.pathParameters['id']!,
+                          memberId: state.uri.queryParameters['member'],
+                        ),
+                      ),
+                    ],
+                  ),
+                  GoRoute(path: 'foods/new', parentNavigatorKey: _rootKey, builder: (_, _) => const FoodEditorScreen()),
+                  GoRoute(
+                    path: 'foods/:id/edit',
+                    parentNavigatorKey: _rootKey,
+                    builder: (_, state) => FoodEditorScreen(foodId: state.pathParameters['id']!),
+                  ),
                 ],
               ),
             ],
@@ -244,9 +273,7 @@ GoRouter router(Ref ref) {
               ),
             ],
           ),
-          StatefulShellBranch(
-            routes: [tab(Routes.meDiet, (c) => ComingSoonScreen(title: c.l10n.navDiet, hue: MemberHues.diet))],
-          ),
+          StatefulShellBranch(routes: [tab(Routes.meDiet, (_) => const MyDietScreen())]),
           StatefulShellBranch(routes: [tab(Routes.meProgress, (_) => const MyProgressScreen())]),
           StatefulShellBranch(routes: [tab(Routes.meProfile, (_) => const MemberProfileScreen())]),
         ],

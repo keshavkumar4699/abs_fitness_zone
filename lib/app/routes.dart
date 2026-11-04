@@ -23,6 +23,11 @@ abstract final class Routes {
   static const programNew = '/staff/plans/programs/new';
   static String programDetail(String id) => '/staff/plans/programs/$id';
   static String programEdit(String id) => '/staff/plans/programs/$id/edit';
+  static const dietNew = '/staff/plans/diets/new';
+  static String dietDetail(String id) => '/staff/plans/diets/$id';
+  static String dietEdit(String id) => '/staff/plans/diets/$id/edit';
+  static const foodNew = '/staff/plans/foods/new';
+  static String foodEdit(String id) => '/staff/plans/foods/$id/edit';
   static const staffMore = '/staff/more';
   static const staffTeam = '/staff/more/team';
 
@@ -80,7 +85,7 @@ String? authRedirect({required AsyncValue<AppUser?> auth, required bool onboardi
   if ((location.startsWith(Routes.gymProfile) || location.startsWith(Routes.expenses)) && !user.role.isOwner) {
     return Routes.staffMore;
   }
-  // Building programs and exercises: owner and trainers only.
+  // Building programs, diets, exercises and foods: owner and trainers only.
   if (location.startsWith('${Routes.staffPlans}/') &&
       (location.endsWith('/new') || location.endsWith('/edit')) &&
       user.role != UserRole.owner &&

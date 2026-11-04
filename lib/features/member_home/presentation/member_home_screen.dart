@@ -13,6 +13,8 @@ import '../../../core/utils/phone.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../checkin/presentation/scanner_view.dart';
+import '../../diet/application/diet_providers.dart';
+import '../../diet/presentation/my_diet_screen.dart' show TodayDietCard;
 import '../../members/application/members_providers.dart';
 import '../../members/domain/models.dart';
 import '../../members/presentation/member_ui.dart';
@@ -34,6 +36,11 @@ class MemberHomeScreen extends ConsumerWidget {
     ref.listen(syncWorkoutsProvider, (_, next) {
       final id = user?.memberId;
       if ((next.value ?? 0) > 0 && id != null) ref.refreshWorkouts(id);
+    });
+    // …and meals, water and supplements marked offline.
+    ref.listen(syncDietProvider, (_, next) {
+      final id = user?.memberId;
+      if ((next.value ?? 0) > 0 && id != null) ref.refreshDiet(id);
     });
     return Scaffold(
       body: SafeArea(
@@ -87,6 +94,8 @@ class MemberHomeScreen extends ConsumerWidget {
               if (user?.memberId != null) ...[
                 const SizedBox(height: AbsSpace.x5),
                 TodayWorkoutCard(memberId: user!.memberId!),
+                const SizedBox(height: AbsSpace.x3),
+                TodayDietCard(memberId: user.memberId!),
               ],
             ],
           ),

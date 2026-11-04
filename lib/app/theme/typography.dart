@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 abstract final class AbsFonts {
   static const display = 'Baloo2';
   static const text = 'Nunito';
+
+  /// Devanagari (Hindi) glyphs, which the two families above don't have.
+  static const fallback = ['NotoSansDevanagari'];
 }
 
 /// Type scale. Read through `context.text`.
@@ -26,6 +29,7 @@ class AbsTypography extends ThemeExtension<AbsTypography> {
     const tabular = [FontFeature.tabularFigures()];
     TextStyle style(String family, double size, double lineHeight, FontWeight weight) => TextStyle(
       fontFamily: family,
+      fontFamilyFallback: AbsFonts.fallback,
       fontSize: size,
       height: lineHeight / size,
       fontWeight: weight,
@@ -42,7 +46,12 @@ class AbsTypography extends ThemeExtension<AbsTypography> {
       body: style(AbsFonts.text, 15, 22, FontWeight.w600),
       label: style(AbsFonts.text, 13, 18, FontWeight.w700),
       caption: style(AbsFonts.text, 12, 16, FontWeight.w600),
-      numeric: const TextStyle(fontFamily: AbsFonts.display, fontWeight: FontWeight.w700, fontFeatures: tabular),
+      numeric: const TextStyle(
+        fontFamily: AbsFonts.display,
+        fontFamilyFallback: AbsFonts.fallback,
+        fontWeight: FontWeight.w700,
+        fontFeatures: tabular,
+      ),
     );
   }
 

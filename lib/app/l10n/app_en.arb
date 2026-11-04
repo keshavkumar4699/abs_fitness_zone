@@ -46,9 +46,6 @@
   "navDiet": "Diet",
   "navProgress": "Progress",
   "navProfile": "Profile",
-  "comingSoonTitle": "Warming up!",
-  "comingSoonBody": "This section is doing its stretches and arrives in an upcoming update.",
-  "comingSoonAction": "Back to home",
   "greeting": "Hey {name}!",
   "@greeting": {
     "placeholders": {
@@ -368,7 +365,6 @@
   "transferTitle": "Transfer remaining days",
   "transferPick": "Who gets the days?",
   "transferDone": "Days transferred",
-  "dietSoon": "Diet plans arrive with the Diet update.",
   "progressAdd": "Add measurement",
   "progressEmpty": "No measurements yet",
   "weightTrend": "Weight trend (kg)",
@@ -2077,5 +2073,675 @@
       }
     }
   },
-  "wkEditWorkout": "Edit workout"
+  "wkEditWorkout": "Edit workout",
+  "trainAreaWorkouts": "Workouts",
+  "trainAreaDiet": "Diet",
+  "trainTabDiets": "Diet plans",
+  "trainTabFoods": "Foods",
+  "dietNew": "New diet plan",
+  "foodAdd": "Add food",
+  "dietEmptyMembersBody": "Members assigned to you show up here with their diet plan and how closely they follow it.",
+  "dietNeverLogged": "No meals marked yet",
+  "dietLastLogged": "Last marked {date}",
+  "@dietLastLogged": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dietTodayMarked": "{done} of {total} today",
+  "@dietTodayMarked": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "dietMissedMeals": "{count, plural, =1{1 missed meal} other{{count} missed meals}}",
+  "@dietMissedMeals": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dietHealthFlag": "Health condition",
+  "dietNoPlanShort": "No diet plan",
+  "dietSearchPlans": "Search diet plans",
+  "dietPlansEmptyTitle": "No diet plans",
+  "dietPlansEmptyBody": "Try another search, or build the gym's first plan.",
+  "mealEarlyMorning": "Early morning",
+  "mealBreakfast": "Breakfast",
+  "mealMidMorning": "Mid-morning",
+  "mealLunch": "Lunch",
+  "mealEveningSnack": "Evening snack",
+  "mealPreWorkout": "Pre-workout",
+  "mealPostWorkout": "Post-workout",
+  "mealDinner": "Dinner",
+  "mealBedtime": "Bedtime",
+  "foodCatGrains": "Grains & breads",
+  "foodCatPulses": "Dals & pulses",
+  "foodCatVegetables": "Vegetables",
+  "foodCatFruits": "Fruits",
+  "foodCatDairy": "Dairy",
+  "foodCatEggs": "Eggs",
+  "foodCatMeatFish": "Meat & fish",
+  "foodCatNuts": "Nuts & seeds",
+  "foodCatSnacks": "Snacks",
+  "foodCatSweets": "Sweets",
+  "foodCatDrinks": "Drinks",
+  "foodCatFats": "Ghee & oils",
+  "foodCatCondiments": "Chutneys & extras",
+  "foodCatSupplements": "Supplements",
+  "vegVegan": "Vegan",
+  "vegVeg": "Veg",
+  "vegEgg": "Egg",
+  "vegNonVeg": "Non-veg",
+  "prefVeg": "Vegetarian",
+  "prefEggetarian": "Eggetarian",
+  "prefNonVeg": "Non-vegetarian",
+  "prefVegan": "Vegan",
+  "prefJain": "Jain",
+  "prefAny": "No preference",
+  "dietGoalFatLoss": "Fat loss",
+  "dietGoalMuscleGain": "Muscle gain",
+  "dietGoalMaintenance": "Maintenance",
+  "presetHighProtein": "High protein",
+  "presetKetoLight": "Keto-light",
+  "presetBalanced": "Balanced",
+  "allergyDairy": "Dairy",
+  "allergyGluten": "Gluten",
+  "allergyNuts": "Tree nuts",
+  "allergyPeanut": "Peanuts",
+  "allergySoy": "Soy",
+  "allergyEgg": "Egg",
+  "allergyFish": "Fish",
+  "allergyShellfish": "Shellfish",
+  "allergySesame": "Sesame",
+  "conflictPref": "Not {pref}",
+  "@conflictPref": {
+    "placeholders": {
+      "pref": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictAllergy": "Contains {allergen}",
+  "@conflictAllergy": {
+    "placeholders": {
+      "allergen": {
+        "type": "String"
+      }
+    }
+  },
+  "conflictAvoid": "Avoids {word}",
+  "@conflictAvoid": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "allergicTo": "Allergic to {allergen}",
+  "@allergicTo": {
+    "placeholders": {
+      "allergen": {
+        "type": "String"
+      }
+    }
+  },
+  "avoids": "Avoids {food}",
+  "@avoids": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "unitKatori": "{count, plural, =1{katori} other{katori}}",
+  "@unitKatori": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitRoti": "{count, plural, =1{roti} other{rotis}}",
+  "@unitRoti": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitPiece": "{count, plural, =1{piece} other{pieces}}",
+  "@unitPiece": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitGlass": "{count, plural, =1{glass} other{glasses}}",
+  "@unitGlass": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitCup": "{count, plural, =1{cup} other{cups}}",
+  "@unitCup": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitBowl": "{count, plural, =1{bowl} other{bowls}}",
+  "@unitBowl": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitPlate": "{count, plural, =1{plate} other{plates}}",
+  "@unitPlate": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitSlice": "{count, plural, =1{slice} other{slices}}",
+  "@unitSlice": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitTbsp": "tbsp",
+  "unitTsp": "tsp",
+  "unitScoop": "{count, plural, =1{scoop} other{scoops}}",
+  "@unitScoop": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unitHandful": "{count, plural, =1{handful} other{handfuls}}",
+  "@unitHandful": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dietCalories": "Calories",
+  "dietProtein": "Protein",
+  "dietCarbs": "Carbs",
+  "dietFat": "Fat",
+  "dietP": "P",
+  "dietC": "C",
+  "dietF": "F",
+  "dietProteinG": "Protein (g)",
+  "dietCarbsG": "Carbs (g)",
+  "dietFatG": "Fat (g)",
+  "dietFibreG": "Fibre (g)",
+  "foodSearchHint": "Search {count} foods",
+  "@foodSearchHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foodSuits": "Suits {pref}",
+  "@foodSuits": {
+    "placeholders": {
+      "pref": {
+        "type": "String"
+      }
+    }
+  },
+  "foodNotReviewed": "Not reviewed",
+  "foodNotReviewedCount": "Not reviewed ({count})",
+  "@foodNotReviewedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "foodReviewed": "Reviewed",
+  "foodCustom": "Gym's own",
+  "foodEmptyTitle": "No foods match",
+  "foodEmptyBody": "Try another word or clear the filters.",
+  "foodPerServing": "Per {serving}",
+  "@foodPerServing": {
+    "placeholders": {
+      "serving": {
+        "type": "String"
+      }
+    }
+  },
+  "foodFibre": "Fibre {grams} g",
+  "@foodFibre": {
+    "placeholders": {
+      "grams": {
+        "type": "String"
+      }
+    }
+  },
+  "foodPer100": "Per 100 g: {kcal} kcal, {protein} g protein",
+  "@foodPer100": {
+    "placeholders": {
+      "kcal": {
+        "type": "int"
+      },
+      "protein": {
+        "type": "String"
+      }
+    }
+  },
+  "foodAllergens": "Allergens",
+  "foodToBuy": "To buy for one serving",
+  "foodJainOk": "Jain-friendly",
+  "foodJainHint": "No onion, garlic or root vegetables",
+  "foodMarkReviewed": "Mark as reviewed",
+  "foodReviewedDone": "Marked as reviewed",
+  "foodEdit": "Edit values",
+  "foodRemove": "Remove",
+  "foodRemoved": "Food removed",
+  "foodNewTitle": "New food",
+  "foodEditTitle": "Edit food",
+  "foodSaved": "Food saved",
+  "foodSaveReviewed": "Save and mark reviewed",
+  "foodReviewHint": "These values came with the app and haven't been checked yet. Correct anything that's off for how the gym's members cook it, then save to mark it reviewed.",
+  "foodFieldName": "Name",
+  "foodFieldLocalName": "Hindi name",
+  "foodFieldCategory": "Food group",
+  "foodFieldServing": "Measured in",
+  "foodFieldGrams": "Grams in one {unit}",
+  "@foodFieldGrams": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "foodFieldVeg": "Type",
+  "foodValuesPer100": "Values per 100 {unit}",
+  "@foodValuesPer100": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "foodValuesPerServing": "Values per {unit}",
+  "@foodValuesPerServing": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "foodBadNumber": "Enter a number in range",
+  "foodMismatch": "Protein, carbs and fat add up to about {kcal} kcal. Check the calories.",
+  "@foodMismatch": {
+    "placeholders": {
+      "kcal": {
+        "type": "int"
+      }
+    }
+  },
+  "dietPlan": "Diet plan",
+  "dietMeals": "Meals",
+  "dietMealsCount": "{count, plural, =1{1 meal} other{{count} meals}}",
+  "@dietMealsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dietFoodsCount": "{count, plural, =1{1 food} other{{count} foods}}",
+  "@dietFoodsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dietOr": "Or option {group}",
+  "@dietOr": {
+    "placeholders": {
+      "group": {
+        "type": "int"
+      }
+    }
+  },
+  "dietSupplements": "Supplements",
+  "dietDisclaimer": "This plan is general guidance, not medical advice. If you have a medical condition, are pregnant or take medicines, check with your doctor before changing what you eat.",
+  "dietPlannedVsTarget": "Planned vs target",
+  "dietAssign": "Assign diet",
+  "dietDuplicate": "Duplicate & scale",
+  "dietDuplicateTitle": "Duplicate and scale",
+  "dietDuplicateKcal": "Calories a day for the copy",
+  "dietKcalRange": "Calories must be between 800 and 6,000 a day",
+  "dietRemoveTitle": "Remove {name}?",
+  "@dietRemoveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietRemoveBody": "It disappears from the library. Members already on it keep their own copy.",
+  "dietRemoved": "Plan removed",
+  "medicalFlagTitle": "{name} has a health condition",
+  "@medicalFlagTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalFlagBody": "Check the plan suits them, and ask them to clear diet changes with their doctor.",
+  "dietNewTitle": "New diet plan",
+  "dietEditTitle": "Edit diet plan",
+  "dietEditFor": "{name}'s plan",
+  "@dietEditFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietSaved": "Diet plan saved",
+  "dietNeedsFoods": "Add a food to each meal, or remove the empty ones.",
+  "dietConflictsPlan": "{count, plural, =1{1 food isn't {pref}} other{{count} foods aren't {pref}}}",
+  "@dietConflictsPlan": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "pref": {
+        "type": "String"
+      }
+    }
+  },
+  "dietConflictsMember": "{count, plural, =1{1 food doesn't suit {name}} other{{count} foods don't suit {name}}}",
+  "@dietConflictsMember": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietTargets": "Daily targets",
+  "dietScaleToTarget": "Scale foods to {kcal} kcal",
+  "@dietScaleToTarget": {
+    "placeholders": {
+      "kcal": {
+        "type": "String"
+      }
+    }
+  },
+  "dietPreference": "Diet",
+  "dietAddSupplement": "Add",
+  "dietSupplementName": "Supplement name",
+  "dietAddMeal": "Add a meal",
+  "dietAddFood": "Add food",
+  "dietAddFoods": "{count, plural, =0{Pick foods} =1{Add 1 food} other{Add {count} foods}}",
+  "@dietAddFoods": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dietLess": "Less",
+  "dietMore": "More",
+  "dietAmountGrams": "Amount in grams",
+  "dietAmountServings": "Number of servings",
+  "dietSetTime": "Set time",
+  "dietRemoveMeal": "Remove meal",
+  "dietRemoveOption": "Remove option",
+  "dietSuggestOption": "Suggest an option",
+  "dietAddOption": "Add an option",
+  "dietMealNotes": "Notes for this meal",
+  "targetsTitle": "Targets calculator",
+  "targetsBody": "From BMR (Mifflin-St Jeor) and daily activity: a starting point to adjust as they progress.",
+  "targetsCalculate": "Calculate",
+  "targetsGender": "Sex",
+  "targetsAge": "Age",
+  "targetsHeight": "Height (cm)",
+  "targetsWeight": "Weight (kg)",
+  "targetsActivity": "Activity",
+  "targetsGoal": "Goal",
+  "targetsPreset": "Macro split",
+  "targetsProteinPerKg": "Protein per kg body weight",
+  "targetsNeedProfile": "Enter age, height and weight to calculate.",
+  "targetsBmrTdee": "BMR {bmr} kcal · maintenance {tdee} kcal",
+  "@targetsBmrTdee": {
+    "placeholders": {
+      "bmr": {
+        "type": "String"
+      },
+      "tdee": {
+        "type": "String"
+      }
+    }
+  },
+  "targetsUse": "Use these targets",
+  "activitySedentary": "Sedentary",
+  "activityLight": "Lightly active",
+  "activityModerate": "Moderately active",
+  "activityActive": "Very active",
+  "activityAthlete": "Athlete",
+  "dietPickPlan": "Pick a diet plan",
+  "dietAssignReplaces": "From the start date it replaces their current diet plan. Earlier plans stay in their history.",
+  "assignHealthWarning": "{name}: {conditions}. Check the plan suits them.",
+  "@assignHealthWarning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "conditions": {
+        "type": "String"
+      }
+    }
+  },
+  "assignFoodsWarning": "{count, plural, =1{{name}: 1 food doesn't suit their preferences} other{{name}: {count} foods don't suit their preferences}}",
+  "@assignFoodsWarning": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietPrivate": "Diet plans and logs are private: only the member's trainer and the owner can see them.",
+  "dietNoPlanTitle": "No diet plan yet",
+  "dietNoPlanStaffBody": "Pick a plan from the library and adjust it to their targets.",
+  "dietNoPlanBody": "Your trainer will add one. You can still track water.",
+  "dietNoPlanThatDay": "There was no plan on this day.",
+  "dietStatusActive": "Running",
+  "dietStatusQueued": "Starts later",
+  "dietStatusReplaced": "Replaced",
+  "dietStatusEnded": "Ended",
+  "dietStarts": "Starts {date}",
+  "@dietStarts": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dietSince": "Since {date}",
+  "@dietSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dietTune": "Adjust their plan",
+  "dietEnd": "End plan",
+  "dietEndTitle": "End {name}?",
+  "@dietEndTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietEndBody": "The member stops seeing this plan. What they logged stays.",
+  "dietEnded": "Plan ended",
+  "dietToday": "Today",
+  "dietHistory": "Earlier plans",
+  "dietWeeklyAdherence": "On plan, week by week",
+  "dietThisWeek": "This week",
+  "dietAdherence": "Meals on plan",
+  "dietWeightRange": "Weight {min}–{max} kg",
+  "@dietWeightRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "dietCoachNotes": "Coach notes",
+  "dietNoNotes": "No notes yet.",
+  "dietAddNote": "Add a note for the member",
+  "waterAverage": "Water {avg} of {goal} a day",
+  "@waterAverage": {
+    "placeholders": {
+      "avg": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "prefsTitle": "Food preferences",
+  "prefsAllergies": "Allergies",
+  "prefsAvoid": "Foods to avoid",
+  "prefsAvoidHint": "Foods to avoid, separated by commas",
+  "prefsSaved": "Preferences saved",
+  "dietDayToday": "Today",
+  "dietDayYesterday": "Yesterday",
+  "dietNewPlan": "New plan from your coach: {name}",
+  "@dietNewPlan": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "dietStartsOn": "{name} starts {date}",
+  "@dietStartsOn": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "dietWeekOnPlan": "{percent}% this week",
+  "@dietWeekOnPlan": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dietMarkedOf": "{done} of {total} meals marked",
+  "@dietMarkedOf": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "dietAllMarked": "All meals marked today",
+  "dietNextMeal": "Next: {meal} at {time}",
+  "@dietNextMeal": {
+    "placeholders": {
+      "meal": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "meTodayMeals": "Today's meals",
+  "markEaten": "Eaten",
+  "markPartly": "Partly",
+  "markSkipped": "Skipped",
+  "markSwapped": "Swapped",
+  "markSwappedTo": "Swapped: {option}",
+  "@markSwappedTo": {
+    "placeholders": {
+      "option": {
+        "type": "String"
+      }
+    }
+  },
+  "markClear": "Clear",
+  "waterTitle": "Water",
+  "waterGlasses": "{glasses} of {goal} glasses",
+  "@waterGlasses": {
+    "placeholders": {
+      "glasses": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "waterGoalHint": "One glass is 250 ml. Your goal comes from your weight.",
+  "waterAdd": "Add a glass",
+  "waterRemove": "Remove a glass",
+  "remindersOn": "Remind me at meal times",
+  "remindersOff": "Turn off meal reminders",
+  "remindersOnDone": "Meal reminders on",
+  "remindersOffDone": "Meal reminders off",
+  "reminderTitle": "Time for {meal}",
+  "@reminderTitle": {
+    "placeholders": {
+      "meal": {
+        "type": "String"
+      }
+    }
+  },
+  "groceryTitle": "Grocery list",
+  "groceryFor7Days": "For 7 days of the plan as written (not the \"or\" options).",
+  "groceryShare": "Share on WhatsApp",
+  "dietPlanName": "Plan name"
 }
