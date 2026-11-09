@@ -35,3 +35,11 @@ verify_jwt = true
 
 [functions.razorpay-webhook]
 verify_jwt = false
+
+# WhatsApp API mode (F8). Both check their own secret: the cron secret or a
+# desk JWT for send, Meta's signature for the webhook.
+[functions.whatsapp-send]
+verify_jwt = false
+
+[functions.whatsapp-webhook]
+verify_jwt = false
