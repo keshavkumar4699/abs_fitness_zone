@@ -5,11 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:printing/printing.dart';
 
 import '../../../app/l10n/l10n.dart';
-import '../../../core/services/contact_links.dart';
 import '../../../core/utils/money.dart';
 import '../../../core/widgets/widgets.dart';
 import '../application/payments_providers.dart';
 import '../application/receipt_pdf.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
 import '../data/payments_repository.dart';
 import '../domain/payment_models.dart';
 
@@ -69,12 +69,15 @@ Future<void> whatsappReceipt(
   required String name,
   required int amountPaise,
   required String receiptNo,
+  String? memberId,
 }) async {
   final l = context.l10n;
   final profile = await ref.read(billingProfileProvider.future);
-  await ContactLinks.openWhatsApp(
-    phone,
+  await ref.sendWhatsApp(
+    memberId: memberId,
+    phone: phone,
     text: l.receiptWhatsAppText(name.split(' ').first, Money.format(amountPaise), profile.gymName, receiptNo),
+    replaces: 'payment_received',
   );
 }
 

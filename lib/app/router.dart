@@ -46,6 +46,13 @@ import '../features/shell/member_shell.dart';
 import '../features/shell/not_found_screen.dart';
 import '../features/shell/staff_home_screen.dart';
 import '../features/shell/staff_shell.dart';
+import '../features/whatsapp/domain/whatsapp_models.dart';
+import '../features/whatsapp/presentation/broadcast_screen.dart';
+import '../features/whatsapp/presentation/festivals_screen.dart';
+import '../features/whatsapp/presentation/message_log_view.dart';
+import '../features/whatsapp/presentation/templates_screen.dart';
+import '../features/whatsapp/presentation/whatsapp_screen.dart';
+import '../features/whatsapp/presentation/whatsapp_settings_screen.dart';
 import 'routes.dart';
 
 export 'routes.dart';
@@ -250,6 +257,26 @@ GoRouter router(Ref ref) {
                   GoRoute(path: 'check-in-qr', builder: (_, _) => const GymQrScreen()),
                   GoRoute(path: 'gym-profile', builder: (_, _) => const GymProfileScreen()),
                   GoRoute(path: 'expenses', builder: (_, _) => const ExpensesScreen()),
+                  GoRoute(
+                    path: 'whatsapp',
+                    builder: (_, state) =>
+                        WhatsAppScreen(initialTab: int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0),
+                    routes: [
+                      GoRoute(path: 'templates', builder: (_, _) => const TemplatesScreen()),
+                      GoRoute(path: 'festivals', builder: (_, _) => const FestivalsScreen()),
+                      GoRoute(path: 'settings', builder: (_, _) => const WhatsAppSettingsScreen()),
+                      GoRoute(
+                        path: 'broadcast',
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) => BroadcastScreen(initialSegment: state.extra as Segment?),
+                      ),
+                      GoRoute(
+                        path: 'member/:id',
+                        parentNavigatorKey: _rootKey,
+                        builder: (_, state) => MemberMessagesScreen(memberId: state.pathParameters['id']!),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],

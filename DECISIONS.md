@@ -646,3 +646,108 @@ it here, and continue. Newest entries go at the bottom of each milestone.
      The muscles and their names are unchanged. A tap that lands just
      beside a small muscle still selects it, and the library shows the
      figure larger.
+
+## M5 WhatsApp
+
+106. **One queue, two ways to send.** Every WhatsApp message, automatic or
+     by hand, is a row in `message_queue` with its channel: `link` (free
+     mode: staff send it from the gym's phone with a wa.me link) or `api`
+     (the Meta Cloud API sends it). Free mode is the default and needs no
+     setup. Switching to API mode in Settings changes only where new
+     messages go. The templates, the queue and the log stay the same.
+
+107. **When messages are built and sent.** The daily job at 07:30 IST builds
+     expiry and fee reminders, birthday wishes and festival wishes, all
+     timed for 09:00 IST. Confirmations (payment received, welcome,
+     renewal, a new workout or diet plan) are queued the moment the event
+     happens. In API mode a scheduled call sends what is due every 15
+     minutes between 08:30 and 20:30 IST (README), so nothing goes out at
+     night. The front desk can also tap **Send now**.
+
+108. **The spec's limits are enforced in one place (`_enqueue`).** A member
+     gets the same template at most once in 24 hours, and at most one
+     marketing message (wishes, offers) per IST day. The birthday is built
+     before festivals, so on a festival birthday the member gets the
+     birthday wish. Running the job again adds nothing, because every
+     automatic message has a key.
+
+109. **Who gets messages.** A member is messaged only with WhatsApp consent
+     (`consent_whatsapp_at`, captured at signup), with WhatsApp not turned
+     off, with a phone number, and when not archived. Members turn it off
+     in their profile or by replying STOP (also UNSUBSCRIBE, STOP ALL or
+     बंद); START turns it back on. The desk can switch it for a member.
+     Turning it off cancels anything still waiting, and the member's
+     history shows the change once.
+
+110. **The free-mode tick is the staff member's word.** WhatsApp doesn't tell
+     the app whether the message was really sent. Tapping **Send** opens
+     WhatsApp with the text, and coming back to the app ticks the row as
+     sent. Opening the next message also ticks the previous one, for
+     computers where the app never leaves the screen. Each tick can be
+     undone that day, and a row can be skipped instead.
+
+111. **Messages sent by hand are logged, never doubled.** The WhatsApp
+     buttons elsewhere in the app now record what they send. Those are
+     the member detail, the member list, Needs action, receipts, fee
+     reminders and sharing a plan. When a queued message for the same
+     purpose is waiting (for example, today's fee reminder), that row is
+     ticked instead of adding a second one.
+
+112. **API mode sends only what Meta allows.** Outside the 24-hour window
+     only an approved template can be sent. Each template has a **Meta
+     template name** field, and its variables become {{1}}, {{2}}… in the
+     order they appear, which the template editor shows for copying into
+     WhatsApp Manager. A message with no approved template (a broadcast's
+     own text, say) is sent as free text inside the window. Otherwise it
+     moves to the free-mode list at once. Any other failure is retried
+     once and then moved too. A refused access token stops the run and
+     leaves the rest queued for the next one.
+
+113. **The 24-hour window is used, not waited for (8.11).** When a member
+     writes to the gym, the webhook records it and sends their utility
+     messages due in the next 24 hours right away, as free text. Any
+     message to a member inside the window goes as free text.
+
+114. **The cost meter is an estimate.** It multiplies this month's API sends
+     by per-message prices the owner can edit (defaults ₹0.145 utility,
+     ₹0.785 marketing). Messages sent inside the window and by hand count
+     as free. Once marketing spend reaches the monthly cap (default ₹200),
+     marketing that is due moves to the free-mode list. Staff can still
+     send it by hand that day, instead of it going out late next month.
+
+115. **A message is for its day.** When the next morning's queue is built,
+     automatic messages still unsent from earlier days are cancelled ("not
+     sent on the day"). That way no late birthday wish or stale reminder
+     sits beside today's. Receipts and broadcasts stay until sent or
+     skipped.
+
+116. **Templates are the twelve automatic messages, in English and Hindi.**
+     The owner edits their text, Meta name and on/off. Each member gets
+     the template in their own language, falling back to English. The
+     front desk can read templates. Broadcasts carry their own text
+     instead of a template.
+
+117. **Segments (8.8)** are: everyone, active, ending in 7 days, expired
+     30–90 days ago, with fees due, a trainer's members, a batch, or
+     members picked in the list (bulk WhatsApp, 1.14). The composer shows
+     how many members the message reaches before it is queued.
+
+118. **Festival dates are the owner's to check.** The calendar is seeded
+     with one year of festivals (Chhath Puja to Diwali 2027), with Hindi
+     names for Hindi messages. Lunar dates move every year, and Eid
+     depends on the moon, so Eid starts switched off. A festival can carry
+     its own message and go to everyone or active members only.
+
+119. **Trainers stay out of WhatsApp screens.** Messages carry fees and
+     phone numbers, so the queue, log, broadcasts and templates are for the
+     front desk and the owner. Settings and the cost meter are the
+     owner's. Trainers can still send a member their plan from the plan's
+     share menu, and it is logged.
+
+120. **Not built in M5, planned for later:**
+     - the personalised birthday image card (8.5 says optional);
+     - the receipt PDF as a link (receipts send the text; the PDF is shared
+       from the app);
+     - Hindi translations of the app's own screens (the Hindi WhatsApp
+       messages are done);
+     - AI-drafted broadcast text (F7 7.9).

@@ -4410,4 +4410,618 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exPlayMotion => 'Tap to play';
+
+  @override
+  String get bulkWhatsApp => 'WhatsApp';
+
+  @override
+  String get waTitle => 'WhatsApp';
+
+  @override
+  String get waMoreSubtitle => 'Today\'s messages, broadcasts and templates';
+
+  @override
+  String get waTabQueue => 'To send';
+
+  @override
+  String get waTabLog => 'Log';
+
+  @override
+  String get waTabBroadcasts => 'Broadcasts';
+
+  @override
+  String get waModeFree => 'Free mode';
+
+  @override
+  String get waModeApi => 'API mode';
+
+  @override
+  String get waModeFreeBody => 'Each message opens in your WhatsApp, ready to send.';
+
+  @override
+  String get waModeApiBody => 'Approved templates send automatically.';
+
+  @override
+  String get waNewBroadcast => 'Broadcast';
+
+  @override
+  String waQueueLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count to send',
+      one: '1 to send',
+      zero: 'All sent',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String waQueueLeftMore(int count) {
+    return '$count+ to send';
+  }
+
+  @override
+  String waSendNext(String name, int left) {
+    return 'Send to $name · $left left';
+  }
+
+  @override
+  String get waSend => 'Send';
+
+  @override
+  String get waSkip => 'Skip';
+
+  @override
+  String get waMarkSent => 'Mark sent';
+
+  @override
+  String waMarkedSent(String name) {
+    return 'Ticked: sent to $name';
+  }
+
+  @override
+  String waMarkedSkipped(String name) {
+    return 'Skipped $name';
+  }
+
+  @override
+  String get waQueueEmptyTitle => 'Nothing to send';
+
+  @override
+  String get waQueueEmptyBody => 'Today\'s reminders, wishes and receipts show up here, ready to send one by one.';
+
+  @override
+  String get waBuildToday => 'Check for today\'s reminders';
+
+  @override
+  String waBuilt(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new reminders',
+      one: '1 new reminder',
+      zero: 'No new reminders',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get waNoWhatsApp => 'Couldn\'t open WhatsApp on this device.';
+
+  @override
+  String get waApiQueueNote => 'API mode is on. These are messages the API couldn\'t send: send them by hand.';
+
+  @override
+  String get waSendNow => 'Send now';
+
+  @override
+  String get waSendNowDone => 'Sending the due messages';
+
+  @override
+  String get waLogAll => 'All';
+
+  @override
+  String get waLogQueued => 'Queued';
+
+  @override
+  String get waLogSent => 'Sent';
+
+  @override
+  String get waLogFailed => 'Failed';
+
+  @override
+  String get waLogSkipped => 'Skipped';
+
+  @override
+  String get waStatusQueued => 'Queued';
+
+  @override
+  String get waStatusSending => 'Sending';
+
+  @override
+  String get waStatusSent => 'Sent';
+
+  @override
+  String get waStatusDelivered => 'Delivered';
+
+  @override
+  String get waStatusRead => 'Read';
+
+  @override
+  String get waStatusFailed => 'Failed';
+
+  @override
+  String get waStatusSkipped => 'Skipped';
+
+  @override
+  String get waStatusCancelled => 'Cancelled';
+
+  @override
+  String get waChannelLink => 'By hand';
+
+  @override
+  String get waChannelApi => 'API';
+
+  @override
+  String get waFreeWindow => 'Free: the member wrote in the last 24 hours';
+
+  @override
+  String get waLogEmptyTitle => 'No messages yet';
+
+  @override
+  String get waLogEmptyBody => 'Every WhatsApp message to members is listed here with its status.';
+
+  @override
+  String get waMemberMessages => 'Message log';
+
+  @override
+  String waMemberMessagesOf(String name) {
+    return '$name\'s messages';
+  }
+
+  @override
+  String get waKeyExpirySoon => 'Membership ending soon';
+
+  @override
+  String get waKeyExpiryToday => 'Membership ends today';
+
+  @override
+  String get waKeyExpired => 'Membership ended';
+
+  @override
+  String get waKeyDues => 'Fee reminder';
+
+  @override
+  String get waKeyPayment => 'Payment received';
+
+  @override
+  String get waKeyMembershipStarted => 'Welcome';
+
+  @override
+  String get waKeyMembershipRenewed => 'Renewal thanks';
+
+  @override
+  String get waKeyProgram => 'New workout program';
+
+  @override
+  String get waKeyDiet => 'New diet plan';
+
+  @override
+  String get waKeyBirthday => 'Birthday wishes';
+
+  @override
+  String get waKeyFestival => 'Festival wishes';
+
+  @override
+  String get waKeyManual => 'Sent by hand';
+
+  @override
+  String get waKeyBroadcast => 'Broadcast';
+
+  @override
+  String get waTodayTitle => 'WhatsApp today';
+
+  @override
+  String waTodayBody(int toSend, int sent) {
+    return '$toSend to send · $sent sent';
+  }
+
+  @override
+  String get waTodayAllDone => 'All of today\'s messages are sent.';
+
+  @override
+  String get waBroadcastTitle => 'New broadcast';
+
+  @override
+  String get waBroadcastName => 'Title (only staff see it)';
+
+  @override
+  String get waBroadcastMessage => 'Message';
+
+  @override
+  String get waInsertVariable => 'Tap to add a detail that changes per member:';
+
+  @override
+  String get waCategory => 'Type';
+
+  @override
+  String get waCategoryMarketing => 'Offer or wishes';
+
+  @override
+  String get waCategoryUtility => 'Gym update';
+
+  @override
+  String get waCategoryHelp =>
+      'Gym updates (timings, closures) are utility messages. Offers and wishes are marketing: each member gets at most one a day.';
+
+  @override
+  String get waSegment => 'Send to';
+
+  @override
+  String get waSegAll => 'Everyone';
+
+  @override
+  String get waSegActive => 'Active members';
+
+  @override
+  String get waSegExpiring => 'Ending in 7 days';
+
+  @override
+  String get waSegExpired => 'Expired 30–90 days ago';
+
+  @override
+  String get waSegDues => 'With fees due';
+
+  @override
+  String get waSegTrainer => 'A trainer\'s members';
+
+  @override
+  String waSegTrainerNamed(String name) {
+    return '$name\'s members';
+  }
+
+  @override
+  String get waSegBatch => 'A batch';
+
+  @override
+  String waSegMembers(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count selected members',
+      one: '1 selected member',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String waReach(int reachable, int total) {
+    return '$reachable of $total members get it';
+  }
+
+  @override
+  String get waReachNote => 'Members who turned WhatsApp off, or never agreed to it, are skipped.';
+
+  @override
+  String get waSchedule => 'When';
+
+  @override
+  String get waScheduleNow => 'Now';
+
+  @override
+  String get waSchedulePick => 'Pick a day';
+
+  @override
+  String waScheduleOn(String date) {
+    return '$date, 9:00 am';
+  }
+
+  @override
+  String get waPreview => 'Preview';
+
+  @override
+  String get waPreviewEmpty => 'Your message shows here as members will see it.';
+
+  @override
+  String get waSampleName => 'Riya';
+
+  @override
+  String get waQueueBroadcast => 'Queue messages';
+
+  @override
+  String waQueueBroadcastN(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Queue $count messages',
+      one: 'Queue 1 message',
+      zero: 'No one to send to',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String waBroadcastQueued(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count messages queued',
+      one: '1 message queued',
+      zero: 'No one to send to',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String waBroadcastSkipped(int count) {
+    return '$count skipped';
+  }
+
+  @override
+  String waBroadcastDone(int queued, int skipped) {
+    return '$queued queued · $skipped skipped';
+  }
+
+  @override
+  String get waBroadcastsEmptyTitle => 'No broadcasts yet';
+
+  @override
+  String get waBroadcastsEmptyBody => 'Send one message to a group: new timings, a holiday, an offer.';
+
+  @override
+  String get waNeedTitle => 'Add a name';
+
+  @override
+  String get waNeedMessage => 'Write the message';
+
+  @override
+  String get waTemplatesTitle => 'Templates';
+
+  @override
+  String get waTemplatesEmptyTitle => 'No templates';
+
+  @override
+  String get waTemplatesEmptyBody => 'The automatic messages appear here once the database is set up.';
+
+  @override
+  String get waTemplateReadOnly => 'Only the owner can change templates.';
+
+  @override
+  String get waTemplateEnglish => 'English';
+
+  @override
+  String get waTemplateHindi => 'Hindi';
+
+  @override
+  String get waTemplateOff => 'Off';
+
+  @override
+  String get waTemplateUtility => 'Utility';
+
+  @override
+  String get waTemplateMarketing => 'Marketing';
+
+  @override
+  String get waTemplateTitle => 'Name';
+
+  @override
+  String get waTemplateText => 'Message';
+
+  @override
+  String get waTemplatePreview => 'Preview with a sample member';
+
+  @override
+  String get waTemplateEnabled => 'Send this message';
+
+  @override
+  String get waTemplateMetaName => 'Meta template name (API mode)';
+
+  @override
+  String get waTemplateMetaHelp =>
+      'The approved template\'s name in WhatsApp Manager. Register it with this text (tap to copy):';
+
+  @override
+  String get waTemplateSaved => 'Template saved';
+
+  @override
+  String get waCopied => 'Copied';
+
+  @override
+  String get waFestivalsTitle => 'Festival calendar';
+
+  @override
+  String get waFestivalsNote =>
+      'Wishes go out at 9:00 am on the day. Lunar festivals move every year: check the dates.';
+
+  @override
+  String get waFestivalAdd => 'Add festival';
+
+  @override
+  String get waFestivalName => 'Festival';
+
+  @override
+  String get waFestivalLocalName => 'Hindi name (for Hindi messages)';
+
+  @override
+  String get waFestivalDate => 'Date';
+
+  @override
+  String get waFestivalMessage => 'Own message (optional)';
+
+  @override
+  String get waFestivalMessageHelp => 'Leave empty to use the festival wishes template.';
+
+  @override
+  String get waFestivalOn => 'Send wishes';
+
+  @override
+  String get waFestivalMarketingNote =>
+      'Festival wishes are marketing messages: a member who already got one that day is skipped.';
+
+  @override
+  String get waFestivalDelete => 'Remove festival';
+
+  @override
+  String get waFestivalSaved => 'Festival saved';
+
+  @override
+  String get waFestivalPast => 'Done';
+
+  @override
+  String waFestivalIn(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'In $days days',
+      one: 'Tomorrow',
+      zero: 'Today',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get waFestivalsEmptyTitle => 'No festivals';
+
+  @override
+  String get waFestivalsEmptyBody => 'Add the festivals your members celebrate.';
+
+  @override
+  String get waSettingsTitle => 'WhatsApp settings';
+
+  @override
+  String get waModeTitle => 'How messages are sent';
+
+  @override
+  String get waModeFreeHelp =>
+      'Free: each message opens in the gym\'s WhatsApp with the text ready, and staff tap send. Nothing to set up.';
+
+  @override
+  String get waModeApiHelp =>
+      'API: approved templates go out automatically through Meta\'s WhatsApp Cloud API. Needs the API keys in Supabase (see the README). Anything the API can\'t send moves to the To send list.';
+
+  @override
+  String get waExpiryDays => 'Membership reminders';
+
+  @override
+  String get waOnTheDay => 'On the day';
+
+  @override
+  String waDaysBefore(int days) {
+    String _temp0 = intl.Intl.pluralLogic(days, locale: localeName, other: '$days days before', one: '1 day before');
+    return '$_temp0';
+  }
+
+  @override
+  String waDaysAfter(int days) {
+    String _temp0 = intl.Intl.pluralLogic(days, locale: localeName, other: '$days days after', one: '1 day after');
+    return '$_temp0';
+  }
+
+  @override
+  String get waAddDay => 'Add a day';
+
+  @override
+  String get waDayPrompt => 'Days before the end date (use a minus for after, e.g. -5)';
+
+  @override
+  String get waAutomations => 'Automatic messages';
+
+  @override
+  String get waAutoExpiry => 'Membership reminders';
+
+  @override
+  String get waAutoDues => 'Fee reminders with the pay link';
+
+  @override
+  String get waAutoBirthday => 'Birthday wishes';
+
+  @override
+  String get waAutoFestival => 'Festival wishes';
+
+  @override
+  String get waAutoPayment => 'Payment received';
+
+  @override
+  String get waAutoMembership => 'Welcome and renewal thanks';
+
+  @override
+  String get waAutoPlan => 'New workout and diet plans';
+
+  @override
+  String get waCostTitle => 'This month';
+
+  @override
+  String get waCostUtility => 'Utility (API)';
+
+  @override
+  String get waCostMarketing => 'Marketing (API)';
+
+  @override
+  String get waCostFree => 'Free in the 24-hour window';
+
+  @override
+  String get waCostLink => 'Sent by hand (free)';
+
+  @override
+  String waCostMessages(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count messages', one: '1 message');
+    return '$_temp0';
+  }
+
+  @override
+  String get waCostTotal => 'Estimated spend';
+
+  @override
+  String get waCap => 'Monthly marketing cap';
+
+  @override
+  String get waCapHelp =>
+      'Marketing messages pause for the rest of the month once their spend reaches this. 0 = no cap.';
+
+  @override
+  String get waCapPaused => 'Cap reached: marketing messages are paused until next month.';
+
+  @override
+  String waCapUsed(String used, String cap) {
+    return '$used of $cap marketing cap used';
+  }
+
+  @override
+  String get waPrices => 'Meta\'s price per message';
+
+  @override
+  String get waPriceUtility => 'Utility (₹)';
+
+  @override
+  String get waPriceMarketing => 'Marketing (₹)';
+
+  @override
+  String get waPricesHelp => 'Used only for the estimate. Check Meta\'s current prices for India.';
+
+  @override
+  String get waBadAmount => 'Enter an amount';
+
+  @override
+  String get waSaved => 'WhatsApp settings saved';
+
+  @override
+  String get waOptIn => 'WhatsApp messages';
+
+  @override
+  String get waOptInBody => 'Reminders, receipts and wishes from the gym';
+
+  @override
+  String get waOptedOut => 'Turned off: no WhatsApp messages from the gym.';
+
+  @override
+  String get waOptInDone => 'WhatsApp messages turned on';
+
+  @override
+  String get waOptOutDone => 'WhatsApp messages turned off';
+
+  @override
+  String waSendTo(String name) {
+    return 'Send on WhatsApp to $name';
+  }
 }

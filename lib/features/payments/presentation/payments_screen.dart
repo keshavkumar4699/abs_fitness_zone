@@ -7,7 +7,6 @@ import '../../../app/l10n/l10n.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
-import '../../../core/services/contact_links.dart';
 import '../../../core/utils/dates.dart';
 import '../../../core/utils/money.dart';
 import '../../../core/widgets/widgets.dart';
@@ -15,6 +14,7 @@ import '../../auth/application/auth_providers.dart';
 import '../../auth/domain/app_user.dart';
 import '../../shell/staff_shell.dart' show StaffHues;
 import '../application/payments_providers.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
 import '../data/payments_repository.dart';
 import '../domain/payment_models.dart';
 import 'collect_sheet.dart';
@@ -382,8 +382,9 @@ Future<void> showRemindersSheet(BuildContext context, List<DueReminder> list) =>
                                   ),
                                   amountPaise: r.balancePaise,
                                 );
-                          ContactLinks.openWhatsApp(
-                            r.memberPhone!,
+                          ref.sendWhatsApp(
+                            memberId: r.memberId,
+                            phone: r.memberPhone!,
                             text: duesReminderText(
                               l,
                               name: r.memberName,
@@ -392,6 +393,7 @@ Future<void> showRemindersSheet(BuildContext context, List<DueReminder> list) =>
                               gym: profile?.gymName ?? l.gymName,
                               upiLink: link,
                             ),
+                            replaces: 'dues_reminder',
                           );
                         },
                       ),

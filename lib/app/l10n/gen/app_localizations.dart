@@ -7729,6 +7729,1044 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to play'**
   String get exPlayMotion;
+
+  /// No description provided for @bulkWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get bulkWhatsApp;
+
+  /// No description provided for @waTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get waTitle;
+
+  /// No description provided for @waMoreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s messages, broadcasts and templates'**
+  String get waMoreSubtitle;
+
+  /// No description provided for @waTabQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'To send'**
+  String get waTabQueue;
+
+  /// No description provided for @waTabLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Log'**
+  String get waTabLog;
+
+  /// No description provided for @waTabBroadcasts.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcasts'**
+  String get waTabBroadcasts;
+
+  /// No description provided for @waModeFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free mode'**
+  String get waModeFree;
+
+  /// No description provided for @waModeApi.
+  ///
+  /// In en, this message translates to:
+  /// **'API mode'**
+  String get waModeApi;
+
+  /// No description provided for @waModeFreeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Each message opens in your WhatsApp, ready to send.'**
+  String get waModeFreeBody;
+
+  /// No description provided for @waModeApiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved templates send automatically.'**
+  String get waModeApiBody;
+
+  /// No description provided for @waNewBroadcast.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcast'**
+  String get waNewBroadcast;
+
+  /// No description provided for @waQueueLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{All sent} =1{1 to send} other{{count} to send}}'**
+  String waQueueLeft(int count);
+
+  /// No description provided for @waQueueLeftMore.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}+ to send'**
+  String waQueueLeftMore(int count);
+
+  /// No description provided for @waSendNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to {name} · {left} left'**
+  String waSendNext(String name, int left);
+
+  /// No description provided for @waSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get waSend;
+
+  /// No description provided for @waSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get waSkip;
+
+  /// No description provided for @waMarkSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark sent'**
+  String get waMarkSent;
+
+  /// No description provided for @waMarkedSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticked: sent to {name}'**
+  String waMarkedSent(String name);
+
+  /// No description provided for @waMarkedSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped {name}'**
+  String waMarkedSkipped(String name);
+
+  /// No description provided for @waQueueEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to send'**
+  String get waQueueEmptyTitle;
+
+  /// No description provided for @waQueueEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s reminders, wishes and receipts show up here, ready to send one by one.'**
+  String get waQueueEmptyBody;
+
+  /// No description provided for @waBuildToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for today\'s reminders'**
+  String get waBuildToday;
+
+  /// No description provided for @waBuilt.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No new reminders} =1{1 new reminder} other{{count} new reminders}}'**
+  String waBuilt(int count);
+
+  /// No description provided for @waNoWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open WhatsApp on this device.'**
+  String get waNoWhatsApp;
+
+  /// No description provided for @waApiQueueNote.
+  ///
+  /// In en, this message translates to:
+  /// **'API mode is on. These are messages the API couldn\'t send: send them by hand.'**
+  String get waApiQueueNote;
+
+  /// No description provided for @waSendNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Send now'**
+  String get waSendNow;
+
+  /// No description provided for @waSendNowDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending the due messages'**
+  String get waSendNowDone;
+
+  /// No description provided for @waLogAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get waLogAll;
+
+  /// No description provided for @waLogQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get waLogQueued;
+
+  /// No description provided for @waLogSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get waLogSent;
+
+  /// No description provided for @waLogFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get waLogFailed;
+
+  /// No description provided for @waLogSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get waLogSkipped;
+
+  /// No description provided for @waStatusQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get waStatusQueued;
+
+  /// No description provided for @waStatusSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending'**
+  String get waStatusSending;
+
+  /// No description provided for @waStatusSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get waStatusSent;
+
+  /// No description provided for @waStatusDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get waStatusDelivered;
+
+  /// No description provided for @waStatusRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Read'**
+  String get waStatusRead;
+
+  /// No description provided for @waStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get waStatusFailed;
+
+  /// No description provided for @waStatusSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get waStatusSkipped;
+
+  /// No description provided for @waStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get waStatusCancelled;
+
+  /// No description provided for @waChannelLink.
+  ///
+  /// In en, this message translates to:
+  /// **'By hand'**
+  String get waChannelLink;
+
+  /// No description provided for @waChannelApi.
+  ///
+  /// In en, this message translates to:
+  /// **'API'**
+  String get waChannelApi;
+
+  /// No description provided for @waFreeWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Free: the member wrote in the last 24 hours'**
+  String get waFreeWindow;
+
+  /// No description provided for @waLogEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages yet'**
+  String get waLogEmptyTitle;
+
+  /// No description provided for @waLogEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every WhatsApp message to members is listed here with its status.'**
+  String get waLogEmptyBody;
+
+  /// No description provided for @waMemberMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Message log'**
+  String get waMemberMessages;
+
+  /// No description provided for @waMemberMessagesOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s messages'**
+  String waMemberMessagesOf(String name);
+
+  /// No description provided for @waKeyExpirySoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership ending soon'**
+  String get waKeyExpirySoon;
+
+  /// No description provided for @waKeyExpiryToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership ends today'**
+  String get waKeyExpiryToday;
+
+  /// No description provided for @waKeyExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership ended'**
+  String get waKeyExpired;
+
+  /// No description provided for @waKeyDues.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee reminder'**
+  String get waKeyDues;
+
+  /// No description provided for @waKeyPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get waKeyPayment;
+
+  /// No description provided for @waKeyMembershipStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get waKeyMembershipStarted;
+
+  /// No description provided for @waKeyMembershipRenewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Renewal thanks'**
+  String get waKeyMembershipRenewed;
+
+  /// No description provided for @waKeyProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'New workout program'**
+  String get waKeyProgram;
+
+  /// No description provided for @waKeyDiet.
+  ///
+  /// In en, this message translates to:
+  /// **'New diet plan'**
+  String get waKeyDiet;
+
+  /// No description provided for @waKeyBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday wishes'**
+  String get waKeyBirthday;
+
+  /// No description provided for @waKeyFestival.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival wishes'**
+  String get waKeyFestival;
+
+  /// No description provided for @waKeyManual.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent by hand'**
+  String get waKeyManual;
+
+  /// No description provided for @waKeyBroadcast.
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcast'**
+  String get waKeyBroadcast;
+
+  /// No description provided for @waTodayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp today'**
+  String get waTodayTitle;
+
+  /// No description provided for @waTodayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{toSend} to send · {sent} sent'**
+  String waTodayBody(int toSend, int sent);
+
+  /// No description provided for @waTodayAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'All of today\'s messages are sent.'**
+  String get waTodayAllDone;
+
+  /// No description provided for @waBroadcastTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New broadcast'**
+  String get waBroadcastTitle;
+
+  /// No description provided for @waBroadcastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Title (only staff see it)'**
+  String get waBroadcastName;
+
+  /// No description provided for @waBroadcastMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get waBroadcastMessage;
+
+  /// No description provided for @waInsertVariable.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add a detail that changes per member:'**
+  String get waInsertVariable;
+
+  /// No description provided for @waCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get waCategory;
+
+  /// No description provided for @waCategoryMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer or wishes'**
+  String get waCategoryMarketing;
+
+  /// No description provided for @waCategoryUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym update'**
+  String get waCategoryUtility;
+
+  /// No description provided for @waCategoryHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Gym updates (timings, closures) are utility messages. Offers and wishes are marketing: each member gets at most one a day.'**
+  String get waCategoryHelp;
+
+  /// No description provided for @waSegment.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to'**
+  String get waSegment;
+
+  /// No description provided for @waSegAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get waSegAll;
+
+  /// No description provided for @waSegActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active members'**
+  String get waSegActive;
+
+  /// No description provided for @waSegExpiring.
+  ///
+  /// In en, this message translates to:
+  /// **'Ending in 7 days'**
+  String get waSegExpiring;
+
+  /// No description provided for @waSegExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired 30–90 days ago'**
+  String get waSegExpired;
+
+  /// No description provided for @waSegDues.
+  ///
+  /// In en, this message translates to:
+  /// **'With fees due'**
+  String get waSegDues;
+
+  /// No description provided for @waSegTrainer.
+  ///
+  /// In en, this message translates to:
+  /// **'A trainer\'s members'**
+  String get waSegTrainer;
+
+  /// No description provided for @waSegTrainerNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s members'**
+  String waSegTrainerNamed(String name);
+
+  /// No description provided for @waSegBatch.
+  ///
+  /// In en, this message translates to:
+  /// **'A batch'**
+  String get waSegBatch;
+
+  /// No description provided for @waSegMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 selected member} other{{count} selected members}}'**
+  String waSegMembers(int count);
+
+  /// No description provided for @waReach.
+  ///
+  /// In en, this message translates to:
+  /// **'{reachable} of {total} members get it'**
+  String waReach(int reachable, int total);
+
+  /// No description provided for @waReachNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Members who turned WhatsApp off, or never agreed to it, are skipped.'**
+  String get waReachNote;
+
+  /// No description provided for @waSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get waSchedule;
+
+  /// No description provided for @waScheduleNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get waScheduleNow;
+
+  /// No description provided for @waSchedulePick.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a day'**
+  String get waSchedulePick;
+
+  /// No description provided for @waScheduleOn.
+  ///
+  /// In en, this message translates to:
+  /// **'{date}, 9:00 am'**
+  String waScheduleOn(String date);
+
+  /// No description provided for @waPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get waPreview;
+
+  /// No description provided for @waPreviewEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your message shows here as members will see it.'**
+  String get waPreviewEmpty;
+
+  /// No description provided for @waSampleName.
+  ///
+  /// In en, this message translates to:
+  /// **'Riya'**
+  String get waSampleName;
+
+  /// No description provided for @waQueueBroadcast.
+  ///
+  /// In en, this message translates to:
+  /// **'Queue messages'**
+  String get waQueueBroadcast;
+
+  /// No description provided for @waQueueBroadcastN.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No one to send to} =1{Queue 1 message} other{Queue {count} messages}}'**
+  String waQueueBroadcastN(int count);
+
+  /// No description provided for @waBroadcastQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No one to send to} =1{1 message queued} other{{count} messages queued}}'**
+  String waBroadcastQueued(int count);
+
+  /// No description provided for @waBroadcastSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} skipped'**
+  String waBroadcastSkipped(int count);
+
+  /// No description provided for @waBroadcastDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{queued} queued · {skipped} skipped'**
+  String waBroadcastDone(int queued, int skipped);
+
+  /// No description provided for @waBroadcastsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No broadcasts yet'**
+  String get waBroadcastsEmptyTitle;
+
+  /// No description provided for @waBroadcastsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send one message to a group: new timings, a holiday, an offer.'**
+  String get waBroadcastsEmptyBody;
+
+  /// No description provided for @waNeedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a name'**
+  String get waNeedTitle;
+
+  /// No description provided for @waNeedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Write the message'**
+  String get waNeedMessage;
+
+  /// No description provided for @waTemplatesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Templates'**
+  String get waTemplatesTitle;
+
+  /// No description provided for @waTemplatesEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No templates'**
+  String get waTemplatesEmptyTitle;
+
+  /// No description provided for @waTemplatesEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The automatic messages appear here once the database is set up.'**
+  String get waTemplatesEmptyBody;
+
+  /// No description provided for @waTemplateReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only the owner can change templates.'**
+  String get waTemplateReadOnly;
+
+  /// No description provided for @waTemplateEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get waTemplateEnglish;
+
+  /// No description provided for @waTemplateHindi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi'**
+  String get waTemplateHindi;
+
+  /// No description provided for @waTemplateOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get waTemplateOff;
+
+  /// No description provided for @waTemplateUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility'**
+  String get waTemplateUtility;
+
+  /// No description provided for @waTemplateMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing'**
+  String get waTemplateMarketing;
+
+  /// No description provided for @waTemplateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get waTemplateTitle;
+
+  /// No description provided for @waTemplateText.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get waTemplateText;
+
+  /// No description provided for @waTemplatePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview with a sample member'**
+  String get waTemplatePreview;
+
+  /// No description provided for @waTemplateEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Send this message'**
+  String get waTemplateEnabled;
+
+  /// No description provided for @waTemplateMetaName.
+  ///
+  /// In en, this message translates to:
+  /// **'Meta template name (API mode)'**
+  String get waTemplateMetaName;
+
+  /// No description provided for @waTemplateMetaHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The approved template\'s name in WhatsApp Manager. Register it with this text (tap to copy):'**
+  String get waTemplateMetaHelp;
+
+  /// No description provided for @waTemplateSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Template saved'**
+  String get waTemplateSaved;
+
+  /// No description provided for @waCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get waCopied;
+
+  /// No description provided for @waFestivalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival calendar'**
+  String get waFestivalsTitle;
+
+  /// No description provided for @waFestivalsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Wishes go out at 9:00 am on the day. Lunar festivals move every year: check the dates.'**
+  String get waFestivalsNote;
+
+  /// No description provided for @waFestivalAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add festival'**
+  String get waFestivalAdd;
+
+  /// No description provided for @waFestivalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival'**
+  String get waFestivalName;
+
+  /// No description provided for @waFestivalLocalName.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi name (for Hindi messages)'**
+  String get waFestivalLocalName;
+
+  /// No description provided for @waFestivalDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get waFestivalDate;
+
+  /// No description provided for @waFestivalMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Own message (optional)'**
+  String get waFestivalMessage;
+
+  /// No description provided for @waFestivalMessageHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave empty to use the festival wishes template.'**
+  String get waFestivalMessageHelp;
+
+  /// No description provided for @waFestivalOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Send wishes'**
+  String get waFestivalOn;
+
+  /// No description provided for @waFestivalMarketingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival wishes are marketing messages: a member who already got one that day is skipped.'**
+  String get waFestivalMarketingNote;
+
+  /// No description provided for @waFestivalDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove festival'**
+  String get waFestivalDelete;
+
+  /// No description provided for @waFestivalSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival saved'**
+  String get waFestivalSaved;
+
+  /// No description provided for @waFestivalPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get waFestivalPast;
+
+  /// No description provided for @waFestivalIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Today} =1{Tomorrow} other{In {days} days}}'**
+  String waFestivalIn(int days);
+
+  /// No description provided for @waFestivalsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No festivals'**
+  String get waFestivalsEmptyTitle;
+
+  /// No description provided for @waFestivalsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the festivals your members celebrate.'**
+  String get waFestivalsEmptyBody;
+
+  /// No description provided for @waSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp settings'**
+  String get waSettingsTitle;
+
+  /// No description provided for @waModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How messages are sent'**
+  String get waModeTitle;
+
+  /// No description provided for @waModeFreeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Free: each message opens in the gym\'s WhatsApp with the text ready, and staff tap send. Nothing to set up.'**
+  String get waModeFreeHelp;
+
+  /// No description provided for @waModeApiHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'API: approved templates go out automatically through Meta\'s WhatsApp Cloud API. Needs the API keys in Supabase (see the README). Anything the API can\'t send moves to the To send list.'**
+  String get waModeApiHelp;
+
+  /// No description provided for @waExpiryDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership reminders'**
+  String get waExpiryDays;
+
+  /// No description provided for @waOnTheDay.
+  ///
+  /// In en, this message translates to:
+  /// **'On the day'**
+  String get waOnTheDay;
+
+  /// No description provided for @waDaysBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{1 day before} other{{days} days before}}'**
+  String waDaysBefore(int days);
+
+  /// No description provided for @waDaysAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =1{1 day after} other{{days} days after}}'**
+  String waDaysAfter(int days);
+
+  /// No description provided for @waAddDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a day'**
+  String get waAddDay;
+
+  /// No description provided for @waDayPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Days before the end date (use a minus for after, e.g. -5)'**
+  String get waDayPrompt;
+
+  /// No description provided for @waAutomations.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic messages'**
+  String get waAutomations;
+
+  /// No description provided for @waAutoExpiry.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership reminders'**
+  String get waAutoExpiry;
+
+  /// No description provided for @waAutoDues.
+  ///
+  /// In en, this message translates to:
+  /// **'Fee reminders with the pay link'**
+  String get waAutoDues;
+
+  /// No description provided for @waAutoBirthday.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday wishes'**
+  String get waAutoBirthday;
+
+  /// No description provided for @waAutoFestival.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival wishes'**
+  String get waAutoFestival;
+
+  /// No description provided for @waAutoPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received'**
+  String get waAutoPayment;
+
+  /// No description provided for @waAutoMembership.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome and renewal thanks'**
+  String get waAutoMembership;
+
+  /// No description provided for @waAutoPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'New workout and diet plans'**
+  String get waAutoPlan;
+
+  /// No description provided for @waCostTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get waCostTitle;
+
+  /// No description provided for @waCostUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility (API)'**
+  String get waCostUtility;
+
+  /// No description provided for @waCostMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing (API)'**
+  String get waCostMarketing;
+
+  /// No description provided for @waCostFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free in the 24-hour window'**
+  String get waCostFree;
+
+  /// No description provided for @waCostLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent by hand (free)'**
+  String get waCostLink;
+
+  /// No description provided for @waCostMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 message} other{{count} messages}}'**
+  String waCostMessages(int count);
+
+  /// No description provided for @waCostTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated spend'**
+  String get waCostTotal;
+
+  /// No description provided for @waCap.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly marketing cap'**
+  String get waCap;
+
+  /// No description provided for @waCapHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing messages pause for the rest of the month once their spend reaches this. 0 = no cap.'**
+  String get waCapHelp;
+
+  /// No description provided for @waCapPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Cap reached: marketing messages are paused until next month.'**
+  String get waCapPaused;
+
+  /// No description provided for @waCapUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {cap} marketing cap used'**
+  String waCapUsed(String used, String cap);
+
+  /// No description provided for @waPrices.
+  ///
+  /// In en, this message translates to:
+  /// **'Meta\'s price per message'**
+  String get waPrices;
+
+  /// No description provided for @waPriceUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility (₹)'**
+  String get waPriceUtility;
+
+  /// No description provided for @waPriceMarketing.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing (₹)'**
+  String get waPriceMarketing;
+
+  /// No description provided for @waPricesHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Used only for the estimate. Check Meta\'s current prices for India.'**
+  String get waPricesHelp;
+
+  /// No description provided for @waBadAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount'**
+  String get waBadAmount;
+
+  /// No description provided for @waSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp settings saved'**
+  String get waSaved;
+
+  /// No description provided for @waOptIn.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp messages'**
+  String get waOptIn;
+
+  /// No description provided for @waOptInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders, receipts and wishes from the gym'**
+  String get waOptInBody;
+
+  /// No description provided for @waOptedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off: no WhatsApp messages from the gym.'**
+  String get waOptedOut;
+
+  /// No description provided for @waOptInDone.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp messages turned on'**
+  String get waOptInDone;
+
+  /// No description provided for @waOptOutDone.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp messages turned off'**
+  String get waOptOutDone;
+
+  /// No description provided for @waSendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send on WhatsApp to {name}'**
+  String waSendTo(String name);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

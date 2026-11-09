@@ -544,6 +544,12 @@ begin
     raise exception 'not allowed' using errcode = '42501';
   end if;
   insert into public.automation_runs (rule_key) values ('build_message_queue') returning id into v_run;
+  -- Automatic messages left unsent from an earlier day are out of date (a
+  -- late birthday wish, a reminder about yesterday): today's run builds what
+  -- is due now. Receipts and broadcasts stay until they are sent.
+  update public.message_queue set status = 'cancelled', error = 'not sent on the day'
+   where status = 'queued' and source = 'auto'
+     and scheduled_for < (v_day::timestamp at time zone 'Asia/Kolkata');
   v_offsets := coalesce((select array(select (jsonb_array_elements_text(value))::int)
                          from public.settings where key = 'expiry_reminder_days'), array[7, 3, 0, -3]);
 
@@ -805,7 +811,8 @@ as $$
 $$;
 
 -- Claims up to p_limit due API messages (status → sending) so two runs
--- never send the same one. Marketing waits while the cap is reached.
+-- never send the same one. While the marketing cap is reached, marketing
+-- goes to the free-mode list instead.
 create or replace function public.whatsapp_claim(p_limit int default 50)
 returns table (id uuid, member_id uuid, phone text, body text, params jsonb, meta_template_name text, language text,
                category text, in_window boolean)
@@ -823,6 +830,12 @@ begin
   update public.message_queue q set status = 'cancelled', error = 'paid'
    where q.status = 'queued' and q.invoice_id is not null
      and exists (select 1 from public.invoices i where i.id = q.invoice_id and (i.status in ('paid', 'void') or i.balance_paise <= 0));
+  -- Over the monthly marketing cap: marketing that is due moves to the
+  -- free-mode list, where staff can still send it by hand on the day.
+  if v_paused then
+    update public.message_queue q set channel = 'link', error = 'monthly marketing cap reached'
+     where q.channel = 'api' and q.status = 'queued' and q.category = 'marketing' and q.scheduled_for <= now();
+  end if;
   return query
   with due as (
     select q.id from public.message_queue q join public.members m on m.id = q.member_id

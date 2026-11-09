@@ -88,6 +88,13 @@ select pg_temp.check(public._render('Hi {first_name}, {amount}{unknown}!', '{"fi
                      'templates fill variables and drop unknown ones');
 select pg_temp.check(public._params('{first_name}: {amount} for {first_name}', '{"first_name": "Riya", "amount": "₹9"}') = '["Riya", "₹9", "Riya"]',
                      'API template parameters follow the order of the text');
+-- The app's preview renderer (lib/features/whatsapp/domain/message_text.dart)
+-- is tested with the same inputs: both must give the same text.
+select pg_temp.check(public._render('Hi {first_name}, {first_name}! {unknown}See you at {gym_name}.',
+                                   '{"first_name": "Riya", "gym_name": "ABS Fitness Zone"}')
+                     = 'Hi Riya, Riya! See you at ABS Fitness Zone.', 'render: same result as the app preview');
+select pg_temp.check(public._render('Price {₹500} or {A} or {}', '{}') = 'Price {₹500} or {A} or {}',
+                     'render: braces that are not variables stay');
 select pg_temp.check(public._upi_link(150000, 'ABS/26-27/0001') =
                      'upi://pay?pa=absfit@okaxis&pn=ABS%20Fitness%20Zone&am=1500.00&cu=INR&tn=ABS%20Fitness%20Zone%20ABS%2F26-27%2F0001&tr=ABS26270001',
                      'UPI pay link like the app''s');
@@ -178,6 +185,20 @@ select pg_temp.check((select body like '%डेस्क पर भुगता�
                       where member_id = (select kabir from ids) and template_key = 'dues_reminder_desk'),
                      'dues without a UPI ID: pay at the desk');
 insert into public.settings (key, value) values ('upi_id', '"absfit@okaxis"');
+-- The next morning, yesterday's unsent automatic messages are dropped;
+-- receipts stay.
+update public.message_queue set scheduled_for = scheduled_for - interval '1 day'
+ where member_id = (select kabir from ids) and template_key = 'dues_reminder_desk';
+insert into public.message_queue (member_id, template_key, category, body, channel, source, scheduled_for)
+values ((select kabir from ids), 'payment_received', 'utility', 'Thanks', 'link', 'event', now() - interval '1 day');
+select public.build_message_queue();
+select pg_temp.check((select status = 'cancelled' and error = 'not sent on the day' from public.message_queue
+                      where member_id = (select kabir from ids) and template_key = 'dues_reminder_desk'),
+                     'yesterday''s unsent reminder is dropped');
+select pg_temp.check((select status = 'queued' from public.message_queue
+                      where member_id = (select kabir from ids) and template_key = 'payment_received'),
+                     'an unsent receipt stays');
+delete from public.message_queue where member_id = (select kabir from ids) and template_key = 'payment_received';
 
 -- Paying stops the reminder (8.3).
 set role authenticated;
@@ -328,6 +349,10 @@ reset role;
 update public.message_queue set status = 'queued', channel = 'api', category = 'marketing', scheduled_for = now() - interval '1 minute'
  where member_id = (select kabir from ids) and template_key = 'festival';
 select pg_temp.check(not exists (select 1 from public.whatsapp_claim(10) where category = 'marketing'), 'claim holds marketing while paused');
+select pg_temp.check((select channel = 'link' and status = 'queued' and error = 'monthly marketing cap reached' from public.message_queue
+                      where member_id = (select kabir from ids) and template_key = 'festival'),
+                     'over the cap, marketing moves to the free-mode list');
+update public.message_queue set channel = 'api', error = null where member_id = (select kabir from ids) and template_key = 'festival';
 update public.settings set value = '0' where key = 'whatsapp_marketing_cap_paise';
 select pg_temp.check(exists (select 1 from public.whatsapp_claim(10) where category = 'marketing'), 'no cap: marketing goes out');
 

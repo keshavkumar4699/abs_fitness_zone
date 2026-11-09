@@ -9,6 +9,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../settings/presentation/appearance_card.dart';
 import '../../members/domain/models.dart';
+import '../../whatsapp/presentation/member_whatsapp.dart';
 import '../data/my_member_repository.dart';
 
 class MemberProfileScreen extends ConsumerWidget {
@@ -64,6 +65,17 @@ class MemberProfileScreen extends ConsumerWidget {
               empty: const SizedBox.shrink(),
               data: (m) => card(m!.name, m.memberCode, m.phone),
             ),
+            if (member.value case final m?) ...[
+              const SizedBox(height: AbsSpace.x4),
+              AbsCard(
+                padding: const EdgeInsets.fromLTRB(AbsSpace.x4, AbsSpace.x2, AbsSpace.x4, AbsSpace.x2),
+                child: WhatsAppOptOutTile(
+                  memberId: m.id,
+                  optedOut: m.whatsappOptOut,
+                  onSaved: () => ref.invalidate(myMemberProvider),
+                ),
+              ),
+            ],
             const SizedBox(height: AbsSpace.x4),
             const AppearanceCard(),
             const SizedBox(height: AbsSpace.x6),

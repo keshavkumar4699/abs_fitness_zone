@@ -17,6 +17,7 @@ import '../../exercises/presentation/exercise_ui.dart';
 import '../../members/presentation/member_ui.dart' show levelLabel;
 import '../../payments/application/receipt_pdf.dart' show ReceiptFonts;
 import '../../settings/data/gym_settings_repository.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
 import '../application/workouts_providers.dart';
 import '../data/workouts_repository.dart';
 import '../domain/workout_models.dart';
@@ -130,11 +131,16 @@ class TemplateDetailScreen extends ConsumerWidget {
 
 /// Share a plan as a PDF or WhatsApp-friendly text (5.12).
 class ShareMenu extends ConsumerWidget {
-  const ShareMenu({super.key, required this.template, this.memberName, this.weekdays});
+  const ShareMenu({super.key, required this.template, this.memberName, this.weekdays, this.memberId, this.memberPhone});
 
   final WorkoutTemplate template;
   final String? memberName;
   final List<int>? weekdays;
+
+  /// Set when staff share a member's plan: adds "Send on WhatsApp" to them
+  /// (8.7), logged in the member's messages.
+  final String? memberId;
+  final String? memberPhone;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -147,7 +153,14 @@ class ShareMenu extends ConsumerWidget {
         try {
           final catalogue = await ref.read(exerciseCatalogueProvider.future);
           final gym = ref.read(publicGymProfileProvider).value?['gym_name'] as String? ?? l.gymName;
-          if (kind == 'text') {
+          if (kind == 'whatsapp') {
+            await ref.sendWhatsApp(
+              memberId: memberId,
+              phone: memberPhone!,
+              text: planText(l, template, catalogue, memberName: memberName, weekdays: weekdays, gym: gym),
+              replaces: 'program_assigned',
+            );
+          } else if (kind == 'text') {
             await SharePlus.instance.share(
               ShareParams(
                 text: planText(l, template, catalogue, memberName: memberName, weekdays: weekdays, gym: gym),
@@ -171,6 +184,8 @@ class ShareMenu extends ConsumerWidget {
         }
       },
       itemBuilder: (_) => [
+        if (memberPhone != null && memberName != null)
+          PopupMenuItem(value: 'whatsapp', child: Text(l.waSendTo(memberName!.split(' ').first))),
         PopupMenuItem(value: 'pdf', child: Text(l.progSharePdf)),
         PopupMenuItem(value: 'text', child: Text(l.progShareText)),
       ],

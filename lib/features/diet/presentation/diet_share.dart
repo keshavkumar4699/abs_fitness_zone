@@ -14,6 +14,7 @@ import '../../../core/errors.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../payments/application/receipt_pdf.dart' show ReceiptFonts;
 import '../../settings/data/gym_settings_repository.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
 import '../application/diet_providers.dart';
 import '../domain/diet_models.dart';
 import '../domain/nutrition.dart';
@@ -188,10 +189,15 @@ Future<Uint8List> dietPdf(
 
 /// Share a plan as a PDF or WhatsApp text, or its grocery list.
 class DietShareMenu extends ConsumerWidget {
-  const DietShareMenu({super.key, required this.template, this.memberName});
+  const DietShareMenu({super.key, required this.template, this.memberName, this.memberId, this.memberPhone});
 
   final DietTemplate template;
   final String? memberName;
+
+  /// Set when staff share a member's plan: adds "Send on WhatsApp" to them
+  /// (8.7), logged in the member's messages.
+  final String? memberId;
+  final String? memberPhone;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -207,6 +213,13 @@ class DietShareMenu extends ConsumerWidget {
           switch (kind) {
             case 'grocery':
               await showGrocerySheet(context, template);
+            case 'whatsapp':
+              await ref.sendWhatsApp(
+                memberId: memberId,
+                phone: memberPhone!,
+                text: dietPlanText(l, template, lookup, memberName: memberName, gym: gym),
+                replaces: 'diet_assigned',
+              );
             case 'text':
               await SharePlus.instance.share(
                 ShareParams(
@@ -230,6 +243,8 @@ class DietShareMenu extends ConsumerWidget {
         }
       },
       itemBuilder: (_) => [
+        if (memberPhone != null && memberName != null)
+          PopupMenuItem(value: 'whatsapp', child: Text(l.waSendTo(memberName!.split(' ').first))),
         PopupMenuItem(value: 'pdf', child: Text(l.progSharePdf)),
         PopupMenuItem(value: 'text', child: Text(l.progShareText)),
         PopupMenuItem(value: 'grocery', child: Text(l.groceryTitle)),

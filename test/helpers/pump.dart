@@ -17,6 +17,8 @@ import 'package:abs_fitness/features/workouts/data/workouts_repository.dart';
 import 'package:abs_fitness/features/settings/application/theme_mode_controller.dart';
 import 'package:abs_fitness/features/settings/data/gym_settings_repository.dart';
 import 'package:abs_fitness/features/settings/data/staff_repository.dart';
+import 'package:abs_fitness/features/whatsapp/application/whatsapp_providers.dart';
+import 'package:abs_fitness/features/whatsapp/data/whatsapp_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +30,7 @@ import 'diet_fakes.dart';
 import 'fakes.dart';
 import 'member_fakes.dart';
 import 'payment_fakes.dart';
+import 'whatsapp_fakes.dart';
 import 'workout_fakes.dart';
 
 /// Phone viewport used by widget and golden tests (Pixel-class, 1×).
@@ -98,6 +101,8 @@ Future<ProviderContainer> pumpApp(
   RestAlerts? restAlerts,
   DietRepository? diet,
   MealReminders? mealReminders,
+  WhatsAppRepository? whatsapp,
+  FakeLauncher? launcher,
   Brightness brightness = Brightness.dark,
   Size size = phoneSize,
   Map<String, Object> prefs = const {},
@@ -121,6 +126,8 @@ Future<ProviderContainer> pumpApp(
       restAlertsProvider.overrideWithValue(restAlerts ?? const NoopRestAlerts()),
       dietRepositoryProvider.overrideWithValue(diet ?? FakeDietRepository()),
       mealRemindersProvider.overrideWithValue(mealReminders ?? const NoopMealReminders()),
+      whatsAppRepositoryProvider.overrideWithValue(whatsapp ?? FakeWhatsAppRepository()),
+      whatsAppLauncherProvider.overrideWithValue((launcher ?? FakeLauncher()).call),
       scannerEnabledProvider.overrideWithValue(false),
       networkImagesEnabledProvider.overrideWithValue(false),
       // Fixed clock: 3 Nov 2026, 10:00 IST.

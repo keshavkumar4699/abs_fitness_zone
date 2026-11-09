@@ -94,7 +94,13 @@ class MemberWorkoutsTab extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   if (current.template != null)
-                    ShareMenu(template: current.template!, memberName: member.name, weekdays: current.weekdays),
+                    ShareMenu(
+                      template: current.template!,
+                      memberName: member.name,
+                      weekdays: current.weekdays,
+                      memberId: member.id,
+                      memberPhone: member.phone,
+                    ),
                   if (canCoach)
                     TextButton.icon(
                       key: const ValueKey('end-program'),

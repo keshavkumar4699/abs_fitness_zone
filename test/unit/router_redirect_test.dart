@@ -52,6 +52,21 @@ void main() {
       expect(go(const AsyncData(trainerUser), Routes.meHome), Routes.staffHome);
     });
 
+    test('WhatsApp is for the front desk and owner; its settings for the owner', () {
+      for (final r in [
+        Routes.whatsApp,
+        Routes.whatsAppBroadcast,
+        Routes.whatsAppTemplates,
+        Routes.memberMessages('m-1'),
+      ]) {
+        expect(go(const AsyncData(ownerUser), r), isNull, reason: r);
+        expect(go(const AsyncData(deskUser), r), isNull, reason: r);
+        expect(go(const AsyncData(trainerUser), r), Routes.staffMore, reason: r);
+      }
+      expect(go(const AsyncData(ownerUser), Routes.whatsAppSettings), isNull);
+      expect(go(const AsyncData(deskUser), Routes.whatsAppSettings), Routes.whatsApp);
+    });
+
     test('only the owner manages staff', () {
       expect(go(const AsyncData(ownerUser), Routes.staffTeam), isNull);
       expect(go(const AsyncData(deskUser), Routes.staffTeam), Routes.staffMore);

@@ -11,11 +11,12 @@ import '../../../app/l10n/l10n.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
-import '../../../core/services/contact_links.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../settings/data/gym_settings_repository.dart';
 import '../../payments/presentation/collect_sheet.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
+import '../../whatsapp/presentation/member_whatsapp.dart';
 import '../application/member_csv.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
@@ -212,7 +213,14 @@ class _MembersScreenState extends ConsumerState<MembersScreen> {
                     : null,
                 onTap: _selecting ? () => _toggle(m.id) : () => context.push(Routes.memberDetail(m.id)),
                 onLongPress: isDesk ? () => _toggle(m.id) : null,
-                onRemind: _selecting ? null : () => ContactLinks.openWhatsApp(m.phone, text: reminderText(l, m, gym)),
+                onRemind: _selecting
+                    ? null
+                    : () => ref.sendWhatsApp(
+                        memberId: m.id,
+                        phone: m.phone,
+                        text: reminderText(l, m, gym),
+                        replaces: m.membershipEnd == null ? null : 'expir',
+                      ),
                 onCollect: _selecting || !isDesk ? null : () => showCollectSheet(context, member: CollectTarget.of(m)),
               ),
             );
@@ -315,6 +323,18 @@ class _MembersScreenState extends ConsumerState<MembersScreen> {
                         style: context.text.heading.copyWith(color: c.pop(PopHue.grape).onFill),
                       ),
                     ),
+                    if (isDesk)
+                      TextButton(
+                        key: const ValueKey('bulk-whatsapp'),
+                        onPressed: () async {
+                          final sent = await context.push<bool>(
+                            Routes.whatsAppBroadcast,
+                            extra: selectedMembers(_selected),
+                          );
+                          if (sent == true && mounted) setState(_selected.clear);
+                        },
+                        child: Text(l.bulkWhatsApp, style: TextStyle(color: c.pop(PopHue.grape).onFill)),
+                      ),
                     TextButton(
                       onPressed: _assignTrainer,
                       child: Text(l.bulkAssignTrainer, style: TextStyle(color: c.pop(PopHue.grape).onFill)),

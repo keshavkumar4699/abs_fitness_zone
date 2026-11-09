@@ -12,8 +12,8 @@ Every judgement call is recorded in [DECISIONS.md](DECISIONS.md).
 | **M2 Payments** | F2: invoices with GST, collect in every mode, credit, instalments, UPI link + QR, member "I've paid", optional Razorpay, PDF receipts, dues + reminders, day close, expenses, revenue on the dashboard | ✅ Done ([report](docs/milestones/M2.md), [Google sign-in](docs/milestones/M2.1.md)) |
 | **M3 Exercise library + Workouts** | F4: 876-exercise library with body map, search, filters, favourites, custom exercises. F5: program builder, templates, assign, coach overview, workout player with rest timer and PRs, offline logging, progress | ✅ Done ([report](docs/milestones/M3.md)) |
 | **M4 Diet** | F6: 300-food Indian database with Hindi names and review, targets calculator, meal-wise plan builder with live totals and "or" options, templates with scaling, assign, member diet tracking with water and supplements, reminders, nutrition overview, grocery list, PDF | ✅ Done ([report](docs/milestones/M4.md)) |
-| M5 WhatsApp | F8 | Next |
-| M6 AI automation | F7 | — |
+| **M5 WhatsApp** | F8: free-mode send queue with "Send next", English and Hindi templates with preview, expiry / fee / birthday / festival messages, receipts and plan confirmations, broadcasts to segments, festival calendar, message log, opt-out (app or STOP), API mode with delivery ticks, the 24-hour window and a cost meter with a marketing cap | ✅ Done ([report](docs/milestones/M5.md)) |
+| M6 AI automation | F7 | Next |
 | M7 Reports | F15 | — |
 | M8 Website + launch | F14, launch checklist | — |
 
@@ -36,6 +36,7 @@ lib/
     exercises/              catalogue (cached offline), body map, detail, custom exercises
     diet/                   foods, plan builder, targets, assign, member diet tracking, reminders
     workouts/               programs, builder, assign, coach views, player, progress
+    whatsapp/               send queue, log, broadcasts, templates, festivals, settings, opt-out
     checkin/                desk scanner/search, member self check-in, gym QR
     member_home/            member onboarding, home, progress, my payments + pay
     gallery/                hidden component gallery
@@ -129,9 +130,9 @@ flutter build apk --release --dart-define-from-file=env/prod.json
    doesn't matter: signing in first and running this afterwards also works.)
 5. The migrations also set up these Supabase pieces when they're available:
    - Nightly jobs (`pg_cron`): status refresh at 00:05 IST, dues at 00:10 IST,
-     workout programs at 00:15 IST and diet plans at 00:20 IST. If `pg_cron`
-     isn't enabled, enable it under **Database → Extensions** and run
-     `supabase db push` again.
+     workout programs at 00:15 IST, diet plans at 00:20 IST, and the day's
+     WhatsApp messages at 07:30 IST. If `pg_cron` isn't enabled, enable it
+     under **Database → Extensions** and run `supabase db push` again.
    - The live check-in feed (Realtime on `attendance` and `payments`).
    - A private `member-photos` bucket and a public `exercises` bucket.
 6. **Staff**: the owner uses **More → Staff → Add staff** with each person's
@@ -197,6 +198,55 @@ flutter build apk --release --dart-define-from-file=env/prod.json
     `https://YOUR_PROJECT_REF.supabase.co/functions/v1/razorpay-webhook`, using
     the same webhook secret. The keys stay on the server; the app never sees
     them.
+14. **WhatsApp (M5).** Free mode works straight away. Every morning the
+    queue fills **More → WhatsApp → To send**, and the front desk sends each
+    message from the gym's WhatsApp with one tap. Check the festival dates
+    in **More → WhatsApp → Festivals** once a year.
+
+    API mode (optional; Meta charges per message) sends automatically:
+    1. In [Meta for Developers](https://developers.facebook.com/), create a
+       Business app with the WhatsApp product and add the gym's number.
+       Note the **phone number ID**, the **app secret** (App settings →
+       Basic) and a permanent **access token** (a System User token with
+       `whatsapp_business_messaging`).
+    2. In WhatsApp Manager, create a template for each automatic message you
+       want sent by the API, in English (`en`) and Hindi (`hi`). Use the
+       text that **More → WhatsApp → Templates** shows under each message
+       (its variables numbered {{1}}, {{2}}…; tap to copy). Once Meta
+       approves it, enter its name in the template's **Meta template name**.
+       Messages without an approved template still reach the **To send**
+       list.
+    3. Set the secrets. The verify token and cron secret are any long random
+       text you choose:
+
+       ```bash
+       supabase secrets set WHATSAPP_TOKEN=xxx WHATSAPP_PHONE_NUMBER_ID=xxx WHATSAPP_APP_SECRET=xxx WHATSAPP_VERIFY_TOKEN=xxx CRON_SECRET=xxx
+       ```
+
+    4. In the Meta app, under **WhatsApp → Configuration**, set the callback
+       URL to `https://YOUR_PROJECT_REF.supabase.co/functions/v1/whatsapp-webhook`
+       with the same verify token, and subscribe to **messages**. This
+       brings delivery and read ticks, STOP / START replies, and the free
+       24-hour window.
+    5. Enable `pg_net` under **Database → Extensions**, then schedule the
+       sender in the SQL editor (every 15 minutes from 08:30 to 20:15 IST),
+       with your `CRON_SECRET`:
+
+       ```sql
+       select vault.create_secret('YOUR_CRON_SECRET', 'whatsapp_cron_secret');
+       select cron.schedule('send_whatsapp', '*/15 3-14 * * *', $$
+         select net.http_post(
+           url := 'https://YOUR_PROJECT_REF.supabase.co/functions/v1/whatsapp-send',
+           headers := jsonb_build_object(
+             'Content-Type', 'application/json',
+             'x-cron-secret', (select decrypted_secret from vault.decrypted_secrets where name = 'whatsapp_cron_secret')),
+           body := '{}'::jsonb)
+       $$);
+       ```
+
+    6. In **More → WhatsApp → Settings**, choose **API mode** and set the
+       monthly marketing cap. Switching back to free mode needs nothing
+       else. The token never reaches the app.
 
 ## Tests
 

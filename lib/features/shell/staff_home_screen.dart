@@ -22,6 +22,8 @@ import '../payments/domain/payment_models.dart';
 import '../payments/presentation/payment_ui.dart';
 import '../settings/data/gym_settings_repository.dart';
 import '../workouts/application/workouts_providers.dart';
+import '../whatsapp/application/whatsapp_providers.dart';
+import '../whatsapp/presentation/whatsapp_ui.dart';
 import '../workouts/presentation/training_today_card.dart';
 import 'greeting_header.dart';
 
@@ -40,7 +42,8 @@ class StaffHomeScreen extends ConsumerWidget {
       ..invalidate(duesSummaryProvider)
       ..invalidate(collectionsProvider)
       ..invalidate(collectionsTrendProvider)
-      ..invalidate(coachListProvider);
+      ..invalidate(coachListProvider)
+      ..invalidate(queueSummaryProvider);
     await ref.read(dashboardProvider.future);
   }
 
@@ -163,7 +166,11 @@ class StaffHomeScreen extends ConsumerWidget {
                 ),
                 data: (c) => _TileGrid(tiles: tiles, counts: c),
               ),
-              if (user.role.isDesk) const _DuesTiles(),
+              if (user.role.isDesk) ...[
+                const _DuesTiles(),
+                const SizedBox(height: AbsSpace.x4),
+                const WhatsAppTodayCard(),
+              ],
               if (user.role == UserRole.trainer || user.role.isOwner) ...[
                 const SizedBox(height: AbsSpace.x4),
                 const TrainingTodayCard(),
@@ -470,7 +477,17 @@ class _NeedsActionList extends ConsumerWidget {
                       IconButton(
                         tooltip: l.actionWhatsApp,
                         icon: Icon(PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold), color: c.pop(PopHue.mint).text),
-                        onPressed: () => ContactLinks.openWhatsApp(a.phone, text: text),
+                        onPressed: () => ref.sendWhatsApp(
+                          memberId: a.memberId,
+                          phone: a.phone,
+                          text: text,
+                          replaces: switch (a.reason) {
+                            ActionReason.overdue => 'dues_reminder',
+                            ActionReason.renewalDue || ActionReason.expired => 'expir',
+                            ActionReason.birthday => 'birthday',
+                            ActionReason.absent => null,
+                          },
+                        ),
                       ),
                       IconButton(
                         tooltip: l.actionCall,

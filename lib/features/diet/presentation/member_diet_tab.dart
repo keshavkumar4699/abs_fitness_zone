@@ -180,7 +180,12 @@ class MemberDietTab extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  DietShareMenu(template: plan, memberName: member.name),
+                  DietShareMenu(
+                    template: plan,
+                    memberName: member.name,
+                    memberId: member.id,
+                    memberPhone: member.phone,
+                  ),
                   TextButton.icon(
                     key: const ValueKey('end-diet'),
                     icon: Icon(PhosphorIcons.stopCircle(PhosphorIconsStyle.bold), color: c.danger),

@@ -20,6 +20,8 @@ import '../../payments/presentation/collect_sheet.dart';
 import '../../payments/presentation/payment_ui.dart';
 import '../../settings/data/gym_settings_repository.dart';
 import '../../diet/presentation/member_diet_tab.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
+import '../../whatsapp/presentation/member_whatsapp.dart';
 import '../../workouts/presentation/member_workouts_tab.dart';
 import '../application/members_providers.dart';
 import '../data/members_repository.dart';
@@ -213,7 +215,12 @@ class _Detail extends ConsumerWidget {
                   icon: PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold),
                   label: l.actionWhatsApp,
                   hue: PopHue.mint,
-                  onTap: () => ContactLinks.openWhatsApp(member.phone, text: reminderText(l, member, gym)),
+                  onTap: () => ref.sendWhatsApp(
+                    memberId: member.id,
+                    phone: member.phone,
+                    text: reminderText(l, member, gym),
+                    replaces: member.membershipEnd == null ? null : 'expir',
+                  ),
                 ),
                 _BarButton(
                   icon: PhosphorIcons.phone(PhosphorIconsStyle.bold),
@@ -538,6 +545,14 @@ class _OverviewTab extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: AbsSpace.x4),
+        if (perms.desk) ...[
+          MemberWhatsAppCard(
+            memberId: member.id,
+            optedOut: member.whatsappOptOut,
+            onSaved: () => ref.refreshMember(member.id),
+          ),
+          const SizedBox(height: AbsSpace.x4),
+        ],
         if (perms.health)
           _HealthCard(memberId: member.id)
         else

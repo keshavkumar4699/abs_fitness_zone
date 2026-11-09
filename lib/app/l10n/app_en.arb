@@ -2745,5 +2745,347 @@
   "groceryShare": "Share on WhatsApp",
   "dietPlanName": "Plan name",
   "exPauseMotion": "Tap to pause",
-  "exPlayMotion": "Tap to play"
+  "exPlayMotion": "Tap to play",
+  "bulkWhatsApp": "WhatsApp",
+  "waTitle": "WhatsApp",
+  "waMoreSubtitle": "Today's messages, broadcasts and templates",
+  "waTabQueue": "To send",
+  "waTabLog": "Log",
+  "waTabBroadcasts": "Broadcasts",
+  "waModeFree": "Free mode",
+  "waModeApi": "API mode",
+  "waModeFreeBody": "Each message opens in your WhatsApp, ready to send.",
+  "waModeApiBody": "Approved templates send automatically.",
+  "waNewBroadcast": "Broadcast",
+  "waQueueLeft": "{count, plural, =0{All sent} =1{1 to send} other{{count} to send}}",
+  "@waQueueLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waQueueLeftMore": "{count}+ to send",
+  "@waQueueLeftMore": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waSendNext": "Send to {name} · {left} left",
+  "@waSendNext": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "waSend": "Send",
+  "waSkip": "Skip",
+  "waMarkSent": "Mark sent",
+  "waMarkedSent": "Ticked: sent to {name}",
+  "@waMarkedSent": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "waMarkedSkipped": "Skipped {name}",
+  "@waMarkedSkipped": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "waQueueEmptyTitle": "Nothing to send",
+  "waQueueEmptyBody": "Today's reminders, wishes and receipts show up here, ready to send one by one.",
+  "waBuildToday": "Check for today's reminders",
+  "waBuilt": "{count, plural, =0{No new reminders} =1{1 new reminder} other{{count} new reminders}}",
+  "@waBuilt": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waNoWhatsApp": "Couldn't open WhatsApp on this device.",
+  "waApiQueueNote": "API mode is on. These are messages the API couldn't send: send them by hand.",
+  "waSendNow": "Send now",
+  "waSendNowDone": "Sending the due messages",
+  "waLogAll": "All",
+  "waLogQueued": "Queued",
+  "waLogSent": "Sent",
+  "waLogFailed": "Failed",
+  "waLogSkipped": "Skipped",
+  "waStatusQueued": "Queued",
+  "waStatusSending": "Sending",
+  "waStatusSent": "Sent",
+  "waStatusDelivered": "Delivered",
+  "waStatusRead": "Read",
+  "waStatusFailed": "Failed",
+  "waStatusSkipped": "Skipped",
+  "waStatusCancelled": "Cancelled",
+  "waChannelLink": "By hand",
+  "waChannelApi": "API",
+  "waFreeWindow": "Free: the member wrote in the last 24 hours",
+  "waLogEmptyTitle": "No messages yet",
+  "waLogEmptyBody": "Every WhatsApp message to members is listed here with its status.",
+  "waMemberMessages": "Message log",
+  "waMemberMessagesOf": "{name}'s messages",
+  "@waMemberMessagesOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "waKeyExpirySoon": "Membership ending soon",
+  "waKeyExpiryToday": "Membership ends today",
+  "waKeyExpired": "Membership ended",
+  "waKeyDues": "Fee reminder",
+  "waKeyPayment": "Payment received",
+  "waKeyMembershipStarted": "Welcome",
+  "waKeyMembershipRenewed": "Renewal thanks",
+  "waKeyProgram": "New workout program",
+  "waKeyDiet": "New diet plan",
+  "waKeyBirthday": "Birthday wishes",
+  "waKeyFestival": "Festival wishes",
+  "waKeyManual": "Sent by hand",
+  "waKeyBroadcast": "Broadcast",
+  "waTodayTitle": "WhatsApp today",
+  "waTodayBody": "{toSend} to send · {sent} sent",
+  "@waTodayBody": {
+    "placeholders": {
+      "toSend": {
+        "type": "int"
+      },
+      "sent": {
+        "type": "int"
+      }
+    }
+  },
+  "waTodayAllDone": "All of today's messages are sent.",
+  "waBroadcastTitle": "New broadcast",
+  "waBroadcastName": "Title (only staff see it)",
+  "waBroadcastMessage": "Message",
+  "waInsertVariable": "Tap to add a detail that changes per member:",
+  "waCategory": "Type",
+  "waCategoryMarketing": "Offer or wishes",
+  "waCategoryUtility": "Gym update",
+  "waCategoryHelp": "Gym updates (timings, closures) are utility messages. Offers and wishes are marketing: each member gets at most one a day.",
+  "waSegment": "Send to",
+  "waSegAll": "Everyone",
+  "waSegActive": "Active members",
+  "waSegExpiring": "Ending in 7 days",
+  "waSegExpired": "Expired 30–90 days ago",
+  "waSegDues": "With fees due",
+  "waSegTrainer": "A trainer's members",
+  "waSegTrainerNamed": "{name}'s members",
+  "@waSegTrainerNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "waSegBatch": "A batch",
+  "waSegMembers": "{count, plural, =1{1 selected member} other{{count} selected members}}",
+  "@waSegMembers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waReach": "{reachable} of {total} members get it",
+  "@waReach": {
+    "placeholders": {
+      "reachable": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "waReachNote": "Members who turned WhatsApp off, or never agreed to it, are skipped.",
+  "waSchedule": "When",
+  "waScheduleNow": "Now",
+  "waSchedulePick": "Pick a day",
+  "waScheduleOn": "{date}, 9:00 am",
+  "@waScheduleOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "waPreview": "Preview",
+  "waPreviewEmpty": "Your message shows here as members will see it.",
+  "waSampleName": "Riya",
+  "waQueueBroadcast": "Queue messages",
+  "waQueueBroadcastN": "{count, plural, =0{No one to send to} =1{Queue 1 message} other{Queue {count} messages}}",
+  "@waQueueBroadcastN": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waBroadcastQueued": "{count, plural, =0{No one to send to} =1{1 message queued} other{{count} messages queued}}",
+  "@waBroadcastQueued": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waBroadcastSkipped": "{count} skipped",
+  "@waBroadcastSkipped": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waBroadcastDone": "{queued} queued · {skipped} skipped",
+  "@waBroadcastDone": {
+    "placeholders": {
+      "queued": {
+        "type": "int"
+      },
+      "skipped": {
+        "type": "int"
+      }
+    }
+  },
+  "waBroadcastsEmptyTitle": "No broadcasts yet",
+  "waBroadcastsEmptyBody": "Send one message to a group: new timings, a holiday, an offer.",
+  "waNeedTitle": "Add a name",
+  "waNeedMessage": "Write the message",
+  "waTemplatesTitle": "Templates",
+  "waTemplatesEmptyTitle": "No templates",
+  "waTemplatesEmptyBody": "The automatic messages appear here once the database is set up.",
+  "waTemplateReadOnly": "Only the owner can change templates.",
+  "waTemplateEnglish": "English",
+  "waTemplateHindi": "Hindi",
+  "waTemplateOff": "Off",
+  "waTemplateUtility": "Utility",
+  "waTemplateMarketing": "Marketing",
+  "waTemplateTitle": "Name",
+  "waTemplateText": "Message",
+  "waTemplatePreview": "Preview with a sample member",
+  "waTemplateEnabled": "Send this message",
+  "waTemplateMetaName": "Meta template name (API mode)",
+  "waTemplateMetaHelp": "The approved template's name in WhatsApp Manager. Register it with this text (tap to copy):",
+  "waTemplateSaved": "Template saved",
+  "waCopied": "Copied",
+  "waFestivalsTitle": "Festival calendar",
+  "waFestivalsNote": "Wishes go out at 9:00 am on the day. Lunar festivals move every year: check the dates.",
+  "waFestivalAdd": "Add festival",
+  "waFestivalName": "Festival",
+  "waFestivalLocalName": "Hindi name (for Hindi messages)",
+  "waFestivalDate": "Date",
+  "waFestivalMessage": "Own message (optional)",
+  "waFestivalMessageHelp": "Leave empty to use the festival wishes template.",
+  "waFestivalOn": "Send wishes",
+  "waFestivalMarketingNote": "Festival wishes are marketing messages: a member who already got one that day is skipped.",
+  "waFestivalDelete": "Remove festival",
+  "waFestivalSaved": "Festival saved",
+  "waFestivalPast": "Done",
+  "waFestivalIn": "{days, plural, =0{Today} =1{Tomorrow} other{In {days} days}}",
+  "@waFestivalIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "waFestivalsEmptyTitle": "No festivals",
+  "waFestivalsEmptyBody": "Add the festivals your members celebrate.",
+  "waSettingsTitle": "WhatsApp settings",
+  "waModeTitle": "How messages are sent",
+  "waModeFreeHelp": "Free: each message opens in the gym's WhatsApp with the text ready, and staff tap send. Nothing to set up.",
+  "waModeApiHelp": "API: approved templates go out automatically through Meta's WhatsApp Cloud API. Needs the API keys in Supabase (see the README). Anything the API can't send moves to the To send list.",
+  "waExpiryDays": "Membership reminders",
+  "waOnTheDay": "On the day",
+  "waDaysBefore": "{days, plural, =1{1 day before} other{{days} days before}}",
+  "@waDaysBefore": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "waDaysAfter": "{days, plural, =1{1 day after} other{{days} days after}}",
+  "@waDaysAfter": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "waAddDay": "Add a day",
+  "waDayPrompt": "Days before the end date (use a minus for after, e.g. -5)",
+  "waAutomations": "Automatic messages",
+  "waAutoExpiry": "Membership reminders",
+  "waAutoDues": "Fee reminders with the pay link",
+  "waAutoBirthday": "Birthday wishes",
+  "waAutoFestival": "Festival wishes",
+  "waAutoPayment": "Payment received",
+  "waAutoMembership": "Welcome and renewal thanks",
+  "waAutoPlan": "New workout and diet plans",
+  "waCostTitle": "This month",
+  "waCostUtility": "Utility (API)",
+  "waCostMarketing": "Marketing (API)",
+  "waCostFree": "Free in the 24-hour window",
+  "waCostLink": "Sent by hand (free)",
+  "waCostMessages": "{count, plural, =1{1 message} other{{count} messages}}",
+  "@waCostMessages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waCostTotal": "Estimated spend",
+  "waCap": "Monthly marketing cap",
+  "waCapHelp": "Marketing messages pause for the rest of the month once their spend reaches this. 0 = no cap.",
+  "waCapPaused": "Cap reached: marketing messages are paused until next month.",
+  "waCapUsed": "{used} of {cap} marketing cap used",
+  "@waCapUsed": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "cap": {
+        "type": "String"
+      }
+    }
+  },
+  "waPrices": "Meta's price per message",
+  "waPriceUtility": "Utility (₹)",
+  "waPriceMarketing": "Marketing (₹)",
+  "waPricesHelp": "Used only for the estimate. Check Meta's current prices for India.",
+  "waBadAmount": "Enter an amount",
+  "waSaved": "WhatsApp settings saved",
+  "waOptIn": "WhatsApp messages",
+  "waOptInBody": "Reminders, receipts and wishes from the gym",
+  "waOptedOut": "Turned off: no WhatsApp messages from the gym.",
+  "waOptInDone": "WhatsApp messages turned on",
+  "waOptOutDone": "WhatsApp messages turned off",
+  "waSendTo": "Send on WhatsApp to {name}",
+  "@waSendTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

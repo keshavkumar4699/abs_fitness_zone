@@ -9,13 +9,13 @@ import '../../../app/l10n/l10n.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
-import '../../../core/services/contact_links.dart';
 import '../../../core/utils/dates.dart';
 import '../../../core/utils/money.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
 import '../../members/presentation/member_ui.dart' show dateLabel;
 import '../application/payments_providers.dart';
+import '../../whatsapp/application/whatsapp_providers.dart';
 import '../data/payments_repository.dart';
 import '../domain/payment_models.dart';
 import 'collect_sheet.dart';
@@ -189,7 +189,7 @@ class _Body extends ConsumerWidget {
                   child: AbsButton.secondary(
                     label: l.invoiceSendLink,
                     icon: PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold),
-                    onPressed: () => _sendUpiLink(context, invoice, profile),
+                    onPressed: () => _sendUpiLink(context, ref, invoice, profile),
                   ),
                 ),
               ],
@@ -336,15 +336,16 @@ class _Body extends ConsumerWidget {
   }
 }
 
-Future<void> _sendUpiLink(BuildContext context, Invoice i, BillingProfile? profile) async {
+Future<void> _sendUpiLink(BuildContext context, WidgetRef ref, Invoice i, BillingProfile? profile) async {
   final l = context.l10n;
   final link = profile == null ? null : upiLinkFor(profile, i);
   if (link == null || i.memberPhone == null) {
     showAbsSnackbar(context, l.invoiceNoUpi);
     return;
   }
-  await ContactLinks.openWhatsApp(
-    i.memberPhone!,
+  await ref.sendWhatsApp(
+    memberId: i.memberId,
+    phone: i.memberPhone!,
     text: l.invoiceUpiText(
       i.memberName.split(' ').first,
       Money.format(i.nextInstalmentDuePaise()),
@@ -352,6 +353,7 @@ Future<void> _sendUpiLink(BuildContext context, Invoice i, BillingProfile? profi
       i.invoiceNo,
       link,
     ),
+    replaces: 'dues_reminder',
   );
 }
 
@@ -364,9 +366,11 @@ Future<void> _gatewayLink(BuildContext context, WidgetRef ref, Invoice i, Billin
     if (!context.mounted) return;
     showAbsSnackbar(context, l.invoiceGatewayReady, tone: SnackTone.success);
     if (i.memberPhone != null) {
-      await ContactLinks.openWhatsApp(
-        i.memberPhone!,
+      await ref.sendWhatsApp(
+        memberId: i.memberId,
+        phone: i.memberPhone!,
         text: l.invoiceGatewayText(i.memberName.split(' ').first, Money.format(i.balancePaise), profile.gymName, url),
+        replaces: 'dues_reminder',
       );
     }
   } catch (e) {

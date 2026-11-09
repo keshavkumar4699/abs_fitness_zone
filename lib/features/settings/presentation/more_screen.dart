@@ -100,6 +100,14 @@ class MoreScreen extends ConsumerWidget {
             ),
           if (user.role.isDesk)
             item(
+              PhosphorIcons.whatsappLogo(PhosphorIconsStyle.bold),
+              l.waTitle,
+              l.waMoreSubtitle,
+              Routes.whatsApp,
+              PopHue.mint,
+            ),
+          if (user.role.isDesk)
+            item(
               PhosphorIcons.lockKey(PhosphorIconsStyle.bold),
               l.moreDayClose,
               l.moreDayCloseSubtitle,

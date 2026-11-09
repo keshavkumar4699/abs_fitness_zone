@@ -39,6 +39,12 @@ abstract final class Routes {
   static const membershipPlans = '/staff/more/membership-plans';
   static const gymQr = '/staff/more/check-in-qr';
   static const gymProfile = '/staff/more/gym-profile';
+  static const whatsApp = '/staff/more/whatsapp';
+  static const whatsAppTemplates = '/staff/more/whatsapp/templates';
+  static const whatsAppFestivals = '/staff/more/whatsapp/festivals';
+  static const whatsAppSettings = '/staff/more/whatsapp/settings';
+  static const whatsAppBroadcast = '/staff/more/whatsapp/broadcast';
+  static String memberMessages(String id) => '/staff/more/whatsapp/member/$id';
 
   static const meHome = '/me/home';
   static const meCheckIn = '/me/check-in';
@@ -85,6 +91,10 @@ String? authRedirect({required AsyncValue<AppUser?> auth, required bool onboardi
   if ((location.startsWith(Routes.gymProfile) || location.startsWith(Routes.expenses)) && !user.role.isOwner) {
     return Routes.staffMore;
   }
+  // WhatsApp carries fees and phone numbers: front desk and owner; its
+  // settings (mode, spend cap) are the owner's.
+  if (location.startsWith(Routes.whatsApp) && !user.role.isDesk) return Routes.staffMore;
+  if (location.startsWith(Routes.whatsAppSettings) && !user.role.isOwner) return Routes.whatsApp;
   // Building programs, diets, exercises and foods: owner and trainers only.
   if (location.startsWith('${Routes.staffPlans}/') &&
       (location.endsWith('/new') || location.endsWith('/edit')) &&

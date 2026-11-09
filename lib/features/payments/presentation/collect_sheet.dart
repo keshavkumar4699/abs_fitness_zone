@@ -633,6 +633,7 @@ class _Success extends ConsumerWidget {
               name: member.name,
               amountPaise: result.amountPaise,
               receiptNo: receipt,
+              memberId: member.memberId,
             ),
           ),
         ],

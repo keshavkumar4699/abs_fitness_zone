@@ -489,6 +489,30 @@ void main() {
       ),
     );
     testWidgets(
+      'whatsapp queue ${b.name}',
+      (t) => shot(t, 'whatsapp_queue', b, user: deskUser, route: Routes.whatsApp),
+    );
+    testWidgets(
+      'whatsapp log ${b.name}',
+      (t) => shot(t, 'whatsapp_log', b, user: ownerUser, route: '${Routes.whatsApp}?tab=1'),
+    );
+    testWidgets(
+      'whatsapp broadcast ${b.name}',
+      (t) => shot(t, 'whatsapp_broadcast', b, user: deskUser, route: Routes.whatsAppBroadcast),
+    );
+    testWidgets(
+      'whatsapp templates ${b.name}',
+      (t) => shot(t, 'whatsapp_templates', b, user: ownerUser, route: Routes.whatsAppTemplates),
+    );
+    testWidgets(
+      'whatsapp festivals ${b.name}',
+      (t) => shot(t, 'whatsapp_festivals', b, user: ownerUser, route: Routes.whatsAppFestivals),
+    );
+    testWidgets(
+      'whatsapp settings ${b.name}',
+      (t) => shot(t, 'whatsapp_settings', b, user: ownerUser, route: Routes.whatsAppSettings),
+    );
+    testWidgets(
       'staff shell desktop ${b.name}',
       (t) => shot(t, 'staff_shell_desktop', b, user: ownerUser, route: Routes.staffTeam, size: const Size(1440, 900)),
     );
