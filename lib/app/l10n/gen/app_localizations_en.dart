@@ -4404,4 +4404,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dietPlanName => 'Plan name';
+
+  @override
+  String get exPauseMotion => 'Tap to pause';
+
+  @override
+  String get exPlayMotion => 'Tap to play';
 }

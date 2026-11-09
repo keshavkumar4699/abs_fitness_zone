@@ -2743,5 +2743,7 @@
   "groceryTitle": "Grocery list",
   "groceryFor7Days": "For 7 days of the plan as written (not the \"or\" options).",
   "groceryShare": "Share on WhatsApp",
-  "dietPlanName": "Plan name"
+  "dietPlanName": "Plan name",
+  "exPauseMotion": "Tap to pause",
+  "exPlayMotion": "Tap to play"
 }

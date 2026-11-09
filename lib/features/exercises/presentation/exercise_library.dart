@@ -214,6 +214,7 @@ class _ExerciseLibraryViewState extends ConsumerState<ExerciseLibraryView> {
                         const SizedBox(height: AbsSpace.x2),
                         BodyMap(
                           key: const ValueKey('body-map'),
+                          height: 320,
                           back: _back,
                           selected: _filter.muscle,
                           onSelect: (m) => _setFilter(_filter.copyWith(muscle: m)),

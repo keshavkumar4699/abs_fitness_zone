@@ -629,3 +629,20 @@ it here, and continue. Newest entries go at the bottom of each milestone.
      - editing a custom food's grocery ingredients (it buys the food
        itself);
      - members logging foods outside their plan.
+
+## After M4
+
+104. **Exercise demonstrations stay as two photos, played like a GIF.** No
+     free GIF set covers every exercise. ExerciseDB's GIFs are a commercial
+     product under its own terms of use, and wger covers only some
+     exercises, mostly with still photos. So the app plays free-exercise-db's
+     two public-domain photos (start and end) as a loop: hold, a 450 ms
+     cross-fade, hold, fade back. A tap pauses or plays it. With reduced
+     motion it stays still, and a tap shows the other position.
+
+105. **The body map is a smooth figure.** The silhouette and each muscle are
+     traced as points and drawn as curves through them, with details
+     (collarbones, six-pack, knee caps, spine), instead of rounded boxes.
+     The muscles and their names are unchanged. A tap that lands just
+     beside a small muscle still selects it, and the library shows the
+     figure larger.

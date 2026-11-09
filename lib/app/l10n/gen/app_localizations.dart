@@ -7717,6 +7717,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plan name'**
   String get dietPlanName;
+
+  /// No description provided for @exPauseMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to pause'**
+  String get exPauseMotion;
+
+  /// No description provided for @exPlayMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to play'**
+  String get exPlayMotion;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
