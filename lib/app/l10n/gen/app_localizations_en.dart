@@ -5107,4 +5107,130 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get checkOut => 'Check out';
+
+  @override
+  String checkOutDone(String duration) {
+    return 'Checked out · $duration';
+  }
+
+  @override
+  String visitInOut(String inTime, String outTime) {
+    return 'In $inTime · out $outTime';
+  }
+
+  @override
+  String memberCheckedInAt(String time) {
+    return 'Checked in at $time';
+  }
+
+  @override
+  String get memberCheckOut => 'Check out';
+
+  @override
+  String memberVisitToday(String inTime, String outTime) {
+    return 'Today: in $inTime · out $outTime';
+  }
+
+  @override
+  String durationMin(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n min', one: '1 min');
+    return '$_temp0';
+  }
+
+  @override
+  String durationHourMin(int h, int m) {
+    return '$h h $m min';
+  }
+
+  @override
+  String get wkReplyHint => 'Reply to your coach';
+
+  @override
+  String get foodGrocery => 'What to buy';
+
+  @override
+  String get foodGroceryHint => 'What one serving uses. The grocery list adds these up for the week.';
+
+  @override
+  String get foodGroceryItem => 'Item';
+
+  @override
+  String get foodGroceryQty => 'Amount';
+
+  @override
+  String get foodGroceryAdd => 'Add item';
+
+  @override
+  String get groceryUnitG => 'g';
+
+  @override
+  String get groceryUnitMl => 'ml';
+
+  @override
+  String get groceryUnitPc => 'pc';
+
+  @override
+  String get payNewInvoice => 'New invoice';
+
+  @override
+  String get newInvTitle => 'New invoice';
+
+  @override
+  String get newInvPickMember => 'Search for the member to bill.';
+
+  @override
+  String get newInvItem => 'Item';
+
+  @override
+  String get newInvAmount => 'Amount';
+
+  @override
+  String get newInvQty => 'Qty';
+
+  @override
+  String get newInvAddLine => 'Add another item';
+
+  @override
+  String get newInvDue => 'Due';
+
+  @override
+  String get newInvDueToday => 'Today';
+
+  @override
+  String get newInvGst => 'GST rate';
+
+  @override
+  String get newInvGstHelp => 'Applies only when GST is on in Gym profile.';
+
+  @override
+  String get newInvDiscount => 'Discount';
+
+  @override
+  String get newInvReason => 'Reason for the discount';
+
+  @override
+  String get newInvSubtotal => 'To pay (before GST)';
+
+  @override
+  String newInvCreate(String amount) {
+    return 'Raise invoice · $amount';
+  }
+
+  @override
+  String get newInvDone => 'Invoice raised';
+
+  @override
+  String get newInvNeedLine => 'Add an item with an amount';
+
+  @override
+  String get newInvNeedReason => 'A discount needs a reason';
+
+  @override
+  String get commonRemove => 'Remove';
+
+  @override
+  String get commonChange => 'Change';
 }

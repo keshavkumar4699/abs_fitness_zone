@@ -38,6 +38,7 @@ class _FoodEditorScreenState extends ConsumerState<FoodEditorScreen> {
   String _veg = 'veg';
   bool _jain = false;
   Set<String> _allergens = {};
+  final List<_GroceryRow> _grocery = [];
   Food? _original;
   bool _loaded = false;
   bool _busy = false;
@@ -48,6 +49,9 @@ class _FoodEditorScreenState extends ConsumerState<FoodEditorScreen> {
   void dispose() {
     for (final c in _all) {
       c.dispose();
+    }
+    for (final g in _grocery) {
+      g.dispose();
     }
     super.dispose();
   }
@@ -70,6 +74,9 @@ class _FoodEditorScreenState extends ConsumerState<FoodEditorScreen> {
     _veg = f.vegType;
     _jain = f.jainOk;
     _allergens = f.allergens.toSet();
+    for (final g in f.grocery) {
+      _grocery.add(_GroceryRow(item: g.item, qty: _n(g.qty), unit: g.unit));
+    }
   }
 
   double _v(TextEditingController c) => double.tryParse(c.text.trim()) ?? 0;
@@ -99,6 +106,11 @@ class _FoodEditorScreenState extends ConsumerState<FoodEditorScreen> {
       allergens: [
         for (final a in kAllergens)
           if (_allergens.contains(a)) a,
+      ],
+      grocery: [
+        for (final g in _grocery)
+          if (g.item.text.trim().isNotEmpty && (double.tryParse(g.qty.text.trim()) ?? 0) > 0)
+            GroceryPart(item: g.item.text.trim(), qty: double.parse(g.qty.text.trim()), unit: g.unit),
       ],
     );
     try {
@@ -272,9 +284,81 @@ class _FoodEditorScreenState extends ConsumerState<FoodEditorScreen> {
               hue: PopHue.coral,
               onChanged: (v) => setState(() => _allergens = v),
             ),
+            label(l.foodGrocery),
+            Text(l.foodGroceryHint, style: t.caption.copyWith(color: c.textSecondary)),
+            const SizedBox(height: AbsSpace.x2),
+            for (final (i, g) in _grocery.indexed) ...[
+              Row(
+                key: ValueKey('grocery-$i'),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: AbsTextField(key: ValueKey('grocery-item-$i'), label: l.foodGroceryItem, controller: g.item),
+                  ),
+                  const SizedBox(width: AbsSpace.x2),
+                  Expanded(
+                    flex: 2,
+                    child: AbsTextField(
+                      key: ValueKey('grocery-qty-$i'),
+                      label: l.foodGroceryQty,
+                      controller: g.qty,
+                      numeric: true,
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))],
+                      validator: (s) => number(s, max: 5000),
+                    ),
+                  ),
+                  IconButton(
+                    key: ValueKey('grocery-remove-$i'),
+                    tooltip: l.commonRemove,
+                    icon: Icon(PhosphorIcons.x(PhosphorIconsStyle.bold)),
+                    onPressed: () => setState(() => _grocery.removeAt(i).dispose()),
+                  ),
+                ],
+              ),
+              PopSingleChips<String>(
+                options: const ['g', 'ml', 'pc'],
+                labelOf: (u) => groceryUnitLabel(l, u),
+                value: g.unit,
+                allowEmpty: false,
+                hue: PopHue.lime,
+                onChanged: (u) => setState(() => g.unit = u ?? g.unit),
+              ),
+              gap,
+            ],
+            AbsButton.ghost(
+              key: const ValueKey('grocery-add'),
+              label: l.foodGroceryAdd,
+              icon: PhosphorIcons.plus(PhosphorIconsStyle.bold),
+              hue: PopHue.lime,
+              onPressed: () => setState(() => _grocery.add(_GroceryRow())),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+/// One "what to buy" line while editing: item, amount and unit.
+class _GroceryRow {
+  _GroceryRow({String item = '', String qty = '', this.unit = 'g'})
+    : item = TextEditingController(text: item),
+      qty = TextEditingController(text: qty);
+
+  final TextEditingController item;
+  final TextEditingController qty;
+  String unit;
+
+  void dispose() {
+    item.dispose();
+    qty.dispose();
+  }
+}
+
+String groceryUnitLabel(AppLocalizations l, String unit) => switch (unit) {
+  'ml' => l.groceryUnitMl,
+  'pc' => l.groceryUnitPc,
+  _ => l.groceryUnitG,
+};

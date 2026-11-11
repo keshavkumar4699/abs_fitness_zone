@@ -276,8 +276,15 @@ select pg_temp.as_user('00000000-0000-0000-0000-00000000000e');
 select pg_temp.check((select count(*) from public.workout_comments) = 2 and
                      (select author_name from public.workout_comments where body is not null) = 'Vikram',
                      'member: reads the trainer''s comment and reaction');
-select pg_temp.raises($$select public.comment_workout((select id from public.workout_logs limit 1), 'Me')$$,
-                      'member: comments are for coaches');
+select public.comment_workout((select id from public.workout_logs where client_id = '50000000-0000-0000-0000-000000000002'), 'Thanks coach!');
+select pg_temp.check((select author_name from public.workout_comments where body = 'Thanks coach!') = 'Riya Sen',
+                     'member: replies to their coach in their own name');
+select pg_temp.raises($$select public.comment_workout((select id from public.workout_logs where client_id = '50000000-0000-0000-0000-000000000002'), null, 'fire')$$,
+                      'member: reactions are for coaches');
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000f');
+select pg_temp.raises($$select public.comment_workout((select id from public.workout_logs limit 1), 'Me too')$$,
+                      'member: cannot comment on another member''s workout');
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000e');
 
 -- ---------- adherence and the coach overview (5.5) ----------
 reset role;

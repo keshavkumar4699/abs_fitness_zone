@@ -18,6 +18,7 @@ import '../../whatsapp/application/whatsapp_providers.dart';
 import '../data/payments_repository.dart';
 import '../domain/payment_models.dart';
 import 'collect_sheet.dart';
+import 'new_invoice_sheet.dart';
 import 'payment_ui.dart';
 
 /// Payments tab (2.10): today's hero, fee reminders, and Due / Overdue /
@@ -105,6 +106,12 @@ class _PaymentsScreenState extends ConsumerState<PaymentsScreen> {
                 controller: _search,
                 onChanged: (v) => setState(() => _query = v.trim()),
                 actions: [
+                  IconButton(
+                    key: const ValueKey('pay-new-invoice'),
+                    tooltip: l.payNewInvoice,
+                    icon: Icon(PhosphorIcons.receipt(PhosphorIconsStyle.bold)),
+                    onPressed: () => showNewInvoiceSheet(context),
+                  ),
                   IconButton(
                     tooltip: l.payHistory,
                     icon: Icon(PhosphorIcons.clockCounterClockwise(PhosphorIconsStyle.bold)),

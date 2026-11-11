@@ -489,6 +489,17 @@ void main() {
       ),
     );
     testWidgets(
+      'new invoice ${b.name}',
+      (t) => shot(
+        t,
+        'new_invoice',
+        b,
+        user: deskUser,
+        route: '${Routes.memberDetail('m-1')}?tab=payments',
+        interact: (tester) => tester.tap(find.byKey(const ValueKey('new-invoice'))),
+      ),
+    );
+    testWidgets(
       'whatsapp queue ${b.name}',
       (t) => shot(t, 'whatsapp_queue', b, user: deskUser, route: Routes.whatsApp),
     );

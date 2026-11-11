@@ -51,6 +51,10 @@ abstract interface class MembersRepository {
   Future<List<Attendance>> attendance(String memberId, {required DateTime from, required DateTime to});
   Future<CheckInResult> checkIn(String memberId);
   Future<CheckInResult> selfCheckIn(String code);
+
+  /// Optional check-out of today's visit; the member's own when [memberId]
+  /// is null.
+  Future<CheckOutResult> checkOut({String? memberId});
   Future<String> todaysGymCode();
 
   Future<DashboardCounts> dashboard();
@@ -346,6 +350,12 @@ class SupabaseMembersRepository implements MembersRepository {
   Future<CheckInResult> selfCheckIn(String code) => _guard(() async {
     final res = await _db.rpc<Map<String, dynamic>>('self_check_in', params: {'p_code': code});
     return CheckInResult.fromJson(res);
+  });
+
+  @override
+  Future<CheckOutResult> checkOut({String? memberId}) => _guard(() async {
+    final res = await _db.rpc<Map<String, dynamic>>('check_out', params: {'p_member_id': memberId});
+    return CheckOutResult.fromJson(res);
   });
 
   @override

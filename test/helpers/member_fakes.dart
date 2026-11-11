@@ -358,6 +358,26 @@ class FakeMembersRepository implements MembersRepository {
     return checkIn(members.first.id);
   }
 
+  final List<String> checkOuts = [];
+
+  @override
+  Future<CheckOutResult> checkOut({String? memberId}) async {
+    _maybeThrow();
+    final id = memberId ?? members.first.id;
+    final visits = checkIns[id] ?? [];
+    final i = visits.indexWhere((a) => a.day == fakeToday);
+    if (i < 0) throw const RuleFailure('no check-in today');
+    checkOuts.add(id);
+    final out = visits[i].checkedOutAt ?? DateTime.utc(2026, 11, 3, 4, 30);
+    visits[i] = visits[i].copyWith(checkedOutAt: out);
+    return CheckOutResult(
+      memberId: id,
+      checkedInAt: visits[i].checkedInAt,
+      checkedOutAt: out,
+      minutes: out.difference(visits[i].checkedInAt).inMinutes,
+    );
+  }
+
   @override
   Future<String> todaysGymCode() async => gymCode;
 

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
+import '../../../app/providers.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/errors.dart';
@@ -17,6 +18,7 @@ import '../../auth/domain/app_user.dart';
 import '../../payments/application/payments_providers.dart';
 import '../../payments/domain/payment_models.dart';
 import '../../payments/presentation/collect_sheet.dart';
+import '../../payments/presentation/new_invoice_sheet.dart';
 import '../../payments/presentation/payment_ui.dart';
 import '../../settings/data/gym_settings_repository.dart';
 import '../../diet/presentation/member_diet_tab.dart';
@@ -153,6 +155,9 @@ class _Detail extends ConsumerWidget {
       'diet' => tabs.indexOf(l.tabDiet),
       'payments' => tabs.indexOf(l.tabPayments),
       'progress' => tabs.indexOf(l.tabProgress),
+      'membership' => tabs.indexOf(l.tabMembership),
+      'attendance' => tabs.indexOf(l.tabAttendance),
+      'notes' => tabs.indexOf(l.tabNotes),
       _ => 0,
     };
     return DefaultTabController(
@@ -427,9 +432,21 @@ class _PaymentsTab extends ConsumerWidget {
         message: l.memberNoInvoicesBody,
         illustration: EmptyIllustration.receipt,
         hue: PopHue.tangerine,
+        actionLabel: l.payNewInvoice,
+        onAction: () => showNewInvoiceSheet(context, member: CollectTarget.of(member)),
       ),
       data: (list) => _TabList(
         children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: AbsButton.ghost(
+              key: const ValueKey('new-invoice'),
+              label: l.payNewInvoice,
+              icon: PhosphorIcons.receipt(PhosphorIconsStyle.bold),
+              hue: PopHue.tangerine,
+              onPressed: () => showNewInvoiceSheet(context, member: CollectTarget.of(member)),
+            ),
+          ),
           if (credit > 0)
             Padding(
               padding: const EdgeInsets.only(bottom: AbsSpace.x3),
@@ -935,10 +952,25 @@ class _AttendanceTabState extends ConsumerState<_AttendanceTab> {
     }
   }
 
+  Future<void> _checkOut() async {
+    final l = context.l10n;
+    setState(() => _busy = true);
+    try {
+      final r = await ref.read(membersRepositoryProvider).checkOut(memberId: widget.member.id);
+      ref.refreshMember(widget.member.id);
+      if (mounted) showAbsSnackbar(context, l.checkOutDone(visitDuration(l, r.minutes)), tone: SnackTone.success);
+    } catch (e) {
+      if (mounted) showAbsSnackbar(context, friendlyError(l, e), tone: SnackTone.error);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
     final visits = ref.watch(memberAttendanceProvider(widget.member.id));
+    final today = IstDates.today(now: ref.watch(clockProvider)());
     return AsyncView<List<Attendance>>(
       value: visits,
       onRetry: () => ref.invalidate(memberAttendanceProvider(widget.member.id)),
@@ -946,8 +978,17 @@ class _AttendanceTabState extends ConsumerState<_AttendanceTab> {
       empty: const SizedBox.shrink(),
       data: (items) => _TabList(
         children: [
-          if (widget.perms.attendance)
+          if (widget.perms.attendance && items.any((a) => a.day == today && a.checkedOutAt == null))
+            AbsButton.secondary(
+              key: const ValueKey('check-out'),
+              label: l.checkOut,
+              icon: PhosphorIcons.signOut(PhosphorIconsStyle.bold),
+              isLoading: _busy,
+              onPressed: _checkOut,
+            )
+          else if (widget.perms.attendance)
             AbsButton(
+              key: const ValueKey('mark-present'),
               label: l.attendanceMark,
               hue: PopHue.mint,
               icon: PhosphorIcons.checkCircle(PhosphorIconsStyle.bold),
@@ -970,7 +1011,11 @@ class _AttendanceTabState extends ConsumerState<_AttendanceTab> {
                   solid: false,
                 ),
                 title: Text(dateLabel(a.day)),
-                subtitle: Text(l.visitedAt(IstDates.formatTime(a.checkedInAt))),
+                subtitle: Text(
+                  a.checkedOutAt == null
+                      ? l.visitedAt(IstDates.formatTime(a.checkedInAt))
+                      : l.visitInOut(IstDates.formatTime(a.checkedInAt), IstDates.formatTime(a.checkedOutAt!)),
+                ),
               ),
         ],
       ),

@@ -2,19 +2,24 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_icons/phosphor_icons.dart';
 
 import '../../../app/l10n/l10n.dart';
 import '../../../app/theme/theme.dart';
+import '../../../core/errors.dart';
 import '../../../core/utils/money.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../members/application/members_providers.dart';
+import '../../members/data/members_repository.dart';
 import '../../members/domain/models.dart';
 import '../../members/presentation/member_ui.dart';
 import '../../members/presentation/widgets/member_photo.dart';
 
 /// Full-screen result: a happy tick that closes itself after 1.2 s (2.4 s
-/// when fees are pending, so the desk notices), or a warning (expired,
-/// frozen, cancelled, no plan) that needs a tap.
+/// when fees are pending, so the desk notices; 4 s on a second check-in,
+/// which offers to end the visit), or a warning (expired, frozen,
+/// cancelled, no plan) that needs a tap.
 Future<void> showCheckInResult(BuildContext context, CheckInResult r) {
   if (r.needsAttention) {
     HapticFeedback.heavyImpact();
@@ -37,25 +42,53 @@ Future<void> showCheckInResult(BuildContext context, CheckInResult r) {
   );
 }
 
-class _ResultView extends StatefulWidget {
+class _ResultView extends ConsumerStatefulWidget {
   const _ResultView({required this.result});
 
   final CheckInResult result;
 
   @override
-  State<_ResultView> createState() => _ResultViewState();
+  ConsumerState<_ResultView> createState() => _ResultViewState();
 }
 
-class _ResultViewState extends State<_ResultView> {
+class _ResultViewState extends ConsumerState<_ResultView> {
   Timer? _close;
+  bool _busy = false;
+
+  bool get _canCheckOut => widget.result.already && widget.result.checkedOutAt == null;
 
   @override
   void initState() {
     super.initState();
     if (!widget.result.needsAttention) {
-      _close = Timer(Duration(milliseconds: widget.result.hasDues ? 2400 : 1200), () {
+      final ms = _canCheckOut
+          ? 4000
+          : widget.result.hasDues
+          ? 2400
+          : 1200;
+      _close = Timer(Duration(milliseconds: ms), () {
         if (mounted) Navigator.of(context).maybePop();
       });
+    }
+  }
+
+  /// Optional check-out (M1): the second scan of the day ends the visit.
+  Future<void> _checkOut() async {
+    final l = context.l10n;
+    _close?.cancel();
+    setState(() => _busy = true);
+    try {
+      final r = await ref.read(membersRepositoryProvider).checkOut(memberId: widget.result.memberId);
+      ref
+        ..invalidate(memberAttendanceProvider(r.memberId))
+        ..invalidate(dashboardProvider);
+      if (!mounted) return;
+      Navigator.of(context).pop();
+      showAbsSnackbar(context, l.checkOutDone(visitDuration(l, r.minutes)), tone: SnackTone.success);
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      showAbsSnackbar(context, friendlyError(l, e), tone: SnackTone.error);
     }
   }
 
@@ -138,6 +171,17 @@ class _ResultViewState extends State<_ResultView> {
                     if (r.already) ...[
                       const SizedBox(height: AbsSpace.x2),
                       PopSticker(label: l.checkInAlready, hue: PopHue.grape),
+                    ],
+                    if (_canCheckOut) ...[
+                      const SizedBox(height: AbsSpace.x4),
+                      AbsButton.secondary(
+                        key: const ValueKey('check-out'),
+                        label: l.checkOut,
+                        icon: PhosphorIcons.signOut(PhosphorIconsStyle.bold),
+                        isLoading: _busy,
+                        expand: false,
+                        onPressed: _busy ? null : _checkOut,
+                      ),
                     ],
                     if (r.planName != null) Text(r.planName!, style: t.body.copyWith(color: p.onFill)),
                     if (warn) ...[

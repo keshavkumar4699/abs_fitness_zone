@@ -55,6 +55,10 @@ String levelLabel(AppLocalizations l, String v) => switch (v) {
 String dateLabel(DateTime? d) => d == null ? '—' : IstDates.formatDate(d, isDateOnly: true);
 
 /// Friendly pre-filled WhatsApp text for a member, by situation.
+/// "45 min" or "1 h 20 min".
+String visitDuration(AppLocalizations l, int minutes) =>
+    minutes < 60 ? l.durationMin(minutes) : l.durationHourMin(minutes ~/ 60, minutes % 60);
+
 String reminderText(AppLocalizations l, Member m, String gym) {
   final first = m.name.split(' ').first;
   return switch (m.status) {

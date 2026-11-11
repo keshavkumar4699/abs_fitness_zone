@@ -2161,7 +2161,7 @@ as String?,
 /// @nodoc
 mixin _$Attendance {
 
- String get id;@JsonKey(name: 'member_id') String get memberId;@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? get day;@JsonKey(name: 'checked_in_at') DateTime get checkedInAt; String get method;@JsonKey(includeToJson: false) String? get memberName;
+ String get id;@JsonKey(name: 'member_id') String get memberId;@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? get day;@JsonKey(name: 'checked_in_at') DateTime get checkedInAt;@JsonKey(name: 'checked_out_at') DateTime? get checkedOutAt; String get method;@JsonKey(includeToJson: false) String? get memberName;
 /// Create a copy of Attendance
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2175,20 +2175,20 @@ $AttendanceCopyWith<Attendance> get copyWith => _$AttendanceCopyWithImpl<Attenda
 @override
 bool operator ==(Object other) {
   final _this = this as Attendance;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Attendance&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.checkedInAt, _this.checkedInAt) || other.checkedInAt == _this.checkedInAt)&&(identical(other.method, _this.method) || other.method == _this.method)&&(identical(other.memberName, _this.memberName) || other.memberName == _this.memberName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Attendance&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.checkedInAt, _this.checkedInAt) || other.checkedInAt == _this.checkedInAt)&&(identical(other.checkedOutAt, _this.checkedOutAt) || other.checkedOutAt == _this.checkedOutAt)&&(identical(other.method, _this.method) || other.method == _this.method)&&(identical(other.memberName, _this.memberName) || other.memberName == _this.memberName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as Attendance;
-  return Object.hash(runtimeType,_this.id,_this.memberId,_this.day,_this.checkedInAt,_this.method,_this.memberName);
+  return Object.hash(runtimeType,_this.id,_this.memberId,_this.day,_this.checkedInAt,_this.checkedOutAt,_this.method,_this.memberName);
 }
 
 @override
 String toString() {
   final _this = this as Attendance;
-  return 'Attendance(id: ${_this.id}, memberId: ${_this.memberId}, day: ${_this.day}, checkedInAt: ${_this.checkedInAt}, method: ${_this.method}, memberName: ${_this.memberName})';
+  return 'Attendance(id: ${_this.id}, memberId: ${_this.memberId}, day: ${_this.day}, checkedInAt: ${_this.checkedInAt}, checkedOutAt: ${_this.checkedOutAt}, method: ${_this.method}, memberName: ${_this.memberName})';
 }
 
 
@@ -2199,7 +2199,7 @@ abstract mixin class $AttendanceCopyWith<$Res>  {
   factory $AttendanceCopyWith(Attendance value, $Res Function(Attendance) _then) = _$AttendanceCopyWithImpl;
 @useResult
 $Res call({
- String id,@JsonKey(name: 'member_id') String memberId,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? day,@JsonKey(name: 'checked_in_at') DateTime checkedInAt, String method,@JsonKey(includeToJson: false) String? memberName
+ String id,@JsonKey(name: 'member_id') String memberId,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? day,@JsonKey(name: 'checked_in_at') DateTime checkedInAt,@JsonKey(name: 'checked_out_at') DateTime? checkedOutAt, String method,@JsonKey(includeToJson: false) String? memberName
 });
 
 
@@ -2216,13 +2216,14 @@ class _$AttendanceCopyWithImpl<$Res>
 
 /// Create a copy of Attendance
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberId = null,Object? day = freezed,Object? checkedInAt = null,Object? method = null,Object? memberName = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? memberId = null,Object? day = freezed,Object? checkedInAt = null,Object? checkedOutAt = freezed,Object? method = null,Object? memberName = freezed,}) {
   return _then(Attendance(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,day: freezed == day ? _self.day : day // ignore: cast_nullable_to_non_nullable
 as DateTime?,checkedInAt: null == checkedInAt ? _self.checkedInAt : checkedInAt // ignore: cast_nullable_to_non_nullable
-as DateTime,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as DateTime,checkedOutAt: freezed == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,memberName: freezed == memberName ? _self.memberName : memberName // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2309,10 +2310,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt,  String method, @JsonKey(includeToJson: false)  String? memberName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt,  String method, @JsonKey(includeToJson: false)  String? memberName)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Attendance() when $default != null:
-return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method,_that.memberName);case _:
+return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.checkedOutAt,_that.method,_that.memberName);case _:
   return orElse();
 
 }
@@ -2330,10 +2331,10 @@ return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt,  String method, @JsonKey(includeToJson: false)  String? memberName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt,  String method, @JsonKey(includeToJson: false)  String? memberName)  $default,) {final _that = this;
 switch (_that) {
 case _Attendance():
-return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method,_that.memberName);case _:
+return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.checkedOutAt,_that.method,_that.memberName);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2350,10 +2351,10 @@ return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt,  String method, @JsonKey(includeToJson: false)  String? memberName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'member_id')  String memberId, @JsonKey(fromJson: _date, toJson: _dateOut)  DateTime? day, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt,  String method, @JsonKey(includeToJson: false)  String? memberName)?  $default,) {final _that = this;
 switch (_that) {
 case _Attendance() when $default != null:
-return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method,_that.memberName);case _:
+return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.checkedOutAt,_that.method,_that.memberName);case _:
   return null;
 
 }
@@ -2365,13 +2366,14 @@ return $default(_that.id,_that.memberId,_that.day,_that.checkedInAt,_that.method
 @JsonSerializable()
 
 class _Attendance implements Attendance {
-  const _Attendance({required this.id, @JsonKey(name: 'member_id') required this.memberId, @JsonKey(fromJson: _date, toJson: _dateOut) required this.day, @JsonKey(name: 'checked_in_at') required this.checkedInAt, required this.method, @JsonKey(includeToJson: false) this.memberName});
+  const _Attendance({required this.id, @JsonKey(name: 'member_id') required this.memberId, @JsonKey(fromJson: _date, toJson: _dateOut) required this.day, @JsonKey(name: 'checked_in_at') required this.checkedInAt, @JsonKey(name: 'checked_out_at') this.checkedOutAt, required this.method, @JsonKey(includeToJson: false) this.memberName});
   factory _Attendance.fromJson(Map<String, dynamic> json) => _$AttendanceFromJson(json);
 
 @override final  String id;
 @override@JsonKey(name: 'member_id') final  String memberId;
 @override@JsonKey(fromJson: _date, toJson: _dateOut) final  DateTime? day;
 @override@JsonKey(name: 'checked_in_at') final  DateTime checkedInAt;
+@override@JsonKey(name: 'checked_out_at') final  DateTime? checkedOutAt;
 @override final  String method;
 @override@JsonKey(includeToJson: false) final  String? memberName;
 
@@ -2388,18 +2390,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Attendance&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.day, day) || other.day == day)&&(identical(other.checkedInAt, checkedInAt) || other.checkedInAt == checkedInAt)&&(identical(other.method, method) || other.method == method)&&(identical(other.memberName, memberName) || other.memberName == memberName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Attendance&&(identical(other.id, id) || other.id == id)&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.day, day) || other.day == day)&&(identical(other.checkedInAt, checkedInAt) || other.checkedInAt == checkedInAt)&&(identical(other.checkedOutAt, checkedOutAt) || other.checkedOutAt == checkedOutAt)&&(identical(other.method, method) || other.method == method)&&(identical(other.memberName, memberName) || other.memberName == memberName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,memberId,day,checkedInAt,method,memberName);
+    return Object.hash(runtimeType,id,memberId,day,checkedInAt,checkedOutAt,method,memberName);
 }
 
 @override
 String toString() {
-    return 'Attendance(id: $id, memberId: $memberId, day: $day, checkedInAt: $checkedInAt, method: $method, memberName: $memberName)';
+    return 'Attendance(id: $id, memberId: $memberId, day: $day, checkedInAt: $checkedInAt, checkedOutAt: $checkedOutAt, method: $method, memberName: $memberName)';
 }
 
 
@@ -2410,7 +2412,7 @@ abstract mixin class _$AttendanceCopyWith<$Res> implements $AttendanceCopyWith<$
   factory _$AttendanceCopyWith(_Attendance value, $Res Function(_Attendance) _then) = __$AttendanceCopyWithImpl;
 @override @useResult
 $Res call({
- String id,@JsonKey(name: 'member_id') String memberId,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? day,@JsonKey(name: 'checked_in_at') DateTime checkedInAt, String method,@JsonKey(includeToJson: false) String? memberName
+ String id,@JsonKey(name: 'member_id') String memberId,@JsonKey(fromJson: _date, toJson: _dateOut) DateTime? day,@JsonKey(name: 'checked_in_at') DateTime checkedInAt,@JsonKey(name: 'checked_out_at') DateTime? checkedOutAt, String method,@JsonKey(includeToJson: false) String? memberName
 });
 
 
@@ -2427,13 +2429,14 @@ class __$AttendanceCopyWithImpl<$Res>
 
 /// Create a copy of Attendance
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberId = null,Object? day = freezed,Object? checkedInAt = null,Object? method = null,Object? memberName = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? memberId = null,Object? day = freezed,Object? checkedInAt = null,Object? checkedOutAt = freezed,Object? method = null,Object? memberName = freezed,}) {
   return _then(_Attendance(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,day: freezed == day ? _self.day : day // ignore: cast_nullable_to_non_nullable
 as DateTime?,checkedInAt: null == checkedInAt ? _self.checkedInAt : checkedInAt // ignore: cast_nullable_to_non_nullable
-as DateTime,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
+as DateTime,checkedOutAt: freezed == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,method: null == method ? _self.method : method // ignore: cast_nullable_to_non_nullable
 as String,memberName: freezed == memberName ? _self.memberName : memberName // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -2734,7 +2737,7 @@ as DateTime,
 /// @nodoc
 mixin _$CheckInResult {
 
-@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'days_left') int? get daysLeft; bool get already;@JsonKey(name: 'dues_paise') int get duesPaise;
+@JsonKey(name: 'member_id') String get memberId; String get name;@JsonKey(name: 'member_code') String get memberCode;@JsonKey(name: 'photo_url') String? get photoPath;@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus get status;@JsonKey(name: 'plan_name') String? get planName;@JsonKey(name: 'days_left') int? get daysLeft; bool get already;@JsonKey(name: 'checked_out_at') DateTime? get checkedOutAt;@JsonKey(name: 'dues_paise') int get duesPaise;
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2748,20 +2751,20 @@ $CheckInResultCopyWith<CheckInResult> get copyWith => _$CheckInResultCopyWithImp
 @override
 bool operator ==(Object other) {
   final _this = this as CheckInResult;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckInResult&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.daysLeft, _this.daysLeft) || other.daysLeft == _this.daysLeft)&&(identical(other.already, _this.already) || other.already == _this.already)&&(identical(other.duesPaise, _this.duesPaise) || other.duesPaise == _this.duesPaise));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckInResult&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.memberCode, _this.memberCode) || other.memberCode == _this.memberCode)&&(identical(other.photoPath, _this.photoPath) || other.photoPath == _this.photoPath)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.planName, _this.planName) || other.planName == _this.planName)&&(identical(other.daysLeft, _this.daysLeft) || other.daysLeft == _this.daysLeft)&&(identical(other.already, _this.already) || other.already == _this.already)&&(identical(other.checkedOutAt, _this.checkedOutAt) || other.checkedOutAt == _this.checkedOutAt)&&(identical(other.duesPaise, _this.duesPaise) || other.duesPaise == _this.duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as CheckInResult;
-  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.status,_this.planName,_this.daysLeft,_this.already,_this.duesPaise);
+  return Object.hash(runtimeType,_this.memberId,_this.name,_this.memberCode,_this.photoPath,_this.status,_this.planName,_this.daysLeft,_this.already,_this.checkedOutAt,_this.duesPaise);
 }
 
 @override
 String toString() {
   final _this = this as CheckInResult;
-  return 'CheckInResult(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, status: ${_this.status}, planName: ${_this.planName}, daysLeft: ${_this.daysLeft}, already: ${_this.already}, duesPaise: ${_this.duesPaise})';
+  return 'CheckInResult(memberId: ${_this.memberId}, name: ${_this.name}, memberCode: ${_this.memberCode}, photoPath: ${_this.photoPath}, status: ${_this.status}, planName: ${_this.planName}, daysLeft: ${_this.daysLeft}, already: ${_this.already}, checkedOutAt: ${_this.checkedOutAt}, duesPaise: ${_this.duesPaise})';
 }
 
 
@@ -2772,7 +2775,7 @@ abstract mixin class $CheckInResultCopyWith<$Res>  {
   factory $CheckInResultCopyWith(CheckInResult value, $Res Function(CheckInResult) _then) = _$CheckInResultCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'dues_paise') int duesPaise
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'checked_out_at') DateTime? checkedOutAt,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -2789,7 +2792,7 @@ class _$CheckInResultCopyWithImpl<$Res>
 
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? duesPaise = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? checkedOutAt = freezed,Object? duesPaise = null,}) {
   return _then(CheckInResult(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -2799,7 +2802,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as MemberStatus,planName: freezed == planName ? _self.planName : planName // ignore: cast_nullable_to_non_nullable
 as String?,daysLeft: freezed == daysLeft ? _self.daysLeft : daysLeft // ignore: cast_nullable_to_non_nullable
 as int?,already: null == already ? _self.already : already // ignore: cast_nullable_to_non_nullable
-as bool,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as bool,checkedOutAt: freezed == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -2885,10 +2889,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CheckInResult() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.checkedOutAt,_that.duesPaise);case _:
   return orElse();
 
 }
@@ -2906,10 +2910,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt, @JsonKey(name: 'dues_paise')  int duesPaise)  $default,) {final _that = this;
 switch (_that) {
 case _CheckInResult():
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.checkedOutAt,_that.duesPaise);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2926,10 +2930,10 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId,  String name, @JsonKey(name: 'member_code')  String memberCode, @JsonKey(name: 'photo_url')  String? photoPath, @JsonKey(fromJson: _status, toJson: _statusOut)  MemberStatus status, @JsonKey(name: 'plan_name')  String? planName, @JsonKey(name: 'days_left')  int? daysLeft,  bool already, @JsonKey(name: 'checked_out_at')  DateTime? checkedOutAt, @JsonKey(name: 'dues_paise')  int duesPaise)?  $default,) {final _that = this;
 switch (_that) {
 case _CheckInResult() when $default != null:
-return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.duesPaise);case _:
+return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that.status,_that.planName,_that.daysLeft,_that.already,_that.checkedOutAt,_that.duesPaise);case _:
   return null;
 
 }
@@ -2941,7 +2945,7 @@ return $default(_that.memberId,_that.name,_that.memberCode,_that.photoPath,_that
 @JsonSerializable()
 
 class _CheckInResult extends CheckInResult {
-  const _CheckInResult({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(fromJson: _status, toJson: _statusOut) required this.status, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'days_left') this.daysLeft, this.already = false, @JsonKey(name: 'dues_paise') this.duesPaise = 0}): super._();
+  const _CheckInResult({@JsonKey(name: 'member_id') required this.memberId, required this.name, @JsonKey(name: 'member_code') required this.memberCode, @JsonKey(name: 'photo_url') this.photoPath, @JsonKey(fromJson: _status, toJson: _statusOut) required this.status, @JsonKey(name: 'plan_name') this.planName, @JsonKey(name: 'days_left') this.daysLeft, this.already = false, @JsonKey(name: 'checked_out_at') this.checkedOutAt, @JsonKey(name: 'dues_paise') this.duesPaise = 0}): super._();
   factory _CheckInResult.fromJson(Map<String, dynamic> json) => _$CheckInResultFromJson(json);
 
 @override@JsonKey(name: 'member_id') final  String memberId;
@@ -2952,6 +2956,7 @@ class _CheckInResult extends CheckInResult {
 @override@JsonKey(name: 'plan_name') final  String? planName;
 @override@JsonKey(name: 'days_left') final  int? daysLeft;
 @override@JsonKey() final  bool already;
+@override@JsonKey(name: 'checked_out_at') final  DateTime? checkedOutAt;
 @override@JsonKey(name: 'dues_paise') final  int duesPaise;
 
 /// Create a copy of CheckInResult
@@ -2967,18 +2972,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckInResult&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.daysLeft, daysLeft) || other.daysLeft == daysLeft)&&(identical(other.already, already) || other.already == already)&&(identical(other.duesPaise, duesPaise) || other.duesPaise == duesPaise));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckInResult&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.name, name) || other.name == name)&&(identical(other.memberCode, memberCode) || other.memberCode == memberCode)&&(identical(other.photoPath, photoPath) || other.photoPath == photoPath)&&(identical(other.status, status) || other.status == status)&&(identical(other.planName, planName) || other.planName == planName)&&(identical(other.daysLeft, daysLeft) || other.daysLeft == daysLeft)&&(identical(other.already, already) || other.already == already)&&(identical(other.checkedOutAt, checkedOutAt) || other.checkedOutAt == checkedOutAt)&&(identical(other.duesPaise, duesPaise) || other.duesPaise == duesPaise));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,status,planName,daysLeft,already,duesPaise);
+    return Object.hash(runtimeType,memberId,name,memberCode,photoPath,status,planName,daysLeft,already,checkedOutAt,duesPaise);
 }
 
 @override
 String toString() {
-    return 'CheckInResult(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, status: $status, planName: $planName, daysLeft: $daysLeft, already: $already, duesPaise: $duesPaise)';
+    return 'CheckInResult(memberId: $memberId, name: $name, memberCode: $memberCode, photoPath: $photoPath, status: $status, planName: $planName, daysLeft: $daysLeft, already: $already, checkedOutAt: $checkedOutAt, duesPaise: $duesPaise)';
 }
 
 
@@ -2989,7 +2994,7 @@ abstract mixin class _$CheckInResultCopyWith<$Res> implements $CheckInResultCopy
   factory _$CheckInResultCopyWith(_CheckInResult value, $Res Function(_CheckInResult) _then) = __$CheckInResultCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'dues_paise') int duesPaise
+@JsonKey(name: 'member_id') String memberId, String name,@JsonKey(name: 'member_code') String memberCode,@JsonKey(name: 'photo_url') String? photoPath,@JsonKey(fromJson: _status, toJson: _statusOut) MemberStatus status,@JsonKey(name: 'plan_name') String? planName,@JsonKey(name: 'days_left') int? daysLeft, bool already,@JsonKey(name: 'checked_out_at') DateTime? checkedOutAt,@JsonKey(name: 'dues_paise') int duesPaise
 });
 
 
@@ -3006,7 +3011,7 @@ class __$CheckInResultCopyWithImpl<$Res>
 
 /// Create a copy of CheckInResult
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? duesPaise = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? name = null,Object? memberCode = null,Object? photoPath = freezed,Object? status = null,Object? planName = freezed,Object? daysLeft = freezed,Object? already = null,Object? checkedOutAt = freezed,Object? duesPaise = null,}) {
   return _then(_CheckInResult(
 memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -3016,7 +3021,8 @@ as String?,status: null == status ? _self.status : status // ignore: cast_nullab
 as MemberStatus,planName: freezed == planName ? _self.planName : planName // ignore: cast_nullable_to_non_nullable
 as String?,daysLeft: freezed == daysLeft ? _self.daysLeft : daysLeft // ignore: cast_nullable_to_non_nullable
 as int?,already: null == already ? _self.already : already // ignore: cast_nullable_to_non_nullable
-as bool,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
+as bool,checkedOutAt: freezed == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,duesPaise: null == duesPaise ? _self.duesPaise : duesPaise // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -3897,6 +3903,285 @@ as DateTime?,joinedTo: freezed == joinedTo ? _self.joinedTo : joinedTo // ignore
 as DateTime?,sort: null == sort ? _self.sort : sort // ignore: cast_nullable_to_non_nullable
 as MemberSort,includeArchived: null == includeArchived ? _self.includeArchived : includeArchived // ignore: cast_nullable_to_non_nullable
 as bool,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$CheckOutResult {
+
+@JsonKey(name: 'member_id') String get memberId;@JsonKey(name: 'checked_in_at') DateTime get checkedInAt;@JsonKey(name: 'checked_out_at') DateTime get checkedOutAt; int get minutes;
+/// Create a copy of CheckOutResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CheckOutResultCopyWith<CheckOutResult> get copyWith => _$CheckOutResultCopyWithImpl<CheckOutResult>(this as CheckOutResult, _$identity);
+
+  /// Serializes this CheckOutResult to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as CheckOutResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckOutResult&&(identical(other.memberId, _this.memberId) || other.memberId == _this.memberId)&&(identical(other.checkedInAt, _this.checkedInAt) || other.checkedInAt == _this.checkedInAt)&&(identical(other.checkedOutAt, _this.checkedOutAt) || other.checkedOutAt == _this.checkedOutAt)&&(identical(other.minutes, _this.minutes) || other.minutes == _this.minutes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as CheckOutResult;
+  return Object.hash(runtimeType,_this.memberId,_this.checkedInAt,_this.checkedOutAt,_this.minutes);
+}
+
+@override
+String toString() {
+  final _this = this as CheckOutResult;
+  return 'CheckOutResult(memberId: ${_this.memberId}, checkedInAt: ${_this.checkedInAt}, checkedOutAt: ${_this.checkedOutAt}, minutes: ${_this.minutes})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CheckOutResultCopyWith<$Res>  {
+  factory $CheckOutResultCopyWith(CheckOutResult value, $Res Function(CheckOutResult) _then) = _$CheckOutResultCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'member_id') String memberId,@JsonKey(name: 'checked_in_at') DateTime checkedInAt,@JsonKey(name: 'checked_out_at') DateTime checkedOutAt, int minutes
+});
+
+
+
+
+}
+/// @nodoc
+class _$CheckOutResultCopyWithImpl<$Res>
+    implements $CheckOutResultCopyWith<$Res> {
+  _$CheckOutResultCopyWithImpl(this._self, this._then);
+
+  final CheckOutResult _self;
+  final $Res Function(CheckOutResult) _then;
+
+/// Create a copy of CheckOutResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? memberId = null,Object? checkedInAt = null,Object? checkedOutAt = null,Object? minutes = null,}) {
+  return _then(CheckOutResult(
+memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as String,checkedInAt: null == checkedInAt ? _self.checkedInAt : checkedInAt // ignore: cast_nullable_to_non_nullable
+as DateTime,checkedOutAt: null == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime,minutes: null == minutes ? _self.minutes : minutes // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CheckOutResult].
+extension CheckOutResultPatterns on CheckOutResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CheckOutResult value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CheckOutResult() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CheckOutResult value)  $default,){
+final _that = this;
+switch (_that) {
+case _CheckOutResult():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CheckOutResult value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CheckOutResult() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime checkedOutAt,  int minutes)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CheckOutResult() when $default != null:
+return $default(_that.memberId,_that.checkedInAt,_that.checkedOutAt,_that.minutes);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'member_id')  String memberId, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime checkedOutAt,  int minutes)  $default,) {final _that = this;
+switch (_that) {
+case _CheckOutResult():
+return $default(_that.memberId,_that.checkedInAt,_that.checkedOutAt,_that.minutes);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'member_id')  String memberId, @JsonKey(name: 'checked_in_at')  DateTime checkedInAt, @JsonKey(name: 'checked_out_at')  DateTime checkedOutAt,  int minutes)?  $default,) {final _that = this;
+switch (_that) {
+case _CheckOutResult() when $default != null:
+return $default(_that.memberId,_that.checkedInAt,_that.checkedOutAt,_that.minutes);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _CheckOutResult implements CheckOutResult {
+  const _CheckOutResult({@JsonKey(name: 'member_id') required this.memberId, @JsonKey(name: 'checked_in_at') required this.checkedInAt, @JsonKey(name: 'checked_out_at') required this.checkedOutAt, this.minutes = 0});
+  factory _CheckOutResult.fromJson(Map<String, dynamic> json) => _$CheckOutResultFromJson(json);
+
+@override@JsonKey(name: 'member_id') final  String memberId;
+@override@JsonKey(name: 'checked_in_at') final  DateTime checkedInAt;
+@override@JsonKey(name: 'checked_out_at') final  DateTime checkedOutAt;
+@override@JsonKey() final  int minutes;
+
+/// Create a copy of CheckOutResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CheckOutResultCopyWith<_CheckOutResult> get copyWith => __$CheckOutResultCopyWithImpl<_CheckOutResult>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$CheckOutResultToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckOutResult&&(identical(other.memberId, memberId) || other.memberId == memberId)&&(identical(other.checkedInAt, checkedInAt) || other.checkedInAt == checkedInAt)&&(identical(other.checkedOutAt, checkedOutAt) || other.checkedOutAt == checkedOutAt)&&(identical(other.minutes, minutes) || other.minutes == minutes));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,memberId,checkedInAt,checkedOutAt,minutes);
+}
+
+@override
+String toString() {
+    return 'CheckOutResult(memberId: $memberId, checkedInAt: $checkedInAt, checkedOutAt: $checkedOutAt, minutes: $minutes)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CheckOutResultCopyWith<$Res> implements $CheckOutResultCopyWith<$Res> {
+  factory _$CheckOutResultCopyWith(_CheckOutResult value, $Res Function(_CheckOutResult) _then) = __$CheckOutResultCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'member_id') String memberId,@JsonKey(name: 'checked_in_at') DateTime checkedInAt,@JsonKey(name: 'checked_out_at') DateTime checkedOutAt, int minutes
+});
+
+
+
+
+}
+/// @nodoc
+class __$CheckOutResultCopyWithImpl<$Res>
+    implements _$CheckOutResultCopyWith<$Res> {
+  __$CheckOutResultCopyWithImpl(this._self, this._then);
+
+  final _CheckOutResult _self;
+  final $Res Function(_CheckOutResult) _then;
+
+/// Create a copy of CheckOutResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? memberId = null,Object? checkedInAt = null,Object? checkedOutAt = null,Object? minutes = null,}) {
+  return _then(_CheckOutResult(
+memberId: null == memberId ? _self.memberId : memberId // ignore: cast_nullable_to_non_nullable
+as String,checkedInAt: null == checkedInAt ? _self.checkedInAt : checkedInAt // ignore: cast_nullable_to_non_nullable
+as DateTime,checkedOutAt: null == checkedOutAt ? _self.checkedOutAt : checkedOutAt // ignore: cast_nullable_to_non_nullable
+as DateTime,minutes: null == minutes ? _self.minutes : minutes // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

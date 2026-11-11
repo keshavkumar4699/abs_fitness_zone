@@ -780,3 +780,26 @@ it here, and continue. Newest entries go at the bottom of each milestone.
      The receipt's labels and the notification channel names were English
      literals; they now come from the ARB file, with the notification text
      set by the screen that owns it.
+
+## Deferred items built after M5
+
+125. **Optional check-out (M1).** A visit ends when the member scans again
+     at the desk (the result screen offers "Check out"), taps "Check out"
+     on their home screen, or the desk or their trainer ends it from the
+     Attendance tab. Ending a visit twice changes nothing. The visit's
+     length shows on the attendance list; reports on time spent come with
+     M7.
+
+126. **Members reply to their coach in words (M3).** The reactions stay the
+     coach's. A reply carries the member's own name, and members can only
+     write on their own workouts.
+
+127. **What to buy is editable on every food (M4).** A coach edits the
+     grocery items (item, amount, g / ml / pc) for custom foods and seeded
+     ones alike; editing a food counts as reviewing it, as before.
+
+128. **Ad-hoc invoices (M2).** From Payments or a member's Payments tab:
+     items with amounts and quantities, the due date, a GST rate per
+     invoice (used only when GST is on in Gym profile), and a discount that
+     needs a reason. The invoice opens as soon as it is raised, so the desk
+     can collect or send the pay link at once.

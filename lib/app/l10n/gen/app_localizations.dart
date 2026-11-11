@@ -8905,6 +8905,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 needs attention} other{{count} need attention}}'**
   String waTodayProblems(int count);
+
+  /// No description provided for @checkOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check out'**
+  String get checkOut;
+
+  /// No description provided for @checkOutDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked out · {duration}'**
+  String checkOutDone(String duration);
+
+  /// No description provided for @visitInOut.
+  ///
+  /// In en, this message translates to:
+  /// **'In {inTime} · out {outTime}'**
+  String visitInOut(String inTime, String outTime);
+
+  /// No description provided for @memberCheckedInAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked in at {time}'**
+  String memberCheckedInAt(String time);
+
+  /// No description provided for @memberCheckOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Check out'**
+  String get memberCheckOut;
+
+  /// No description provided for @memberVisitToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today: in {inTime} · out {outTime}'**
+  String memberVisitToday(String inTime, String outTime);
+
+  /// No description provided for @durationMin.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 min} other{{n} min}}'**
+  String durationMin(int n);
+
+  /// No description provided for @durationHourMin.
+  ///
+  /// In en, this message translates to:
+  /// **'{h} h {m} min'**
+  String durationHourMin(int h, int m);
+
+  /// No description provided for @wkReplyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply to your coach'**
+  String get wkReplyHint;
+
+  /// No description provided for @foodGrocery.
+  ///
+  /// In en, this message translates to:
+  /// **'What to buy'**
+  String get foodGrocery;
+
+  /// No description provided for @foodGroceryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What one serving uses. The grocery list adds these up for the week.'**
+  String get foodGroceryHint;
+
+  /// No description provided for @foodGroceryItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get foodGroceryItem;
+
+  /// No description provided for @foodGroceryQty.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get foodGroceryQty;
+
+  /// No description provided for @foodGroceryAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get foodGroceryAdd;
+
+  /// No description provided for @groceryUnitG.
+  ///
+  /// In en, this message translates to:
+  /// **'g'**
+  String get groceryUnitG;
+
+  /// No description provided for @groceryUnitMl.
+  ///
+  /// In en, this message translates to:
+  /// **'ml'**
+  String get groceryUnitMl;
+
+  /// No description provided for @groceryUnitPc.
+  ///
+  /// In en, this message translates to:
+  /// **'pc'**
+  String get groceryUnitPc;
+
+  /// No description provided for @payNewInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'New invoice'**
+  String get payNewInvoice;
+
+  /// No description provided for @newInvTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New invoice'**
+  String get newInvTitle;
+
+  /// No description provided for @newInvPickMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for the member to bill.'**
+  String get newInvPickMember;
+
+  /// No description provided for @newInvItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get newInvItem;
+
+  /// No description provided for @newInvAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get newInvAmount;
+
+  /// No description provided for @newInvQty.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty'**
+  String get newInvQty;
+
+  /// No description provided for @newInvAddLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add another item'**
+  String get newInvAddLine;
+
+  /// No description provided for @newInvDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Due'**
+  String get newInvDue;
+
+  /// No description provided for @newInvDueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get newInvDueToday;
+
+  /// No description provided for @newInvGst.
+  ///
+  /// In en, this message translates to:
+  /// **'GST rate'**
+  String get newInvGst;
+
+  /// No description provided for @newInvGstHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Applies only when GST is on in Gym profile.'**
+  String get newInvGstHelp;
+
+  /// No description provided for @newInvDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get newInvDiscount;
+
+  /// No description provided for @newInvReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for the discount'**
+  String get newInvReason;
+
+  /// No description provided for @newInvSubtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'To pay (before GST)'**
+  String get newInvSubtotal;
+
+  /// No description provided for @newInvCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise invoice · {amount}'**
+  String newInvCreate(String amount);
+
+  /// No description provided for @newInvDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice raised'**
+  String get newInvDone;
+
+  /// No description provided for @newInvNeedLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an item with an amount'**
+  String get newInvNeedLine;
+
+  /// No description provided for @newInvNeedReason.
+  ///
+  /// In en, this message translates to:
+  /// **'A discount needs a reason'**
+  String get newInvNeedReason;
+
+  /// No description provided for @commonRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get commonRemove;
+
+  /// No description provided for @commonChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get commonChange;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

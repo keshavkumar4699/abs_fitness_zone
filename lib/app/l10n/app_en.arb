@@ -3138,5 +3138,100 @@
         "type": "int"
       }
     }
-  }
+  },
+  "checkOut": "Check out",
+  "checkOutDone": "Checked out · {duration}",
+  "@checkOutDone": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "visitInOut": "In {inTime} · out {outTime}",
+  "@visitInOut": {
+    "placeholders": {
+      "inTime": {
+        "type": "String"
+      },
+      "outTime": {
+        "type": "String"
+      }
+    }
+  },
+  "memberCheckedInAt": "Checked in at {time}",
+  "@memberCheckedInAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "memberCheckOut": "Check out",
+  "memberVisitToday": "Today: in {inTime} · out {outTime}",
+  "@memberVisitToday": {
+    "placeholders": {
+      "inTime": {
+        "type": "String"
+      },
+      "outTime": {
+        "type": "String"
+      }
+    }
+  },
+  "durationMin": "{n, plural, =1{1 min} other{{n} min}}",
+  "@durationMin": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHourMin": "{h} h {m} min",
+  "@durationHourMin": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "wkReplyHint": "Reply to your coach",
+  "foodGrocery": "What to buy",
+  "foodGroceryHint": "What one serving uses. The grocery list adds these up for the week.",
+  "foodGroceryItem": "Item",
+  "foodGroceryQty": "Amount",
+  "foodGroceryAdd": "Add item",
+  "groceryUnitG": "g",
+  "groceryUnitMl": "ml",
+  "groceryUnitPc": "pc",
+  "payNewInvoice": "New invoice",
+  "newInvTitle": "New invoice",
+  "newInvPickMember": "Search for the member to bill.",
+  "newInvItem": "Item",
+  "newInvAmount": "Amount",
+  "newInvQty": "Qty",
+  "newInvAddLine": "Add another item",
+  "newInvDue": "Due",
+  "newInvDueToday": "Today",
+  "newInvGst": "GST rate",
+  "newInvGstHelp": "Applies only when GST is on in Gym profile.",
+  "newInvDiscount": "Discount",
+  "newInvReason": "Reason for the discount",
+  "newInvSubtotal": "To pay (before GST)",
+  "newInvCreate": "Raise invoice · {amount}",
+  "@newInvCreate": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "newInvDone": "Invoice raised",
+  "newInvNeedLine": "Add an item with an amount",
+  "newInvNeedReason": "A discount needs a reason",
+  "commonRemove": "Remove",
+  "commonChange": "Change"
 }

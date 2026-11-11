@@ -5,6 +5,9 @@ import 'package:phosphor_icons/phosphor_icons.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../app/l10n/l10n.dart';
+import '../../members/data/members_repository.dart';
+import '../../../core/errors.dart';
+import '../../../app/providers.dart';
 import '../../../app/routes.dart';
 import '../../../app/theme/theme.dart';
 import '../../../core/utils/dates.dart';
@@ -29,7 +32,6 @@ class MemberHomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l = context.l10n;
     final user = ref.watch(currentUserProvider).value;
     final member = ref.watch(myMemberProvider);
     // Upload workouts finished offline as soon as the app opens.
@@ -82,12 +84,7 @@ class MemberHomeScreen extends ConsumerWidget {
                     _FeesCard(member: m),
                     _DaysAndVisits(member: m),
                     const SizedBox(height: AbsSpace.x5),
-                    AbsButton(
-                      label: l.memberCheckIn,
-                      hue: PopHue.lime,
-                      icon: PhosphorIcons.scan(PhosphorIconsStyle.bold),
-                      onPressed: () => context.push(Routes.meCheckIn),
-                    ),
+                    _VisitToday(memberId: m.id),
                   ],
                 ),
               ),
@@ -325,6 +322,77 @@ class MemberCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Check in, or end today's visit once checked in (optional check-out).
+class _VisitToday extends ConsumerStatefulWidget {
+  const _VisitToday({required this.memberId});
+
+  final String memberId;
+
+  @override
+  ConsumerState<_VisitToday> createState() => _VisitTodayState();
+}
+
+class _VisitTodayState extends ConsumerState<_VisitToday> {
+  bool _busy = false;
+
+  Future<void> _checkOut() async {
+    final l = context.l10n;
+    setState(() => _busy = true);
+    try {
+      final r = await ref.read(membersRepositoryProvider).checkOut();
+      ref.invalidate(memberAttendanceProvider(widget.memberId));
+      if (mounted) showAbsSnackbar(context, l.checkOutDone(visitDuration(l, r.minutes)), tone: SnackTone.success);
+    } catch (e) {
+      if (mounted) showAbsSnackbar(context, friendlyError(l, e), tone: SnackTone.error);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final c = context.colors;
+    final t = context.text;
+    final today = IstDates.today(now: ref.watch(clockProvider)());
+    final visit = ref.watch(memberAttendanceProvider(widget.memberId)).value?.where((a) => a.day == today).firstOrNull;
+    if (visit == null) {
+      return AbsButton(
+        label: l.memberCheckIn,
+        hue: PopHue.lime,
+        icon: PhosphorIcons.scan(PhosphorIconsStyle.bold),
+        onPressed: () => context.push(Routes.meCheckIn),
+      );
+    }
+    if (visit.checkedOutAt != null) {
+      return Text(
+        l.memberVisitToday(IstDates.formatTime(visit.checkedInAt), IstDates.formatTime(visit.checkedOutAt!)),
+        key: const ValueKey('visit-done'),
+        style: t.body.copyWith(color: c.textSecondary),
+        textAlign: TextAlign.center,
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          l.memberCheckedInAt(IstDates.formatTime(visit.checkedInAt)),
+          style: t.body.copyWith(color: c.textSecondary),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: AbsSpace.x3),
+        AbsButton.secondary(
+          key: const ValueKey('me-check-out'),
+          label: l.memberCheckOut,
+          icon: PhosphorIcons.signOut(PhosphorIconsStyle.bold),
+          isLoading: _busy,
+          onPressed: _checkOut,
+        ),
+      ],
     );
   }
 }

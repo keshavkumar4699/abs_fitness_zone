@@ -233,6 +233,7 @@ _Attendance _$AttendanceFromJson(Map<String, dynamic> json) => _Attendance(
   memberId: json['member_id'] as String,
   day: _date(json['day']),
   checkedInAt: DateTime.parse(json['checked_in_at'] as String),
+  checkedOutAt: json['checked_out_at'] == null ? null : DateTime.parse(json['checked_out_at'] as String),
   method: json['method'] as String,
   memberName: json['memberName'] as String?,
 );
@@ -242,6 +243,7 @@ Map<String, dynamic> _$AttendanceToJson(_Attendance instance) => <String, dynami
   'member_id': instance.memberId,
   'day': _dateOut(instance.day),
   'checked_in_at': instance.checkedInAt.toIso8601String(),
+  'checked_out_at': instance.checkedOutAt?.toIso8601String(),
   'method': instance.method,
 };
 
@@ -270,6 +272,7 @@ _CheckInResult _$CheckInResultFromJson(Map<String, dynamic> json) => _CheckInRes
   planName: json['plan_name'] as String?,
   daysLeft: (json['days_left'] as num?)?.toInt(),
   already: json['already'] as bool? ?? false,
+  checkedOutAt: json['checked_out_at'] == null ? null : DateTime.parse(json['checked_out_at'] as String),
   duesPaise: (json['dues_paise'] as num?)?.toInt() ?? 0,
 );
 
@@ -282,6 +285,7 @@ Map<String, dynamic> _$CheckInResultToJson(_CheckInResult instance) => <String, 
   'plan_name': instance.planName,
   'days_left': instance.daysLeft,
   'already': instance.already,
+  'checked_out_at': instance.checkedOutAt?.toIso8601String(),
   'dues_paise': instance.duesPaise,
 };
 
@@ -352,3 +356,17 @@ Map<String, dynamic> _$MemberQueryToJson(_MemberQuery instance) => <String, dyna
 };
 
 const _$MemberSortEnumMap = {MemberSort.name: 'name', MemberSort.endDate: 'endDate', MemberSort.joined: 'joined'};
+
+_CheckOutResult _$CheckOutResultFromJson(Map<String, dynamic> json) => _CheckOutResult(
+  memberId: json['member_id'] as String,
+  checkedInAt: DateTime.parse(json['checked_in_at'] as String),
+  checkedOutAt: DateTime.parse(json['checked_out_at'] as String),
+  minutes: (json['minutes'] as num?)?.toInt() ?? 0,
+);
+
+Map<String, dynamic> _$CheckOutResultToJson(_CheckOutResult instance) => <String, dynamic>{
+  'member_id': instance.memberId,
+  'checked_in_at': instance.checkedInAt.toIso8601String(),
+  'checked_out_at': instance.checkedOutAt.toIso8601String(),
+  'minutes': instance.minutes,
+};

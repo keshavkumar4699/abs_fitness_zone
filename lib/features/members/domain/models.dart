@@ -225,6 +225,7 @@ abstract class Attendance with _$Attendance {
     @JsonKey(name: 'member_id') required String memberId,
     @JsonKey(fromJson: _date, toJson: _dateOut) required DateTime? day,
     @JsonKey(name: 'checked_in_at') required DateTime checkedInAt,
+    @JsonKey(name: 'checked_out_at') DateTime? checkedOutAt,
     required String method,
     @JsonKey(includeToJson: false) String? memberName,
   }) = _Attendance;
@@ -259,6 +260,7 @@ abstract class CheckInResult with _$CheckInResult {
     @JsonKey(name: 'plan_name') String? planName,
     @JsonKey(name: 'days_left') int? daysLeft,
     @Default(false) bool already,
+    @JsonKey(name: 'checked_out_at') DateTime? checkedOutAt,
     @JsonKey(name: 'dues_paise') @Default(0) int duesPaise,
   }) = _CheckInResult;
 
@@ -394,3 +396,16 @@ class ImportRowResult {
 }
 
 String? dateParam(DateTime? d) => _dateOut(d);
+
+/// What `check_out` returns: the visit that just ended.
+@freezed
+abstract class CheckOutResult with _$CheckOutResult {
+  const factory CheckOutResult({
+    @JsonKey(name: 'member_id') required String memberId,
+    @JsonKey(name: 'checked_in_at') required DateTime checkedInAt,
+    @JsonKey(name: 'checked_out_at') required DateTime checkedOutAt,
+    @Default(0) int minutes,
+  }) = _CheckOutResult;
+
+  factory CheckOutResult.fromJson(Map<String, dynamic> json) => _$CheckOutResultFromJson(json);
+}

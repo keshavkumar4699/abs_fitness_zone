@@ -11,6 +11,7 @@ import '../../../core/errors.dart';
 import '../../../core/utils/dates.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../auth/application/auth_providers.dart';
+import '../../auth/domain/app_user.dart';
 import '../../exercises/application/exercise_providers.dart';
 import '../../exercises/domain/exercise.dart';
 import '../../exercises/presentation/exercise_ui.dart';
@@ -537,6 +538,7 @@ class _LogSheetState extends ConsumerState<_LogSheet> {
     final log = widget.log;
     final catalogue = ref.watch(exerciseCatalogueProvider).value;
     final byExercise = <String, List<SetLog>>{};
+    final isMember = ref.watch(currentUserProvider).value?.role == UserRole.member;
     for (final s in log.sets) {
       byExercise.putIfAbsent(s.exerciseId, () => []).add(s);
     }
@@ -655,11 +657,18 @@ class _LogSheetState extends ConsumerState<_LogSheet> {
                 ),
             ],
           ),
+        ],
+        // Members reply to their coach in words; reactions are the coach's.
+        if (widget.canComment || isMember) ...[
           const SizedBox(height: AbsSpace.x2),
           Row(
             children: [
               Expanded(
-                child: AbsTextField(key: const ValueKey('comment-field'), label: l.wkCommentHint, controller: _text),
+                child: AbsTextField(
+                  key: const ValueKey('comment-field'),
+                  label: widget.canComment ? l.wkCommentHint : l.wkReplyHint,
+                  controller: _text,
+                ),
               ),
               const SizedBox(width: AbsSpace.x2),
               AbsButton(
