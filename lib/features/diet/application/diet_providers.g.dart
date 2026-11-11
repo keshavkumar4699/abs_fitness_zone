@@ -842,7 +842,7 @@ final class MealReminderSwitchProvider extends $NotifierProvider<MealReminderSwi
   }
 }
 
-String _$mealReminderSwitchHash() => r'd316920accbf33ed75bdae797b31bea5ff4a7d14';
+String _$mealReminderSwitchHash() => r'99bc763604cad288ef08d2a006ce1b9db94553a6';
 
 abstract class _$MealReminderSwitch extends $Notifier<bool> {
   bool build();

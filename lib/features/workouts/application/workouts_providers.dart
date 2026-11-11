@@ -200,6 +200,11 @@ extension WorkoutRefresh on WidgetRef {
 class ActiveWorkout extends _$ActiveWorkout {
   static const _key = 'active_workout_v1';
 
+  /// The rest alert's text, in the member's language (set by the player).
+  RestAlertText _alertText = const RestAlertText();
+
+  void setAlertText(RestAlertText text) => _alertText = text;
+
   @override
   WorkoutSession? build() {
     final raw = ref.watch(sharedPreferencesProvider).getString(_key);
@@ -319,7 +324,7 @@ class ActiveWorkout extends _$ActiveWorkout {
     if (s == null) return;
     final ends = _now().add(Duration(seconds: seconds));
     _set(s.copyWith(restEndsAt: ends, restTotalS: seconds));
-    unawaited(ref.read(restAlertsProvider).schedule(ends, title: 'Rest over', body: 'Time for your next set'));
+    unawaited(ref.read(restAlertsProvider).schedule(ends, _alertText));
   }
 
   void addRest(int seconds) {
@@ -328,7 +333,7 @@ class ActiveWorkout extends _$ActiveWorkout {
     if (s == null || ends == null) return;
     final next = ends.add(Duration(seconds: seconds));
     _set(s.copyWith(restEndsAt: next, restTotalS: s.restTotalS + seconds));
-    unawaited(ref.read(restAlertsProvider).schedule(next, title: 'Rest over', body: 'Time for your next set'));
+    unawaited(ref.read(restAlertsProvider).schedule(next, _alertText));
   }
 
   void endRest() {

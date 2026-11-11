@@ -751,3 +751,32 @@ it here, and continue. Newest entries go at the bottom of each milestone.
      - Hindi translations of the app's own screens (the Hindi WhatsApp
        messages are done);
      - AI-drafted broadcast text (F7 7.9).
+
+## After M5: review fixes
+
+121. **Switching WhatsApp mode moves what is waiting.** Turning API mode on
+     sends the free-mode messages the API never tried (no attempts, no
+     error); turning it off moves everything still waiting on the API to
+     the free-mode list, so nothing is stranded on a sender that is off. A
+     database trigger on the setting does it, so it holds however the
+     setting is changed.
+
+122. **"Problems" instead of "Failed" in the log.** A message never ends in
+     a failed state: a send that fails is retried once and then moved to
+     the free-mode list, with the reason on the row. The log's filter shows
+     rows that carry a reason, whatever their status, and the staff home
+     card counts the ones still waiting.
+
+123. **Platform configuration found in review.** The iOS property list had
+     the URL-scheme block pasted into four nested dictionaries (an invalid
+     plist) and no camera or photo-library usage text; Android lacked the
+     notification permission for Android 13+, the boot receiver that keeps
+     daily meal reminders after a restart, and the package-visibility
+     queries for the links the app opens (wa.me, tel, upi). All fixed; none
+     of it can be verified without a device, so the CI Android build is the
+     check.
+
+124. **Every string goes through l10n, including PDFs and notifications.**
+     The receipt's labels and the notification channel names were English
+     literals; they now come from the ARB file, with the notification text
+     set by the screen that owns it.

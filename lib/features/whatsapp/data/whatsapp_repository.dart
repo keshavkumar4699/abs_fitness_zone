@@ -22,7 +22,13 @@ abstract interface class WhatsAppRepository {
   Future<Paged<QueuedMessage>> queue({required DateTime day, int offset = 0});
 
   /// Every message, newest first; for one member when [memberId] is set.
-  Future<Paged<QueuedMessage>> log({String? memberId, Set<MessageStatus> statuses = const {}, int offset = 0});
+  /// [errorsOnly] keeps the ones that could not be sent as planned.
+  Future<Paged<QueuedMessage>> log({
+    String? memberId,
+    Set<MessageStatus> statuses = const {},
+    bool errorsOnly = false,
+    int offset = 0,
+  });
 
   Future<QueueSummary> summary({required DateTime day});
 
@@ -134,15 +140,20 @@ class SupabaseWhatsAppRepository implements WhatsAppRepository {
   });
 
   @override
-  Future<Paged<QueuedMessage>> log({String? memberId, Set<MessageStatus> statuses = const {}, int offset = 0}) =>
-      _guard(() async {
-        var q = _db.from('message_queue').select(_row);
-        if (memberId != null) q = q.eq('member_id', memberId);
-        if (statuses.isNotEmpty) q = q.inFilter('status', [for (final s in statuses) s.name]);
-        final rows = await q.order('created_at', ascending: false).order('id').range(offset, offset + kPageSize - 1);
-        final items = rows.map(QueuedMessage.fromJson).toList();
-        return Paged(items, hasMore: items.length == kPageSize);
-      });
+  Future<Paged<QueuedMessage>> log({
+    String? memberId,
+    Set<MessageStatus> statuses = const {},
+    bool errorsOnly = false,
+    int offset = 0,
+  }) => _guard(() async {
+    var q = _db.from('message_queue').select(_row);
+    if (memberId != null) q = q.eq('member_id', memberId);
+    if (statuses.isNotEmpty) q = q.inFilter('status', [for (final s in statuses) s.name]);
+    if (errorsOnly) q = q.not('error', 'is', null);
+    final rows = await q.order('created_at', ascending: false).order('id').range(offset, offset + kPageSize - 1);
+    final items = rows.map(QueuedMessage.fromJson).toList();
+    return Paged(items, hasMore: items.length == kPageSize);
+  });
 
   @override
   Future<QueueSummary> summary({required DateTime day}) => _guard(() async {
@@ -162,11 +173,13 @@ class SupabaseWhatsAppRepository implements WhatsAppRepository {
         .gte('sent_at', start)
         .lte('sent_at', end)
         .count(CountOption.exact);
+    // Waiting with an error: moved from the API, or a number that failed.
     final failed = await _db
         .from('message_queue')
         .select('id')
-        .eq('status', 'failed')
-        .gte('updated_at', start)
+        .eq('status', 'queued')
+        .not('error', 'is', null)
+        .lte('scheduled_for', end)
         .count(CountOption.exact);
     return QueueSummary(toSend: toSend.count, sentToday: sent.count, failed: failed.count);
   });

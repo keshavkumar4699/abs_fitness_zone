@@ -152,6 +152,7 @@ void main() {
     expect(reminders.scheduled, hasLength(7));
     expect(reminders.scheduled.first.minutes, 6 * 60 + 30);
     expect(reminders.scheduled.first.title, 'Time for Early morning');
+    expect(reminders.channelName, 'Meal reminders');
     expect((await SharedPreferences.getInstance()).getBool('meal_reminders_on'), isTrue);
     await tester.tap(find.byKey(const ValueKey('meal-reminders')));
     await settle(tester, 6);

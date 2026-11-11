@@ -74,19 +74,23 @@ enum LogFilter {
   all({}),
   queued({MessageStatus.queued, MessageStatus.sending}),
   sent({MessageStatus.sent, MessageStatus.delivered, MessageStatus.read}),
-  failed({MessageStatus.failed}),
+
+  /// Could not be sent (moved from the API, a refused number): any status.
+  problems({}, errorsOnly: true),
   skipped({MessageStatus.skipped, MessageStatus.cancelled});
 
-  const LogFilter(this.statuses);
+  const LogFilter(this.statuses, {this.errorsOnly = false});
 
   final Set<MessageStatus> statuses;
+  final bool errorsOnly;
 }
 
 /// The message log (8.13), gym-wide or for one member.
 @riverpod
 class MessageLog extends _$MessageLog {
-  Future<Paged<QueuedMessage>> _page(int offset) =>
-      ref.read(whatsAppRepositoryProvider).log(memberId: memberId, statuses: filter.statuses, offset: offset);
+  Future<Paged<QueuedMessage>> _page(int offset) => ref
+      .read(whatsAppRepositoryProvider)
+      .log(memberId: memberId, statuses: filter.statuses, errorsOnly: filter.errorsOnly, offset: offset);
 
   @override
   Future<Paged<QueuedMessage>> build(String? memberId, LogFilter filter) {

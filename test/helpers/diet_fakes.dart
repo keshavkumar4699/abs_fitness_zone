@@ -495,8 +495,15 @@ class RecordingMealReminders implements MealReminders {
   final scheduled = <MealReminder>[];
   int cancels = 0;
 
+  String? channelName;
+
   @override
-  Future<void> schedule(List<MealReminder> reminders) async {
+  Future<void> schedule(
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  }) async {
+    this.channelName = channelName;
     scheduled
       ..clear()
       ..addAll(reminders);

@@ -2821,7 +2821,7 @@
   "waLogAll": "All",
   "waLogQueued": "Queued",
   "waLogSent": "Sent",
-  "waLogFailed": "Failed",
+  "waLogProblems": "Problems",
   "waLogSkipped": "Skipped",
   "waStatusQueued": "Queued",
   "waStatusSending": "Sending",
@@ -3085,6 +3085,57 @@
     "placeholders": {
       "name": {
         "type": "String"
+      }
+    }
+  },
+  "receiptHeading": "RECEIPT",
+  "receiptDocTitle": "Receipt {no}",
+  "@receiptDocTitle": {
+    "placeholders": {
+      "no": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptGstin": "GSTIN {gstin}",
+  "@receiptGstin": {
+    "placeholders": {
+      "gstin": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptReceivedFrom": "Received from",
+  "receiptAgainstInvoice": "Against invoice {invoiceNo}",
+  "@receiptAgainstInvoice": {
+    "placeholders": {
+      "invoiceNo": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptDiscount": "Discount",
+  "receiptTaxable": "Taxable value",
+  "receiptCgst": "CGST",
+  "receiptSgst": "SGST",
+  "receiptInvoiceTotal": "Invoice total",
+  "receiptAmountReceived": "Amount received",
+  "receiptMode": "Mode",
+  "receiptUtr": "Reference / UTR",
+  "receiptBalanceDue": "Balance due",
+  "receiptThanks": "Thank you for training with us!",
+  "receiptGenerated": "This is a computer-generated receipt.",
+  "notifRestTitle": "Rest over",
+  "notifRestBody": "Time for your next set",
+  "notifRestChannel": "Rest timer",
+  "notifRestChannelBody": "Tells you when your rest between sets is over",
+  "notifMealChannel": "Meal reminders",
+  "notifMealChannelBody": "Reminds you of the meals in your diet plan",
+  "waTodayProblems": "{count, plural, =1{1 needs attention} other{{count} need attention}}",
+  "@waTodayProblems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
       }
     }
   }

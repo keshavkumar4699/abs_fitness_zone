@@ -3,6 +3,11 @@
     <!-- Rest timer: an exact alert when the rest ends, even with the screen off
          (falls back to an inexact one if the user hasn't allowed exact alarms). -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- Android 13+: notifications need a runtime permission (asked when the
+         first rest alert or meal reminder is set). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Daily meal reminders survive a restart. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:label="ABS Fitness"
         android:name="${applicationName}"
@@ -38,6 +43,14 @@
         </activity>
         <!-- Shows scheduled notifications (the rest-timer alert). -->
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
         <!-- Deep links are auth callbacks for Supabase, not app routes. -->
         <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
         <!-- Don't delete the meta-data below.
@@ -55,6 +68,27 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+        <!-- Android 11+ package visibility for the links the app opens:
+             wa.me and pay links, WhatsApp, the dialler and UPI apps. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="whatsapp" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="upi" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
         </intent>
     </queries>
 </manifest>

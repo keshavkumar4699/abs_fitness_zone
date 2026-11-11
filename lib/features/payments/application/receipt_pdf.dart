@@ -4,6 +4,8 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../../../app/l10n/l10n.dart';
+
 import '../../../core/utils/dates.dart';
 import '../../../core/utils/money.dart';
 import '../../../core/utils/phone.dart';
@@ -18,15 +20,6 @@ class ReceiptGym {
   final String? phone;
   final String? gstin;
 }
-
-String modeLabel(PaymentMode m) => switch (m) {
-  PaymentMode.cash => 'Cash',
-  PaymentMode.upi => 'UPI',
-  PaymentMode.card => 'Card',
-  PaymentMode.bank => 'Bank transfer',
-  PaymentMode.online => 'Online',
-  PaymentMode.credit => 'Credit',
-};
 
 /// Loads the bundled fonts once (Nunito has ₹).
 class ReceiptFonts {
@@ -46,7 +39,9 @@ class ReceiptFonts {
 /// On-device PDF receipt (2.7): gym, GSTIN, member, items, GST split, mode,
 /// UTR and balance. A5, about 13 KB in about 0.1 s (spec: under 150 KB, under 1 s).
 Future<Uint8List> buildReceiptPdf({
+  required AppLocalizations l,
   required ReceiptGym gym,
+  required String modeLabel,
   required Invoice invoice,
   required Payment payment,
   required ReceiptFonts fonts,
@@ -56,7 +51,7 @@ Future<Uint8List> buildReceiptPdf({
   const lime = PdfColor.fromInt(0xFFC6F432);
   final doc = pw.Document(
     theme: pw.ThemeData.withFont(base: fonts.regular, bold: fonts.bold),
-    title: 'Receipt ${payment.receiptNo ?? ''}',
+    title: l.receiptDocTitle(payment.receiptNo ?? ''),
     author: gym.name,
     compress: true,
   );
@@ -112,7 +107,7 @@ Future<Uint8List> buildReceiptPdf({
                     if (gym.phone != null)
                       pw.Text(Phone.display(gym.phone!), style: const pw.TextStyle(fontSize: 8, color: soft)),
                     if (gym.gstin != null)
-                      pw.Text('GSTIN ${gym.gstin}', style: const pw.TextStyle(fontSize: 8, color: soft)),
+                      pw.Text(l.receiptGstin(gym.gstin!), style: const pw.TextStyle(fontSize: 8, color: soft)),
                   ],
                 ),
               ),
@@ -120,7 +115,7 @@ Future<Uint8List> buildReceiptPdf({
                 crossAxisAlignment: pw.CrossAxisAlignment.end,
                 children: [
                   pw.Text(
-                    'RECEIPT',
+                    l.receiptHeading,
                     style: const pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold, color: ink),
                   ),
                   pw.Text(payment.receiptNo ?? '', style: const pw.TextStyle(fontSize: 9)),
@@ -130,7 +125,7 @@ Future<Uint8List> buildReceiptPdf({
             ],
           ),
           pw.SizedBox(height: 16),
-          pw.Text('Received from', style: const pw.TextStyle(fontSize: 8, color: soft)),
+          pw.Text(l.receiptReceivedFrom, style: const pw.TextStyle(fontSize: 8, color: soft)),
           pw.Text(
             '${invoice.memberName} (${invoice.memberCode})',
             style: const pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
@@ -138,16 +133,16 @@ Future<Uint8List> buildReceiptPdf({
           if (invoice.memberPhone != null)
             pw.Text(Phone.display(invoice.memberPhone!), style: const pw.TextStyle(fontSize: 9)),
           pw.SizedBox(height: 12),
-          pw.Text('Against invoice ${invoice.invoiceNo}', style: const pw.TextStyle(fontSize: 9, color: soft)),
+          pw.Text(l.receiptAgainstInvoice(invoice.invoiceNo), style: const pw.TextStyle(fontSize: 9, color: soft)),
           pw.Divider(color: soft, thickness: 0.5),
           for (final item in invoice.items) row(item.description, Money.format(item.grossPaise)),
-          if (invoice.discountPaise > 0) row('Discount', '- ${Money.format(invoice.discountPaise)}'),
+          if (invoice.discountPaise > 0) row(l.receiptDiscount, '- ${Money.format(invoice.discountPaise)}'),
           if (invoice.gstPaise > 0) ...[
-            row('Taxable value', Money.format(invoice.taxablePaise)),
-            row('CGST', Money.format(invoice.cgstPaise)),
-            row('SGST', Money.format(invoice.sgstPaise)),
+            row(l.receiptTaxable, Money.format(invoice.taxablePaise)),
+            row(l.receiptCgst, Money.format(invoice.cgstPaise)),
+            row(l.receiptSgst, Money.format(invoice.sgstPaise)),
           ],
-          row('Invoice total', Money.format(invoice.totalPaise), bold: true),
+          row(l.receiptInvoiceTotal, Money.format(invoice.totalPaise), bold: true),
           pw.Divider(color: soft, thickness: 0.5),
           pw.Container(
             padding: const pw.EdgeInsets.all(10),
@@ -156,7 +151,7 @@ Future<Uint8List> buildReceiptPdf({
               children: [
                 pw.Expanded(
                   child: pw.Text(
-                    'Amount received',
+                    l.receiptAmountReceived,
                     style: const pw.TextStyle(fontWeight: pw.FontWeight.bold, color: ink),
                   ),
                 ),
@@ -168,18 +163,15 @@ Future<Uint8List> buildReceiptPdf({
             ),
           ),
           pw.SizedBox(height: 6),
-          row('Mode', modeLabel(payment.mode)),
-          if (payment.utr != null) row('Reference / UTR', payment.utr!),
-          row('Balance due', Money.format(invoice.balancePaise), bold: true),
+          row(l.receiptMode, modeLabel),
+          if (payment.utr != null) row(l.receiptUtr, payment.utr!),
+          row(l.receiptBalanceDue, Money.format(invoice.balancePaise), bold: true),
           pw.Spacer(),
           pw.Center(
-            child: pw.Text('Thank you for training with us!', style: const pw.TextStyle(fontSize: 9, color: soft)),
+            child: pw.Text(l.receiptThanks, style: const pw.TextStyle(fontSize: 9, color: soft)),
           ),
           pw.Center(
-            child: pw.Text(
-              'This is a computer-generated receipt.',
-              style: const pw.TextStyle(fontSize: 7, color: soft),
-            ),
+            child: pw.Text(l.receiptGenerated, style: const pw.TextStyle(fontSize: 7, color: soft)),
           ),
         ],
       ),

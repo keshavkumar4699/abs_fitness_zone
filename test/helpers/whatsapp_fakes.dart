@@ -59,12 +59,18 @@ class FakeWhatsAppRepository implements WhatsAppRepository {
   }
 
   @override
-  Future<Paged<QueuedMessage>> log({String? memberId, Set<MessageStatus> statuses = const {}, int offset = 0}) async {
+  Future<Paged<QueuedMessage>> log({
+    String? memberId,
+    Set<MessageStatus> statuses = const {},
+    bool errorsOnly = false,
+    int offset = 0,
+  }) async {
     _maybeThrow();
     final rows =
         store
             .where((m) => memberId == null || m.memberId == memberId)
             .where((m) => statuses.isEmpty || statuses.contains(m.status))
+            .where((m) => !errorsOnly || m.error != null)
             .toList()
           ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
     final page = rows.skip(offset).take(kPageSize).toList();
@@ -77,6 +83,7 @@ class FakeWhatsAppRepository implements WhatsAppRepository {
     return QueueSummary(
       toSend: store.where((m) => m.channel == MessageChannel.link && m.status == MessageStatus.queued).length,
       sentToday: store.where((m) => m.status.isDone).length,
+      failed: store.where((m) => m.status == MessageStatus.queued && m.error != null).length,
     );
   }
 

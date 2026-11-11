@@ -15,7 +15,7 @@ String logFilterLabel(AppLocalizations l, LogFilter f) => switch (f) {
   LogFilter.all => l.waLogAll,
   LogFilter.queued => l.waLogQueued,
   LogFilter.sent => l.waLogSent,
-  LogFilter.failed => l.waLogFailed,
+  LogFilter.problems => l.waLogProblems,
   LogFilter.skipped => l.waLogSkipped,
 };
 
@@ -61,7 +61,7 @@ class _MessageLogViewState extends ConsumerState<MessageLogView> {
                         key: ValueKey('wa-log-${f.name}'),
                         label: logFilterLabel(l, f),
                         selected: _filter == f,
-                        hue: f == LogFilter.failed ? PopHue.coral : PopHue.mint,
+                        hue: f == LogFilter.problems ? PopHue.coral : PopHue.mint,
                         onTap: () => setState(() => _filter = f),
                       ),
                       const SizedBox(width: AbsSpace.x2),

@@ -136,7 +136,7 @@ final class MessageLogProvider extends $AsyncNotifierProvider<MessageLog, Paged<
   }
 }
 
-String _$messageLogHash() => r'74934eb732e4f7a04ba5ec7bc66fb42459372146';
+String _$messageLogHash() => r'89d75db191db7c9231227069a0cd210d85db9961';
 
 /// The message log (8.13), gym-wide or for one member.
 

@@ -12,14 +12,17 @@ import '../application/receipt_pdf.dart';
 import '../../whatsapp/application/whatsapp_providers.dart';
 import '../data/payments_repository.dart';
 import '../domain/payment_models.dart';
+import 'payment_ui.dart';
 
 /// Builds the PDF receipt for one payment on the device (2.7).
-Future<(Uint8List, String)> _receipt(WidgetRef ref, String invoiceId, String paymentId) async {
+Future<(Uint8List, String)> _receipt(AppLocalizations l, WidgetRef ref, String invoiceId, String paymentId) async {
   final repo = ref.read(paymentsRepositoryProvider);
   final invoice = await repo.invoice(invoiceId);
   final payment = invoice.payments.firstWhere((p) => p.id == paymentId);
   final profile = await ref.read(billingProfileProvider.future);
   final bytes = await buildReceiptPdf(
+    l: l,
+    modeLabel: modeName(l, payment.mode),
     gym: ReceiptGym(name: profile.gymName, address: profile.address, phone: profile.phone, gstin: profile.gstin),
     invoice: invoice,
     payment: payment,
@@ -38,7 +41,7 @@ Future<void> shareReceipt(
 }) async {
   final l = context.l10n;
   try {
-    final (bytes, name) = await _receipt(ref, invoiceId, paymentId);
+    final (bytes, name) = await _receipt(l, ref, invoiceId, paymentId);
     await Printing.sharePdf(bytes: bytes, filename: name);
   } catch (_) {
     if (context.mounted) showAbsSnackbar(context, l.receiptFailed, tone: SnackTone.error);
@@ -54,7 +57,7 @@ Future<void> printReceipt(
 }) async {
   final l = context.l10n;
   try {
-    final (bytes, name) = await _receipt(ref, invoiceId, paymentId);
+    final (bytes, name) = await _receipt(l, ref, invoiceId, paymentId);
     await Printing.layoutPdf(name: name, onLayout: (_) async => bytes);
   } catch (_) {
     if (context.mounted) showAbsSnackbar(context, l.receiptFailed, tone: SnackTone.error);

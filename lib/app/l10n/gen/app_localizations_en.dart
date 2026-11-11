@@ -4528,7 +4528,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get waLogSent => 'Sent';
 
   @override
-  String get waLogFailed => 'Failed';
+  String get waLogProblems => 'Problems';
 
   @override
   String get waLogSkipped => 'Skipped';
@@ -5023,5 +5023,88 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String waSendTo(String name) {
     return 'Send on WhatsApp to $name';
+  }
+
+  @override
+  String get receiptHeading => 'RECEIPT';
+
+  @override
+  String receiptDocTitle(String no) {
+    return 'Receipt $no';
+  }
+
+  @override
+  String receiptGstin(String gstin) {
+    return 'GSTIN $gstin';
+  }
+
+  @override
+  String get receiptReceivedFrom => 'Received from';
+
+  @override
+  String receiptAgainstInvoice(String invoiceNo) {
+    return 'Against invoice $invoiceNo';
+  }
+
+  @override
+  String get receiptDiscount => 'Discount';
+
+  @override
+  String get receiptTaxable => 'Taxable value';
+
+  @override
+  String get receiptCgst => 'CGST';
+
+  @override
+  String get receiptSgst => 'SGST';
+
+  @override
+  String get receiptInvoiceTotal => 'Invoice total';
+
+  @override
+  String get receiptAmountReceived => 'Amount received';
+
+  @override
+  String get receiptMode => 'Mode';
+
+  @override
+  String get receiptUtr => 'Reference / UTR';
+
+  @override
+  String get receiptBalanceDue => 'Balance due';
+
+  @override
+  String get receiptThanks => 'Thank you for training with us!';
+
+  @override
+  String get receiptGenerated => 'This is a computer-generated receipt.';
+
+  @override
+  String get notifRestTitle => 'Rest over';
+
+  @override
+  String get notifRestBody => 'Time for your next set';
+
+  @override
+  String get notifRestChannel => 'Rest timer';
+
+  @override
+  String get notifRestChannelBody => 'Tells you when your rest between sets is over';
+
+  @override
+  String get notifMealChannel => 'Meal reminders';
+
+  @override
+  String get notifMealChannelBody => 'Reminds you of the meals in your diet plan';
+
+  @override
+  String waTodayProblems(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count need attention',
+      one: '1 needs attention',
+    );
+    return '$_temp0';
   }
 }

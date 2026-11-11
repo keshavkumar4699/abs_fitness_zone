@@ -14,6 +14,7 @@ import '../../../core/widgets/widgets.dart';
 import '../../exercises/application/exercise_providers.dart';
 import '../../exercises/domain/exercise.dart';
 import '../../exercises/presentation/exercise_ui.dart';
+import '../application/rest_alerts.dart';
 import '../application/workouts_providers.dart';
 import '../domain/workout_models.dart';
 import '../domain/workout_session.dart';
@@ -47,6 +48,22 @@ class _WorkoutPlayerScreenState extends ConsumerState<WorkoutPlayerScreen> {
   void initState() {
     super.initState();
     _tick = Timer.periodic(const Duration(milliseconds: 500), (_) => _onTick());
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l = context.l10n;
+    ref
+        .read(activeWorkoutProvider.notifier)
+        .setAlertText(
+          RestAlertText(
+            title: l.notifRestTitle,
+            body: l.notifRestBody,
+            channelName: l.notifRestChannel,
+            channelDescription: l.notifRestChannelBody,
+          ),
+        );
   }
 
   void _onTick() {

@@ -7910,11 +7910,11 @@ abstract class AppLocalizations {
   /// **'Sent'**
   String get waLogSent;
 
-  /// No description provided for @waLogFailed.
+  /// No description provided for @waLogProblems.
   ///
   /// In en, this message translates to:
-  /// **'Failed'**
-  String get waLogFailed;
+  /// **'Problems'**
+  String get waLogProblems;
 
   /// No description provided for @waLogSkipped.
   ///
@@ -8767,6 +8767,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Send on WhatsApp to {name}'**
   String waSendTo(String name);
+
+  /// No description provided for @receiptHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'RECEIPT'**
+  String get receiptHeading;
+
+  /// No description provided for @receiptDocTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt {no}'**
+  String receiptDocTitle(String no);
+
+  /// No description provided for @receiptGstin.
+  ///
+  /// In en, this message translates to:
+  /// **'GSTIN {gstin}'**
+  String receiptGstin(String gstin);
+
+  /// No description provided for @receiptReceivedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Received from'**
+  String get receiptReceivedFrom;
+
+  /// No description provided for @receiptAgainstInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Against invoice {invoiceNo}'**
+  String receiptAgainstInvoice(String invoiceNo);
+
+  /// No description provided for @receiptDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Discount'**
+  String get receiptDiscount;
+
+  /// No description provided for @receiptTaxable.
+  ///
+  /// In en, this message translates to:
+  /// **'Taxable value'**
+  String get receiptTaxable;
+
+  /// No description provided for @receiptCgst.
+  ///
+  /// In en, this message translates to:
+  /// **'CGST'**
+  String get receiptCgst;
+
+  /// No description provided for @receiptSgst.
+  ///
+  /// In en, this message translates to:
+  /// **'SGST'**
+  String get receiptSgst;
+
+  /// No description provided for @receiptInvoiceTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice total'**
+  String get receiptInvoiceTotal;
+
+  /// No description provided for @receiptAmountReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount received'**
+  String get receiptAmountReceived;
+
+  /// No description provided for @receiptMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Mode'**
+  String get receiptMode;
+
+  /// No description provided for @receiptUtr.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference / UTR'**
+  String get receiptUtr;
+
+  /// No description provided for @receiptBalanceDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Balance due'**
+  String get receiptBalanceDue;
+
+  /// No description provided for @receiptThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for training with us!'**
+  String get receiptThanks;
+
+  /// No description provided for @receiptGenerated.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a computer-generated receipt.'**
+  String get receiptGenerated;
+
+  /// No description provided for @notifRestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest over'**
+  String get notifRestTitle;
+
+  /// No description provided for @notifRestBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for your next set'**
+  String get notifRestBody;
+
+  /// No description provided for @notifRestChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest timer'**
+  String get notifRestChannel;
+
+  /// No description provided for @notifRestChannelBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tells you when your rest between sets is over'**
+  String get notifRestChannelBody;
+
+  /// No description provided for @notifMealChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal reminders'**
+  String get notifMealChannel;
+
+  /// No description provided for @notifMealChannelBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminds you of the meals in your diet plan'**
+  String get notifMealChannelBody;
+
+  /// No description provided for @waTodayProblems.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 needs attention} other{{count} need attention}}'**
+  String waTodayProblems(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

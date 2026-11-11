@@ -743,7 +743,7 @@ final class ActiveWorkoutProvider extends $NotifierProvider<ActiveWorkout, Worko
   }
 }
 
-String _$activeWorkoutHash() => r'4aacf6a8d8537ab4c9be4df16dcb0bec8e9d72b4';
+String _$activeWorkoutHash() => r'15bd5b0a4e551e782cb736f06868450301ce75fb';
 
 abstract class _$ActiveWorkout extends $Notifier<WorkoutSession?> {
   WorkoutSession? build();

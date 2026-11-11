@@ -1093,6 +1093,31 @@ revoke execute on function
   public.whatsapp_status(text, text, text), public.whatsapp_inbound(text, text)
 from public, anon, authenticated;
 
+-- Switching modes moves what is waiting (8.10): to API mode, the free-mode
+-- messages the API never tried go out automatically; back to free mode,
+-- nothing is left waiting on an API that is off.
+create or replace function public._whatsapp_mode_changed()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if new.key = 'whatsapp_mode' and new.value is distinct from old.value then
+    if new.value #>> '{}' = 'api' then
+      update public.message_queue set channel = 'api'
+       where channel = 'link' and status = 'queued' and attempts = 0 and error is null;
+    else
+      update public.message_queue set channel = 'link'
+       where channel = 'api' and status in ('queued', 'sending');
+    end if;
+  end if;
+  return null;
+end;
+$$;
+create trigger settings_whatsapp_mode after update on public.settings
+  for each row execute function public._whatsapp_mode_changed();
+
 -- Daily queue at 07:30 IST (02:00 UTC). API sending is scheduled separately
 -- (README): it needs the project URL and a secret.
 do $$

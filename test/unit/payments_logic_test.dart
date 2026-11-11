@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:abs_fitness/app/l10n/l10n.dart';
 import 'package:abs_fitness/core/services/upi_link.dart';
 import 'package:abs_fitness/features/payments/application/payments_providers.dart';
 import 'package:abs_fitness/features/payments/application/receipt_pdf.dart';
 import 'package:abs_fitness/features/payments/domain/payment_models.dart';
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/payment_fakes.dart';
@@ -156,7 +158,10 @@ void main() {
       final fonts = await ReceiptFonts.load();
       final invoice = sampleInvoices()[1];
       final sw = Stopwatch()..start();
+      final l = await AppLocalizations.delegate.load(const Locale('en'));
       final bytes = await buildReceiptPdf(
+        l: l,
+        modeLabel: 'Cash',
         gym: const ReceiptGym(
           name: 'ABS Fitness Zone',
           address: 'Boring Road, Patna',

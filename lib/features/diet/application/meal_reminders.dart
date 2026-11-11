@@ -22,7 +22,13 @@ class MealReminder {
 /// Optional meal reminders (6.10): local notifications that repeat every
 /// day at the times in the member's plan. Nothing leaves the phone.
 abstract interface class MealReminders {
-  Future<void> schedule(List<MealReminder> reminders);
+  /// The channel name and description show in Android's notification
+  /// settings, so they come from l10n like everything else.
+  Future<void> schedule(
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  });
   Future<void> cancelAll();
 }
 
@@ -30,7 +36,11 @@ class NoopMealReminders implements MealReminders {
   const NoopMealReminders();
 
   @override
-  Future<void> schedule(List<MealReminder> reminders) async {}
+  Future<void> schedule(
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  }) async {}
 
   @override
   Future<void> cancelAll() async {}
@@ -57,7 +67,11 @@ class LocalMealReminders implements MealReminders {
   }
 
   @override
-  Future<void> schedule(List<MealReminder> reminders) async {
+  Future<void> schedule(
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  }) async {
     try {
       await _init();
       await cancelAll();
@@ -71,14 +85,14 @@ class LocalMealReminders implements MealReminders {
           title: r.title,
           body: r.body,
           scheduledDate: at,
-          notificationDetails: const NotificationDetails(
+          notificationDetails: NotificationDetails(
             android: AndroidNotificationDetails(
               'meal_reminders',
-              'Meal reminders',
-              channelDescription: 'Reminds you of the meals in your diet plan',
+              channelName,
+              channelDescription: channelDescription,
               importance: Importance.defaultImportance,
             ),
-            iOS: DarwinNotificationDetails(),
+            iOS: const DarwinNotificationDetails(),
           ),
           androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
           matchDateTimeComponents: DateTimeComponents.time,

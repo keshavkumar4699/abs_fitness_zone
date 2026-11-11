@@ -581,10 +581,14 @@ class FakeWorkoutsRepository implements WorkoutsRepository {
 
 class RecordingRestAlerts implements RestAlerts {
   final scheduled = <DateTime>[];
+  RestAlertText? lastText;
   int cancels = 0;
 
   @override
-  Future<void> schedule(DateTime at, {required String title, required String body}) async => scheduled.add(at);
+  Future<void> schedule(DateTime at, RestAlertText text) async {
+    scheduled.add(at);
+    lastText = text;
+  }
 
   @override
   Future<void> cancel() async => cancels++;

@@ -287,13 +287,19 @@ select pg_temp.check((select not whatsapp_opt_out from public.members where id =
 
 -- ---------- API mode (8.10, 8.11) ----------
 update public.settings set value = '"api"' where key = 'whatsapp_mode';
+select pg_temp.check(not exists (select 1 from public.message_queue where channel = 'link' and status = 'queued' and attempts = 0 and error is null)
+                     and exists (select 1 from public.message_queue where channel = 'api' and status = 'queued'),
+                     'switching to API mode moves waiting messages to the API');
+-- The checks below look only at the broadcast made in API mode.
+update public.message_queue set status = 'skipped' where channel = 'api' and status = 'queued';
 set role authenticated;
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
 select public.create_broadcast('API test', 'Hi {first_name}, testing.', 'utility',
   jsonb_build_object('kind', 'members', 'member_ids', jsonb_build_array((select riya from ids), (select kabir from ids))));
 select pg_temp.raises($$select * from public.whatsapp_claim(10)$$, 'the app cannot claim API messages');
 reset role;
-select pg_temp.check((select count(*) from public.message_queue where source = 'broadcast' and channel = 'api') = 2, 'API mode: new messages go to the API');
+select pg_temp.check((select count(*) from public.message_queue where source = 'broadcast' and channel = 'api' and status = 'queued') = 2,
+                     'API mode: new messages go to the API');
 create temp table claimed as select * from public.whatsapp_claim(10);
 select pg_temp.check((select count(*) from claimed) = 2 and (select bool_and(phone like '+91%') from claimed), 'claim: due API messages with phones');
 select pg_temp.check((select count(*) from public.message_queue where status = 'sending') = 2, 'claimed messages are marked sending');
@@ -376,6 +382,9 @@ select pg_temp.check((select count(*) from public.festivals) = 12, 'desk: reads 
 update public.settings set value = '"link"' where key = 'whatsapp_mode';
 select pg_temp.check((public.whatsapp_settings() ->> 'mode') = 'api', 'desk: cannot change the mode (owner setting)');
 reset role;
+update public.settings set value = '"link"' where key = 'whatsapp_mode';
+select pg_temp.check(not exists (select 1 from public.message_queue where channel = 'api' and status in ('queued', 'sending')),
+                     'back in free mode, nothing waits on the API');
 
 -- ---------- anonymous ----------
 set role anon;

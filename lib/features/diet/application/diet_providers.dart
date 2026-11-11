@@ -321,16 +321,31 @@ class MealReminderSwitch extends _$MealReminderSwitch {
   bool build() => ref.watch(sharedPreferencesProvider).getBool(_key) ?? false;
 
   /// Turns reminders on (scheduling [reminders]) or off.
-  Future<void> set(bool on, List<MealReminder> reminders) async {
+  Future<void> set(
+    bool on,
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  }) async {
     state = on;
     await ref.read(sharedPreferencesProvider).setBool(_key, on);
     final r = ref.read(mealRemindersProvider);
-    on ? await r.schedule(reminders) : await r.cancelAll();
+    on
+        ? await r.schedule(reminders, channelName: channelName, channelDescription: channelDescription)
+        : await r.cancelAll();
   }
 
   /// Re-schedules after the plan changes, when reminders are on.
-  Future<void> resync(List<MealReminder> reminders) async {
-    if (state) await ref.read(mealRemindersProvider).schedule(reminders);
+  Future<void> resync(
+    List<MealReminder> reminders, {
+    required String channelName,
+    required String channelDescription,
+  }) async {
+    if (state) {
+      await ref
+          .read(mealRemindersProvider)
+          .schedule(reminders, channelName: channelName, channelDescription: channelDescription);
+    }
   }
 }
 

@@ -73,7 +73,15 @@ class _MyDietScreenState extends ConsumerState<MyDietScreen> {
     // Keep reminders in step with the plan.
     ref.listen(currentDietProvider(memberId), (_, next) {
       final plan = next.value?.template;
-      if (plan != null) ref.read(mealReminderSwitchProvider.notifier).resync(remindersFor(l, plan, lookup));
+      if (plan != null) {
+        ref
+            .read(mealReminderSwitchProvider.notifier)
+            .resync(
+              remindersFor(l, plan, lookup),
+              channelName: l.notifMealChannel,
+              channelDescription: l.notifMealChannelBody,
+            );
+      }
     });
 
     final list = diets.value ?? const <MemberDiet>[];
@@ -270,7 +278,12 @@ class _MyDietScreenState extends ConsumerState<MyDietScreen> {
                       onPressed: () async {
                         await ref
                             .read(mealReminderSwitchProvider.notifier)
-                            .set(!remindersOn, remindersFor(l, p, lookup));
+                            .set(
+                              !remindersOn,
+                              remindersFor(l, p, lookup),
+                              channelName: l.notifMealChannel,
+                              channelDescription: l.notifMealChannelBody,
+                            );
                         if (context.mounted) {
                           showAbsSnackbar(
                             context,

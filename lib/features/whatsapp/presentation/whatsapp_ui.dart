@@ -204,7 +204,10 @@ class WhatsAppTodayCard extends ConsumerWidget {
                 children: [
                   Text(l.waTodayTitle, style: t.heading),
                   Text(
-                    s.toSend == 0 ? l.waTodayAllDone : l.waTodayBody(s.toSend, s.sentToday),
+                    [
+                      s.toSend == 0 ? l.waTodayAllDone : l.waTodayBody(s.toSend, s.sentToday),
+                      if (s.failed > 0) l.waTodayProblems(s.failed),
+                    ].join(' · '),
                     style: t.caption.copyWith(color: c.textSecondary),
                   ),
                 ],

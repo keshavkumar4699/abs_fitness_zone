@@ -227,6 +227,8 @@ void main() {
     await settle(tester, 4);
     expect(find.byKey(const ValueKey('rest-card')), findsOneWidget);
     expect(alerts.scheduled, hasLength(1), reason: 'an alert for when the phone is locked');
+    expect(alerts.lastText?.title, 'Rest over');
+    expect(alerts.lastText?.channelName, 'Rest timer');
     await tester.tap(find.byKey(const ValueKey('rest-skip')));
     await settle(tester, 4);
     expect(find.byKey(const ValueKey('rest-card')), findsNothing);

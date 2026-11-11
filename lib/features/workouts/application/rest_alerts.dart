@@ -10,15 +10,25 @@ part 'rest_alerts.g.dart';
 /// is locked (spec F5 acceptance). The timer itself runs from an end time, so
 /// it stays right after the screen comes back on.
 abstract interface class RestAlerts {
-  Future<void> schedule(DateTime at, {required String title, required String body});
+  Future<void> schedule(DateTime at, RestAlertText text);
   Future<void> cancel();
+}
+
+/// What the alert says (from l10n; set by the player before a set is ticked).
+class RestAlertText {
+  const RestAlertText({this.title = '', this.body = '', this.channelName = '', this.channelDescription = ''});
+
+  final String title;
+  final String body;
+  final String channelName;
+  final String channelDescription;
 }
 
 class NoopRestAlerts implements RestAlerts {
   const NoopRestAlerts();
 
   @override
-  Future<void> schedule(DateTime at, {required String title, required String body}) async {}
+  Future<void> schedule(DateTime at, RestAlertText text) async {}
 
   @override
   Future<void> cancel() async {}
@@ -46,25 +56,25 @@ class LocalRestAlerts implements RestAlerts {
   }
 
   @override
-  Future<void> schedule(DateTime at, {required String title, required String body}) async {
+  Future<void> schedule(DateTime at, RestAlertText text) async {
     try {
       await _init();
       await _plugin.cancel(id: _id);
       await _plugin.zonedSchedule(
         id: _id,
-        title: title,
-        body: body,
+        title: text.title,
+        body: text.body,
         scheduledDate: tz.TZDateTime.from(at.toUtc(), tz.UTC),
-        notificationDetails: const NotificationDetails(
+        notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
             'rest_timer',
-            'Rest timer',
-            channelDescription: 'Tells you when your rest between sets is over',
+            text.channelName,
+            channelDescription: text.channelDescription,
             importance: Importance.high,
             priority: Priority.high,
             category: AndroidNotificationCategory.alarm,
           ),
-          iOS: DarwinNotificationDetails(interruptionLevel: InterruptionLevel.timeSensitive),
+          iOS: const DarwinNotificationDetails(interruptionLevel: InterruptionLevel.timeSensitive),
         ),
         androidScheduleMode: _exact
             ? AndroidScheduleMode.exactAllowWhileIdle
